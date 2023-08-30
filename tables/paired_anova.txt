@@ -1,0 +1,5 @@
+all_info_expected	study_id	paired_f	paired_f_pval	paired_t	paired_t_pval	r_pre_post_exp	r_pre_post_nexp	n_exp	n_nexp
+paired_f	1	5.9				0.162	0.088	94	116
+paired_f_pval	2		0.0275			0.165	0.12	96	113
+paired_t	3			1.12		0.79	0.824	79	95
+paired_t_pval	4				0.00628	0.439	0.494	79	92

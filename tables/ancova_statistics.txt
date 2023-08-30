@@ -1,0 +1,7 @@
+all_info_expected	study_id	ancova_t	ancova_f	ancova_t_pval	ancova_f_pval	cohen_d_adj	etasq_adj	cov_outcome_r	n_cov_ancova	n_exp	n_nexp
+ancova_t	1	1.41						0.15	2	48	54
+ancova_f	2		0.0683					0.3	5	94	92
+ancova_t_pval	3			0.69				0.3	5	11	19
+ancova_f_pval	4				0.00808			0.1	1	25	25
+cohen_d_adj	5					0.609		0.15	2	69	61
+etasq_adj	6						0.591	0.25	4	86	82

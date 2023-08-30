@@ -1,0 +1,4 @@
+all_info_expected	study_id	n_cases_exp	n_cases_nexp	n_controls_exp	n_controls_nexp	prop_cases_exp	prop_cases_nexp	n_exp	n_nexp
+2x2	1	84	175	377	321				
+2x2_sum	2	353	30					636	504
+2x2_prop	3					0.426	0.183	433	116

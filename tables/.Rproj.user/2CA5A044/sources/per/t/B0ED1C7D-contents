@@ -1,0 +1,18 @@
+Package: es.utils
+Type: Package
+Title: An R Package Dedicated to Automated Effect Size Calculation
+Version: 1.0.0
+Author: Corentin J. Gosling [aut, cre], Samuele Cortese [aut], Marco Solmi [aut], Belen Haza Gomez[aut], Eduard Vieta [aut], Richard Delorme[aut], Paolo Fusar-Poli [aut], Joaquim Radua [aut]
+Maintainer: Corentin J. Gosling <corentin.gosling@parisnanterre.fr>
+Description: This package automatically estimates 11 effect size measures from a well-formatted dataframe. Various other functions can help, for example, removing dependency between several effect sizes, or identiying differences between two dataframes.
+    This package is mainly designed to assist in conducting a systematic review with a meta-analysis but can be useful to any researcher interested in estimating an effect size. 
+Imports: compareDF, metafor, estimraw, mvtnorm, numDeriv, rio
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.3
+Depends: 
+    R (>= 2.10)
+Suggests: 
+    testthat (>= 3.0.0), metaumbrella, esc, compute.es, meta, effectsize, MetaUtility
+Config/testthat/edition: 3

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="130.72337mm"
+   height="160.48041mm"
+   viewBox="0 0 130.72338 160.4804"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="textformat.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.5499273"
+     inkscape:cx="-545.52665"
+     inkscape:cy="166.38563"
+     inkscape:window-width="2560"
+     inkscape:window-height="1361"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <pattern
+       id="EMFhbasepattern"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6"
+       x="0"
+       y="0" />
+  </defs>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-31.318901,-25.256258)">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.01979;stroke-opacity:1"
+       id="rect846"
+       width="129.70358"
+       height="159.46062"
+       x="31.828796"
+       y="25.766153" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.11919;stroke-opacity:1"
+       id="rect2010"
+       width="41.318684"
+       height="38.256821"
+       x="31.964542"
+       y="25.901899" />
+    <rect
+       style="fill:#dfdfdf;fill-opacity:0.994845;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.756006;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2114"
+       width="51.940624"
+       height="49.223434"
+       x="31.209217"
+       y="25.199553" />
+    <rect
+       style="fill:#ffffff;fill-opacity:0.994845;fill-rule:evenodd;stroke:none;stroke-width:0.690187;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3267"
+       width="24.265438"
+       height="71.217133"
+       x="51.233719"
+       y="-43.254292"
+       transform="matrix(0.68560399,0.7279747,-0.7256463,0.68806791,0,0)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 31.4714,74.71588 83.149848,25.713658"
+       id="path4081" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.965;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 31.4714,74.71588 51.571612,-0.212823 v 0 l 0.106836,-48.789399"
+       id="path4253" />
+    <g
+       id="g850"
+       transform="translate(-0.31502151,18.809094)">
+      <rect
+         style="fill:#a46ab6;fill-opacity:0.994845;fill-rule:evenodd;stroke:none;stroke-width:1.25857;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4357"
+         width="106.80957"
+         height="61.102776"
+         x="43.590824"
+         y="84.967621" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.8px;line-height:1.25;font-family:Corbel;-inkscape-font-specification:'Corbel, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="59.664555"
+         y="130.21579"
+         id="text6545"><tspan
+           sodipodi:role="line"
+           id="tspan6543"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.8px;font-family:Corbel;-inkscape-font-specification:'Corbel, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+           x="59.664555"
+           y="130.21579">.txt</tspan></text>
+    </g>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.964999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect13105"
+       width="21.162125"
+       height="18.270992"
+       x="31.209213"
+       y="25.199553" />
+  </g>
+</svg>

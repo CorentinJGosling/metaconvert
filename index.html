@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/main.css" />
+    <!-- scroll appear -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!-- carousel -->
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    /> -->
+
+    <title>Home | metaConvert</title>
+  </head>
+
+  <nav>
+    <div class="logo"><img src="logo/logo.svg" /></div>
+
+    <ul class="nav-links">
+      <li><a href="#" class="homepage currentpage">Home</a></li>
+      <li><a href="html/tutorial.html">Tutorial</a></li>
+      <li><a href="html/input.html">Input data</a></li>
+      <li><a href="html/app.html">App</a></li>
+    </ul>
+    <div id="hamburger-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+  <body>
+    <section class="contain_pres">
+      <div class="pres_left">
+        <div class="badges">
+          <img
+            src="https://img.shields.io/badge/license-GPL-red"
+            class="img1"
+          />
+          <img
+            src="https://www.r-pkg.org/badges/version/metaConvert"
+            class="img2"
+          />
+          <!-- <img src="https://cranlogs.r-pkg.org/badges/metaConvert" /> -->
+          <img
+            src="https://cranlogs.r-pkg.org/badges/grand-total/metaConvert"
+            class="img3"
+          />
+        </div>
+
+        <div class="package_name">metaConvert</div>
+        <h1>
+          <span><u>Automated</u></span> computations of effect sizes
+        </h1>
+        <h2>
+          metaConvert is a no-code, free and open-source tool facilitating
+          effect size computations. More information on the calculations used in
+          this tool can be found in its dedicated
+          <a
+            class="btn_git"
+            href="https://cran.r-project.org/web//packages/metaConvert/index.html"
+            target="_blank"
+            >CRAN</a
+          >
+          or
+          <a
+            class="btn_git"
+            href="https://github.com/cran/metaConvert"
+            target="_blank"
+            >github</a
+          >
+          page
+        </h2>
+        <div class="container">
+          <div class="btn"><a href="html/app.html">Open the app</a></div>
+          <div class="btn">
+            <a href="background/extraction_sheet.xlsx" download
+              >Extraction sheet</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="pres_right">
+        <video controls>
+          <source src="video/video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <!-- <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="img/background_img.jpg" /></div>
+            <div class="swiper-slide"><img src="img/background_img.jpg" /></div>
+            <div class="swiper-slide"><img src="img/background_img.jpg" /></div>
+          </div>
+          <div class="autoplay-progress">
+            <svg viewBox="0 0 48 48">
+              <circle cx="24" cy="24" r="20"></circle>
+            </svg>
+            <span></span>
+          </div>
+        </div> -->
+      </div>
+    </section>
+    <section class="section_tools">
+      <div class="section_title">Unique <span>features</span></div>
+
+      <div style="overflow-x: auto">
+        <table class="table-fill">
+          <thead>
+            <tr>
+              <th class="table-left-col"></th>
+              <th class="table-pkg-col">metaConvert</th>
+              <th>esc</th>
+              <th>compute.es</th>
+              <th>esci</th>
+              <th>metafor</th>
+              <th>RevMan</th>
+              <th>CMA</th>
+            </tr>
+          </thead>
+          <tbody class="table-hover">
+            <tr>
+              <td class="table-left">Automatic workflow</td>
+              <td class="table-pkg-col">
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="table-left">Number of effect measures</td>
+              <td class="table-pkg-col">
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(222, 159, 1)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(222, 159, 1)"
+                ></i>
+              </td>
+
+              <td>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(222, 159, 1)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td class="table-left">Conversion between effect measures</td>
+              <td class="table-pkg-col">
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+              </td>
+              <td>
+                <!-- <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i> -->
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+              </td>
+
+              <td>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(222, 159, 1)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(222, 159, 1)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td class="table-left">
+                Aggregation of ES in multilevel situations
+              </td>
+              <td class="table-pkg-col">
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td class="table-left">Multiple ES estimations per comparison</td>
+              <td class="table-pkg-col">
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td class="table-left">Dataset comparison</td>
+              <td class="table-pkg-col">
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td class="table-left">
+                Automatically flip effect size direction
+              </td>
+              <td class="table-pkg-col">
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td class="table-left">Meta-analytic calculations</td>
+              <td class="table-pkg-col">
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+
+              <td>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(222, 159, 1)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(39, 182, 53)"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td class="table-left">
+                Graphical-User Interface (no coding required)
+              </td>
+              <td class="table-pkg-col">
+                <i
+                  style="color: rgb(0, 147, 15)"
+                  class="fas fa-mouse fa-2x"
+                ></i>
+              </td>
+              <td>
+                <i
+                  style="color: rgb(156, 27, 27)"
+                  class="fas fa-code fa-2x"
+                ></i>
+              </td>
+              <td>
+                <i
+                  style="color: rgb(156, 27, 27)"
+                  class="fas fa-code fa-2x"
+                ></i>
+              </td>
+
+              <td>
+                <i
+                  style="color: rgb(0, 147, 15)"
+                  class="fas fa-mouse fa-2x"
+                ></i>
+              </td>
+              <td>
+                <i
+                  style="color: rgb(156, 27, 27)"
+                  class="fas fa-code fa-2x"
+                ></i>
+              </td>
+              <td>
+                <i
+                  style="color: rgb(0, 147, 15)"
+                  class="fas fa-mouse fa-2x"
+                ></i>
+              </td>
+              <td>
+                <i
+                  style="color: rgb(0, 147, 15)"
+                  class="fas fa-mouse fa-2x"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td class="table-left">Price</td>
+              <td class="table-pkg-col">
+                <i
+                  style="color: rgb(0, 147, 15)"
+                  class="fab fa-creative-commons-nc fa-2x"
+                ></i>
+              </td>
+              <td>
+                <i
+                  style="color: rgb(0, 147, 15)"
+                  class="fab fa-creative-commons-nc fa-2x"
+                ></i>
+              </td>
+              <td>
+                <i
+                  style="color: rgb(0, 147, 15)"
+                  class="fab fa-creative-commons-nc fa-2x"
+                ></i>
+              </td>
+
+              <td>
+                <i
+                  style="color: rgb(0, 147, 15)"
+                  class="fab fa-creative-commons-nc fa-2x"
+                ></i>
+              </td>
+              <td>
+                <i
+                  style="color: rgb(0, 147, 15)"
+                  class="fab fa-creative-commons-nc fa-2x"
+                ></i>
+              </td>
+              <td>
+                <i
+                  style="color: rgb(0, 147, 15)"
+                  class="fab fa-creative-commons-nc fa-2x"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="fas fa-dollar-sign fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+                <i
+                  class="fas fa-dollar-sign fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+                <i
+                  class="fas fa-dollar-sign fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="citation">
+      <div class="section_title"><span>Cite</span> our work</div>
+      <div class="citation_text">
+        This app is free of charge, but please acknowledge our work by citing
+        this reference whenever you use this app!
+      </div>
+      <div class="citation_name">
+        Gosling CJ, Cortese S, Solmi M, Haza B, Vieta E, Delorme R, Fusar-Poli P
+        & Radua J (2023). An R Package and Web-app Dedicated to Automated Effect
+        Size Calculation. R package version 1.0.0.
+        https://cran.r-project.org/web/packages/metaConvert
+      </div>
+    </section>
+
+    <section id="sec_team">
+      <div class="section_title">Project <span>leaders</span></div>
+      <div class="about_leaders">
+        <div class="memb">
+          <img src="img/photo_gosling-resized.jpg" class="photo" />
+          <div class="memb_name">Corentin J. Gosling, PhD</div>
+          <div class="memb_affil">
+            Université Paris Nanterre
+            <img class="flag" src="img/fr.svg" />
+          </div>
+          <div class="memb_affil">
+            Université Paris Cité <img class="flag" src="img/fr.svg" />
+          </div>
+          <div class="memb_affil">
+            University of Southampton <img class="flag" src="img/gb.svg" />
+          </div>
+          <div class="read_more_icons">
+            <div class="icons">
+              <a href="mailto: corentin.gosling@parisnanterre.fr" class="button"
+                ><i class="fas fa-envelope"></i
+              ></a>
+            </div>
+            <div class="icons">
+              <a
+                href="https://github.com/CorentinJGosling"
+                class="button"
+                target="_blank"
+                ><i class="fab fa-github"></i
+              ></a>
+            </div>
+            <div class="icons">
+              <a
+                href="https://www.parisnanterre.fr/corentin-gosling--929655.kjsp?RH=1519826463065"
+                target="_blank"
+                ><i class="fas fa-university"></i
+              ></a>
+            </div>
+          </div>
+          <div class="read_more">
+            <button class="readmore_button" id="readmore_buttonCG">
+              <div>Read more</div>
+              <div class="plusIcon" id="plusIconCG">
+                <i class="fas fa-plus"></i>
+              </div>
+            </button>
+            <div class="read_more_text" id="read_more_textCG">
+              Corentin Gosling is an Associate Professor of Neuropsychology at
+              Université Paris Nanterre. He is also a visiting researcher at
+              University of Southampton. One of his research interests focuses
+              on developping new methodological and statistical tools for
+              evidence synthesis.
+            </div>
+          </div>
+        </div>
+
+        <div class="memb">
+          <img src="img/photo_cortese-resized.jpg" class="photo" />
+          <div class="memb_name">Samuele Cortese, MD, PhD</div>
+          <div class="memb_affil">
+            University of Southampton <img class="flag" src="img/gb.svg" />
+          </div>
+          <div class="memb_affil">
+            Solent NHS Trust <img class="flag" src="img/gb.svg" />
+          </div>
+          <div class="memb_affil">
+            New York University <img class="flag" src="img/us.svg" />
+          </div>
+          <div class="read_more_icons">
+            <div class="icons">
+              <a href="mailto: samuelecortese@gmail.com" class="button"
+                ><i class="fas fa-envelope"></i
+              ></a>
+            </div>
+            <div class="icons">
+              <a
+                href="https://www.southampton.ac.uk/people/5xf5yj/professor-samuele-cortese"
+                target="_blank"
+                ><i class="fas fa-university"></i
+              ></a>
+            </div>
+            <div class="icons">
+              <a href="https://twitter.com/CorteseSamuele" target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+            </div>
+          </div>
+          <div class="read_more">
+            <button class="readmore_button" id="readmore_buttonSC">
+              <div>Read more</div>
+              <div class="plusIcon" id="plusIconSC">
+                <i class="fas fa-plus"></i>
+              </div>
+            </button>
+            <div class="read_more_text" id="read_more_textSC">
+              Samuele Cortese is currently Professor of Child and Adolescent
+              Psychiatry at the University of Southampton and Honorary
+              Consultant Child and Adolescent Psychiatry for Solent NHS Trust.
+              He ranks #1 worldwide in terms of expertise on ADHD and #2 in
+              child psychiatry according to Expertscape.
+            </div>
+          </div>
+        </div>
+
+        <div class="memb">
+          <img src="img/photo_solmi-resized.jpg" class="photo" />
+          <div class="memb_name">Marco Solmi, MD, PhD</div>
+          <div class="memb_affil">
+            University of Ottawa <img class="flag" src="img/ca.svg" />
+          </div>
+          <div class="memb_affil">
+            Charité University Medicine <img class="flag" src="img/de.svg" />
+          </div>
+          <div class="memb_affil">&nbsp;</div>
+          <div class="read_more_icons">
+            <div class="icons">
+              <a href="mailto: msolmi@toh.ca" class="button"
+                ><i class="fas fa-envelope"></i
+              ></a>
+            </div>
+            <div class="icons">
+              <a
+                href="https://med.uottawa.ca/psychiatry/people/solmi-marco"
+                target="_blank"
+                ><i class="fas fa-university"></i
+              ></a>
+            </div>
+            <div class="icons">
+              <a href="https://twitter.com/solmi_marco" target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+            </div>
+          </div>
+          <div class="read_more">
+            <button class="readmore_button" id="readmore_buttonMS">
+              <div>Read more</div>
+              <div class="plusIcon" id="plusIconMS">
+                <i class="fas fa-plus"></i>
+              </div>
+            </button>
+            <div class="read_more_text" id="read_more_textMS">
+              Marco Solmi is Associate Professor of Psychiatry at University of
+              Ottawa. His clinical focus is on prevention/early intervention for
+              mental disorders, physical health in mental disorders, and
+              psychopharmacology. He ranks #5 worldwide in terms of expertise in
+              systematic reviews and meta-analysis according to Expertscape.
+            </div>
+          </div>
+        </div>
+
+        <div class="memb">
+          <img src="img/photo_vieta-resized.jpg" class="photo" />
+          <div class="memb_name">Eduard Vieta, MD, PhD</div>
+          <div class="memb_affil">
+            Hospital Clinic de Barcelona <img class="flag" src="img/es.svg" />
+          </div>
+          <div class="memb_affil">
+            University of Barcelona <img class="flag" src="img/es.svg" />
+          </div>
+          <div class="memb_affil">&nbsp;</div>
+          <div class="read_more_icons">
+            <div class="icons">
+              <a href="mailto: EVIETA@clinic.cat" class="button"
+                ><i class="fas fa-envelope"></i
+              ></a>
+            </div>
+            <div class="icons">
+              <a
+                href="https://med.uottawa.ca/psychiatry/people/solmi-marco"
+                target="_blank"
+                ><i class="fas fa-university"></i
+              ></a>
+            </div>
+            <div class="icons">
+              <a href="https://twitter.com/solmi_marco" target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+            </div>
+          </div>
+          <div class="read_more">
+            <button class="readmore_button" id="readmore_buttonEV">
+              <div>Read more</div>
+              <div class="plusIcon" id="plusIconEV">
+                <i class="fas fa-plus"></i>
+              </div>
+            </button>
+            <div class="read_more_text" id="read_more_textEV">
+              Eduard Vieta Professor of Psychiatry and Chair at the University
+              of Barcelona and Head of the Department of Psychiatry and
+              Psychology at the Hospital Clinic, where he also leads the Bipolar
+              and Depressive Disorders Program. His unit is one of the worldwide
+              leaders in clinical care, teaching, and research on affective
+              disorders.
+            </div>
+          </div>
+        </div>
+
+        <div class="memb">
+          <img src="img/photo_delorme-resized.jpg" class="photo" />
+          <div class="memb_name">Richard Delorme, MD, PhD</div>
+          <div class="memb_affil">
+            Hopital Robert Debré <img class="flag" src="img/fr.svg" />
+          </div>
+          <div class="memb_affil">
+            Institut Pasteur <img class="flag" src="img/fr.svg" />
+          </div>
+          <div class="memb_affil">&nbsp;</div>
+          <div class="read_more_icons">
+            <div class="icons">
+              <a href="mailto: richard.delorme.rdb@gmail.com " class="button"
+                ><i class="fas fa-envelope"></i
+              ></a>
+            </div>
+            <div class="icons">
+              <a
+                href="https://research.pasteur.fr/fr/member/richard-delorme/"
+                target="_blank"
+                ><i class="fas fa-university"></i
+              ></a>
+            </div>
+            <!-- <div class="icons">
+              <a href="https://twitter.com/solmi_marco" target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+            </div> -->
+          </div>
+          <div class="read_more">
+            <button class="readmore_button" id="readmore_buttonRD">
+              <div>Read more</div>
+              <div class="plusIcon" id="plusIconRD">
+                <i class="fas fa-plus"></i>
+              </div>
+            </button>
+            <div class="read_more_text" id="read_more_textRD">
+              Richard Delorme is the Head of the Center of Excellence for Autism
+              and Neurodevelopmental Disorders at Robert Debré Hospital in
+              Paris, France. He has participated in the identification of the
+              first genes involved in autism.
+            </div>
+          </div>
+        </div>
+
+        <div class="memb">
+          <img src="img/fusarpoli_photo-resized.jpg" class="photo" />
+          <div class="memb_name">Paolo Fusar-Poli, MD, PhD</div>
+          <div class="memb_affil">
+            King's College London <img class="flag" src="img/gb.svg" />
+          </div>
+          <div class="memb_affil">
+            University of Pavia <img class="flag" src="img/it.svg" />
+          </div>
+          <div class="memb_affil">&nbsp;</div>
+          <div class="read_more_icons">
+            <div class="icons">
+              <a href="mailto: Paolo.fusar-poli@kcl.ac.uk" class="button"
+                ><i class="fas fa-envelope"></i
+              ></a>
+            </div>
+            <div class="icons">
+              <a
+                href="https://www.kcl.ac.uk/people/paolo-fusar-poli"
+                target="_blank"
+                ><i class="fas fa-university"></i
+              ></a>
+            </div>
+            <div class="icons">
+              <a href="https://twitter.com/paolofusar" target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+            </div>
+          </div>
+          <div class="read_more">
+            <button class="readmore_button" id="readmore_buttonPFP">
+              <div>Read more</div>
+              <div class="plusIcon" id="plusIconPFP">
+                <i class="fas fa-plus"></i>
+              </div>
+            </button>
+            <div class="read_more_text" id="read_more_textPFP">
+              Paolo Fusar-Poli is a Professor of Preventive Psychiatry at King's
+              College London where he heads the EPIC Lab. He ranked as the
+              number two expert in psychosis in the world in 2019 according to
+              expertscape and he was an external advisory member for the DSM-5
+              and DSM-5TR Psychosis Working Group, US.
+            </div>
+          </div>
+        </div>
+
+        <div class="memb">
+          <img src="img/photo_quim-resized.jpg" class="photo" />
+          <div class="memb_name">Joaquim Radua, MD, PhD</div>
+          <div class="memb_affil">
+            University of Barcelona<img class="flag" src="img/es.svg" />
+          </div>
+          <div class="memb_affil">
+            King's College London <img class="flag" src="img/gb.svg" />
+          </div>
+          <div class="memb_affil">&nbsp;</div>
+          <div class="read_more_icons">
+            <div class="icons">
+              <a href="https://www.radua.net/" target="_blank"
+                ><i class="fas fa-university"></i
+              ></a>
+            </div>
+          </div>
+          <div class="read_more">
+            <button class="readmore_button" id="readmore_buttonJF">
+              <div>Read more</div>
+              <div class="plusIcon" id="plusIconJF">
+                <i class="fas fa-plus"></i>
+              </div>
+            </button>
+            <div class="read_more_text" id="read_more_textJF">
+              Joaquim Radua is a psychiatrist medical doctor and statistician
+              interested in improving the treatment of psychiatric disorders. He
+              is the developer of numerous methods for meta-analysis of
+              neuroimaging studies and he has been named as one of the most
+              cited researchers in Psychiatry and Psychology.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer_left">
+        <div class="footer_logo">metaConvert</div>
+        <address>
+          <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank"
+            ><img src="https://img.shields.io/badge/license-GPL-red" /></a
+          ><br />
+          <a
+            href="https://cran.r-project.org/web/packages/metaConvert/index.html"
+            target="_blank"
+            ><img src="https://www.r-pkg.org/badges/version/metaConvert" /></a
+          ><br />
+          <a href="https://github.com/cran/metaConvert" target="_blank"
+            ><img src="https://cranlogs.r-pkg.org/badges/metaConvert" /></a
+          ><br />
+          <a href="https://github.com/cran/metaConvert" target="_blank"
+            ><img
+              src="https://cranlogs.r-pkg.org/badges/grand-total/metaConvert" /></a
+          ><br />
+          <button type="button" style="border: solid 1px #fff">
+            <a
+              href="mailto: corentin.gosling@parisnanterre.fr"
+              style="
+                text-decoration: none;
+                color: #000;
+                width: 100%;
+                height: 100%;
+                display: block;
+              "
+              >Contact us</a
+            >
+          </button>
+        </address>
+      </div>
+
+      <!-- <div class = "footer_nav"> -->
+      <div class="footer_mid">
+        <div class="p10">
+          <a
+            href="https://www.parisnanterre.fr/corentin-gosling"
+            target="_blank"
+            ><img src="background/p10.svg" class="img_univ"
+          /></a>
+        </div>
+        <div class="kcl">
+          <a
+            href="https://www.kcl.ac.uk/people/paolo-fusar-poli"
+            target="_blank"
+            ><img
+              src="https://upload.wikimedia.org/wikipedia/commons/1/18/King%E2%80%99s_College_London_logo.png"
+              class="img_univ"
+          /></a>
+        </div>
+        <!-- Gosling CJ, Cortese S, Solmi M, Haza B, Vieta E, Delorme R, Fusar-Poli P
+        & Radua J (2023). An R Package and Web-app Dedicated to Automated Effect
+        Size Calculation. R package version 1.0.0.
+        https://cran.r-project.org/web/packages/metaConvert -->
+        <div class="barc">
+          <a
+            href="https://www.clinicbarcelona.org/en/professionals/joaquim-radua"
+            target="_blank"
+            ><img src="background/barcelona.jpg" class="img_univ"
+          /></a>
+        </div>
+      </div>
+    </footer>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script> -->
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 1200, easing: "ease-in-out-back" });
+    </script>
+    <script src="script/main.js"></script>
+  </body>
+</html>

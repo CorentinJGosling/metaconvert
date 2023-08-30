@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../styles/input.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>Home | metaConvert</title>
+  </head>
+
+  <nav>
+    <div class="logo"><img src="../logo/logo.svg" /></div>
+
+    <!-- <div class="badges">
+      <img src="https://img.shields.io/badge/license-GPL-red" class="img1" />
+      <img src="https://www.r-pkg.org/badges/version/metaConvert" class="img2" />
+      <img
+        src="https://cranlogs.r-pkg.org/badges/grand-total/metaConvert"
+        class="img3"
+      />
+    </div> -->
+
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="tutorial.html">Tutorial</a></li>
+      <li><a href="#" class="homepage currentpage">Input data</a></li>
+      <li><a href="app.html">App</a></li>
+    </ul>
+    <div id="hamburger-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+  <body>
+    <div class="motherplat">
+      <a href="https://www.ebiact-database.com"
+        ><div class="left_hub">
+          <img src="../img/excel.png" class="hub_img" /></div
+      ></a>
+      <a href="../background/extraction_sheet.xlsx" download
+        ><div class="right_hub">
+          Download informative data extraction sheet
+        </div></a
+      >
+      <div class="close-btn">&times;</div>
+    </div>
+
+    <div id="popup">
+      <div id="popupContent">
+        <h2>
+          <i class="fas fa-exclamation-triangle"></i> WARNING
+          <i class="fas fa-exclamation-triangle"></i>
+        </h2>
+        <p>
+          This section describes all the combination of input data allowing to
+          estimate and/or convert the 11 effect size measures available in
+          metaConvert.
+        </p>
+        <p style="font-weight: bold">
+          Importantly, it is not because you can obtain the same effect size
+          measure from various input data that it makes sense to pool them in a
+          meta-analysis.
+        </p>
+        <p class="highlight">
+          <b>Exemple:</b> The effect size measure of your meta-analysis is SMD.
+          Even if metaConvert gives you the possibility, it would (generally)
+          have very limited meaning to pool a SMD obtained from a RCT change
+          scores with a SMD obtained by converting a correlation coefficient
+          from a cross-sectional study.
+        </p>
+
+        <p>
+          Use the tables in this section when drafting your protocol:
+          <b>pre-specify the input data you will use</b> to estimate your target
+          effect size measure of your meta-analysis.
+        </p>
+        <span id="closeButton">&times;</span>
+      </div>
+    </div>
+
+    <!-- ======================================= TOC =========================================== -->
+    <div class="section_title">
+      Input data enabling <span>effect size computation</span>
+    </div>
+    <div class="glossary">
+      <div>
+        In each table below, the effect size measures are sorted in two
+        categories.
+      </div>
+      <div class="gloss_item">
+        <div class="gloss_col">
+          <b>Main ESM</b> is the natural effect size measure from the input
+          information.
+        </div>
+        <div class="gloss_col">
+          <b>Convert ESM</b> is an effect size measure obtained by a
+          <i>converting</i> formula, which necessarily contains a certain degree
+          of approximation.
+        </div>
+      </div>
+    </div>
+    <div class="switch-container">
+      <p>See all effect size measures available</p>
+      <div class="center">
+        <input type="checkbox" class="myCheckbox" />
+      </div>
+    </div>
+
+    <div class="esm">
+      <p>
+        <i class="fas fa-square"></i><i class="fas fa-star"></i
+        ><b> binary variable</b> &nbsp; &nbsp; &nbsp;
+        <i class="fas fa-ruler"></i><b> continuous variable</b>
+      </p>
+      <ul class="responsive-list">
+        <li class="list-header">
+          <div class="col col-1">Predictor</div>
+          <div class="col col-2">Outcome</div>
+          <div class="col col-3">Effect size measure</div>
+          <div class="col col-4">Acronym</div>
+        </li>
+        <li class="list-row">
+          <div class="col col-1" data-label="Independent Variable">
+            <i class="fas fa-square"></i><i class="fas fa-star"></i>
+          </div>
+          <div class="col col-2" data-label="Dependent Variable">
+            <i class="fas fa-ruler"></i>
+          </div>
+          <div class="col col-3" data-label="Effect size measure">
+            Standardized mean difference (Cohen's d + Hedge's g)
+          </div>
+          <div class="col col-4" data-label="Acronym">SMD</div>
+        </li>
+        <li class="list-row">
+          <div class="col col-1" data-label="Independent Variable">
+            <i class="fas fa-square"></i><i class="fas fa-star"></i>
+          </div>
+          <div class="col col-2" data-label="Dependent Variable">
+            <i class="fas fa-ruler"></i>
+          </div>
+          <div class="col col-3" data-label="Effect size measure">
+            Mean Difference
+          </div>
+          <div class="col col-4" data-label="Acronym">MD</div>
+        </li>
+        <li class="list-row">
+          <div class="col col-1" data-label="Independent Variable">
+            <i class="fas fa-square"></i><i class="fas fa-star"></i>
+          </div>
+          <div class="col col-2" data-label="Dependent Variable">
+            <i class="fas fa-ruler"></i>
+          </div>
+          <div class="col col-3" data-label="Effect size measure">
+            Variability Ratio + Coefficient of Variation
+          </div>
+          <div class="col col-4" data-label="Acronym">VAR</div>
+        </li>
+        <li class="list-row">
+          <div class="col col-1" data-label="Independent Variable">
+            <i class="fas fa-ruler"></i>
+          </div>
+          <div class="col col-2" data-label="Dependent Variable">
+            <i class="fas fa-ruler"></i>
+          </div>
+          <div class="col col-3" data-label="Effect size measure">
+            Correlation (standard r and Fisher's r-to-z)
+          </div>
+          <div class="col col-4" data-label="Acronym">COR</div>
+        </li>
+        <li class="list-row">
+          <div class="col col-1" data-label="Independent Variable">
+            <i class="fas fa-square"></i><i class="fas fa-star"></i>
+          </div>
+          <div class="col col-2" data-label="Dependent Variable">
+            <i class="fas fa-square"></i><i class="fas fa-star"></i>
+          </div>
+          <div class="col col-3" data-label="Effect size measure">
+            Odds Ratio
+          </div>
+          <div class="col col-4" data-label="Acronym">OR</div>
+        </li>
+        <li class="list-row">
+          <div class="col col-1" data-label="Independent Variable">
+            <i class="fas fa-square"></i><i class="fas fa-star"></i>
+          </div>
+          <div class="col col-2" data-label="Dependent Variable">
+            <i class="fas fa-square"></i><i class="fas fa-star"></i>
+          </div>
+          <div class="col col-3" data-label="Effect size measure">
+            Risk Ratio
+          </div>
+          <div class="col col-4" data-label="Acronym">RR</div>
+        </li>
+        <li class="list-row">
+          <div class="col col-1" data-label="Independent Variable">
+            <i class="fas fa-square"></i><i class="fas fa-star"></i>
+          </div>
+          <div class="col col-2" data-label="Dependent Variable">
+            <i class="fas fa-square"></i><i class="fas fa-star"></i>
+          </div>
+          <div class="col col-3" data-label="Effect size measure">
+            Number Needed to Treat
+          </div>
+          <div class="col col-4" data-label="Acronym">NNT</div>
+        </li>
+        <li class="list-row">
+          <div class="col col-1" data-label="Independent Variable">
+            <i class="far fa-calendar-alt"></i>
+          </div>
+          <div class="col col-2" data-label="Dependent Variable">
+            <i class="fas fa-square"></i><i class="fas fa-star"></i>
+          </div>
+          <div class="col col-3" data-label="Effect size measure">
+            Incidence Rate Ratio
+          </div>
+          <div class="col col-4" data-label="Acronym">IRR</div>
+        </li>
+      </ul>
+    </div>
+    <div class="overall_routing">
+      <div class="btn btn_list_input">
+        <a>See all input data</a>
+      </div>
+      <div class="btn btn_effect_measure">
+        <a>Select an effect measure</a>
+      </div>
+    </div>
+
+    <div class="category-buttons">
+      <button class="active" data-category="all" class="clicker">All</button>
+      <button data-category="SMD" class="clicker">SMD</button>
+      <button data-category="rawMD" class="clicker">MD</button>
+      <button data-category="VAR" class="clicker">VAR</button>
+      <button data-category="COR" class="clicker">COR</button>
+      <button data-category="rawOR" class="clicker">OR</button>
+      <button data-category="rawRR" class="clicker">RR</button>
+      <button data-category="IRR" class="clicker">IRR</button>
+      <button data-category="NNT" class="clicker">NNT</button>
+    </div>
+    <section class="toc-container" id="toc">
+      <div class="toc">
+        <ol class="toc_list">
+          <li>
+            <a href="#anova"
+              ><span>1.</span> ANOVA statistics, Student's t-test, or point-bis
+              correlation</a
+            >
+          </li>
+          <li>
+            <a href="#ancova_statistics"
+              ><span>2.</span> ANCOVA statistics, adjusted Cohen's
+              d/eta-squared</a
+            >
+          </li>
+          <li>
+            <a href="#contingency"
+              ><span>3.</span> Contingency (2x2) table or proportions</a
+            >
+          </li>
+          <li>
+            <a href="#smd"
+              ><span>4.</span> ES: Hedges' g or Cohen's d (crude)</a
+            >
+          </li>
+          <li>
+            <a href="#or"><span>5.</span> ES: Odds Ratio (and dispersion)</a>
+          </li>
+          <li>
+            <a href="#cor"><span>6.</span> ES: Pearson's r or Fisher's z</a>
+          </li>
+          <li>
+            <a href="#rr"><span>7.</span> ES: Risk Ratio and dispersion</a>
+          </li>
+          <li>
+            <a href="#plot_means"
+              ><span>8.</span> From plot: means and dispersion (crude)</a
+            >
+          </li>
+
+          <li>
+            <a href="#plot_ancova_means"
+              ><span>9.</span> From plot: adjusted means and dispersion
+              (adjusted)</a
+            >
+          </li>
+          <li>
+            <a href="#mean_difference_crude"
+              ><span>10.</span> Mean difference and dispersion (crude)</a
+            >
+          </li>
+          <li>
+            <a href="#mean_difference_adjusted"
+              ><span>11.</span> Mean difference and dispersion (adjusted)</a
+            >
+          </li>
+          <li>
+            <a href="#means"><span>12.</span> Means and dispersion (crude)</a>
+          </li>
+          <li>
+            <a href="#ancova_means"
+              ><span>13.</span> Means and dispersion (adjusted)</a
+            >
+          </li>
+          <li>
+            <a href="#medians"
+              ><span>14.</span> Median, range and/or interquartile range</a
+            >
+          </li>
+          <li>
+            <a href="#irr"
+              ><span>15.</span> Number of cases and time of observation</a
+            >
+          </li>
+          <li>
+            <a href="#change_scores"
+              ><span>16.</span> Paired: pre-post means or mean change, and
+              dispersion</a
+            >
+          </li>
+          <li>
+            <a href="#paired_anova"
+              ><span>17.</span> Paired: Paired F- or t-test</a
+            >
+          </li>
+          <li>
+            <a href="#phi"><span>18.</span> Phi or chi-square</a>
+          </li>
+          <li>
+            <a href="#regression"
+              ><span>19.</span> (Un-)Standardized regression coefficient</a
+            >
+          </li>
+          <li>
+            <a href="#user_crude"><span>20.</span> User's input (crude)</a>
+          </li>
+          <li>
+            <a href="#user_adjusted"
+              ><span>21.</span> User's input (adjusted)</a
+            >
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- SMD rawMD VAR COR rawOR rawRR IRR NNT -->
+    <section class="table_container" id="data">
+      <div class="table-title" id="anova" data-category="SMD COR rawOR">
+        <h3>1. ANOVA statistics, Student's t-test, or point-bis correlation</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/anova.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/anova.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+        <div style="overflow-x: auto">
+          <div id="table_anova"></div>
+        </div>
+        <!-- <div class="footnote">
+          <div class="foot_item">
+            <b>anova_f</b> = F-test value from an ANOVA with a binary
+            independent variable.
+          </div>
+          <div class="foot_item">
+            <b>anova_f_pval</b> = p-value from an ANOVA with a binary
+            independent variable.
+          </div>
+          <div class="foot_item">
+            <b>student_t</b> = Student's t-test value.
+          </div>
+          <div class="foot_item">
+            <b>student_t_pval</b> = p-value from value from a Student's t-test
+            value.
+          </div>
+          <div class="foot_item">
+            <b>pt_bis_r</b> = correlation coefficient value from a
+            point-biserial correlation.
+          </div>
+          <div class="foot_item">
+            <b>pt_bis_r_pval</b> = p-value of a point-biserial correlation.
+          </div>
+          <div class="foot_item">
+            <b>etasq</b> = Eta-squared value from an ANOVA with a binary
+            independent variable.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div> -->
+      </div>
+
+      <div
+        class="table-title"
+        id="ancova_statistics"
+        data-category="SMD COR rawOR"
+      >
+        <h3>2. ANCOVA statistics, adjusted Cohen's d/eta-squared</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/ancova_statistics.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/ancova_statistics.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_ancova_statistics"></div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="contingency"
+        data-category="SMD COR rawOR rawRR NNT"
+      >
+        <h3>3. Contingency (2x2) table or proportions</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/contingency.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/contingency.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+        <div style="overflow-x: auto">
+          <div id="table_contingency"></div>
+        </div>
+      </div>
+
+      <div class="table-title" id="smd" data-category="SMD COR rawOR">
+        <h3>4. ES: Hedges' g or Cohen's d</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/cohen_d.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/cohen_d.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_smd"></div>
+        </div>
+      </div>
+
+      <div class="table-title" id="or" data-category="SMD COR rawOR rawRR NNT">
+        <h3>5. ES: Odds Ratio (and dispersion)</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/or.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/or.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_or"></div>
+        </div>
+      </div>
+
+      <div class="table-title" id="cor" data-category="SMD COR rawOR">
+        <h3>6. ES: Pearson's r or Fisher's z</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/cor.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/change_scores.xlsx" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_cor"></div>
+        </div>
+      </div>
+
+      <div class="table-title" id="rr" data-category="rawRR rawOR NNT">
+        <h3>7. ES: Risk Ratio and dispersion</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/rr.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/rr.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_rr"></div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="plot_means"
+        data-category="SMD rawMD COR rawOR"
+      >
+        <h3>8. From a plot: Raw means and measure of dispersion</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/plot_means.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/plot_means.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_plot_means"></div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="plot_ancova_means"
+        data-category="SMD rawMD COR rawOR"
+      >
+        <h3>9. From plot: adjusted means and dispersion (adjusted)</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/plot_ancova_means.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/plot_ancova_means.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_plot_ancova_means"></div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="mean_difference_crude"
+        data-category="SMD rawMD COR rawOR"
+      >
+        <h3>10. Mean difference and dispersion (crude)</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/mean_difference_crude.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/mean_difference_crude.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_mean_difference_crude"></div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="mean_difference_adjusted"
+        data-category="SMD rawMD COR rawOR"
+      >
+        <h3>11. Mean difference and dispersion (adjusted)</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/mean_difference_adjusted.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/mean_difference_adjusted.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_mean_difference_adjusted"></div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="means"
+        data-category="SMD rawMD VAR COR rawOR"
+      >
+        <h3>12. Means and dispersion (crude)</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/means_sd.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/means_sd.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_means"></div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="ancova_means"
+        data-category="SMD rawMD COR rawOR"
+      >
+        <h3>13. Means and dispersion (adjusted)</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/ancova_means.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/ancova_means.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_ancova_means"></div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="medians"
+        data-category="SMD rawMD VAR COR rawOR"
+      >
+        <h3>14. Median, range and/or interquartile range</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/medians.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/medians.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_medians"></div>
+        </div>
+      </div>
+
+      <div class="table-title" id="irr" data-category="IRR">
+        <h3>15. Number of cases and time of observation</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/irr.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/irr.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_irr"></div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="change_scores"
+        data-category="SMD rawMD COR rawOR"
+      >
+        <h3>16. Paired: pre-post means or mean change, and dispersion</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/change_scores.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/change_scores.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_change_scores"></div>
+        </div>
+      </div>
+
+      <div class="table-title" id="paired_anova" data-category="SMD COR rawOR">
+        <h3>17. Paired: Paired F- or t-test</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/paired_anova.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/paired_anova.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_paired_anova"></div>
+        </div>
+      </div>
+
+      <div class="table-title" id="phi" data-category="SMD COR rawOR rawRR NNT">
+        <h3>18. Phi or chi-square</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/phi.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/phi.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_phi"></div>
+        </div>
+      </div>
+
+      <div class="table-title" id="regression" data-category="SMD COR rawOR">
+        <h3>19. (Un-)Standardized regression coefficient</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/regression.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/regression.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_regression"></div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="user_crude"
+        data-category="SMD COR rawOR rawRR NNT VAR IRR rawMD"
+      >
+        <h3>20. User's input (crude)</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/user_crude.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/user_crude.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_user_crude"></div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="user_adjusted"
+        data-category="SMD COR rawOR rawRR NNT VAR IRR rawMD"
+      >
+        <h3>21. User's input (adjusted)</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/user_adjusted.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/user_adjusted.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_user_adjusted"></div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      $(document).ready(function () {
+        $.get("../tables/cohen_d.html", function (data) {
+          $("#table_smd").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/mean_difference_crude.html", function (data) {
+          $("#table_mean_difference_crude").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/mean_difference_adjusted.html", function (data) {
+          $("#table_mean_difference_adjusted").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/change_scores.html", function (data) {
+          $("#table_change_scores").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/paired_anova.html", function (data) {
+          $("#table_paired_anova").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/means_sd.html", function (data) {
+          $("#table_means").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/plot_means.html", function (data) {
+          $("#table_plot_means").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/anova.html", function (data) {
+          $("#table_anova").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/ancova_means.html", function (data) {
+          $("#table_ancova_means").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/ancova_statistics.html", function (data) {
+          $("#table_ancova_statistics").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/plot_ancova_means.html", function (data) {
+          $("#table_plot_ancova_means").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/regression.html", function (data) {
+          $("#table_regression").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/cor.html", function (data) {
+          $("#table_cor").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/contingency.html", function (data) {
+          $("#table_contingency").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/or.html", function (data) {
+          $("#table_or").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/rr.html", function (data) {
+          $("#table_rr").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/irr.html", function (data) {
+          $("#table_irr").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/phi.html", function (data) {
+          $("#table_phi").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/medians.html", function (data) {
+          $("#table_medians").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/user_crude.html", function (data) {
+          $("#table_user_crude").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/user_adjusted.html", function (data) {
+          $("#table_user_adjusted").html(data);
+        });
+      });
+    </script>
+    <script src="../script/input.js"></script>
+  </body>
+</html>

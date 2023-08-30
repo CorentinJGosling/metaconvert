@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../styles/tutorial.css" />
+    <!-- scroll appear -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <title>Home | metaConvert</title>
+  </head>
+
+  <nav>
+    <div class="logo"><img src="../logo/logo.svg" /></div>
+
+    <!-- <div class="badges">
+      <img src="https://img.shields.io/badge/license-GPL-red" class="img1" />
+      <img src="https://www.r-pkg.org/badges/version/metaConvert" class="img2" />
+      <img
+        src="https://cranlogs.r-pkg.org/badges/grand-total/metaConvert"
+        class="img3"
+      />
+    </div> -->
+
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="#" class="homepage currentpage">Tutorial</a></li>
+      <li><a href="input.html">Input data</a></li>
+      <li><a href="app.html">App</a></li>
+    </ul>
+    <div id="hamburger-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+  <body>
+    <section class="section_timeline">
+      <div class="section_title"><span>Tuto</span>rial</div>
+      <p>
+        The images of this tutorial are currently appraised as supplementary
+        materials of a paper describing the metaConvert tools. They will be
+        available as soon as a (positive) decision on this paper is reached.
+      </p>
+      <div class="timelinehead"></div>
+      <div class="timeline">
+        <div class="box">
+          <a href="#tutorial_1" data-aos="fade-left">
+            <div class="boxTXT">
+              <b><u>Format your dataset.</u></b> To enable the automated
+              calculation of effect sizes, you must pass to the metaConvert
+              tools a well formatted-dataset.
+            </div>
+            <div class="boxIMG" data-aos="fade-left">
+              <img src="../background/step1.svg" />
+            </div>
+          </a>
+          <div class="arrow_left" data-aos="zoom-in" data-aos-delay="700">
+            <img src="../background/left_arrow.svg" />
+          </div>
+        </div>
+        <div class="box">
+          <div class="arrow_right" data-aos="zoom-in" data-aos-delay="700">
+            <img src="../background/right_arrow.svg" />
+          </div>
+
+          <a href="#tutorial_2" data-aos="fade-right">
+            <div class="boxIMG">
+              <img src="../background/step2.svg" data-aos="fade-right" />
+            </div>
+            <div class="boxTXT" data-aos="fade-right">
+              <b><u>Load your dataset.</u></b> Once you have formatted your
+              dataset, load it in one of the metaConvert tools. If you are
+              conducting a systematic review, you can benefit from a feature
+              flagging differences between two datasets (e.g., yours and the one
+              of a second data extractor).
+            </div>
+          </a>
+        </div>
+        <div class="box">
+          <a href="#tutorial_2" data-aos="fade-left">
+            <div class="boxTXT" data-aos="fade-left">
+              <b><u>Choose appropriate options.</u></b> Once you have loaded
+              your dataset, choose the different options proposed by
+              metaConvert. Note that the default options are generally those
+              recommended to be used.
+            </div>
+            <div class="boxIMG" data-aos="fade-left">
+              <img src="../background/step3.svg" />
+            </div>
+          </a>
+          <div class="arrow_left" data-aos="zoom-in" data-aos-delay="700">
+            <img src="../background/left_arrow.svg" />
+          </div>
+        </div>
+        <div class="box">
+          <div class="arrow_right" data-aos="zoom-in" data-aos-delay="700">
+            <img src="../background/right_arrow.svg" />
+          </div>
+
+          <a href="#tutorial_2" data-aos="fade-right">
+            <div class="boxIMG" data-aos="fade-right">
+              <img src="../background/step4.svg" />
+            </div>
+            <div class="boxTXT" data-aos="fade-right">
+              <b><u>Run calculations.</u></b> No worries, everything is
+              automatic, our functions are working for you!
+            </div>
+          </a>
+        </div>
+        <div class="box">
+          <a href="#tutorial_2" data-aos="fade-left">
+            <div class="boxTXT" data-aos="fade-left">
+              <b><u>Interpret the results.</u></b> In the output, your effect
+              sizes (along with other information) will be displayed. You can
+              retrieve guidance in the output here.
+            </div>
+            <div class="boxIMG" data-aos="fade-left">
+              <img src="../background/step5.svg" />
+            </div>
+          </a>
+          <div class="arrow_left" data-aos="zoom-in" data-aos-delay="700">
+            <img src="../background/left_arrow.svg" />
+          </div>
+        </div>
+        <div class="circle"></div>
+      </div>
+      <div class="timelinebot"></div>
+    </section>
+    <!-- 
+    <section class="tutorial_1">
+      <div class="example_description">
+        <h1>Tutorial</h1>
+        <p>
+          In metaConvert, each information used to estimate an effect size has to
+          be indicated in a column name that could not be changed. For example,
+          the mean of the experimental group has to be stored in a column named
+          'mean_exp'. The conversion section of this website presents the
+          different combinations of information allowing to estimate an effect
+          size.
+        </p>
+
+        <p>
+          In this tutorial section, we help you understanding how to interpret
+          these tables by providing key information:<br />
+          &nbsp; - The header of these tables corresponds to the column names in
+          which the information should be stored. <br />
+          &nbsp; - The icon
+          <i class="far fa-check-square" style="color: rgb(0, 147, 15)"></i>
+          means that information must be specified in the dataset.<br />
+          &nbsp; - The icon
+          <i class="far fa-question-circle" style="color: rgb(222, 159, 1)"></i>
+          means that information can be missing in the dataset.<br />
+          &nbsp; - The symbol '&' between two column names means that the icons
+          apply to both columnns. <br />
+        </p>
+
+        <p>
+          As an example, we present below how a dataset should be formatted to
+          estimate an effect size from the means and dispersion indices of two
+          groups (SD or SE). First, you will find below the table presenting the
+          required information. Second, you will find a concrete example of a
+          dataset respecting the formatting.
+        </p>
+      </div>
+      <div class="table_container">
+        <h2>
+          Table presenting the information required to estimate an effect size
+        </h2>
+
+        <div style="overflow-x: auto">
+          <table class="table-fill">
+            <thead>
+              <tr>
+                <th class="text-left">mean_exp & mean_nexp</th>
+                <th class="text-left">mean_sd_exp & mean_sd_nexp</th>
+                <th class="text-left">mean_se_exp & mean_se_nexp</th>
+                <th class="text-left">n_exp & n_nexp</th>
+              </tr>
+            </thead>
+            <tbody class="table-hover">
+              <tr>
+                <td class="text-left">
+                  <i
+                    class="far fa-check-square fa-2x"
+                    style="color: rgb(0, 147, 15)"
+                  ></i>
+                </td>
+                <td class="text-left">
+                  <i
+                    class="far fa-check-square fa-2x"
+                    style="color: rgb(0, 147, 15)"
+                  ></i>
+                </td>
+                <td class="text-left">
+                  <i
+                    class="far fa-question-circle fa-2x"
+                    style="color: rgb(222, 159, 1)"
+                  ></i>
+                </td>
+                <td class="text-left">
+                  <i
+                    class="far fa-check-square fa-2x"
+                    style="color: rgb(0, 147, 15)"
+                  ></i>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-left">
+                  <i
+                    class="far fa-check-square fa-2x"
+                    style="color: rgb(0, 147, 15)"
+                  ></i>
+                </td>
+                <td class="text-left">
+                  <i
+                    class="far fa-question-circle fa-2x"
+                    style="color: rgb(222, 159, 1)"
+                  ></i>
+                </td>
+                <td class="text-left">
+                  <i
+                    class="far fa-check-square fa-2x"
+                    style="color: rgb(0, 147, 15)"
+                  ></i>
+                </td>
+                <td class="text-left">
+                  <i
+                    class="far fa-check-square fa-2x"
+                    style="color: rgb(0, 147, 15)"
+                  ></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Fictitious example of a dataset respecting the formatting</h2>
+        <div style="overflow-x: auto" class="example_table">
+          <table class="table-fill excel">
+            <thead>
+              <tr>
+                <th class="text-left-excel">mean_exp</th>
+                <th class="text-left-excel">mean_nexp</th>
+                <th class="text-left-excel">mean_sd_exp</th>
+                <th class="text-left-excel">mean_sd_nexp</th>
+                <th class="text-left-excel">mean_se_exp</th>
+                <th class="text-left-excel">mean_se_nexp</th>
+                <th class="text-left-excel">n_exp</th>
+                <th class="text-left-excel">n_nexp</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="cell-excel">201.89</td>
+                <td class="cell-excel">224.14</td>
+                <td class="cell-excel">87.98</td>
+                <td class="cell-excel">78.02</td>
+                <td class="cell-excel">
+                  <em>NA</em>
+                </td>
+                <td class="cell-excel">
+                  <em>NA</em>
+                </td>
+                <td class="cell-excel">24</td>
+                <td class="cell-excel">38</td>
+              </tr>
+
+              <tr>
+                <td class="cell-excel">17.21</td>
+                <td class="cell-excel">16.98</td>
+                <td class="cell-excel">
+                  <em>NA</em>
+                </td>
+                <td class="cell-excel">
+                  <em>NA</em>
+                </td>
+                <td class="cell-excel">1.02</td>
+                <td class="cell-excel">0.97</td>
+                <td class="cell-excel">87</td>
+                <td class="cell-excel">97</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section> -->
+
+    <footer class="footer">
+      <div class="footer_left">
+        <div class="footer_logo">metaConvert</div>
+        <address>
+          <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank"
+            ><img src="https://img.shields.io/badge/license-GPL-red" /></a
+          ><br />
+          <a
+            href="https://cran.r-project.org/web/packages/metaConvert/index.html"
+            target="_blank"
+            ><img src="https://www.r-pkg.org/badges/version/metaConvert" /></a
+          ><br />
+          <a href="https://github.com/cran/metaConvert" target="_blank"
+            ><img src="https://cranlogs.r-pkg.org/badges/metaConvert" /></a
+          ><br />
+          <a href="https://github.com/cran/metaConvert" target="_blank"
+            ><img
+              src="https://cranlogs.r-pkg.org/badges/grand-total/metaConvert" /></a
+          ><br />
+          <button type="button" style="border: solid 1px #fff">
+            <a
+              href="mailto: corentin.gosling@parisnanterre.fr"
+              style="
+                text-decoration: none;
+                color: #000;
+                width: 100%;
+                height: 100%;
+                display: block;
+              "
+              >Contact us</a
+            >
+          </button>
+        </address>
+      </div>
+
+      <!-- <div class = "footer_nav"> -->
+      <div class="footer_mid">
+        <div class="p10">
+          <a
+            href="https://www.parisnanterre.fr/corentin-gosling"
+            target="_blank"
+            ><img src="background/p10.svg" class="img_univ"
+          /></a>
+        </div>
+        <div class="kcl">
+          <a
+            href="https://www.kcl.ac.uk/people/paolo-fusar-poli"
+            target="_blank"
+            ><img
+              src="https://upload.wikimedia.org/wikipedia/commons/1/18/King%E2%80%99s_College_London_logo.png"
+              class="img_univ"
+          /></a>
+        </div>
+        <!-- </div>
+          <div class = "footer_right"> -->
+        <div class="barc">
+          <a
+            href="https://www.clinicbarcelona.org/en/professionals/joaquim-radua"
+            target="_blank"
+            ><img src="background/barcelona.jpg" class="img_univ"
+          /></a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 1200, easing: "ease-in-out-back" });
+    </script>
+    <script src="../script/tutorial.js"></script>
+  </body>
+</html>

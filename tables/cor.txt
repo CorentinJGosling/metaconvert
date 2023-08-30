@@ -1,0 +1,7 @@
+all_info_expected	study_id	pearson_r	fisher_z	sd_iv	unit_increase_iv	unit_type	n_exp	n_nexp	n_sample
+pearson_r	1	0.023							97
+fisher_z	2		0.426						25
+pearson_r	3	0.605					13	65	
+fisher_z	4		0.059				79	88	
+pearson_r	5	0.182		0.694	1	sd			84
+fisher_z	6		0.25	0.624	0.54	raw			44

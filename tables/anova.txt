@@ -1,0 +1,8 @@
+all_info_expected	study_id	anova_f	anova_f_pval	student_t	student_t_pval	pt_bis_r	pt_bis_r_pval	etasq	n_exp	n_nexp
+anova_f	1	5.94							35	47
+anova_f_pval	2		0.0058						62	55
+student_t	3			3.78					35	47
+student_t_pval	4				0.00359				29	23
+pt_bis_r	5					3.99			94	84
+pt_bis_r_pval	6						0.809		85	90
+etasq	7							0.757	100	109

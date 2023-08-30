@@ -1,0 +1,4 @@
+all_info_expected	study_id	plot_mean_exp	plot_mean_nexp	plot_mean_sd_exp	plot_mean_sd_nexp	plot_mean_se_exp	plot_mean_se_nexp	plot_mean_ci_lo_exp	plot_mean_ci_up_exp	plot_mean_ci_lo_nexp	plot_mean_ci_up_nexp	n_exp	n_nexp
+plot_means_sd	1	101.2	98.9	15.87	13.87							10	12
+plot_means_se	2	5.94	5.81			0.13	0.13					20	20
+plot_means_ci	3	50	60					45	55	55	65	59	64
