@@ -375,7 +375,7 @@
         <div style="overflow-x: auto">
           <div id="table_anova"></div>
         </div>
-        <!-- <div class="footnote">
+        <div class="footnote">
           <div class="foot_item">
             <b>anova_f</b> = F-test value from an ANOVA with a binary
             independent variable.
@@ -406,7 +406,7 @@
             <b>n_exp & n_nexp</b> = number of participants in the exposed and
             non-exposed groups, respectively.
           </div>
-        </div> -->
+        </div>
       </div>
 
       <div
@@ -431,6 +431,41 @@
         <div style="overflow-x: auto">
           <div id="table_ancova_statistics"></div>
         </div>
+        <div class="footnote">
+          <div class="foot_item">
+            <b>ancova_f</b> = F-test value from an ANCOVA with a binary
+            independent variable.
+          </div>
+          <div class="foot_item">
+            <b>ancova_f_pval</b> = p-value from an ANCOVA with a binary
+            independent variable.
+          </div>
+          <div class="foot_item">
+            <b>ancova_t</b> = t-test value from an ANCOVA with a binary
+            independent variable.
+          </div>
+          <div class="foot_item">
+            <b>ancova_t_pval</b> = p-value from an ANCOVA with a binary
+            independent variable.
+          </div>
+          <div class="foot_item">
+            <b>cohen_d_adj</b> = adjusted Cohen's d value.
+          </div>
+          <div class="foot_item">
+            <b>etasq_adj</b> = adjusted eta-squared value.
+          </div>
+          <div class="foot_item">
+            <b>cov_outcome_r </b> = Covariate-outcome correlation (multiple R if
+            several covariates are included).
+          </div>
+          <div class="foot_item">
+            <b>n_cov_ancova </b> = number of covariates in the ANCOVA model.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
       </div>
 
       <div
@@ -454,6 +489,35 @@
         <div style="overflow-x: auto">
           <div id="table_contingency"></div>
         </div>
+        <div class="footnote">
+          <div class="foot_item">
+            <b>n_cases_exp</b> = number of cases/events in the exposed group.
+          </div>
+          <div class="foot_item">
+            <b>n_cases_nexp</b> = number of cases/events in the non exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>n_controls_exp</b> = number of controls/no-event in the exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>n_controls_nexp</b> = number of controls/no-event in the non
+            exposed group.
+          </div>
+          <div class="foot_item">
+            <b>prop_cases_exp</b> = proportion of cases/events in the exposed
+            group (ranging from 0 to 1).
+          </div>
+          <div class="foot_item">
+            <b>prop_cases_nexp</b> = proportion of cases/events in the
+            non-exposed group (ranging from 0 to 1).
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
       </div>
 
       <div class="table-title" id="smd" data-category="SMD COR rawOR">
@@ -473,6 +537,15 @@
 
         <div style="overflow-x: auto">
           <div id="table_smd"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item"><b>cohen_d</b> = Cohen's d value.</div>
+          <div class="foot_item"><b>hedges_g</b> = Hedges' g value.</div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
         </div>
       </div>
 
@@ -494,6 +567,53 @@
         <div style="overflow-x: auto">
           <div id="table_or"></div>
         </div>
+
+        <div class="footnote">
+          <div class="foot_item"><b>or</b> = Odds Ratio value.</div>
+          <div class="foot_item"><b>logor</b> = log Odds Ratio value.</div>
+          <div class="foot_item">
+            <b>logor_se</b> = standard error of the log odds ratio.
+          </div>
+          <div class="foot_item">
+            <b>logor_pval</b> = p-value of the (log) odds ratio.
+          </div>
+          <div class="foot_item">
+            <b>or_ci_lo</b> = lower bound of the 95% CI around the odds ratio
+            value.
+          </div>
+          <div class="foot_item">
+            <b>or_ci_up</b> = upper bound of the 95% CI around the odds ratio
+            value.
+          </div>
+          <div class="foot_item">
+            <b>logor_ci_lo </b> = lower bound of the 95% CI around the log odds
+            ratio value.
+          </div>
+          <div class="foot_item">
+            <b>logor_ci_up</b> = upper bound of the 95% CI around the log odds
+            ratio value.
+          </div>
+          <div class="foot_item">
+            <b>baseline_risk</b> = proportion of cases/events in the non-exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>small_margin_prop</b> = smallest margin proportion of
+            cases/events in the underlying 2x2 table.
+          </div>
+          <div class="foot_item">
+            <b>n_cases</b> = number of cases/events across exposed/non-exposed
+            groups.
+          </div>
+          <div class="foot_item">
+            <b>n_controls</b> = number of controls/no-event across
+            exposed/non-exposed groups.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
       </div>
 
       <div class="table-title" id="cor" data-category="SMD COR rawOR">
@@ -514,6 +634,34 @@
         <div style="overflow-x: auto">
           <div id="table_cor"></div>
         </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>pearson_r</b> = Pearson's correlation coefficient value.
+          </div>
+          <div class="foot_item">
+            <b>fisher_z</b> = Fisher's r-to-z transformed correlation
+            coefficient.
+          </div>
+          <div class="foot_item">
+            <b>sd_iv</b> = standard deviation of the independent variable.
+          </div>
+          <div class="foot_item">
+            <b>unit_increase_iv</b> = value of the independent variable that
+            will be used to estimate the Cohen's d
+          </div>
+          <div class="foot_item">
+            <b>unit_type</b> = the type of unit for the unit_increase_iv column.
+            Must be either "sd" or "value".
+          </div>
+          <div class="foot_item">
+            <b>n_sample</b> = total number of participants.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
       </div>
 
       <div class="table-title" id="rr" data-category="rawRR rawOR NNT">
@@ -533,6 +681,49 @@
 
         <div style="overflow-x: auto">
           <div id="table_rr"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item"><b>rr</b> = risk ratio value.</div>
+          <div class="foot_item"><b>logrr</b> = log risk ratio value.</div>
+          <div class="foot_item">
+            <b>logrr_se</b> = standard error of the log risk ratio.
+          </div>
+          <div class="foot_item">
+            <b>logrr_pval</b> = p-value of the (log) risk ratio.
+          </div>
+          <div class="foot_item">
+            <b>rr_ci_lo</b> = lower bound of the 95% CI around the risk ratio
+            value.
+          </div>
+          <div class="foot_item">
+            <b>rr_ci_up</b> = upper bound of the 95% CI around the risk ratio
+            value.
+          </div>
+          <div class="foot_item">
+            <b>logrr_ci_lo </b> = lower bound of the 95% CI around the log risk
+            ratio value.
+          </div>
+          <div class="foot_item">
+            <b>logrr_ci_up</b> = upper bound of the 95% CI around the log risk
+            ratio value.
+          </div>
+          <div class="foot_item">
+            <b>baseline_risk</b> = proportion of cases/events in the non-exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>n_cases</b> = number of cases/events across exposed/non-exposed
+            groups.
+          </div>
+          <div class="foot_item">
+            <b>n_controls</b> = number of controls/no-event across
+            exposed/non-exposed groups.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
         </div>
       </div>
 
@@ -558,6 +749,81 @@
         <div style="overflow-x: auto">
           <div id="table_plot_means"></div>
         </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>plot_mean_exp</b> = mean of participants in the
+            experimental/exposed group (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_mean_nexp</b> = mean of participants in the
+            non-experimental/non-exposed group (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_mean_sd_lo_exp</b> = lower bound of an error bar depicting
+            -1 SD from the mean of the experimental/exposed group (extracted
+            from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_mean_sd_lo_nexp</b> = lower bound of an error bar depicting
+            -1 SD from the mean of the non-experimental/non-exposed group
+            (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_mean_sd_up_exp</b> = upper bound of an error bar depicting
+            +1 SD from the mean of the experimental/exposed group (extracted
+            from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_mean_sd_up_nexp</b> = upper bound of an error bar depicting
+            +1 SD from the mean of the non-experimental/non-exposed group
+            (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_mean_se_lo_exp</b> = lower bound of an error bar depicting
+            -1 SE from the mean of the experimental/exposed group (extracted
+            from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_mean_se_lo_nexp</b> = lower bound of an error bar depicting
+            -1 SE from the mean of the non-experimental/non-exposed group
+            (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_mean_se_up_exp</b> = upper bound of an error bar depicting
+            +1 SE from the mean of the experimental/exposed group (extracted
+            from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_mean_se_up_nexp</b> = upper bound of an error bar depicting
+            +1 SE from the mean of the non-experimental/non-exposed group
+            (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_mean_ci_lo_exp</b> = lower bound of an error bar depicting
+            the 95% CI of the mean of the experimental/exposed group (extracted
+            from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_mean_ci_lo_nexp</b> = lower bound of an error bar depicting
+            the 95% CI of the mean of the non-experimental/non-exposed group
+            (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_mean_ci_up_exp</b> = upper bound of an error bar depicting
+            the 95% CI of the mean of the experimental/exposed group (extracted
+            from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_mean_ci_up_nexp</b> = upper bound of an error bar depicting
+            the 95% CI of the mean of the non-experimental/non-exposed group
+            (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
       </div>
 
       <div
@@ -581,6 +847,81 @@
 
         <div style="overflow-x: auto">
           <div id="table_plot_ancova_means"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>plot_ancova_mean_exp</b> = adjusted mean of participants in the
+            experimental/exposed group (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_ancova_mean_nexp</b> = adjusted mean of participants in the
+            non-experimental/non-exposed group (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_ancova_mean_sd_lo_exp</b> = lower bound of an error bar
+            depicting -1 SD from the adjusted mean of the experimental/exposed
+            group (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_ancova_mean_sd_lo_nexp</b> = lower bound of an error bar
+            depicting -1 SD from the adjusted mean of the
+            non-experimental/non-exposed group (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_ancova_mean_sd_up_exp</b> = upper bound of an error bar
+            depicting +1 SD from the adjusted mean of the experimental/exposed
+            group (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_ancova_mean_sd_up_nexp</b> = upper bound of an error bar
+            depicting +1 SD from the adjusted mean of the
+            non-experimental/non-exposed group (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_ancova_mean_se_lo_exp</b> = lower bound of an error bar
+            depicting -1 SE from the adjusted mean of the experimental/exposed
+            group (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_ancova_mean_se_lo_nexp</b> = lower bound of an error bar
+            depicting -1 SE from the adjusted mean of the
+            non-experimental/non-exposed group (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_ancova_mean_se_up_exp</b> = upper bound of an error bar
+            depicting +1 SE from the adjusted mean of the experimental/exposed
+            group (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_ancova_mean_se_up_nexp</b> = upper bound of an error bar
+            depicting +1 SE from the adjusted mean of the
+            non-experimental/non-exposed group (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_ancova_mean_ci_lo_exp</b> = lower bound of an error bar
+            depicting the 95% CI of the adjusted mean of the
+            experimental/exposed group (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_ancova_mean_ci_lo_nexp</b> = lower bound of an error bar
+            depicting the 95% CI of the adjusted mean of the
+            non-experimental/non-exposed group (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_ancova_mean_ci_up_exp</b> = upper bound of an error bar
+            depicting the 95% CI of the adjusted mean of the
+            experimental/exposed group (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>plot_ancova_mean_ci_up_nexp</b> = upper bound of an error bar
+            depicting the 95% CI of the adjusted mean of the
+            non-experimental/non-exposed group (extracted from a plot).
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
         </div>
       </div>
 
@@ -606,6 +947,28 @@
         <div style="overflow-x: auto">
           <div id="table_mean_difference_crude"></div>
         </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>md</b> = mean difference between two independent groups.
+          </div>
+          <div class="foot_item">
+            <b>md_sd</b> = standard deviation of the mean difference.
+          </div>
+          <div class="foot_item">
+            <b>md_pval</b> = p-value of the mean difference.
+          </div>
+          <div class="foot_item">
+            <b>md_ci_lo</b> = lower bound of the 95% CI of the mean difference.
+          </div>
+          <div class="foot_item">
+            <b>md_ci_up</b> = upper bound of the 95% CI of the mean difference.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
       </div>
 
       <div
@@ -629,6 +992,40 @@
 
         <div style="overflow-x: auto">
           <div id="table_mean_difference_adjusted"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>ancova_md</b> = adjusted mean difference between two independent
+            groups.
+          </div>
+          <div class="foot_item">
+            <b>ancova_md_sd</b> = standard deviation of the adjusted mean
+            difference.
+          </div>
+          <div class="foot_item">
+            <b>ancova_md_pval</b> = p-value of the adjusted mean difference.
+          </div>
+          <div class="foot_item">
+            <b>ancova_md_ci_lo</b> = lower bound of the 95% CI of the adjusted
+            mean difference.
+          </div>
+          <div class="foot_item">
+            <b>ancova_md_ci_up</b> = upper bound of the 95% CI of the adjusted
+            mean difference.
+          </div>
+          <div class="foot_item">
+            <b>n_cov_ancova</b> = number of covariates in the ANCOVA model.
+          </div>
+          <div class="foot_item">
+            <b>cov_outcome_r</b> = correlation between the outcome and covariate
+            (multiple correlation when multiple covariates are included in the
+            ANCOVA model).
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
         </div>
       </div>
 
@@ -654,6 +1051,53 @@
         <div style="overflow-x: auto">
           <div id="table_means"></div>
         </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>mean_exp</b> = mean of participants in the experimental/exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>mean_nexp</b> = mean of participants in the
+            non-experimental/non-exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_sd_exp</b> = standard deviation of participants in the
+            experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_sd_nexp</b> = standard deviation of participants in the
+            non-experimental/non-exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_se_exp</b> = standard error of participants in the
+            experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_se_nexp</b> = standard error of participants in the
+            non-experimental/non-exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_ci_lo_exp</b> = lower bound of the 95% CI of the mean of the
+            experimental/exposed group
+          </div>
+          <div class="foot_item">
+            <b>mean_ci_up_exp</b> = upper bound of the 95% CI of the mean of the
+            experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_ci_lo_nexp</b> = lower bound of the 95% CI of the mean of
+            the non-experimental/non-exposed.
+          </div>
+          <div class="foot_item">
+            <b>mean_ci_up_nexp</b> = upper bound of the 95% CI of the mean of
+            the non-experimental/non-exposed.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
       </div>
 
       <div
@@ -677,6 +1121,68 @@
 
         <div style="overflow-x: auto">
           <div id="table_ancova_means"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>ancova_mean_exp</b> = adjusted mean of participants in the
+            experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_nexp</b> = adjusted mean of participants in the
+            non-experimental/non-exposed group.
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_sd_exp</b> = adjusted standard deviation of
+            participants in the experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_sd_nexp</b> = adjusted standard deviation of
+            participants in the non-experimental/non-exposed group.
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_se_exp</b> = adjusted standard error of participants
+            in the experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_se_nexp</b> = adjusted standard error of participants
+            in the non-experimental/non-exposed group.
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_ci_lo_exp</b> = lower bound of the 95% CI of the
+            adjusted mean of the experimental/exposed group
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_ci_up_exp</b> = upper bound of the 95% CI of the
+            adjusted mean of the experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_ci_lo_nexp</b> = lower bound of the 95% CI of the
+            adjusted mean of the non-experimental/non-exposed.
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_ci_up_nexp</b> = upper bound of the 95% CI of the
+            adjusted mean of the non-experimental/non-exposed.
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_sd_pooled</b> = adjusted pooled standard deviation.
+          </div>
+          <div class="foot_item">
+            <b>mean_sd_pooled_crude</b> = crude pooled standard deviation.
+          </div>
+          <div class="foot_item">
+            <b>n_cov_ancova</b> = number of covariates in the ANCOVA model.
+          </div>
+          <div class="foot_item">
+            <b>cov_outcome_r</b> = correlation between the outcome and covariate
+            (multiple correlation when multiple covariates are included in the
+            ANCOVA model).
+          </div>
+
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
         </div>
       </div>
 
@@ -702,6 +1208,48 @@
         <div style="overflow-x: auto">
           <div id="table_medians"></div>
         </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>min_exp</b> = minimum value of the experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>q1_exp</b> = first quartile of the experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>med_exp</b> = median value of the experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>q3_exp</b> = third quartile of the experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>max_exp</b> = maximum value of the experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>min_nexp</b> = minimum value of the non-experimental/non-exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>q1_nexp</b> = first quartile of the non-experimental/non-exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>med_nexp</b> = median value of the non-experimental/non-exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>q3_nexp</b> = third quartile of the non-experimental/non-exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>max_nexp</b> = maximum value of the non-experimental/non-exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
       </div>
 
       <div class="table-title" id="irr" data-category="IRR">
@@ -721,6 +1269,23 @@
 
         <div style="overflow-x: auto">
           <div id="table_irr"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>n_cases_exp</b> = number of cases in the exposed group.
+          </div>
+          <div class="foot_item">
+            <b>n_cases_nexp</b> = number of cases in the non-exposed group.
+          </div>
+          <div class="foot_item">
+            <b>time_exp</b> = person-time of disease-free observation in the
+            exposed group.
+          </div>
+          <div class="foot_item">
+            <b>time_nexp</b> = person-time of disease-free observation in the
+            non-exposed group.
+          </div>
         </div>
       </div>
 
@@ -746,6 +1311,74 @@
         <div style="overflow-x: auto">
           <div id="table_change_scores"></div>
         </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>mean_pre_exp & mean_pre_nexp</b> = mean at baseline in the
+            exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_exp & mean_nexp</b> = mean at follow-up in the exposed and
+            non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_pre_sd_exp & mean_pre_sd_nexp</b> = standard deviation of
+            the mean at baseline in the exposed and non-exposed groups,
+            respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_sd_exp & mean_sd_nexp</b> = standard deviation of the mean
+            at follow up in the exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_pre_se_exp & mean_pre_se_nexp</b> = standard error of the
+            mean at baseline in the exposed and non-exposed groups,
+            respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_se_exp & mean_se_nexp</b> = standard error of the mean at
+            follow up in the exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_pre_ci_lo_exp & mean_pre_ci_up_exp</b> = lower and upper
+            bounds of the 95% CI of the mean of the non-experimental/non-exposed
+            group at baseline in the exposed and non-exposed groups,
+            respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_pre_ci_lo_exp & mean_pre_ci_up_exp</b> = lower and upper
+            bounds of the 95% CI of the mean of the non-experimental/non-exposed
+            group at baseline in the exposed and non-exposed groups,
+            respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_ci_lo_exp & mean_ci_up_exp</b> = lower and upper bounds of
+            the 95% CI of the mean of the non-experimental/non-exposed group at
+            follow up in the exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_ci_lo_nexp & mean_ci_up_nexp</b> = lower and upper bounds of
+            the 95% CI of the mean of the non-experimental/non-exposed group at
+            follow up in the exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_change_exp & mean_change_nexp</b> = mean change of
+            participants in the exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_change_sd_exp & mean_change_sd_nexp</b> = standard deviation
+            of the mean change for participants in the exposed and non-exposed
+            groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>r_pre_post_exp & r_pre_post_nexp</b> = correlation between
+            pre-post scores in the exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
       </div>
 
       <div class="table-title" id="paired_anova" data-category="SMD COR rawOR">
@@ -765,6 +1398,34 @@
 
         <div style="overflow-x: auto">
           <div id="table_paired_anova"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>paired_f_exp & paired_f_nexp</b> = Paired ANOVA F value in the
+            exposed and non-exposed groups, respectively..
+          </div>
+          <div class="foot_item">
+            <b>paired_f_pval_exp & paired_f_pval_nexp</b> = P-value of the
+            paired ANOVA F in the exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>paired_t_exp & paired_t_nexp</b> = in the exposed and non-exposed
+            groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>paired_t_pval_exp & paired_t_pval_nexp</b> = Paired t-test value
+            in the exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>r_pre_post_exp & r_pre_post_nexp</b> = correlation between
+            pre-post scores in the exposed and non-exposed groups, respectively.
+          </div>
+
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
         </div>
       </div>
 
@@ -786,6 +1447,21 @@
         <div style="overflow-x: auto">
           <div id="table_phi"></div>
         </div>
+
+        <div class="footnote">
+          <div class="foot_item"><b>phi</b> = phi coefficient value.</div>
+          <div class="foot_item"><b>chisq</b> = chi-square value.</div>
+          <div class="foot_item"><b>chisq_pval</b> = chi-square p-value.</div>
+          <div class="foot_item">
+            <b>n_sample</b> = total number of participants in the sample.
+          </div>
+          <div class="foot_item">
+            <b>n_cases</b> = total number of cases/events.
+          </div>
+          <div class="foot_item">
+            <b>n_exp</b> = number of participants in the exposed group.
+          </div>
+        </div>
       </div>
 
       <div class="table-title" id="regression" data-category="SMD COR rawOR">
@@ -805,6 +1481,24 @@
 
         <div style="overflow-x: auto">
           <div id="table_regression"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>beta_std</b> = standardized regression coefficient value (the
+            predictor of interest must be binary).
+          </div>
+          <div class="foot_item">
+            <b>beta_unstd</b> = unstandardized regression coefficient value (the
+            predictor of interest must be binary).
+          </div>
+          <div class="foot_item">
+            <b>dv_sd</b> = standard deviation of the dependent variable.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
         </div>
       </div>
 
@@ -830,6 +1524,25 @@
         <div style="overflow-x: auto">
           <div id="table_user_crude"></div>
         </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>measure</b> = the target effect size measure (should be one of
+            the 11 effect size measures available in metaConvert).
+          </div>
+          <div class="foot_item">
+            <b>user_es_measure_crude</b> = name of the original effect size
+            measure.
+          </div>
+          <div class="foot_item"><b>user_es_crude</b> = effect size value.</div>
+          <div class="foot_item">
+            <b>user_se_crude</b> = effect size standard error.
+          </div>
+          <div class="foot_item">
+            <b>user_ci_lo_crude & user_ci_up_crude</b> = lower and upper bounds
+            of the 95% CI around the effect size value.
+          </div>
+        </div>
       </div>
 
       <div
@@ -853,6 +1566,27 @@
 
         <div style="overflow-x: auto">
           <div id="table_user_adjusted"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>measure</b> = the target effect size measure (should be one of
+            the 11 effect size measures available in metaConvert).
+          </div>
+          <div class="foot_item">
+            <b>user_es_measure_adjusted</b> = name of the original effect size
+            measure.
+          </div>
+          <div class="foot_item">
+            <b>user_es_adjusted</b> = effect size value (should be adjusted).
+          </div>
+          <div class="foot_item">
+            <b>user_se_adjusted</b> = effect size standard error.
+          </div>
+          <div class="foot_item">
+            <b>user_ci_lo_adjusted & user_ci_up_adjusted</b> = lower and upper
+            bounds of the 95% CI around the adjusted effect size value.
+          </div>
         </div>
       </div>
     </section>

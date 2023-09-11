@@ -1,4 +1,4 @@
 all_info_expected	study_id	phi	chisq	chisq_pval	n_sample	n_cases	n_exp
-phi	1	0.511			69	26	24
-chisq	2		2.25		155	52	61
-chisq_pval	3			0.000319	226	86	79
+phi	1	0.383			196	68	75
+chisq	2		2.48		264	93	100
+chisq_pval	3			0.000385	207	78	73

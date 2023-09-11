@@ -1,4 +1,4 @@
 all_info_expected	study_id	md	md_sd	md_se	md_ci_lo	md_ci_up	n_exp	n_nexp
-md_sd	1	4.08	2.69				51	79
-md_se	2	3.45		0.218			12	28
-md_ci	3	-1.99			-2.49	-1.49	71	81
+md_sd	1	0	2.36				55	48
+md_se	2	-1.72		0.31			32	26
+md_ci	3	1.88			1.38	2.38	58	63
