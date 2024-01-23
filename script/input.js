@@ -103,6 +103,11 @@ seeEffectMeasure.addEventListener("click", () => {
   Tables.classList.add("show_toc");
 });
 
+// Trigger the seeListInput click event when the page loads
+document.addEventListener("DOMContentLoaded", () => {
+  seeListInput.click();
+});
+
 categoryButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const category = button.getAttribute("data-category");
