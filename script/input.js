@@ -97,24 +97,24 @@ const Tables = document.querySelector(".table_container");
 const categoryButtons = document.querySelectorAll(".category-buttons button");
 const cards = document.querySelectorAll(".table-title");
 
-seeListInput.addEventListener("click", () => {
-  seeEffectMeasure.classList.remove("btn_active");
-  listEffectMeasure.classList.remove("show_grid");
-  seeListInput.classList.add("btn_active");
-  listInput.classList.add("show_toc");
-  Tables.classList.add("show_toc");
+// seeListInput.addEventListener("click", () => {
+//   seeEffectMeasure.classList.remove("btn_active");
+//   listEffectMeasure.classList.remove("show_grid");
+//   seeListInput.classList.add("btn_active");
+//   listInput.classList.add("show_toc");
+//   Tables.classList.add("show_toc");
 
-  cards.forEach((card) => {
-    card.classList.add("show");
-  });
-});
-seeEffectMeasure.addEventListener("click", () => {
-  seeEffectMeasure.classList.add("btn_active");
-  listEffectMeasure.classList.add("show_grid");
-  seeListInput.classList.remove("btn_active");
-  listInput.classList.remove("show_toc");
-  Tables.classList.add("show_toc");
-});
+//   cards.forEach((card) => {
+//     card.classList.add("show");
+//   });
+// });
+// seeEffectMeasure.addEventListener("click", () => {
+//   seeEffectMeasure.classList.add("btn_active");
+//   listEffectMeasure.classList.add("show_grid");
+//   seeListInput.classList.remove("btn_active");
+//   listInput.classList.remove("show_toc");
+//   Tables.classList.add("show_toc");
+// });
 
 // Trigger the seeListInput click event when the page loads
 document.addEventListener("DOMContentLoaded", () => {
