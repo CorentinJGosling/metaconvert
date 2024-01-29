@@ -11,10 +11,23 @@ navIcons.forEach(function (navIcon) {
 
 const navLinksli = document.querySelectorAll(".nav-links li");
 
+// navLinksli.forEach((link) => {
+//   link.addEventListener("click", () => {
+//     const href = link.querySelector("a").getAttribute("href");
+//     window.location.href = href;
+//   });
+// });
 navLinksli.forEach((link) => {
-  link.addEventListener("click", () => {
-    const href = link.querySelector("a").getAttribute("href");
-    window.location.href = href;
+  link.addEventListener("click", (event) => {
+    event.preventDefault(); // Prevent the default behavior of the anchor tag
+    const targetId = link.querySelector("a").getAttribute("href").substring(1);
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
   });
 });
 
