@@ -674,7 +674,6 @@ input[type=checkbox]:checked::before {
 
 .table_container .table-title {
   display: none;
-  scroll-margin-top: 120px;
 }
 
 .table_container {
