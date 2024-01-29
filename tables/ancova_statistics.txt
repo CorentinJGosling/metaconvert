@@ -1,7 +1,6 @@
-all_info_expected	study_id	ancova_t	ancova_f	ancova_t_pval	ancova_f_pval	cohen_d_adj	etasq_adj	cov_outcome_r	n_cov_ancova	n_exp	n_nexp
-ancova_t	1	1.34						0.1	1	85	78
-ancova_f	2		0.0172					0.15	2	90	84
-ancova_t_pval	3			1.12				0.15	2	71	62
-ancova_f_pval	4				0.00958			0.3	5	43	39
-cohen_d_adj	5					0.821		0.25	4	90	93
-etasq_adj	6						0.431	0.1	1	58	53
+all_info_expected	study_id	natural_es	converted_es	ancova_t	ancova_f	ancova_t_pval	ancova_f_pval	etasq_adj	cov_outcome_r	n_cov_ancova	n_exp	n_nexp
+ancova_t	1	D+G	OR+R+Z	1.6					0.25	4	86	91
+ancova_f	2	D+G	OR+R+Z		0.0499				0.1	1	22	21
+ancova_t_pval	3	D+G	OR+R+Z			1.41			0.15	2	47	42
+ancova_f_pval	4	D+G	OR+R+Z				0.00757		0.3	5	57	59
+etasq_adj	6	D+G	OR+R+Z					0.649	0.25	4	80	78

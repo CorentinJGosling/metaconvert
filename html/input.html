@@ -47,7 +47,7 @@
   </nav>
   <body>
     <div class="motherplat">
-      <a href="https://www.ebiact-database.com"
+      <a href="../background/extraction_sheet.xlsx"
         ><div class="left_hub">
           <img src="../img/excel.png" class="hub_img" /></div
       ></a>
@@ -103,11 +103,11 @@
       </div>
       <div class="gloss_item">
         <div class="gloss_col">
-          <b>Main ESM</b> is the natural effect size measure from the input
+          <b>natural_es</b> is the natural effect size measure from the input
           information.
         </div>
         <div class="gloss_col">
-          <b>Convert ESM</b> is an effect size measure obtained by a
+          <b>converted_es</b> is an effect size measure obtained by a
           <i>converting</i> formula, which necessarily contains a certain degree
           of approximation.
         </div>
@@ -254,48 +254,46 @@
     <section class="toc-container" id="toc">
       <div class="toc">
         <ol class="toc_list">
-          <li>
-            <a href="#anova"
-              ><span>1.</span> ANOVA statistics, Student's t-test, or point-bis
-              correlation</a
-            >
-          </li>
-          <li>
-            <a href="#ancova_statistics"
-              ><span>2.</span> ANCOVA statistics, adjusted Cohen's
-              d/eta-squared</a
-            >
-          </li>
-          <li>
-            <a href="#contingency"
-              ><span>3.</span> Contingency (2x2) table or proportions</a
-            >
-          </li>
-          <li>
-            <a href="#smd"
-              ><span>4.</span> ES: Hedges' g or Cohen's d (crude)</a
-            >
-          </li>
-          <li>
-            <a href="#or"><span>5.</span> ES: Odds Ratio (and dispersion)</a>
-          </li>
-          <li>
-            <a href="#cor"><span>6.</span> ES: Pearson's r or Fisher's z</a>
-          </li>
-          <li>
-            <a href="#rr"><span>7.</span> ES: Risk Ratio and dispersion</a>
-          </li>
-          <li>
-            <a href="#plot_means"
-              ><span>8.</span> From plot: means and dispersion (crude)</a
-            >
-          </li>
+          <li class="non-clickable-header">Standardized effect sizes</li>
 
           <li>
-            <a href="#plot_ancova_means"
-              ><span>9.</span> From plot: adjusted means and dispersion
-              (adjusted)</a
+            <a href="#smd"><span>1.</span> Cohen's d or Hedges' g</a>
+          </li>
+          <li>
+            <a href="#or"><span>2.</span> Odds Ratio</a>
+          </li>
+          <li>
+            <a href="#rr"><span>3.</span> Risk Ratio</a>
+          </li>
+          <li>
+            <a href="#cor"><span>4.</span> Pearson's r or Fisher's z</a>
+          </li>
+          <li>
+            <a href="#irr"><span>5.</span> Incidence Ratio Ratio</a>
+          </li>
+          <li>
+            <a href="#var"><span>6.</span> Variability indices</a>
+          </li>
+
+          <li class="non-clickable-header">
+            Dichotomous predictor + Dichotomous outcome
+          </li>
+
+          <!-- Nat OR -->
+          <li>
+            <a href="#contingency"
+              ><span>7.</span> Contingency (2x2) table or proportions</a
             >
+          </li>
+          <li>
+            <a href="#phi"><span>8.</span> Phi or chi-square</a>
+          </li>
+
+          <li class="non-clickable-header">
+            Dichotomous predictor + Quantitative outcome
+          </li>
+          <li>
+            <a href="#means"><span>9.</span> Means and dispersion (crude)</a>
           </li>
           <li>
             <a href="#mean_difference_crude"
@@ -303,53 +301,88 @@
             >
           </li>
           <li>
-            <a href="#mean_difference_adjusted"
-              ><span>11.</span> Mean difference and dispersion (adjusted)</a
-            >
-          </li>
-          <li>
-            <a href="#means"><span>12.</span> Means and dispersion (crude)</a>
-          </li>
-          <li>
-            <a href="#ancova_means"
-              ><span>13.</span> Means and dispersion (adjusted)</a
+            <a href="#anova"
+              ><span>11.</span> ANOVA statistics, Student's t-test, or point-bis
+              correlation</a
             >
           </li>
           <li>
             <a href="#medians"
-              ><span>14.</span> Median, range and/or interquartile range</a
+              ><span>12.</span> Median, range and/or interquartile range</a
             >
           </li>
           <li>
-            <a href="#irr"
-              ><span>15.</span> Number of cases and time of observation</a
+            <a href="#regression"
+              ><span>13.</span> (Un-)Standardized regression coefficient</a
             >
+          </li>
+
+          <li class="non-clickable-header">
+            Special cases: Change + Matched pairs
           </li>
           <li>
             <a href="#change_scores"
-              ><span>16.</span> Paired: pre-post means or mean change, and
-              dispersion</a
+              ><span>14.</span> Paired: mean change, and dispersion</a
+            >
+          </li>
+          <li>
+            <a href="#pre_post"
+              ><span>15.</span> Paired: pre-post means and dispersion</a
             >
           </li>
           <li>
             <a href="#paired_anova"
-              ><span>17.</span> Paired: Paired F- or t-test</a
+              ><span>16.</span> Paired: Paired F- or t-test</a
+            >
+          </li>
+          <!-- ADJ -->
+          <li class="non-clickable-header">
+            Special cases: Adjusted input data
+          </li>
+          <li>
+            <a href="#smd_adjusted"><span>17.</span> Cohen's d (adjusted)</a>
+          </li>
+
+          <li>
+            <a href="#ancova_statistics"
+              ><span>18.</span> Adjusted: ANCOVA statistics, eta-squared</a
             >
           </li>
           <li>
-            <a href="#phi"><span>18.</span> Phi or chi-square</a>
-          </li>
-          <li>
-            <a href="#regression"
-              ><span>19.</span> (Un-)Standardized regression coefficient</a
+            <a href="#ancova_means"
+              ><span>19.</span> Adjusted: Means and dispersion</a
             >
           </li>
           <li>
-            <a href="#user_crude"><span>20.</span> User's input (crude)</a>
+            <a href="#mean_difference_adjusted"
+              ><span>20.</span> Adjusted: Mean difference and dispersion</a
+            >
+          </li>
+          <li class="non-clickable-header">
+            Special cases: Extraction from a plot
+          </li>
+
+          <li>
+            <a href="#plot_means"
+              ><span>21.</span> From plot: means and dispersion (crude)</a
+            >
+          </li>
+          <li>
+            <a href="#plot_ancova_means"
+              ><span>22.</span> From plot: adjusted means and dispersion
+              (adjusted)</a
+            >
+          </li>
+          <li class="non-clickable-header">
+            Special cases: other effect size measures
+          </li>
+
+          <li>
+            <a href="#user_crude"><span>23.</span> User's input (crude)</a>
           </li>
           <li>
             <a href="#user_adjusted"
-              ><span>21.</span> User's input (adjusted)</a
+              ><span>24.</span> User's input (adjusted)</a
             >
           </li>
         </ol>
@@ -358,170 +391,8 @@
 
     <!-- SMD rawMD VAR COR rawOR rawRR IRR NNT -->
     <section class="table_container" id="data">
-      <div class="table-title" id="anova" data-category="SMD COR rawOR">
-        <h3>1. ANOVA statistics, Student's t-test, or point-bis correlation</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/anova.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/anova.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-        <div style="overflow-x: auto">
-          <div id="table_anova"></div>
-        </div>
-        <div class="footnote">
-          <div class="foot_item">
-            <b>anova_f</b> = F-test value from an ANOVA with a binary
-            independent variable.
-          </div>
-          <div class="foot_item">
-            <b>anova_f_pval</b> = p-value from an ANOVA with a binary
-            independent variable.
-          </div>
-          <div class="foot_item">
-            <b>student_t</b> = Student's t-test value.
-          </div>
-          <div class="foot_item">
-            <b>student_t_pval</b> = p-value from value from a Student's t-test
-            value.
-          </div>
-          <div class="foot_item">
-            <b>pt_bis_r</b> = correlation coefficient value from a
-            point-biserial correlation.
-          </div>
-          <div class="foot_item">
-            <b>pt_bis_r_pval</b> = p-value of a point-biserial correlation.
-          </div>
-          <div class="foot_item">
-            <b>etasq</b> = Eta-squared value from an ANOVA with a binary
-            independent variable.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="ancova_statistics"
-        data-category="SMD COR rawOR"
-      >
-        <h3>2. ANCOVA statistics, adjusted Cohen's d/eta-squared</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/ancova_statistics.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/ancova_statistics.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_ancova_statistics"></div>
-        </div>
-        <div class="footnote">
-          <div class="foot_item">
-            <b>ancova_f</b> = F-test value from an ANCOVA with a binary
-            independent variable.
-          </div>
-          <div class="foot_item">
-            <b>ancova_f_pval</b> = p-value from an ANCOVA with a binary
-            independent variable.
-          </div>
-          <div class="foot_item">
-            <b>ancova_t</b> = t-test value from an ANCOVA with a binary
-            independent variable.
-          </div>
-          <div class="foot_item">
-            <b>ancova_t_pval</b> = p-value from an ANCOVA with a binary
-            independent variable.
-          </div>
-          <div class="foot_item">
-            <b>cohen_d_adj</b> = adjusted Cohen's d value.
-          </div>
-          <div class="foot_item">
-            <b>etasq_adj</b> = adjusted eta-squared value.
-          </div>
-          <div class="foot_item">
-            <b>cov_outcome_r </b> = Covariate-outcome correlation (multiple R if
-            several covariates are included).
-          </div>
-          <div class="foot_item">
-            <b>n_cov_ancova </b> = number of covariates in the ANCOVA model.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="contingency"
-        data-category="SMD COR rawOR rawRR NNT"
-      >
-        <h3>3. Contingency (2x2) table or proportions</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/contingency.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/contingency.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-        <div style="overflow-x: auto">
-          <div id="table_contingency"></div>
-        </div>
-        <div class="footnote">
-          <div class="foot_item">
-            <b>n_cases_exp</b> = number of cases/events in the exposed group.
-          </div>
-          <div class="foot_item">
-            <b>n_cases_nexp</b> = number of cases/events in the non exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>n_controls_exp</b> = number of controls/no-event in the exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>n_controls_nexp</b> = number of controls/no-event in the non
-            exposed group.
-          </div>
-          <div class="foot_item">
-            <b>prop_cases_exp</b> = proportion of cases/events in the exposed
-            group (ranging from 0 to 1).
-          </div>
-          <div class="foot_item">
-            <b>prop_cases_nexp</b> = proportion of cases/events in the
-            non-exposed group (ranging from 0 to 1).
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
       <div class="table-title" id="smd" data-category="SMD COR rawOR">
-        <h3>4. ES: Hedges' g or Cohen's d</h3>
+        <h3>1. Cohen's d or Hedges' g (crude)</h3>
         <div class="fictitious_datasets">
           <div class="excel_file">
             <a href="../tables/cohen_d.xlsx" download
@@ -550,7 +421,7 @@
       </div>
 
       <div class="table-title" id="or" data-category="SMD COR rawOR rawRR NNT">
-        <h3>5. ES: Odds Ratio (and dispersion)</h3>
+        <h3>2. Odds Ratio</h3>
         <div class="fictitious_datasets">
           <div class="excel_file">
             <a href="../tables/or.xlsx" download
@@ -616,56 +487,8 @@
         </div>
       </div>
 
-      <div class="table-title" id="cor" data-category="SMD COR rawOR">
-        <h3>6. ES: Pearson's r or Fisher's z</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/cor.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/change_scores.xlsx" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_cor"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>pearson_r</b> = Pearson's correlation coefficient value.
-          </div>
-          <div class="foot_item">
-            <b>fisher_z</b> = Fisher's r-to-z transformed correlation
-            coefficient.
-          </div>
-          <div class="foot_item">
-            <b>sd_iv</b> = standard deviation of the independent variable.
-          </div>
-          <div class="foot_item">
-            <b>unit_increase_iv</b> = value of the independent variable that
-            will be used to estimate the Cohen's d
-          </div>
-          <div class="foot_item">
-            <b>unit_type</b> = the type of unit for the unit_increase_iv column.
-            Must be either "sd" or "value".
-          </div>
-          <div class="foot_item">
-            <b>n_sample</b> = total number of participants.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
       <div class="table-title" id="rr" data-category="rawRR rawOR NNT">
-        <h3>7. ES: Risk Ratio and dispersion</h3>
+        <h3>3. Risk Ratio</h3>
         <div class="fictitious_datasets">
           <div class="excel_file">
             <a href="../tables/rr.xlsx" download
@@ -727,12 +550,955 @@
         </div>
       </div>
 
+      <div class="table-title" id="cor" data-category="SMD COR rawOR">
+        <h3>4. Pearson's r or Fisher's z</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/cor.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/change_scores.xlsx" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_cor"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>pearson_r</b> = Pearson's correlation coefficient value.
+          </div>
+          <div class="foot_item">
+            <b>fisher_z</b> = Fisher's r-to-z transformed correlation
+            coefficient.
+          </div>
+          <div class="foot_item">
+            <b>sd_iv</b> = standard deviation of the independent variable.
+          </div>
+          <div class="foot_item">
+            <b>unit_increase_iv</b> = value of the independent variable that
+            will be used to estimate the Cohen's d
+          </div>
+          <div class="foot_item">
+            <b>unit_type</b> = the type of unit for the unit_increase_iv column.
+            Must be either "sd" or "value".
+          </div>
+          <div class="foot_item">
+            <b>n_sample</b> = total number of participants.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
+      </div>
+
+      <div class="table-title" id="irr" data-category="IRR">
+        <h3>5. Incidence Ratio Ratio</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/irr.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/irr.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_irr"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>n_cases_exp</b> = number of cases in the exposed group.
+          </div>
+          <div class="foot_item">
+            <b>n_cases_nexp</b> = number of cases in the non-exposed group.
+          </div>
+          <div class="foot_item">
+            <b>time_exp</b> = person-time of disease-free observation in the
+            exposed group.
+          </div>
+          <div class="foot_item">
+            <b>time_nexp</b> = person-time of disease-free observation in the
+            non-exposed group.
+          </div>
+        </div>
+      </div>
+
+      <div class="table-title" id="var" data-category="VAR">
+        <h3>6. Variability indices</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/var.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/var.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_var"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>mean_exp</b> = mean of participants in the experimental/exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>mean_nexp</b> = mean of participants in the
+            non-experimental/non-exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_sd_exp</b> = standard deviation of participants in the
+            experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_sd_nexp</b> = standard deviation of participants in the
+            non-experimental/non-exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_se_exp</b> = standard error of participants in the
+            experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_se_nexp</b> = standard error of participants in the
+            non-experimental/non-exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_ci_lo_exp</b> = lower bound of the 95% CI of the mean of the
+            experimental/exposed group
+          </div>
+          <div class="foot_item">
+            <b>mean_ci_up_exp</b> = upper bound of the 95% CI of the mean of the
+            experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_ci_lo_nexp</b> = lower bound of the 95% CI of the mean of
+            the non-experimental/non-exposed.
+          </div>
+          <div class="foot_item">
+            <b>mean_ci_up_nexp</b> = upper bound of the 95% CI of the mean of
+            the non-experimental/non-exposed.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="contingency"
+        data-category="SMD COR rawOR rawRR NNT"
+      >
+        <h3>7. Contingency (2x2) table or proportions</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/contingency.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/contingency.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+        <div style="overflow-x: auto">
+          <div id="table_contingency"></div>
+        </div>
+        <div class="footnote">
+          <div class="foot_item">
+            <b>n_cases_exp</b> = number of cases/events in the exposed group.
+          </div>
+          <div class="foot_item">
+            <b>n_cases_nexp</b> = number of cases/events in the non exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>n_controls_exp</b> = number of controls/no-event in the exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>n_controls_nexp</b> = number of controls/no-event in the non
+            exposed group.
+          </div>
+          <div class="foot_item">
+            <b>prop_cases_exp</b> = proportion of cases/events in the exposed
+            group (ranging from 0 to 1).
+          </div>
+          <div class="foot_item">
+            <b>prop_cases_nexp</b> = proportion of cases/events in the
+            non-exposed group (ranging from 0 to 1).
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
+      </div>
+
+      <div class="table-title" id="phi" data-category="SMD COR rawOR rawRR NNT">
+        <h3>8. Phi or chi-square</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/phi.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/phi.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_phi"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item"><b>phi</b> = phi coefficient value.</div>
+          <div class="foot_item"><b>chisq</b> = chi-square value.</div>
+          <div class="foot_item"><b>chisq_pval</b> = chi-square p-value.</div>
+          <div class="foot_item">
+            <b>n_sample</b> = total number of participants in the sample.
+          </div>
+          <div class="foot_item">
+            <b>n_cases</b> = total number of cases/events.
+          </div>
+          <div class="foot_item">
+            <b>n_exp</b> = number of participants in the exposed group.
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="means"
+        data-category="SMD rawMD VAR COR rawOR"
+      >
+        <h3>9. Means and dispersion</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/means_sd.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/means_sd.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_means"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>mean_exp</b> = mean of participants in the experimental/exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>mean_nexp</b> = mean of participants in the
+            non-experimental/non-exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_sd_exp</b> = standard deviation of participants in the
+            experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_sd_nexp</b> = standard deviation of participants in the
+            non-experimental/non-exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_se_exp</b> = standard error of participants in the
+            experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_se_nexp</b> = standard error of participants in the
+            non-experimental/non-exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_ci_lo_exp</b> = lower bound of the 95% CI of the mean of the
+            experimental/exposed group
+          </div>
+          <div class="foot_item">
+            <b>mean_ci_up_exp</b> = upper bound of the 95% CI of the mean of the
+            experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_ci_lo_nexp</b> = lower bound of the 95% CI of the mean of
+            the non-experimental/non-exposed.
+          </div>
+          <div class="foot_item">
+            <b>mean_ci_up_nexp</b> = upper bound of the 95% CI of the mean of
+            the non-experimental/non-exposed.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="mean_difference_crude"
+        data-category="SMD rawMD COR rawOR"
+      >
+        <h3>10. Mean difference and dispersion</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/mean_difference_crude.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/mean_difference_crude.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_mean_difference_crude"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>md</b> = mean difference between two independent groups.
+          </div>
+          <div class="foot_item">
+            <b>md_sd</b> = standard deviation of the mean difference.
+          </div>
+          <div class="foot_item">
+            <b>md_pval</b> = p-value of the mean difference.
+          </div>
+          <div class="foot_item">
+            <b>md_ci_lo</b> = lower bound of the 95% CI of the mean difference.
+          </div>
+          <div class="foot_item">
+            <b>md_ci_up</b> = upper bound of the 95% CI of the mean difference.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
+      </div>
+
+      <div class="table-title" id="anova" data-category="SMD COR rawOR">
+        <h3>
+          11. ANOVA statistics, Student's t-test, or point-bis correlation
+        </h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/anova.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/anova.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+        <div style="overflow-x: auto">
+          <div id="table_anova"></div>
+        </div>
+        <div class="footnote">
+          <div class="foot_item">
+            <b>anova_f</b> = F-test value from an ANOVA with a binary
+            independent variable.
+          </div>
+          <div class="foot_item">
+            <b>anova_f_pval</b> = p-value from an ANOVA with a binary
+            independent variable.
+          </div>
+          <div class="foot_item">
+            <b>student_t</b> = Student's t-test value.
+          </div>
+          <div class="foot_item">
+            <b>student_t_pval</b> = p-value from value from a Student's t-test
+            value.
+          </div>
+          <div class="foot_item">
+            <b>pt_bis_r</b> = correlation coefficient value from a
+            point-biserial correlation.
+          </div>
+          <div class="foot_item">
+            <b>pt_bis_r_pval</b> = p-value of a point-biserial correlation.
+          </div>
+          <div class="foot_item">
+            <b>etasq</b> = Eta-squared value from an ANOVA with a binary
+            independent variable.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="medians"
+        data-category="SMD rawMD VAR COR rawOR"
+      >
+        <h3>12. Median, range and/or interquartile range</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/medians.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/medians.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_medians"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>min_exp</b> = minimum value of the experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>q1_exp</b> = first quartile of the experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>med_exp</b> = median value of the experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>q3_exp</b> = third quartile of the experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>max_exp</b> = maximum value of the experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>min_nexp</b> = minimum value of the non-experimental/non-exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>q1_nexp</b> = first quartile of the non-experimental/non-exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>med_nexp</b> = median value of the non-experimental/non-exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>q3_nexp</b> = third quartile of the non-experimental/non-exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>max_nexp</b> = maximum value of the non-experimental/non-exposed
+            group.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
+      </div>
+
+      <div class="table-title" id="regression" data-category="SMD COR rawOR">
+        <h3>13. (Un-)Standardized regression coefficient</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/regression.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/regression.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_regression"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>beta_std</b> = standardized regression coefficient value (the
+            predictor of interest must be binary).
+          </div>
+          <div class="foot_item">
+            <b>beta_unstd</b> = unstandardized regression coefficient value (the
+            predictor of interest must be binary).
+          </div>
+          <div class="foot_item">
+            <b>dv_sd</b> = standard deviation of the dependent variable.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="change_scores"
+        data-category="SMD rawMD COR rawOR"
+      >
+        <h3>14. Paired: Mean change and dispersion</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/change_scores.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/change_scores.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_change_scores"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>mean_pre_exp & mean_pre_nexp</b> = mean at baseline in the
+            exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_exp & mean_nexp</b> = mean at follow-up in the exposed and
+            non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_pre_sd_exp & mean_pre_sd_nexp</b> = standard deviation of
+            the mean at baseline in the exposed and non-exposed groups,
+            respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_sd_exp & mean_sd_nexp</b> = standard deviation of the mean
+            at follow up in the exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_pre_se_exp & mean_pre_se_nexp</b> = standard error of the
+            mean at baseline in the exposed and non-exposed groups,
+            respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_se_exp & mean_se_nexp</b> = standard error of the mean at
+            follow up in the exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_pre_ci_lo_exp & mean_pre_ci_up_exp</b> = lower and upper
+            bounds of the 95% CI of the mean of the non-experimental/non-exposed
+            group at baseline in the exposed and non-exposed groups,
+            respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_pre_ci_lo_exp & mean_pre_ci_up_exp</b> = lower and upper
+            bounds of the 95% CI of the mean of the non-experimental/non-exposed
+            group at baseline in the exposed and non-exposed groups,
+            respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_ci_lo_exp & mean_ci_up_exp</b> = lower and upper bounds of
+            the 95% CI of the mean of the non-experimental/non-exposed group at
+            follow up in the exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_ci_lo_nexp & mean_ci_up_nexp</b> = lower and upper bounds of
+            the 95% CI of the mean of the non-experimental/non-exposed group at
+            follow up in the exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>r_pre_post_exp & r_pre_post_nexp</b> = correlation between
+            pre-post scores in the exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="pre_post"
+        data-category="SMD rawMD COR rawOR"
+      >
+        <h3>15. Paired: pre-post means and dispersion</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/pre_post.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/pre_post.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_pre_post"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>mean_change_exp & mean_change_nexp</b> = mean change of
+            participants in the exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_change_sd_exp & mean_change_sd_nexp</b> = standard
+            deviations of the mean change for participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_change_se_exp & mean_change_se_nexp</b> = standard errors of
+            the mean change for participants in the exposed and non-exposed
+            groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>mean_change_ci_lo_exp & mean_change_ci_up_exp</b> = bounds of the
+            95% CI around the mean change for participants in the exposed group.
+          </div>
+          <div class="foot_item">
+            <b>mean_change_ci_lo_nexp & mean_change_ci_up_nexp</b> = bounds of
+            the 95% CI around the mean change for participants in the
+            non-exposed group.
+          </div>
+          <div class="foot_item">
+            <b>r_pre_post_exp & r_pre_post_nexp</b> = correlation between
+            pre-post scores in the exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
+      </div>
+
+      <div class="table-title" id="paired_anova" data-category="SMD COR rawOR">
+        <h3>16. Paired: Paired F- or t-test</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/paired_anova.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/paired_anova.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_paired_anova"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>paired_f_exp & paired_f_nexp</b> = Paired ANOVA F value in the
+            exposed and non-exposed groups, respectively..
+          </div>
+          <div class="foot_item">
+            <b>paired_f_pval_exp & paired_f_pval_nexp</b> = P-value of the
+            paired ANOVA F in the exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>paired_t_exp & paired_t_nexp</b> = in the exposed and non-exposed
+            groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>paired_t_pval_exp & paired_t_pval_nexp</b> = Paired t-test value
+            in the exposed and non-exposed groups, respectively.
+          </div>
+          <div class="foot_item">
+            <b>r_pre_post_exp & r_pre_post_nexp</b> = correlation between
+            pre-post scores in the exposed and non-exposed groups, respectively.
+          </div>
+
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
+      </div>
+
+      <div class="table-title" id="smd_adjusted" data-category="SMD COR rawOR">
+        <h3>17. Cohen's d (adjusted)</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/cohen_d_adj.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/cohen_d_adj.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_smd_adjusted"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>cohen_d_adj</b> = Adjusted Cohen's d value.
+          </div>
+          <div class="foot_item">
+            <b>n_cov_ancova</b> = number of covariates in the ANCOVA model.
+          </div>
+          <div class="foot_item">
+            <b>cov_outcome_r</b> correlation between the outcome and covariate
+            (multiple correlation when multiple covariates are included in the
+            ANCOVA model).
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="ancova_statistics"
+        data-category="SMD COR rawOR"
+      >
+        <h3>18. ANCOVA statistics, eta-squared</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/ancova_statistics.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/ancova_statistics.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_ancova_statistics"></div>
+        </div>
+        <div class="footnote">
+          <div class="foot_item">
+            <b>ancova_f</b> = F-test value from an ANCOVA with a binary
+            independent variable.
+          </div>
+          <div class="foot_item">
+            <b>ancova_f_pval</b> = p-value from an ANCOVA with a binary
+            independent variable.
+          </div>
+          <div class="foot_item">
+            <b>ancova_t</b> = t-test value from an ANCOVA with a binary
+            independent variable.
+          </div>
+          <div class="foot_item">
+            <b>ancova_t_pval</b> = p-value from an ANCOVA with a binary
+            independent variable.
+          </div>
+          <div class="foot_item">
+            <b>cohen_d_adj</b> = adjusted Cohen's d value.
+          </div>
+          <div class="foot_item">
+            <b>etasq_adj</b> = adjusted eta-squared value.
+          </div>
+          <div class="foot_item">
+            <b>cov_outcome_r </b> = Covariate-outcome correlation (multiple R if
+            several covariates are included).
+          </div>
+          <div class="foot_item">
+            <b>n_cov_ancova </b> = number of covariates in the ANCOVA model.
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="ancova_means"
+        data-category="SMD rawMD COR rawOR"
+      >
+        <h3>19. Means and dispersion (adjusted)</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/ancova_means.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/ancova_means.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_ancova_means"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>ancova_mean_exp</b> = adjusted mean of participants in the
+            experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_nexp</b> = adjusted mean of participants in the
+            non-experimental/non-exposed group.
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_sd_exp</b> = adjusted standard deviation of
+            participants in the experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_sd_nexp</b> = adjusted standard deviation of
+            participants in the non-experimental/non-exposed group.
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_se_exp</b> = adjusted standard error of participants
+            in the experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_se_nexp</b> = adjusted standard error of participants
+            in the non-experimental/non-exposed group.
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_ci_lo_exp</b> = lower bound of the 95% CI of the
+            adjusted mean of the experimental/exposed group
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_ci_up_exp</b> = upper bound of the 95% CI of the
+            adjusted mean of the experimental/exposed group.
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_ci_lo_nexp</b> = lower bound of the 95% CI of the
+            adjusted mean of the non-experimental/non-exposed.
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_ci_up_nexp</b> = upper bound of the 95% CI of the
+            adjusted mean of the non-experimental/non-exposed.
+          </div>
+          <div class="foot_item">
+            <b>ancova_mean_sd_pooled</b> = adjusted pooled standard deviation.
+          </div>
+          <div class="foot_item">
+            <b>mean_sd_pooled_crude</b> = crude pooled standard deviation.
+          </div>
+          <div class="foot_item">
+            <b>n_cov_ancova</b> = number of covariates in the ANCOVA model.
+          </div>
+          <div class="foot_item">
+            <b>cov_outcome_r</b> = correlation between the outcome and covariate
+            (multiple correlation when multiple covariates are included in the
+            ANCOVA model).
+          </div>
+
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="table-title"
+        id="mean_difference_adjusted"
+        data-category="SMD rawMD COR rawOR"
+      >
+        <h3>20. Mean difference and dispersion (adjusted)</h3>
+        <div class="fictitious_datasets">
+          <div class="excel_file">
+            <a href="../tables/mean_difference_adjusted.xlsx" download
+              ><img src="../img/excelformat.svg"
+            /></a>
+          </div>
+          <div class="text_file">
+            <a href="../tables/mean_difference_adjusted.txt" download
+              ><img src="../img/textformat.svg"
+            /></a>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <div id="table_mean_difference_adjusted"></div>
+        </div>
+
+        <div class="footnote">
+          <div class="foot_item">
+            <b>ancova_md</b> = adjusted mean difference between two independent
+            groups.
+          </div>
+          <div class="foot_item">
+            <b>ancova_md_sd</b> = standard deviation of the adjusted mean
+            difference.
+          </div>
+          <div class="foot_item">
+            <b>ancova_md_pval</b> = p-value of the adjusted mean difference.
+          </div>
+          <div class="foot_item">
+            <b>ancova_md_ci_lo</b> = lower bound of the 95% CI of the adjusted
+            mean difference.
+          </div>
+          <div class="foot_item">
+            <b>ancova_md_ci_up</b> = upper bound of the 95% CI of the adjusted
+            mean difference.
+          </div>
+          <div class="foot_item">
+            <b>n_cov_ancova</b> = number of covariates in the ANCOVA model.
+          </div>
+          <div class="foot_item">
+            <b>cov_outcome_r</b> = correlation between the outcome and covariate
+            (multiple correlation when multiple covariates are included in the
+            ANCOVA model).
+          </div>
+          <div class="foot_item">
+            <b>n_exp & n_nexp</b> = number of participants in the exposed and
+            non-exposed groups, respectively.
+          </div>
+        </div>
+      </div>
+
       <div
         class="table-title"
         id="plot_means"
         data-category="SMD rawMD COR rawOR"
       >
-        <h3>8. From a plot: Raw means and measure of dispersion</h3>
+        <h3>21. From a plot: Raw means and measure of dispersion</h3>
         <div class="fictitious_datasets">
           <div class="excel_file">
             <a href="../tables/plot_means.xlsx" download
@@ -831,7 +1597,7 @@
         id="plot_ancova_means"
         data-category="SMD rawMD COR rawOR"
       >
-        <h3>9. From plot: adjusted means and dispersion (adjusted)</h3>
+        <h3>22. From plot: adjusted means and dispersion (adjusted)</h3>
         <div class="fictitious_datasets">
           <div class="excel_file">
             <a href="../tables/plot_ancova_means.xlsx" download
@@ -927,587 +1693,10 @@
 
       <div
         class="table-title"
-        id="mean_difference_crude"
-        data-category="SMD rawMD COR rawOR"
-      >
-        <h3>10. Mean difference and dispersion (crude)</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/mean_difference_crude.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/mean_difference_crude.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_mean_difference_crude"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>md</b> = mean difference between two independent groups.
-          </div>
-          <div class="foot_item">
-            <b>md_sd</b> = standard deviation of the mean difference.
-          </div>
-          <div class="foot_item">
-            <b>md_pval</b> = p-value of the mean difference.
-          </div>
-          <div class="foot_item">
-            <b>md_ci_lo</b> = lower bound of the 95% CI of the mean difference.
-          </div>
-          <div class="foot_item">
-            <b>md_ci_up</b> = upper bound of the 95% CI of the mean difference.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="mean_difference_adjusted"
-        data-category="SMD rawMD COR rawOR"
-      >
-        <h3>11. Mean difference and dispersion (adjusted)</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/mean_difference_adjusted.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/mean_difference_adjusted.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_mean_difference_adjusted"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>ancova_md</b> = adjusted mean difference between two independent
-            groups.
-          </div>
-          <div class="foot_item">
-            <b>ancova_md_sd</b> = standard deviation of the adjusted mean
-            difference.
-          </div>
-          <div class="foot_item">
-            <b>ancova_md_pval</b> = p-value of the adjusted mean difference.
-          </div>
-          <div class="foot_item">
-            <b>ancova_md_ci_lo</b> = lower bound of the 95% CI of the adjusted
-            mean difference.
-          </div>
-          <div class="foot_item">
-            <b>ancova_md_ci_up</b> = upper bound of the 95% CI of the adjusted
-            mean difference.
-          </div>
-          <div class="foot_item">
-            <b>n_cov_ancova</b> = number of covariates in the ANCOVA model.
-          </div>
-          <div class="foot_item">
-            <b>cov_outcome_r</b> = correlation between the outcome and covariate
-            (multiple correlation when multiple covariates are included in the
-            ANCOVA model).
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="means"
-        data-category="SMD rawMD VAR COR rawOR"
-      >
-        <h3>12. Means and dispersion (crude)</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/means_sd.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/means_sd.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_means"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>mean_exp</b> = mean of participants in the experimental/exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>mean_nexp</b> = mean of participants in the
-            non-experimental/non-exposed group.
-          </div>
-          <div class="foot_item">
-            <b>mean_sd_exp</b> = standard deviation of participants in the
-            experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>mean_sd_nexp</b> = standard deviation of participants in the
-            non-experimental/non-exposed group.
-          </div>
-          <div class="foot_item">
-            <b>mean_se_exp</b> = standard error of participants in the
-            experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>mean_se_nexp</b> = standard error of participants in the
-            non-experimental/non-exposed group.
-          </div>
-          <div class="foot_item">
-            <b>mean_ci_lo_exp</b> = lower bound of the 95% CI of the mean of the
-            experimental/exposed group
-          </div>
-          <div class="foot_item">
-            <b>mean_ci_up_exp</b> = upper bound of the 95% CI of the mean of the
-            experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>mean_ci_lo_nexp</b> = lower bound of the 95% CI of the mean of
-            the non-experimental/non-exposed.
-          </div>
-          <div class="foot_item">
-            <b>mean_ci_up_nexp</b> = upper bound of the 95% CI of the mean of
-            the non-experimental/non-exposed.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="ancova_means"
-        data-category="SMD rawMD COR rawOR"
-      >
-        <h3>13. Means and dispersion (adjusted)</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/ancova_means.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/ancova_means.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_ancova_means"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>ancova_mean_exp</b> = adjusted mean of participants in the
-            experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_nexp</b> = adjusted mean of participants in the
-            non-experimental/non-exposed group.
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_sd_exp</b> = adjusted standard deviation of
-            participants in the experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_sd_nexp</b> = adjusted standard deviation of
-            participants in the non-experimental/non-exposed group.
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_se_exp</b> = adjusted standard error of participants
-            in the experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_se_nexp</b> = adjusted standard error of participants
-            in the non-experimental/non-exposed group.
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_ci_lo_exp</b> = lower bound of the 95% CI of the
-            adjusted mean of the experimental/exposed group
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_ci_up_exp</b> = upper bound of the 95% CI of the
-            adjusted mean of the experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_ci_lo_nexp</b> = lower bound of the 95% CI of the
-            adjusted mean of the non-experimental/non-exposed.
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_ci_up_nexp</b> = upper bound of the 95% CI of the
-            adjusted mean of the non-experimental/non-exposed.
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_sd_pooled</b> = adjusted pooled standard deviation.
-          </div>
-          <div class="foot_item">
-            <b>mean_sd_pooled_crude</b> = crude pooled standard deviation.
-          </div>
-          <div class="foot_item">
-            <b>n_cov_ancova</b> = number of covariates in the ANCOVA model.
-          </div>
-          <div class="foot_item">
-            <b>cov_outcome_r</b> = correlation between the outcome and covariate
-            (multiple correlation when multiple covariates are included in the
-            ANCOVA model).
-          </div>
-
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="medians"
-        data-category="SMD rawMD VAR COR rawOR"
-      >
-        <h3>14. Median, range and/or interquartile range</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/medians.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/medians.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_medians"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>min_exp</b> = minimum value of the experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>q1_exp</b> = first quartile of the experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>med_exp</b> = median value of the experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>q3_exp</b> = third quartile of the experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>max_exp</b> = maximum value of the experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>min_nexp</b> = minimum value of the non-experimental/non-exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>q1_nexp</b> = first quartile of the non-experimental/non-exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>med_nexp</b> = median value of the non-experimental/non-exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>q3_nexp</b> = third quartile of the non-experimental/non-exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>max_nexp</b> = maximum value of the non-experimental/non-exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div class="table-title" id="irr" data-category="IRR">
-        <h3>15. Number of cases and time of observation</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/irr.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/irr.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_irr"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>n_cases_exp</b> = number of cases in the exposed group.
-          </div>
-          <div class="foot_item">
-            <b>n_cases_nexp</b> = number of cases in the non-exposed group.
-          </div>
-          <div class="foot_item">
-            <b>time_exp</b> = person-time of disease-free observation in the
-            exposed group.
-          </div>
-          <div class="foot_item">
-            <b>time_nexp</b> = person-time of disease-free observation in the
-            non-exposed group.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="change_scores"
-        data-category="SMD rawMD COR rawOR"
-      >
-        <h3>16. Paired: pre-post means or mean change, and dispersion</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/change_scores.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/change_scores.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_change_scores"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>mean_pre_exp & mean_pre_nexp</b> = mean at baseline in the
-            exposed and non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_exp & mean_nexp</b> = mean at follow-up in the exposed and
-            non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_pre_sd_exp & mean_pre_sd_nexp</b> = standard deviation of
-            the mean at baseline in the exposed and non-exposed groups,
-            respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_sd_exp & mean_sd_nexp</b> = standard deviation of the mean
-            at follow up in the exposed and non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_pre_se_exp & mean_pre_se_nexp</b> = standard error of the
-            mean at baseline in the exposed and non-exposed groups,
-            respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_se_exp & mean_se_nexp</b> = standard error of the mean at
-            follow up in the exposed and non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_pre_ci_lo_exp & mean_pre_ci_up_exp</b> = lower and upper
-            bounds of the 95% CI of the mean of the non-experimental/non-exposed
-            group at baseline in the exposed and non-exposed groups,
-            respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_pre_ci_lo_exp & mean_pre_ci_up_exp</b> = lower and upper
-            bounds of the 95% CI of the mean of the non-experimental/non-exposed
-            group at baseline in the exposed and non-exposed groups,
-            respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_ci_lo_exp & mean_ci_up_exp</b> = lower and upper bounds of
-            the 95% CI of the mean of the non-experimental/non-exposed group at
-            follow up in the exposed and non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_ci_lo_nexp & mean_ci_up_nexp</b> = lower and upper bounds of
-            the 95% CI of the mean of the non-experimental/non-exposed group at
-            follow up in the exposed and non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_change_exp & mean_change_nexp</b> = mean change of
-            participants in the exposed and non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_change_sd_exp & mean_change_sd_nexp</b> = standard deviation
-            of the mean change for participants in the exposed and non-exposed
-            groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>r_pre_post_exp & r_pre_post_nexp</b> = correlation between
-            pre-post scores in the exposed and non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div class="table-title" id="paired_anova" data-category="SMD COR rawOR">
-        <h3>17. Paired: Paired F- or t-test</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/paired_anova.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/paired_anova.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_paired_anova"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>paired_f_exp & paired_f_nexp</b> = Paired ANOVA F value in the
-            exposed and non-exposed groups, respectively..
-          </div>
-          <div class="foot_item">
-            <b>paired_f_pval_exp & paired_f_pval_nexp</b> = P-value of the
-            paired ANOVA F in the exposed and non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>paired_t_exp & paired_t_nexp</b> = in the exposed and non-exposed
-            groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>paired_t_pval_exp & paired_t_pval_nexp</b> = Paired t-test value
-            in the exposed and non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>r_pre_post_exp & r_pre_post_nexp</b> = correlation between
-            pre-post scores in the exposed and non-exposed groups, respectively.
-          </div>
-
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div class="table-title" id="phi" data-category="SMD COR rawOR rawRR NNT">
-        <h3>18. Phi or chi-square</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/phi.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/phi.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_phi"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item"><b>phi</b> = phi coefficient value.</div>
-          <div class="foot_item"><b>chisq</b> = chi-square value.</div>
-          <div class="foot_item"><b>chisq_pval</b> = chi-square p-value.</div>
-          <div class="foot_item">
-            <b>n_sample</b> = total number of participants in the sample.
-          </div>
-          <div class="foot_item">
-            <b>n_cases</b> = total number of cases/events.
-          </div>
-          <div class="foot_item">
-            <b>n_exp</b> = number of participants in the exposed group.
-          </div>
-        </div>
-      </div>
-
-      <div class="table-title" id="regression" data-category="SMD COR rawOR">
-        <h3>19. (Un-)Standardized regression coefficient</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/regression.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/regression.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_regression"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>beta_std</b> = standardized regression coefficient value (the
-            predictor of interest must be binary).
-          </div>
-          <div class="foot_item">
-            <b>beta_unstd</b> = unstandardized regression coefficient value (the
-            predictor of interest must be binary).
-          </div>
-          <div class="foot_item">
-            <b>dv_sd</b> = standard deviation of the dependent variable.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
         id="user_crude"
         data-category="SMD COR rawOR rawRR NNT VAR IRR rawMD"
       >
-        <h3>20. User's input (crude)</h3>
+        <h3>23. User's input (crude)</h3>
         <div class="fictitious_datasets">
           <div class="excel_file">
             <a href="../tables/user_crude.xlsx" download
@@ -1550,7 +1739,7 @@
         id="user_adjusted"
         data-category="SMD COR rawOR rawRR NNT VAR IRR rawMD"
       >
-        <h3>21. User's input (adjusted)</h3>
+        <h3>24. User's input (adjusted)</h3>
         <div class="fictitious_datasets">
           <div class="excel_file">
             <a href="../tables/user_adjusted.xlsx" download
@@ -1593,10 +1782,26 @@
 
     <script>
       $(document).ready(function () {
+        $.get("../tables/pre_post.html", function (data) {
+          $("#table_pre_post").html(data);
+        });
+      });
+      $(document).ready(function () {
         $.get("../tables/cohen_d.html", function (data) {
           $("#table_smd").html(data);
         });
       });
+      $(document).ready(function () {
+        $.get("../tables/var.html", function (data) {
+          $("#table_var").html(data);
+        });
+      });
+      $(document).ready(function () {
+        $.get("../tables/cohen_d_adj.html", function (data) {
+          $("#table_smd_adjusted").html(data);
+        });
+      });
+
       $(document).ready(function () {
         $.get("../tables/mean_difference_crude.html", function (data) {
           $("#table_mean_difference_crude").html(data);

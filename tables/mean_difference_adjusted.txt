@@ -1,4 +1,4 @@
-all_info_expected	study_id	ancova_md	ancova_md_sd	ancova_md_se	ancova_md_ci_lo	ancova_md_ci_up	cov_outcome_r	n_cov_ancova	n_exp	n_nexp
-ancova_md_sd	1	-1.15	1.79				0.3	5	31	18
-ancova_md_se	2	0.86		0.282			0.07	1	82	112
-ancova_md_ci	3	2.81			2.31	3.31	0.22	4	62	75
+all_info_expected	study_id	natural_es	converted_es	ancova_md	ancova_md_sd	ancova_md_se	ancova_md_ci_lo	ancova_md_ci_up	cov_outcome_r	n_cov_ancova	n_exp	n_nexp
+ancova_md_sd	1	D+G+MD	OR+R+Z	0.58	2.75				0.3	5	27	12
+ancova_md_se	2	D+G+MD	OR+R+Z	-3.63		0.298			0.07	1	63	76
+ancova_md_ci	3	D+G+MD	OR+R+Z	0.83			0.33	1.33	0.22	4	61	51

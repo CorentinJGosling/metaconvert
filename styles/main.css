@@ -681,12 +681,10 @@ td {
 
 .table-pkg-col {
   background-color: #edcdce;
+  text-align: center;
 }
 
-.table-left-col {
-  width: 13.3333333333vw;
-}
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 100px) {
   .table-left-col {
     width: auto;
   }

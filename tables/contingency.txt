@@ -1,4 +1,4 @@
-all_info_expected	study_id	n_cases_exp	n_cases_nexp	n_controls_exp	n_controls_nexp	prop_cases_exp	prop_cases_nexp	n_exp	n_nexp
-2x2	1	162	420	453	130				
-2x2_sum	2	60	128					436	486
-2x2_prop	3					0.502	0.278	322	92
+all_info_expected	study_id	natural_es	converted_es	n_cases_exp	n_cases_nexp	n_controls_exp	n_controls_nexp	prop_cases_exp	prop_cases_nexp	n_exp	n_nexp
+2x2	1	OR+RR+NNT	D+G+R+Z	353	489	220	38				
+2x2_sum	2	OR+RR+NNT	D+G+R+Z	41	413					301	457
+2x2_prop	3	OR+RR+NNT	D+G+R+Z					0.287	0.594	316	264

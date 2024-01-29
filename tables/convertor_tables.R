@@ -1,6 +1,6 @@
 library(readxl)
 library(tableHTML)
-file_path <- "list_tables.xlsx"
+file_path <- "/web/tables/list_tables.xlsx"
 
 # Read all sheets into a list of data frames
 all_sheets <- readxl::excel_sheets(file_path)

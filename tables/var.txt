@@ -1,0 +1,7 @@
+all_info_expected	study_id	natural_es	converted_es	mean_exp	mean_nexp	mean_sd_exp	mean_sd_nexp	mean_se_exp	mean_se_nexp	mean_ci_lo_exp	mean_ci_up_exp	mean_ci_lo_nexp	mean_ci_up_nexp	n_exp	n_nexp
+means_sd	1	VR	N/A			15.87	13.87							10	12
+means_sd	1	CVR	N/A	101.2	98.9	15.87	13.87							10	12
+means_se	2	VR	N/A					0.13	0.13					20	20
+means_se	2	CVR	N/A	5.94	5.81			0.13	0.13					20	20
+means_ci	3	VR	N/A							45	55	55	65	59	64
+means_ci	3	CVR	N/A	50	60					45	55	55	65	59	64

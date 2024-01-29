@@ -1,4 +1,4 @@
-all_info_expected	study_id	phi	chisq	chisq_pval	n_sample	n_cases	n_exp
-phi	1	0.383			196	68	75
-chisq	2		2.48		264	93	100
-chisq_pval	3			0.000385	207	78	73
+all_info_expected	study_id	natural_es	converted_es	phi	chisq	chisq_pval	n_sample	n_cases	n_exp
+phi	1	OR+RR+NNT	D+G+R+Z	0.553			162	57	61
+chisq	2	OR+RR+NNT	D+G+R+Z		1.85		142	55	49
+chisq_pval	3	OR+RR+NNT	D+G+R+Z			0.000369	169	61	62

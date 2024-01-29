@@ -1,19 +1,19 @@
-all_info_expected	study_id	rr	logrr	logrr_se	logrr_pval	rr_ci_lo	rr_ci_up	logrr_ci_lo	logrr_ci_up	baseline_risk	small_margin_prop	n_exp	n_nexp	n_cases	n_controls
-rr_se	1	5.3		0.49								306	316		
-rr_pval	2	4.8			0.2352							481	473		
-rr_ci	3	1.81				0.244956862658269	13.3741915390645					428	434		
-rr_se	4	0.66		0.37										96	138
-rr_pval	5	0.8			0.0296									271	238
-rr_ci	6	0.4				0.0541341132946451	2.95562243957226							238	269
-rr_se	7	2.21		0.07						0.409					
-rr_pval	8	5.9			0.0413					0.056					
-rr_ci	9	3.8				0.514274076299128	28.0784131759365			0.55					
-rr_se	10		1.66770682055808	0.29								237	232		
-rr_pval	11		1.56861591791385		0							269	277		
-rr_ci	12		0.593326845277734					-1.40667315472227	2.59332684527773			275	274		
-rr_se	13		-0.415515443961666	0.92										85	54
-rr_pval	14		-0.22314355131421		0									178	188
-rr_ci	15		-0.916290731874155					-2.91629073187416	1.08370926812584					332	316
-rr_se	16		0.792992515529662	0.14						0.183					
-rr_pval	17		1.77495235091167		0					0.321					
-rr_ci	18		1.33500106673234					-0.66499893326766	3.33500106673234	0.222					
+all_info_expected	study_id	natural_es	converted_es	rr	logrr	logrr_se	logrr_pval	rr_ci_lo	rr_ci_up	logrr_ci_lo	logrr_ci_up	baseline_risk	small_margin_prop	n_exp	n_nexp	n_cases	n_controls
+rr_se	1	RR	OR+NNT	3.66		0.51								42	51		
+rr_pval	2	RR	OR+NNT	1.26			0.06426							335	335		
+rr_ci	3	RR	OR+NNT	4.52				0.611715480229489	33.3985335671665					261	263		
+rr_se	4	RR	OR+NNT	0.61		0.37										124	104
+rr_pval	5	RR	OR+NNT	1.3			0.0481									261	258
+rr_ci	6	RR	OR+NNT	4.34				0.587355129246899	32.068503469359							289	331
+rr_se	7	RR	OR+NNT	5.28		0.68						0.441					
+rr_pval	8	RR	OR+NNT	3.85			0.2618					0.47					
+rr_ci	9	RR	OR+NNT	5.22				0.706450178495118	38.570872836418			0.321					
+rr_se	10	RR	OR+NNT		1.29746314741328	0.32								327	322		
+rr_pval	11	RR	OR+NNT		0.231111720963387		0							112	106		
+rr_ci	12	RR	OR+NNT		1.50851199384414					-0.49148800615586	3.50851199384414			333	343		
+rr_se	13	RR	OR+NNT		-0.49429632181478	0.8										249	291
+rr_pval	14	RR	OR+NNT		0.262364264467491		0									157	116
+rr_ci	15	RR	OR+NNT		1.46787434811231					-0.532125651887687	3.46787434811231					488	450
+rr_se	16	RR	OR+NNT		1.66392609771817	0.85						0.237					
+rr_pval	17	RR	OR+NNT		1.34807314829969		0					0.248					
+rr_ci	18	RR	OR+NNT		1.65249740189455					-0.347502598105453	3.65249740189455	0.562					

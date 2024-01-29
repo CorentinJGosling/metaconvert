@@ -664,10 +664,10 @@ td {
 }
 .table-pkg-col {
   background-color: #edcdce; // rgb(207, 233, 247);
+  text-align: center;
 }
 .table-left-col {
-  width: calc(80vw / 6);
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 100px) {
     width: auto;
   }
 }

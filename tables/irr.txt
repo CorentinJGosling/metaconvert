@@ -1,2 +1,2 @@
-all_info_expected	study_id	n_cases_exp	n_cases_nexp	time_exp	time_nexp
-cases_time	1	121	312	4.31	4.56
+all_info_expected	study_id	natural_es	converted_es	n_cases_exp	n_cases_nexp	time_exp	time_nexp
+cases_time	1	R+Z	D+G+OR	121	312	4.31	4.56

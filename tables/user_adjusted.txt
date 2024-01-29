@@ -1,3 +1,3 @@
-all_info_expected	study_id	measure	user_es_measure_adj	user_es_adj	user_se_adj	user_ci_lo_adj	user_ci_up_adj
-user_input_adjusted	1	RR	MR	1.33500106673234	0.635		
-user_input_adjusted	2	RR	MR	1.42551507427317		0.155515074273172	2.69551507427317
+all_info_expected	study_id	natural_es	converted_es	measure	user_es_measure_adj	user_es_adj	user_se_adj	user_ci_lo_adj	user_ci_up_adj
+user_input_adjusted	1	Any	N/A	RR	MR	1.04380405217311	0.635		
+user_input_adjusted	2	Any	N/A	RR	MR	1.17557332980424		-0.0944266701957619	2.44557332980424

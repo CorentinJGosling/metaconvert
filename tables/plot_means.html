@@ -2,19 +2,54 @@
 <table style="border-collapse:collapse;" class=table-fill border=1>
 <thead>
 <tr>
-  <th id="tableHTML_header_1">Main ESM</th>
-  <th id="tableHTML_header_2">Convert ESM</th>
-  <th id="tableHTML_header_3">plot_mean_exp & plot_mean_nexp</th>
-  <th id="tableHTML_header_4">plot_mean_sd_lo_exp & plot_mean_sd_up_exp & plot_mean_sd_lo_nexp & plot_mean_sd_up_nexp</th>
-  <th id="tableHTML_header_5">plot_mean_se_lo_exp & plot_mean_se_up_exp & plot_mean_se_lo_nexp & plot_mean_se_up_nexp</th>
-  <th id="tableHTML_header_6">plot_mean_ci_lo_exp & plot_mean_ci_up_exp & plot_mean_ci_lo_nexp & plot_mean_ci_up_nexp</th>
-  <th id="tableHTML_header_7">n_exp & n_nexp</th>
+  <th id="tableHTML_header_1">natural_es</th>
+  <th id="tableHTML_header_2">converted_es</th>
+  <th id="tableHTML_header_3">plot_mean_exp</th>
+  <th id="tableHTML_header_4">plot_mean_nexp</th>
+  <th id="tableHTML_header_5">plot_mean_sd_exp</th>
+  <th id="tableHTML_header_6">plot_mean_sd_nexp</th>
+  <th id="tableHTML_header_7">plot_mean_se_exp</th>
+  <th id="tableHTML_header_8">plot_mean_se_nexp</th>
+  <th id="tableHTML_header_9">plot_mean_ci_lo_exp</th>
+  <th id="tableHTML_header_10">plot_mean_ci_up_exp</th>
+  <th id="tableHTML_header_11">plot_mean_ci_lo_nexp</th>
+  <th id="tableHTML_header_12">plot_mean_ci_up_nexp</th>
+  <th id="tableHTML_header_13">n_exp</th>
+  <th id="tableHTML_header_14">n_nexp</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td id="tableHTML_column_1">MD, SMD, VAR</td>
-  <td id="tableHTML_column_2">OR, COR</td>
+  <td id="tableHTML_column_1">D+G+MD</td>
+  <td id="tableHTML_column_2">OR+R+Z</td>
+  <td id="tableHTML_column_3"><i class="far fa-check-circle fa-2x"
+  style="color: rgb(0, 147, 15)"></i></td>
+  <td id="tableHTML_column_4"><i class="far fa-check-circle fa-2x"
+  style="color: rgb(0, 147, 15)"></i></td>
+  <td id="tableHTML_column_5"><i class="far fa-check-circle fa-2x"
+  style="color: rgb(0, 147, 15)"></i></td>
+  <td id="tableHTML_column_6"><i class="far fa-check-circle fa-2x"
+  style="color: rgb(0, 147, 15)"></i></td>
+  <td id="tableHTML_column_7"><i class="far fa-question-circle fa-2x"
+  style="color: rgb(222, 159, 1)"></i></td>
+  <td id="tableHTML_column_8"><i class="far fa-question-circle fa-2x"
+  style="color: rgb(222, 159, 1)"></i></td>
+  <td id="tableHTML_column_9"><i class="far fa-question-circle fa-2x"
+  style="color: rgb(222, 159, 1)"></i></td>
+  <td id="tableHTML_column_10"><i class="far fa-question-circle fa-2x"
+  style="color: rgb(222, 159, 1)"></i></td>
+  <td id="tableHTML_column_11"><i class="far fa-question-circle fa-2x"
+  style="color: rgb(222, 159, 1)"></i></td>
+  <td id="tableHTML_column_12"><i class="far fa-question-circle fa-2x"
+  style="color: rgb(222, 159, 1)"></i></td>
+  <td id="tableHTML_column_13"><i class="far fa-check-circle fa-2x"
+  style="color: rgb(0, 147, 15)"></i></td>
+  <td id="tableHTML_column_14"><i class="far fa-check-circle fa-2x"
+  style="color: rgb(0, 147, 15)"></i></td>
+</tr>
+<tr>
+  <td id="tableHTML_column_1">D+G+MD</td>
+  <td id="tableHTML_column_2">OR+R+Z</td>
   <td id="tableHTML_column_3"><i class="far fa-check-circle fa-2x"
   style="color: rgb(0, 147, 15)"></i></td>
   <td id="tableHTML_column_4"><i class="far fa-check-circle fa-2x"
@@ -25,33 +60,47 @@
   style="color: rgb(222, 159, 1)"></i></td>
   <td id="tableHTML_column_7"><i class="far fa-check-circle fa-2x"
   style="color: rgb(0, 147, 15)"></i></td>
+  <td id="tableHTML_column_8"><i class="far fa-check-circle fa-2x"
+  style="color: rgb(0, 147, 15)"></i></td>
+  <td id="tableHTML_column_9"><i class="far fa-question-circle fa-2x"
+  style="color: rgb(222, 159, 1)"></i></td>
+  <td id="tableHTML_column_10"><i class="far fa-question-circle fa-2x"
+  style="color: rgb(222, 159, 1)"></i></td>
+  <td id="tableHTML_column_11"><i class="far fa-question-circle fa-2x"
+  style="color: rgb(222, 159, 1)"></i></td>
+  <td id="tableHTML_column_12"><i class="far fa-question-circle fa-2x"
+  style="color: rgb(222, 159, 1)"></i></td>
+  <td id="tableHTML_column_13"><i class="far fa-check-circle fa-2x"
+  style="color: rgb(0, 147, 15)"></i></td>
+  <td id="tableHTML_column_14"><i class="far fa-check-circle fa-2x"
+  style="color: rgb(0, 147, 15)"></i></td>
 </tr>
 <tr>
-  <td id="tableHTML_column_1">MD, SMD, VAR</td>
-  <td id="tableHTML_column_2">OR, COR</td>
+  <td id="tableHTML_column_1">D+G+MD</td>
+  <td id="tableHTML_column_2">OR+R+Z</td>
   <td id="tableHTML_column_3"><i class="far fa-check-circle fa-2x"
   style="color: rgb(0, 147, 15)"></i></td>
-  <td id="tableHTML_column_4"><i class="far fa-question-circle fa-2x"
-  style="color: rgb(222, 159, 1)"></i></td>
-  <td id="tableHTML_column_5"><i class="far fa-check-circle fa-2x"
+  <td id="tableHTML_column_4"><i class="far fa-check-circle fa-2x"
   style="color: rgb(0, 147, 15)"></i></td>
-  <td id="tableHTML_column_6"><i class="far fa-question-circle fa-2x"
-  style="color: rgb(222, 159, 1)"></i></td>
-  <td id="tableHTML_column_7"><i class="far fa-check-circle fa-2x"
-  style="color: rgb(0, 147, 15)"></i></td>
-</tr>
-<tr>
-  <td id="tableHTML_column_1">MD, SMD, VAR</td>
-  <td id="tableHTML_column_2">OR, COR</td>
-  <td id="tableHTML_column_3"><i class="far fa-check-circle fa-2x"
-  style="color: rgb(0, 147, 15)"></i></td>
-  <td id="tableHTML_column_4"><i class="far fa-question-circle fa-2x"
-  style="color: rgb(222, 159, 1)"></i></td>
   <td id="tableHTML_column_5"><i class="far fa-question-circle fa-2x"
   style="color: rgb(222, 159, 1)"></i></td>
-  <td id="tableHTML_column_6"><i class="far fa-check-circle fa-2x"
+  <td id="tableHTML_column_6"><i class="far fa-question-circle fa-2x"
+  style="color: rgb(222, 159, 1)"></i></td>
+  <td id="tableHTML_column_7"><i class="far fa-question-circle fa-2x"
+  style="color: rgb(222, 159, 1)"></i></td>
+  <td id="tableHTML_column_8"><i class="far fa-question-circle fa-2x"
+  style="color: rgb(222, 159, 1)"></i></td>
+  <td id="tableHTML_column_9"><i class="far fa-check-circle fa-2x"
   style="color: rgb(0, 147, 15)"></i></td>
-  <td id="tableHTML_column_7"><i class="far fa-check-circle fa-2x"
+  <td id="tableHTML_column_10"><i class="far fa-check-circle fa-2x"
+  style="color: rgb(0, 147, 15)"></i></td>
+  <td id="tableHTML_column_11"><i class="far fa-check-circle fa-2x"
+  style="color: rgb(0, 147, 15)"></i></td>
+  <td id="tableHTML_column_12"><i class="far fa-check-circle fa-2x"
+  style="color: rgb(0, 147, 15)"></i></td>
+  <td id="tableHTML_column_13"><i class="far fa-check-circle fa-2x"
+  style="color: rgb(0, 147, 15)"></i></td>
+  <td id="tableHTML_column_14"><i class="far fa-check-circle fa-2x"
   style="color: rgb(0, 147, 15)"></i></td>
 </tr>
 </tbody>

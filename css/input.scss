@@ -642,12 +642,16 @@ input[type="checkbox"] {
   display: block;
   transform: scale(1);
   animation: fade-in 0.3s linear;
-  margin-left: 2rem;
-  margin-right: 2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .table_container .table-title {
   display: none;
+  scroll-margin-top: 120px;
 }
 .table_container {
   display: none;
@@ -755,6 +759,12 @@ input[type="checkbox"] {
   padding-left: 2rem;
   font-size: 1.1rem;
   line-height: 200%;
+}
+
+.non-clickable-header {
+  color: #898989;
+  font-weight: bold;
+  margin-left: -1rem;
 }
 
 .toc li a {
@@ -875,6 +885,11 @@ th:nth-child(2) {
     padding: 0rem;
     padding-top: 0.5rem;
   }
+}
+td:nth-child(2) {
+  max-width: 8ch;
+  word-wrap: break-word;
+  text-wrap: balance;
 }
 tr:hover td:nth-child(1),
 tr:hover td:nth-child(2) {
