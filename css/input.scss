@@ -640,6 +640,11 @@ input[type="checkbox"] {
 }
 .table_container .table-title.show {
   display: block;
+}
+
+.table_container .table-title {
+  // display: none;
+  // scroll-margin-top: 120px;
   transform: scale(1);
   animation: fade-in 0.3s linear;
   max-width: 1200px;
@@ -647,11 +652,6 @@ input[type="checkbox"] {
   margin-right: auto;
   padding-left: 2rem;
   padding-right: 2rem;
-}
-
-.table_container .table-title {
-  display: none;
-  // scroll-margin-top: 120px;
 }
 .table_container {
   display: none;

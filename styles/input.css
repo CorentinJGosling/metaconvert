@@ -663,6 +663,9 @@ input[type=checkbox]:checked::before {
 
 .table_container .table-title.show {
   display: block;
+}
+
+.table_container .table-title {
   transform: scale(1);
   animation: fade-in 0.3s linear;
   max-width: 1200px;
@@ -670,10 +673,6 @@ input[type=checkbox]:checked::before {
   margin-right: auto;
   padding-left: 2rem;
   padding-right: 2rem;
-}
-
-.table_container .table-title {
-  display: none;
 }
 
 .table_container {
