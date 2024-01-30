@@ -1784,6 +1784,28 @@
 
     <script>
       $(document).ready(function () {
+        // Add smooth scrolling to all links
+        $("a").on("click", function (event) {
+          if (this.hash !== "") {
+            event.preventDefault();
+
+            // Store hash
+            var hash = this.hash;
+
+            // Animate smooth scroll
+            $("html, body").animate(
+              {
+                scrollTop: $(hash).offset().top,
+              },
+              800,
+              function () {
+                // Add hash (#) to URL when done scrolling
+                window.location.hash = hash;
+              }
+            );
+          }
+        });
+
         $.get("../tables/pre_post.html", function (data) {
           $("#table_pre_post").html(data);
         });
