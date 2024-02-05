@@ -1082,4 +1082,60 @@ tr:hover td {
 
 .download_extract .menu li a:hover {
   box-shadow: none;
+}
+
+.center_start {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.start_tuto {
+  display: inline-block;
+  padding: 0.65em 1.6em;
+  border: 3px solid #ffffff;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.2s;
+  animation: bouncy 5s infinite linear;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  background-color: #d66268;
+}
+
+.start_tuto:hover {
+  background-color: #db8c90;
+}
+
+@keyframes bouncy {
+  0% {
+    top: 0em;
+  }
+  40% {
+    top: 0em;
+  }
+  43% {
+    top: -0.9em;
+  }
+  46% {
+    top: 0em;
+  }
+  48% {
+    top: -0.4em;
+  }
+  50% {
+    top: 0em;
+  }
+  100% {
+    top: 0em;
+  }
 }/*# sourceMappingURL=input.css.map */

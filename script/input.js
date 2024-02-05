@@ -95,52 +95,59 @@ document.querySelector(".start_tuto").addEventListener("click", function () {
         {
           intro: "Welcome! Let's start a quick tour of the page",
         },
-        // {
-        //   element: document.querySelector(".glossary"),
-        //   intro:
-        //     "Here, we introduce you with the two types of effect measures generated from any input data. You will retrieve this categorization in each table below.",
-        // },
-        // {
-        //   element: document.querySelector(".switch-container"),
-        //   intro:
-        //     "If you just discover our tool, click on this button to see all the effect size measures available in metaConvert.",
-        // },
-        // {
-        //   element: document.querySelector(".toc"),
-        //   intro:
-        //     "This table of content allows to redirect you with the various types of input data that can be used to generate an effect size.",
-        // },
-        // {
-        //   element: document.querySelector("#smd"),
-        //   intro: "Now, let's focus on the tables. Each table presents",
-        // },
         {
-          element: document.querySelector(".table-fill thead tr:nth-child(1)"),
-          intro: "ZZ",
+          element: document.querySelector(".glossary"),
+          intro:
+            "Here, we start by introducing you with the two types of effect measures generated from any input data. You will retrieve this categorization in each table below.",
         },
         {
-          element: document.querySelector(".table-fill thead tr:nth-child(2)"),
-          intro: "SSSS",
+          element: document.querySelector(".switch-container"),
+          intro:
+            "If you just discover our tool, click on this button to see all the effect size measures available in metaConvert.",
         },
         {
-          element: document.querySelector(".table-fill td:nth-child(1)"),
-          intro: "SSSS",
+          element: document.querySelector(".non-clickable-header"),
+          intro:
+            "This table of content allows to redirect you with the various types of input data that can be used to generate an effect size.",
         },
         {
-          element: document.querySelector(
-            ".table-fill:nth-child(1) tr:nth-child(-n+3)"
-          ),
-          intro: "SSSS",
+          element: document.querySelector("#smd"),
+          intro: "Now, let's focus on the tables. Each table presents",
         },
         {
-          element: document.querySelector(
-            ".table-fill:nth-child(1) tbody tr:nth-child(1) td"
-          ),
-          intro: "SSSS",
+          element: document.querySelector(".table-fill th:nth-child(1)"),
+          intro:
+            "All effect measures placed in this column are those naturally estimated from the input data",
         },
         {
-          element: document.querySelector("#table_smd tr:nth-child(2)"),
-          intro: "SSSS",
+          element: document.querySelector(".table-fill th:nth-child(2)"),
+          intro:
+            "All effect measures placed in this column are those converted from the input data",
+        },
+        {
+          element: document.querySelector(".table-fill th:nth-child(3)"),
+          intro:
+            "Then, in white background, the headers are names of columns that should be included in your dataset. ",
+        },
+        {
+          element: document.querySelector(".foot_item:nth-child(1)"),
+          intro:
+            "For each column header, you can retrieve a description of the exact information expected",
+        },
+        {
+          element: document.querySelector(".table-fill tr:nth-child(2)"),
+          intro:
+            "For each table, a row represents a unique combination of input data allowing to estimate some effect measures. Here, the row indicates that if a Hedges' g value + the number of participants in the exposed- and non-exposed groups are indicated, the software will naturally estimate a Cohen's d + Hedges' g, that will then be converted to an odds ratio, a correlation coefficient and a Fisher's r-to-z correlation coefficient",
+        },
+        {
+          element: document.querySelector(".fictitious_datasets"),
+          intro:
+            "You can retrieve sample datasets for each input data type. You can upload these datasets to the app to better understand how it works.",
+        },
+        {
+          element: document.querySelector(".datasets-container"),
+          intro:
+            "Last, if you start a project, we provide blank datasets for each different effect size measures available in the app.",
         },
       ],
     })
