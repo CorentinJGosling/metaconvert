@@ -46,32 +46,32 @@ window.addEventListener("scroll", () => {
 //   }
 // });
 
-// const Switch_table = document.querySelector(".esm");
-// const checkbox = document.querySelector(".myCheckbox");
-// Switch_table.style.opacity = 0;
-// Switch_table.style.marginTop = "-20px";
+const Switch_table = document.querySelector(".esm");
+const checkbox = document.querySelector(".myCheckbox");
+Switch_table.style.opacity = 0;
+Switch_table.style.marginTop = "-20px";
 
-// function go2(event) {
-//   event.preventDefault();
-//   Switch_table.animate(
-//     {
-//       opacity: [0, 1],
-//       marginTop: ["-10px", 0],
-//     },
-//     {
-//       duration: 500,
-//       fill: "forwards",
-//     }
-//   );
-// }
-// checkbox.addEventListener("change", function (event) {
-//   if (event.target.checked) {
-//     Switch_table.classList.add("show_toc");
-//   } else {
-//     Switch_table.classList.remove("show_toc");
-//   }
-// });
-// checkbox.addEventListener("change", go2);
+function go2(event) {
+  event.preventDefault();
+  Switch_table.animate(
+    {
+      opacity: [0, 1],
+      marginTop: ["-10px", 0],
+    },
+    {
+      duration: 500,
+      fill: "forwards",
+    }
+  );
+}
+checkbox.addEventListener("change", function (event) {
+  if (event.target.checked) {
+    Switch_table.classList.add("show_toc");
+  } else {
+    Switch_table.classList.remove("show_toc");
+  }
+});
+checkbox.addEventListener("change", go2);
 
 //  ROUTING
 const seeEffectMeasure = document.querySelector(".btn_effect_measure");
@@ -81,9 +81,71 @@ const listInput = document.querySelector(".toc-container");
 const Tables = document.querySelector(".table_container");
 
 // SELECT TABLES
+function toggleMenu() {
+  document.querySelector(".download_extract").classList.toggle("active");
+}
+
 const categoryButtons = document.querySelectorAll(".category-buttons button");
 const cards = document.querySelectorAll(".table-title");
 
+document.querySelector(".start_tuto").addEventListener("click", function () {
+  introJs()
+    .setOptions({
+      steps: [
+        {
+          intro: "Welcome! Let's start a quick tour of the page",
+        },
+        // {
+        //   element: document.querySelector(".glossary"),
+        //   intro:
+        //     "Here, we introduce you with the two types of effect measures generated from any input data. You will retrieve this categorization in each table below.",
+        // },
+        // {
+        //   element: document.querySelector(".switch-container"),
+        //   intro:
+        //     "If you just discover our tool, click on this button to see all the effect size measures available in metaConvert.",
+        // },
+        // {
+        //   element: document.querySelector(".toc"),
+        //   intro:
+        //     "This table of content allows to redirect you with the various types of input data that can be used to generate an effect size.",
+        // },
+        // {
+        //   element: document.querySelector("#smd"),
+        //   intro: "Now, let's focus on the tables. Each table presents",
+        // },
+        {
+          element: document.querySelector(".table-fill thead tr:nth-child(1)"),
+          intro: "ZZ",
+        },
+        {
+          element: document.querySelector(".table-fill thead tr:nth-child(2)"),
+          intro: "SSSS",
+        },
+        {
+          element: document.querySelector(".table-fill td:nth-child(1)"),
+          intro: "SSSS",
+        },
+        {
+          element: document.querySelector(
+            ".table-fill:nth-child(1) tr:nth-child(-n+3)"
+          ),
+          intro: "SSSS",
+        },
+        {
+          element: document.querySelector(
+            ".table-fill:nth-child(1) tbody tr:nth-child(1) td"
+          ),
+          intro: "SSSS",
+        },
+        {
+          element: document.querySelector("#table_smd tr:nth-child(2)"),
+          intro: "SSSS",
+        },
+      ],
+    })
+    .start();
+});
 // seeListInput.addEventListener("click", () => {
 //   seeEffectMeasure.classList.remove("btn_active");
 //   listEffectMeasure.classList.remove("show_grid");

@@ -12,10 +12,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
+    <link rel="stylesheet" href="https://unpkg.com/intro.js/introjs.css" />
     <link rel="stylesheet" href="../styles/input.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="icon" href="../logo/logo.svg" type="image/x-icon" />
 
-    <title>Input02 | metaConvert</title>
+    <title>Input | metaConvert</title>
   </head>
 
   <nav>
@@ -46,7 +48,7 @@
     </div>
   </nav>
   <body>
-    <div class="motherplat">
+    <!-- <div class="motherplat">
       <a href="../background/extraction_sheet.xlsx"
         ><div class="left_hub">
           <img src="../img/excel.png" class="hub_img" /></div
@@ -57,7 +59,7 @@
         </div></a
       >
       <div class="close-btn">&times;</div>
-    </div>
+    </div> -->
 
     <div id="popup">
       <div id="popupContent">
@@ -96,6 +98,8 @@
     <div class="section_title">
       Input data enabling <span>effect size computation</span>
     </div>
+    <button class="start_tuto">Let me understand how this page works</button>
+
     <div class="glossary">
       <div>
         In each table below, the effect size measures are sorted in two
@@ -117,6 +121,37 @@
       <p>See all effect size measures available</p>
       <div class="center">
         <input type="checkbox" class="myCheckbox" />
+      </div>
+    </div>
+    <div class="datasets-container">
+      <div class="download_extract">
+        <div class="toggle-menu" onclick="toggleMenu()">+</div>
+        <ul class="menu">
+          <li style="--i: 1">
+            <a href="../data_extraction/md.xlsx" download> MD </a>
+          </li>
+          <li style="--i: 2">
+            <a href="../data_extraction/var.xlsx" download> VAR </a>
+          </li>
+          <li style="--i: 3">
+            <a href="../data_extraction/cor.xlsx" download> COR </a>
+          </li>
+          <li style="--i: 4">
+            <a href="../data_extraction/or.xlsx" download> OR </a>
+          </li>
+          <li style="--i: 5">
+            <a href="../data_extraction/rr.xlsx" download> RR </a>
+          </li>
+          <li style="--i: 6">
+            <a href="../data_extraction/irr.xlsx" download> IRR </a>
+          </li>
+          <li style="--i: 7">
+            <a href="../data_extraction/nnt.xlsx" download> NNT </a>
+          </li>
+          <li style="--i: 8">
+            <a href="../data_extraction/smd.xlsx" download> SMD </a>
+          </li>
+        </ul>
       </div>
     </div>
 
@@ -231,16 +266,16 @@
         </li>
       </ul>
     </div>
-    <div class="overall_routing">
+    <!-- <div class="overall_routing">
       <div class="btn btn_list_input">
         <a>See all input data</a>
       </div>
       <div class="btn btn_effect_measure">
         <a>Select an effect measure</a>
       </div>
-    </div>
+    </div> -->
 
-    <div class="category-buttons">
+    <!-- <div class="category-buttons">
       <button class="active" data-category="all" class="clicker">All</button>
       <button data-category="SMD" class="clicker">SMD</button>
       <button data-category="rawMD" class="clicker">MD</button>
@@ -250,7 +285,8 @@
       <button data-category="rawRR" class="clicker">RR</button>
       <button data-category="IRR" class="clicker">IRR</button>
       <button data-category="NNT" class="clicker">NNT</button>
-    </div>
+    </div> -->
+
     <section class="toc-container show_toc" id="toc">
       <div class="toc">
         <ol class="toc_list">
@@ -1781,6 +1817,7 @@
         </div>
       </div>
     </section>
+    <script src="https://unpkg.com/intro.js/intro.js"></script>
 
     <script>
       $(document).ready(function () {
