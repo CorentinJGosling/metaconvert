@@ -46,6 +46,17 @@ window.addEventListener("scroll", () => {
 //   }
 // });
 
+var checkbox = document.querySelector(".myCheckbox");
+var esmDiv = document.querySelector(".esm");
+
+checkbox.addEventListener("change", function () {
+  if (checkbox.checked) {
+    esmDiv.style.display = "block";
+  } else {
+    esmDiv.style.display = "none";
+  }
+});
+
 function go2(event) {
   event.preventDefault();
   Switch_table.animate(
