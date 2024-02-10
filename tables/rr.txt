@@ -1,19 +1,10 @@
-all_info_expected	study_id	natural_es	converted_es	rr	logrr	logrr_se	logrr_pval	rr_ci_lo	rr_ci_up	logrr_ci_lo	logrr_ci_up	baseline_risk	small_margin_prop	n_exp	n_nexp	n_cases	n_controls
-rr_se	1	RR	OR+NNT	3.66		0.51								42	51		
-rr_pval	2	RR	OR+NNT	1.26			0.06426							335	335		
-rr_ci	3	RR	OR+NNT	4.52				0.611715480229489	33.3985335671665					261	263		
-rr_se	4	RR	OR+NNT	0.61		0.37										124	104
-rr_pval	5	RR	OR+NNT	1.3			0.0481									261	258
-rr_ci	6	RR	OR+NNT	4.34				0.587355129246899	32.068503469359							289	331
-rr_se	7	RR	OR+NNT	5.28		0.68						0.441					
-rr_pval	8	RR	OR+NNT	3.85			0.2618					0.47					
-rr_ci	9	RR	OR+NNT	5.22				0.706450178495118	38.570872836418			0.321					
-rr_se	10	RR	OR+NNT		1.29746314741328	0.32								327	322		
-rr_pval	11	RR	OR+NNT		0.231111720963387		0							112	106		
-rr_ci	12	RR	OR+NNT		1.50851199384414					-0.49148800615586	3.50851199384414			333	343		
-rr_se	13	RR	OR+NNT		-0.49429632181478	0.8										249	291
-rr_pval	14	RR	OR+NNT		0.262364264467491		0									157	116
-rr_ci	15	RR	OR+NNT		1.46787434811231					-0.532125651887687	3.46787434811231					488	450
-rr_se	16	RR	OR+NNT		1.66392609771817	0.85						0.237					
-rr_pval	17	RR	OR+NNT		1.34807314829969		0					0.248					
-rr_ci	18	RR	OR+NNT		1.65249740189455					-0.347502598105453	3.65249740189455	0.562					
+all_info_expected	study_id	natural_es	converted_es	rr	logrr_se	logrr_pval	rr_ci_lo	rr_ci_up	logrr_ci_lo	logrr_ci_up	baseline_risk	small_margin_prop	n_exp	n_nexp	n_cases	n_controls
+rr_se	1	RR	OR+NNT	3.15	0.4								89	92		
+rr_pval	2	RR	OR+NNT	3.75		0.15							114	117		
+rr_ci	3	RR	OR+NNT	3.77			0.51021401780203	27.8567414929685					463	472		
+rr_se	4	RR	OR+NNT	3.09	0.07										147	174
+rr_pval	5	RR	OR+NNT	2.27		0.01589									355	312
+rr_ci	6	RR	OR+NNT	4.06			0.549461249940648	29.9995677616584							126	99
+rr_se	7	RR	OR+NNT	2.17	0.54						0.598					
+rr_pval	8	RR	OR+NNT	3.3		0.1782					0.341					
+rr_ci	9	RR	OR+NNT	4.5			0.609008774564757	33.2507524451879			0.245					

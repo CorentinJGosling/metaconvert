@@ -233,8 +233,8 @@ nav {
   display: flex;
 }
 #hamburger-menu {
-  width: 60px;
-  height: 45px;
+  width: 40px;
+  height: 25px;
   position: fixed;
   // margin: 10px 10px;
   display: none;
@@ -258,7 +258,7 @@ nav {
 #hamburger-menu span {
   display: block;
   position: absolute;
-  height: 9px;
+  height: 5px;
   width: 50%;
   background: #5d7c85;
   opacity: 1;
@@ -289,12 +289,12 @@ nav {
 
 #hamburger-menu span:nth-child(3),
 #hamburger-menu span:nth-child(4) {
-  top: 18px;
+  top: 9px;
 }
 
 #hamburger-menu span:nth-child(5),
 #hamburger-menu span:nth-child(6) {
-  top: 36px;
+  top: 18px;
 }
 
 #hamburger-menu.open span:nth-child(1),
@@ -335,13 +335,14 @@ nav {
 
 #hamburger-menu.open span:nth-child(5) {
   left: 5px;
-  top: 29px;
+  top: 19px;
 }
 
 #hamburger-menu.open span:nth-child(6) {
   left: calc(50% - 5px);
-  top: 29px;
+  top: 19px;
 }
+
 /* ======================= WARNING ============================= */
 /* ======================= WARNING ============================= */
 /* ======================= WARNING ============================= */
@@ -434,6 +435,7 @@ h2 {
 .switch-container {
   text-align: center;
   font-size: 1.2rem;
+  width: auto;
 }
 .center {
   // position: relative;
@@ -584,58 +586,17 @@ input[type="checkbox"] {
     }
   }
 }
-.overall_routing {
-  margin-top: 4rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 5rem;
-  margin-bottom: 3rem;
 
-  @media screen and (max-width: 1300px) {
-    gap: 2rem;
-  }
-  @media screen and (max-width: 768px) {
-    gap: 1rem;
-  }
+.table_container .table-title,
+.toc-container .toc_list li {
+  display: block;
+  transition: opacity 0.5s ease-in-out;
+}
 
-  .btn {
-    width: 350px;
-    text-align: center;
-    padding: 0.9rem 1.7rem;
-    color: #fff;
-    font-weight: 500;
-    font-size: 1rem;
-    transition: all 0.3s ease-in-out;
-    background-color: hsl(0, 0%, 12%);
-    border: solid 1px #1e1e1e;
-    box-shadow: inset 0 0 0 2px #fff;
-    cursor: pointer;
-    @media screen and (max-width: 768px) {
-      width: 300px;
-      font-size: 0.8rem;
-    }
-  }
-
-  .btn:hover {
-    background: #d66268;
-    box-shadow: inset 0 0 0 4px #fff;
-  }
-
-  .btn_active {
-    background: #d66268;
-    font-weight: bold;
-    box-shadow: inset 0 0 0 0;
-  }
-
-  .btn:active {
-    background: hsl(0, 0%, 30%);
-  }
-
-  .btn:visited {
-    background: hsl(0, 0%, 20%);
-  }
+.table_container .table-title.hidden,
+.toc-container .toc_list li.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .table-title.show {
@@ -665,7 +626,7 @@ input[type="checkbox"] {
 }
 .category-buttons {
   // border: 1px solid red;
-  display: none;
+  // display: none;
   width: 70vw;
   // flex-wrap: wrap;
   grid-template-columns: auto auto auto;
@@ -972,6 +933,10 @@ tr:hover td {
   a {
     text-decoration: none;
   }
+  @media all and (max-width: 800px) {
+    width: 100px;
+    height: 100px;
+  }
 }
 .download_extract .toggle-menu {
   z-index: 999;
@@ -988,6 +953,10 @@ tr:hover td {
   z-index: 20;
   box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
   transition: 0.3s ease;
+  @media all and (max-width: 800px) {
+    width: 28px;
+    height: 28px;
+  }
 }
 .download_extract .toggle-menu:hover {
   box-shadow: none;
@@ -1018,7 +987,7 @@ tr:hover td {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.5rem;
+  font-size: 0.8rem;
   color: #fff;
   background-color: #db8c90;
   border-radius: 50%;
@@ -1029,6 +998,11 @@ tr:hover td {
     rotateZ(calc(-360deg / 8 * var(--i) + 60deg));
   pointer-events: visible;
   transition: 0.3s ease;
+  @media all and (max-width: 800px) {
+    width: 28px;
+    height: 28px;
+    font-size: 0.5rem;
+  }
 }
 .download_extract.active .menu li a {
   box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);

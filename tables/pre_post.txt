@@ -1,4 +1,4 @@
 all_info_expected	study_id	natural_es	converted_es	mean_pre_exp	mean_exp	mean_pre_nexp	mean_nexp	mean_pre_sd_exp	mean_sd_exp	mean_pre_sd_nexp	mean_sd_nexp	mean_pre_se_exp	mean_se_exp	mean_pre_se_nexp	mean_se_nexp	mean_pre_ci_lo_exp	mean_pre_ci_up_exp	mean_pre_ci_lo_nexp	mean_pre_ci_up_nexp	mean_ci_lo_nexp	mean_ci_up_nexp	r_pre_post_exp	r_pre_post_nexp	n_exp	n_nexp
-means_sd_pre_post	1	D+G+MD	OR+R+Z	101.9	101.2	105.1	98.9	15.88	15.87	13.93	13.87											0.895	0.813	65	77
-means_se_pre_post	2	D+G+MD	OR+R+Z	6.35	5.94	5.09	5.81					0.216	0.13	0.166	0.13							0.135	0.214	82	99
-means_ci_pre_post	3	D+G+MD	OR+R+Z	52.3	50	67.4	60									47.3	57.3	45	55	55	65	0.588	0.686	96	98
+means_sd_pre_post	1	D+G+MD	OR+R+Z	92	101.2	106.5	98.9	15.72	15.87	12.95	13.87											0.457	0.393	68	90
+means_se_pre_post	2	D+G+MD	OR+R+Z	5.92	5.94	6.47	5.81					0.095	0.13	0.057	0.13							0.201	0.142	62	62
+means_ci_pre_post	3	D+G+MD	OR+R+Z	42.4	50	62.6	60									37.4	47.4	45	55	55	65	0.133	0.13	33	47

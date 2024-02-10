@@ -1,4 +1,4 @@
 all_info_expected	study_id	natural_es	converted_es	ancova_plot_mean_exp	ancova_plot_mean_nexp	ancova_plot_mean_sd_exp	ancova_plot_mean_sd_nexp	ancova_plot_mean_se_exp	ancova_plot_mean_se_nexp	ancova_plot_mean_ci_lo_exp	ancova_plot_mean_ci_up_exp	ancova_plot_mean_ci_lo_nexp	ancova_plot_mean_ci_up_nexp	ancova_plot_ancova_mean_sd_pooled_crude	ancova_plot_ancova_mean_sd_pooled_adj	cov_outcome_r	n_cov_ancova	n_exp	n_nexp
-ancova_means_plot	1	D+G+MD	OR+R+Z	44.8	50.8	29.4	40.9									0.25	4	65	69
-ancova_means_plot	2	D+G+MD	OR+R+Z	94.9	111.9			2.2	7.2							0.15	2	77	75
-ancova_means_plot	3	D+G+MD	OR+R+Z	-4.67	-5.67					-5.17	-4.17	-6.17	-5.17			0.1	1	18	18
+ancova_means_plot	1	D+G+MD	OR+R+Z	93.2	97.2	18.2	10.3									0.3	5	11	7
+ancova_means_plot	2	D+G+MD	OR+R+Z	19.4	19.4			2.58	7.58							0.25	4	66	65
+ancova_means_plot	3	D+G+MD	OR+R+Z	-3.47	-4.47					-3.97	-2.97	-4.97	-3.97			0.15	2	95	99

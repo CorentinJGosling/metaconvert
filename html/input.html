@@ -104,7 +104,7 @@
 
     <div class="glossary">
       <div>
-        In each table below, the effect size measures are sorted in two
+        ro In each table below, the effect size measures are sorted in two
         categories.
       </div>
       <div class="gloss_item">
@@ -268,48 +268,43 @@
         </li>
       </ul>
     </div>
-    <!-- <div class="overall_routing">
-      <div class="btn btn_list_input">
-        <a>See all input data</a>
-      </div>
-      <div class="btn btn_effect_measure">
-        <a>Select an effect measure</a>
-      </div>
-    </div> -->
-
-    <!-- <div class="category-buttons">
-      <button class="active" data-category="all" class="clicker">All</button>
-      <button data-category="SMD" class="clicker">SMD</button>
-      <button data-category="rawMD" class="clicker">MD</button>
-      <button data-category="VAR" class="clicker">VAR</button>
-      <button data-category="COR" class="clicker">COR</button>
-      <button data-category="rawOR" class="clicker">OR</button>
-      <button data-category="rawRR" class="clicker">RR</button>
-      <button data-category="IRR" class="clicker">IRR</button>
-      <button data-category="NNT" class="clicker">NNT</button>
-    </div> -->
 
     <section class="toc-container show_toc" id="toc">
+      <div id="selector" style="margin-left: 0.5rem">
+        <label for="category-select">Select an effect size measure:</label>
+        <select id="category-select" onchange="filterTables(this.value)">
+          <option value="all">All</option>
+          <option value="SMD">SMD</option>
+          <option value="rawMD">MD</option>
+          <option value="VAR">VAR</option>
+          <option value="COR">COR</option>
+          <option value="rawOR">OR</option>
+          <option value="rawRR">RR</option>
+          <option value="IRR">IRR</option>
+          <option value="NNT">NNT</option>
+        </select>
+      </div>
+
       <div class="toc">
         <ol class="toc_list">
           <li class="non-clickable-header">Standardized effect sizes</li>
 
-          <li>
+          <li data-category="SMD COR rawOR">
             <a href="#smd"><span>1.</span> Cohen's d or Hedges' g</a>
           </li>
-          <li>
+          <li data-category="rawOR rawRR NNT COR SMD">
             <a href="#or"><span>2.</span> Odds Ratio</a>
           </li>
-          <li>
+          <li data-category="rawOR rawRR NNT">
             <a href="#rr"><span>3.</span> Risk Ratio</a>
           </li>
-          <li>
+          <li data-category="rawOR COR SMD">
             <a href="#cor"><span>4.</span> Pearson's r or Fisher's z</a>
           </li>
-          <li>
+          <li data-category="IRR">
             <a href="#irr"><span>5.</span> Incidence Ratio Ratio</a>
           </li>
-          <li>
+          <li data-category="VAR">
             <a href="#var"><span>6.</span> Variability indices</a>
           </li>
 
@@ -318,38 +313,38 @@
           </li>
 
           <!-- Nat OR -->
-          <li>
+          <li data-category="rawOR rawRR NNT COR SMD">
             <a href="#contingency"
               ><span>7.</span> Contingency (2x2) table or proportions</a
             >
           </li>
-          <li>
+          <li data-category="rawOR rawRR NNT COR SMD">
             <a href="#phi"><span>8.</span> Phi or chi-square</a>
           </li>
 
           <li class="non-clickable-header">
             Dichotomous predictor + Quantitative outcome
           </li>
-          <li>
+          <li data-category="rawOR rawMD COR SMD VAR">
             <a href="#means"><span>9.</span> Means and dispersion (crude)</a>
           </li>
-          <li>
+          <li data-category="rawOR rawMD COR SMD VAR">
             <a href="#mean_difference_crude"
               ><span>10.</span> Mean difference and dispersion (crude)</a
             >
           </li>
-          <li>
+          <li data-category="rawOR COR SMD">
             <a href="#anova"
               ><span>11.</span> ANOVA statistics, Student's t-test, or point-bis
               correlation</a
             >
           </li>
-          <li>
+          <li data-category="rawOR rawMD COR SMD VAR">
             <a href="#medians"
               ><span>12.</span> Median, range and/or interquartile range</a
             >
           </li>
-          <li>
+          <li data-category="rawOR COR SMD">
             <a href="#regression"
               ><span>13.</span> (Un-)Standardized regression coefficient</a
             >
@@ -358,17 +353,17 @@
           <li class="non-clickable-header">
             Special cases: Change + Matched pairs
           </li>
-          <li>
+          <li data-category="rawOR rawMD COR SMD">
             <a href="#change_scores"
               ><span>14.</span> Paired: mean change, and dispersion</a
             >
           </li>
-          <li>
+          <li data-category="rawOR rawMD COR SMD">
             <a href="#pre_post"
               ><span>15.</span> Paired: pre-post means and dispersion</a
             >
           </li>
-          <li>
+          <li data-category="rawOR COR SMD">
             <a href="#paired_anova"
               ><span>16.</span> Paired: Paired F- or t-test</a
             >
@@ -377,21 +372,21 @@
           <li class="non-clickable-header">
             Special cases: Adjusted input data
           </li>
-          <li>
+          <li data-category="rawOR COR SMD">
             <a href="#smd_adjusted"><span>17.</span> Cohen's d (adjusted)</a>
           </li>
 
-          <li>
+          <li data-category="rawOR COR SMD">
             <a href="#ancova_statistics"
               ><span>18.</span> Adjusted: ANCOVA statistics, eta-squared</a
             >
           </li>
-          <li>
+          <li data-category="MD rawOR COR SMD">
             <a href="#ancova_means"
               ><span>19.</span> Adjusted: Means and dispersion</a
             >
           </li>
-          <li>
+          <li data-category="MD rawOR COR SMD">
             <a href="#mean_difference_adjusted"
               ><span>20.</span> Adjusted: Mean difference and dispersion</a
             >
@@ -400,12 +395,12 @@
             Special cases: Extraction from a plot
           </li>
 
-          <li>
+          <li data-category="MD rawOR COR SMD VAR">
             <a href="#plot_means"
               ><span>21.</span> From plot: means and dispersion (crude)</a
             >
           </li>
-          <li>
+          <li data-category="MD rawOR COR SMD">
             <a href="#plot_ancova_means"
               ><span>22.</span> From plot: adjusted means and dispersion
               (adjusted)</a

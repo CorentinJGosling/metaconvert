@@ -46,11 +46,6 @@ window.addEventListener("scroll", () => {
 //   }
 // });
 
-const Switch_table = document.querySelector(".esm");
-const checkbox = document.querySelector(".myCheckbox");
-Switch_table.style.opacity = 0;
-Switch_table.style.marginTop = "-20px";
-
 function go2(event) {
   event.preventDefault();
   Switch_table.animate(
@@ -64,19 +59,8 @@ function go2(event) {
     }
   );
 }
-checkbox.addEventListener("change", function (event) {
-  if (event.target.checked) {
-    Switch_table.classList.add("show_toc");
-  } else {
-    Switch_table.classList.remove("show_toc");
-  }
-});
-checkbox.addEventListener("change", go2);
 
 //  ROUTING
-const seeEffectMeasure = document.querySelector(".btn_effect_measure");
-const seeListInput = document.querySelector(".btn_list_input");
-const listEffectMeasure = document.querySelector(".category-buttons");
 const listInput = document.querySelector(".toc-container");
 const Tables = document.querySelector(".table_container");
 
@@ -106,13 +90,19 @@ document.querySelector(".start_tuto").addEventListener("click", function () {
             "If you just discover our tool, click on this button to see all the effect size measures available in metaConvert.",
         },
         {
+          element: document.querySelector("#selector"),
+          intro:
+            "If you already know what effect size measure you want to estimate, you can restrict the information available on this page to that concerning your effect size measure.",
+        },
+        {
           element: document.querySelector(".non-clickable-header"),
           intro:
             "This table of content allows to redirect you with the various types of input data that can be used to generate an effect size.",
         },
         {
           element: document.querySelector("#smd"),
-          intro: "Now, let's focus on the tables. Each table presents",
+          intro:
+            "Now, let's focus on the tables. Each table presents the input data required to estimate the effect sizes indicated in the left cells.",
         },
         {
           element: document.querySelector(".table-fill th:nth-child(1)"),
@@ -137,7 +127,7 @@ document.querySelector(".start_tuto").addEventListener("click", function () {
         {
           element: document.querySelector(".table-fill tr:nth-child(2)"),
           intro:
-            "For each table, a row represents a unique combination of input data allowing to estimate some effect measures. Here, the row indicates that if a Hedges' g value + the number of participants in the exposed- and non-exposed groups are indicated, the software will naturally estimate a Cohen's d + Hedges' g, that will then be converted to an odds ratio, a correlation coefficient and a Fisher's r-to-z correlation coefficient",
+            "If your dataset contains information for a given combination of green ticks, the effect size + standard error + 95% CI will be generated automatically.<br><br> Here, the row of this table indicates that if your dataset contains information in columns named hedges_g, n_exp, and n_nexp, the software will naturally estimate a D (Cohen's d) + G (Hedges' g), and will convert that information to OR (odds ratio), COR (both standard correlation coefficient and Fisher's r-to-z correlation coefficient)",
         },
         {
           element: document.querySelector(".fictitious_datasets"),
@@ -153,75 +143,33 @@ document.querySelector(".start_tuto").addEventListener("click", function () {
     })
     .start();
 });
-// seeListInput.addEventListener("click", () => {
-//   seeEffectMeasure.classList.remove("btn_active");
-//   listEffectMeasure.classList.remove("show_grid");
-//   seeListInput.classList.add("btn_active");
-//   listInput.classList.add("show_toc");
-//   Tables.classList.add("show_toc");
+function filterTables(category) {
+  var tableContainers = document.querySelectorAll(
+    ".table_container .table-title"
+  );
+  var tocItems = document.querySelectorAll(".toc-container .toc_list li");
 
-// cards.forEach((card) => {
-//   card.classList.add("show");
-// });
-// });
-// seeEffectMeasure.addEventListener("click", () => {
-//   seeEffectMeasure.classList.add("btn_active");
-//   listEffectMeasure.classList.add("show_grid");
-//   seeListInput.classList.remove("btn_active");
-//   listInput.classList.remove("show_toc");
-//   Tables.classList.add("show_toc");
-// });
+  tableContainers.forEach(function (tableContainer) {
+    var dataCategories = tableContainer
+      .getAttribute("data-category")
+      .split(" ");
 
-// Trigger the seeListInput click event when the page loads
-// document.addEventListener("DOMContentLoaded", () => {
-//   seeListInput.click();
-// });
+    if (category === "all" || dataCategories.includes(category)) {
+      tableContainer.style.display = "block";
+    } else {
+      tableContainer.style.display = "none";
+    }
+  });
 
-// categoryButtons.forEach((button) => {
-//   button.addEventListener("click", () => {
-//     const category = button.getAttribute("data-category");
-//     cards.forEach((card) => {
-//       if (category === "all" || card.dataset.category.includes(category)) {
-//         card.classList.add("show");
-//       } else {
-//         card.classList.remove("show");
-//       }
-//     });
-//     categoryButtons.forEach((btn) => {
-//       btn.classList.remove("active");
-//     });
-//     button.classList.add("active");
-//   });
-// });
+  tocItems.forEach(function (tocItem) {
+    var dataCategories = tocItem.getAttribute("data-category");
 
-// Show all cards by default
-// cards.forEach((card) => {
-//   card.classList.add("show");
-// });
-
-// Activate the "All" button by default
-// categoryButtons[0].classList.add("active");
-
-// const dataElement = document.getElementById("data");
-// dataElement.style.opacity = 0;
-// dataElement.style.marginTop = "-20px";
-
-// function go(event) {
-//   event.preventDefault();
-//   dataElement.animate(
-//     {
-//       opacity: [0, 1],
-//       marginTop: ["-20px", 0],
-//     },
-//     {
-//       duration: 500,
-//       fill: "forwards",
-//     }
-//   );
-// }
-// const clickerButtons = document.querySelectorAll(".clicker");
-// clickerButtons.forEach((button) => {
-//   button.addEventListener("click", go);
-// });
-
-// document.addEventListener("DOMContentLoaded", go);
+    if (!dataCategories) {
+      tocItem.style.display = "block"; // Show non-filterable items
+    } else if (category === "all" || dataCategories.includes(category)) {
+      tocItem.style.display = "block";
+    } else {
+      tocItem.style.display = "none";
+    }
+  });
+}

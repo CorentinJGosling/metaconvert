@@ -165,8 +165,8 @@ nav {
   display: flex;
 }
 #hamburger-menu {
-  width: 60px;
-  height: 45px;
+  width: 40px;
+  height: 25px;
   position: fixed;
   // margin: 10px 10px;
   display: none;
@@ -190,7 +190,7 @@ nav {
 #hamburger-menu span {
   display: block;
   position: absolute;
-  height: 9px;
+  height: 5px;
   width: 50%;
   background: #5d7c85;
   opacity: 1;
@@ -221,12 +221,12 @@ nav {
 
 #hamburger-menu span:nth-child(3),
 #hamburger-menu span:nth-child(4) {
-  top: 18px;
+  top: 9px;
 }
 
 #hamburger-menu span:nth-child(5),
 #hamburger-menu span:nth-child(6) {
-  top: 36px;
+  top: 18px;
 }
 
 #hamburger-menu.open span:nth-child(1),
@@ -267,12 +267,12 @@ nav {
 
 #hamburger-menu.open span:nth-child(5) {
   left: 5px;
-  top: 29px;
+  top: 19px;
 }
 
 #hamburger-menu.open span:nth-child(6) {
   left: calc(50% - 5px);
-  top: 29px;
+  top: 19px;
 }
 
 // Timeline ============================================================
@@ -288,6 +288,8 @@ nav {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 .section_title {
@@ -297,6 +299,8 @@ nav {
   font-size: 3.5rem;
   font-weight: bold;
   color: #000;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 
   span {
     color: #d66268;
@@ -306,7 +310,11 @@ nav {
 .timeline {
   min-width: 300px;
   max-width: 800px;
+  width: 100%;
   margin: auto;
+  @media all and (max-width: 800px) {
+    width: 80%;
+  }
 }
 .timelinehead,
 .timelinebot {
@@ -322,6 +330,9 @@ nav {
   padding-bottom: 1rem;
   //   background-color: rgb(255, 255, 255, 0.05);
   font-weight: 1000;
+  @media all and (max-width: 800px) {
+    width: 80%;
+  }
 }
 .timelinehead {
   border-bottom: 5px solid;
@@ -424,6 +435,9 @@ nav {
 }
 .boxIMG img {
   width: 100px;
+  @media all and (max-width: 767px) {
+    width: 50px;
+  }
 }
 //odd number borders
 .timeline .box:nth-child(even) {

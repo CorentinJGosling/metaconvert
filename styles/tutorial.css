@@ -188,8 +188,8 @@ nav {
 }
 
 #hamburger-menu {
-  width: 60px;
-  height: 45px;
+  width: 40px;
+  height: 25px;
   position: fixed;
   display: none;
 }
@@ -214,7 +214,7 @@ nav {
 #hamburger-menu span {
   display: block;
   position: absolute;
-  height: 9px;
+  height: 5px;
   width: 50%;
   background: #5d7c85;
   opacity: 1;
@@ -245,12 +245,12 @@ nav {
 
 #hamburger-menu span:nth-child(3),
 #hamburger-menu span:nth-child(4) {
-  top: 18px;
+  top: 9px;
 }
 
 #hamburger-menu span:nth-child(5),
 #hamburger-menu span:nth-child(6) {
-  top: 36px;
+  top: 18px;
 }
 
 #hamburger-menu.open span:nth-child(1),
@@ -291,12 +291,12 @@ nav {
 
 #hamburger-menu.open span:nth-child(5) {
   left: 5px;
-  top: 29px;
+  top: 19px;
 }
 
 #hamburger-menu.open span:nth-child(6) {
   left: calc(50% - 5px);
-  top: 29px;
+  top: 19px;
 }
 
 .section_timeline p {
@@ -305,6 +305,8 @@ nav {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .section_title {
@@ -314,6 +316,8 @@ nav {
   font-size: 3.5rem;
   font-weight: bold;
   color: #000;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 .section_title span {
   color: #d66268;
@@ -322,7 +326,13 @@ nav {
 .timeline {
   min-width: 300px;
   max-width: 800px;
+  width: 100%;
   margin: auto;
+}
+@media all and (max-width: 800px) {
+  .timeline {
+    width: 80%;
+  }
 }
 
 .timelinehead,
@@ -338,6 +348,12 @@ nav {
   font-size: 3rem;
   padding-bottom: 1rem;
   font-weight: 1000;
+}
+@media all and (max-width: 800px) {
+  .timelinehead,
+  .timelinebot {
+    width: 80%;
+  }
 }
 
 .timelinehead {
@@ -442,6 +458,11 @@ nav {
 }
 .boxIMG img {
   width: 100px;
+}
+@media all and (max-width: 767px) {
+  .boxIMG img {
+    width: 50px;
+  }
 }
 
 .timeline .box:nth-child(even) {

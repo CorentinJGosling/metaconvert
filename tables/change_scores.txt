@@ -1,5 +1,5 @@
 all_info_expected	study_id	natural_es	converted_es	mean_change_exp	mean_change_nexp	mean_change_sd_exp	mean_change_sd_nexp	mean_change_se_exp	mean_change_se_nexp	mean_change_ci_lo_exp	mean_change_ci_up_exp	mean_change_ci_lo_nexp	mean_change_ci_up_nexp	mean_change_pval_exp	mean_change_pval_nexp	n_exp	n_nexp
-means_change_sd	1	D+G+MD	OR+R+Z	-0.9	-4.35	1.9	2.34									22	50
-means_change_se	2	D+G+MD	OR+R+Z	-3.89	2.85			1.42	1.73							70	60
-means_change_ci	3	D+G+MD	OR+R+Z	4.39	2.75					1.89	6.89	0.25	5.25			62	60
-means_change_pval	4	D+G+MD	OR+R+Z	4.73	-3.77	2.18	1.68							0.85	0.75	64	87
+means_change_sd	1	D+G+MD	OR+R+Z	-2.38	3.29	1.02	1.02									41	36
+means_change_se	2	D+G+MD	OR+R+Z	2.75	-1.18			2.44	2.38							96	87
+means_change_ci	3	D+G+MD	OR+R+Z	3.37	-4.26					0.87	5.87	-6.76	-1.76			82	102
+means_change_pval	4	D+G+MD	OR+R+Z	-3.03	4.88	1.81	1.1							0.92	0.63	65	89

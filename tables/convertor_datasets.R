@@ -34,8 +34,9 @@ for (i in seq_along(all_sheets)) {
   df_i[df_i == "x"] <- '<i class="far fa-check-circle fa-2x"
   style="color: rgb(0, 147, 15)"></i>'
   if (any(is.na(df_i[is.na(df_i)]))) {
-    df_i[is.na(df_i)] <- '<i class="far fa-question-circle fa-2x"
-  style="color: rgb(222, 159, 1)"></i>'
+  #   df_i[is.na(df_i)] <- '<i class="far fa-question-circle fa-2x"
+  # style="color: rgb(222, 159, 1)"></i>'
+    df_i[is.na(df_i)] <- '<i style="color:#B40000" class="fas fa-times"></i>'
   }
 
   df_i = df_i[,3:ncol(df_i)]

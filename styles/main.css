@@ -133,8 +133,8 @@ nav {
 }
 
 #hamburger-menu {
-  width: 60px;
-  height: 45px;
+  width: 40px;
+  height: 25px;
   position: fixed;
   display: none;
 }
@@ -159,7 +159,7 @@ nav {
 #hamburger-menu span {
   display: block;
   position: absolute;
-  height: 9px;
+  height: 5px;
   width: 50%;
   background: #5d7c85;
   opacity: 1;
@@ -190,12 +190,12 @@ nav {
 
 #hamburger-menu span:nth-child(3),
 #hamburger-menu span:nth-child(4) {
-  top: 18px;
+  top: 9px;
 }
 
 #hamburger-menu span:nth-child(5),
 #hamburger-menu span:nth-child(6) {
-  top: 36px;
+  top: 18px;
 }
 
 #hamburger-menu.open span:nth-child(1),
@@ -236,12 +236,12 @@ nav {
 
 #hamburger-menu.open span:nth-child(5) {
   left: 5px;
-  top: 29px;
+  top: 19px;
 }
 
 #hamburger-menu.open span:nth-child(6) {
   left: calc(50% - 5px);
-  top: 29px;
+  top: 19px;
 }
 
 .contain_pres {
@@ -322,6 +322,18 @@ video {
     height: 240px;
   }
 }
+@media screen and (max-width: 700px) {
+  video {
+    width: 426px;
+    height: 240px;
+  }
+}
+@media screen and (max-width: 450px) {
+  video {
+    width: 100vw;
+    height: 200px;
+  }
+}
 
 .pres_left {
   margin-top: 4rem;
@@ -395,6 +407,12 @@ video {
     font-size: 4rem;
   }
 }
+@media screen and (max-width: 450px) {
+  .pres_left .package_name {
+    font-size: 2.5rem;
+    margin-top: 1rem;
+  }
+}
 .pres_left span {
   color: #d66268;
 }
@@ -419,6 +437,11 @@ video {
     margin-right: auto;
   }
 }
+@media screen and (max-width: 450px) {
+  .pres_left h1 {
+    font-size: 1.2rem;
+  }
+}
 .pres_left h2 {
   color: #676767;
   letter-spacing: 0px;
@@ -440,6 +463,12 @@ video {
     margin-right: auto;
   }
 }
+@media screen and (max-width: 450px) {
+  .pres_left h2 {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
+}
 .pres_left .btn_git {
   color: #000;
   text-decoration: underline;
@@ -458,6 +487,7 @@ video {
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 1rem;
   }
 }
 .pres_left .container .btn {
@@ -477,6 +507,12 @@ video {
   .pres_left .container .btn {
     width: 220px;
     height: 45px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .pres_left .container .btn {
+    width: 150px;
+    height: 35px;
   }
 }
 .pres_left .container .btn a {
@@ -503,6 +539,11 @@ video {
 @media screen and (max-width: 1500px) {
   .pres_left .container .btn a {
     font-size: 0.9rem;
+  }
+}
+@media screen and (max-width: 450px) {
+  .pres_left .container .btn a {
+    font-size: 0.7rem;
   }
 }
 .pres_left .container .btn:hover a {
@@ -622,6 +663,13 @@ video {
     width: 95vw;
   }
 }
+@media screen and (max-width: 768px) {
+  .table-fill {
+    width: auto;
+    font-size: 1rem;
+    padding-right: 2rem;
+  }
+}
 
 th {
   width: 8vw;
@@ -640,9 +688,7 @@ th {
 @media screen and (max-width: 768px) {
   th {
     width: auto;
-    font-size: 0.6rem;
-    padding: 0rem;
-    padding-top: 0.5rem;
+    font-size: 1rem;
   }
 }
 
@@ -667,6 +713,7 @@ td {
 
 .table-left {
   font-size: 0.9rem;
+  padding: 0.5rem;
 }
 @media screen and (max-width: 1200px) {
   .table-left {

@@ -1,27 +1,14 @@
-all_info_expected	study_id	natural_es	converted_es	or	logor	logor_se	logor_pval	or_ci_lo	or_ci_up	logor_ci_lo	logor_ci_up	baseline_risk	small_margin_prop	n_exp	n_nexp	n_cases	n_controls
-or	1	N/A	OR+RR+NNT+D+G+R+Z	1.93												149	119
-or	14	N/A	OR+RR+NNT+D+G+R+Z		0.657520002916794											281	318
-or_se	2	OR	RR+NNT+D+G+R+Z	2.05		0.12								200	209		
-or_se	5	OR	RR+NNT+D+G+R+Z	1.38		0.95										199	162
-or_se	8	OR	RR+NNT+D+G+R+Z	3.05		0.23						0.041					
-or_se	11	OR	RR+NNT+D+G+R+Z	3.05		0.91							0.17	114		53	
-or_se	15	OR	RR+NNT+D+G+R+Z		0.717839793150317	0.66								148	141		
-or_se	18	OR	RR+NNT+D+G+R+Z		0.322083499169113	0.32										270	243
-or_se	21	OR	RR+NNT+D+G+R+Z		1.11514159061932	0.93						0.145					
-or_se	24	OR	RR+NNT+D+G+R+Z		1.11514159061932	0.93							0.124	135		72	
-or_ci	4	OR	RR+NNT+D+G+R+Z	0.85				0.115034990751121	6.28069768409105					500	502		
-or_ci	7	OR	RR+NNT+D+G+R+Z	1.31				0.177289221039963	9.67966348959915							316	313
-or_ci	10	OR	RR+NNT+D+G+R+Z	5.76				0.779531231442889	42.5609631298405			0.594					
-or_ci	13	OR	RR+NNT+D+G+R+Z	0.69				0.0933813454332627	5.09844870826215				0.192	148		63	
-or_ci	17	OR	RR+NNT+D+G+R+Z		-0.162518929497775					-2.16251892949778	1.83748107050223			281	274		
-or_ci	20	OR	RR+NNT+D+G+R+Z		0.27002713721306					-1.72997286278694	2.27002713721306					60	76
-or_ci	23	OR	RR+NNT+D+G+R+Z		1.7509374747078					-0.2490625252922	3.7509374747078	0.448					
-or_ci	26	OR	RR+NNT+D+G+R+Z		-0.371063681390832					-2.37106368139083	1.62893631860917		0.11	153		63	
-or_pval	3	OR	RR+NNT+D+G+R+Z	3.46			0.04152							312	305		
-or_pval	6	OR	RR+NNT+D+G+R+Z	1			0.095									284	319
-or_pval	9	OR	RR+NNT+D+G+R+Z	2.1			0.0483					0.011					
-or_pval	12	OR	RR+NNT+D+G+R+Z	1.36			0.12376						0.04	122		60	
-or_pval	16	OR	RR+NNT+D+G+R+Z		1.24126858906963		0.22836							258	251		
-or_pval	19	OR	RR+NNT+D+G+R+Z		0		0.032									403	389
-or_pval	22	OR	RR+NNT+D+G+R+Z		0.741937344729377		0.1953					0.514					
-or_pval	25	OR	RR+NNT+D+G+R+Z		0.307484699747961		0.12648						0.172	162		67	
+all_info_expected	study_id	natural_es	converted_es	or	logor_se	logor_pval	or_ci_lo	or_ci_up	logor_ci_lo	logor_ci_up	baseline_risk	small_margin_prop	n_exp	n_nexp	n_cases	n_controls
+or	1	N/A	OR+RR+NNT+D+G+R+Z	5.56											164	179
+or_se	2	OR	RR+NNT+D+G+R+Z	0.03	0.45								423	419		
+or_se	5	OR	RR+NNT+D+G+R+Z	4.27	0.03										399	375
+or_se	8	OR	RR+NNT+D+G+R+Z	1.39	0.38						0.17					
+or_se	11	OR	RR+NNT+D+G+R+Z	2.18	0.98							0.054	132		87	
+or_ci	4	OR	RR+NNT+D+G+R+Z	0.32			0.0433072906357161	2.36449795165781					451	450		
+or_ci	7	OR	RR+NNT+D+G+R+Z	2.36			0.319391268438406	17.4381723934763							500	544
+or_ci	10	OR	RR+NNT+D+G+R+Z	2.47			0.334278149594433	18.2509685643587			0.331					
+or_ci	13	OR	RR+NNT+D+G+R+Z	5.67			0.767351055951594	41.8959480809368				0.096	163		89	
+or_pval	3	OR	RR+NNT+D+G+R+Z	3.34		0.1503							162	153		
+or_pval	6	OR	RR+NNT+D+G+R+Z	0.39		0.00117									312	359
+or_pval	9	OR	RR+NNT+D+G+R+Z	5.2		0.1976					0.18					
+or_pval	12	OR	RR+NNT+D+G+R+Z	3.21		0.31458						0.052	134		65	

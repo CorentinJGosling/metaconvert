@@ -1,6 +1,6 @@
 all_info_expected	study_id	natural_es	converted_es	ancova_t	ancova_f	ancova_t_pval	ancova_f_pval	etasq_adj	cov_outcome_r	n_cov_ancova	n_exp	n_nexp
-ancova_t	1	D+G	OR+R+Z	1.6					0.25	4	86	91
-ancova_f	2	D+G	OR+R+Z		0.0499				0.1	1	22	21
-ancova_t_pval	3	D+G	OR+R+Z			1.41			0.15	2	47	42
-ancova_f_pval	4	D+G	OR+R+Z				0.00757		0.3	5	57	59
-etasq_adj	6	D+G	OR+R+Z					0.649	0.25	4	80	78
+ancova_t	1	D+G	OR+R+Z	1.89					0.2	3	28	26
+ancova_f	2	D+G	OR+R+Z		0.0928				0.25	4	81	82
+ancova_t_pval	3	D+G	OR+R+Z			2.7			0.1	1	35	38
+ancova_f_pval	4	D+G	OR+R+Z				0.00193		0.1	1	16	23
+etasq_adj	6	D+G	OR+R+Z					0.095	0.3	5	37	38

@@ -1,4 +1,4 @@
 all_info_expected	study_id	natural_es	converted_es	md	md_sd	md_se	md_ci_lo	md_ci_up	n_exp	n_nexp
-md_sd	1	D+G+MD	OR+R+Z	1.69	2.94				37	50
-md_se	2	D+G+MD	OR+R+Z	-3.95		0.236			84	75
-md_ci	3	D+G+MD	OR+R+Z	-1.13			-1.63	-0.63	33	28
+md_sd	1	D+G+MD	OR+R+Z	0.77	1.76				84	106
+md_se	2	D+G+MD	OR+R+Z	-2.81		0.33			99	127
+md_ci	3	D+G+MD	OR+R+Z	4.87			4.37	5.37	58	79
