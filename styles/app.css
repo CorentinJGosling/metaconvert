@@ -308,4 +308,5 @@ body {
   overflow: hidden;
   margin-top: calc(60px + 1rem);
   height: calc(100vh - 60px + 0.25rem + 0.25rem);
+  margin-bottom: 3rem;
 }/*# sourceMappingURL=app.css.map */
