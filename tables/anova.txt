@@ -1,8 +1,8 @@
 all_info_expected	study_id	natural_es	converted_es	anova_f	anova_f_pval	student_t	student_t_pval	pt_bis_r	pt_bis_r_pval	etasq	n_exp	n_nexp
-anova_f	1	D+G	OR+R+Z	1.84							18	24
-anova_f_pval	2	D+G	OR+R+Z		0.031						30	39
-student_t	3	D+G	OR+R+Z			2.18					42	46
-student_t_pval	4	D+G	OR+R+Z				0.00368				58	68
-pt_bis_r	5	D+G	OR+R+Z					4			36	40
-pt_bis_r_pval	6	D+G	OR+R+Z						0.744		96	104
-etasq	7	D+G	OR+R+Z							0.098	39	51
+anova_f	1	D+G	OR+R+Z	3.8							34	56
+anova_f_pval	2	D+G	OR+R+Z		0.0126						40	45
+student_t	3	D+G	OR+R+Z			4.94					84	92
+student_t_pval	4	D+G	OR+R+Z				0.00954				61	82
+pt_bis_r	5	D+G	OR+R+Z					4.82			96	113
+pt_bis_r_pval	6	D+G	OR+R+Z						0.268		83	111
+etasq	7	D+G	OR+R+Z							0.743	72	101

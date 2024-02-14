@@ -1,7 +1,7 @@
 all_info_expected	study_id	natural_es	converted_es	pearson_r	fisher_z	sd_iv	unit_increase_iv	unit_type	n_exp	n_nexp	n_sample
-pearson_r	1	R+Z	D+G+OR	0.104							32
-fisher_z	2	R+Z	D+G+OR		0.3						21
-pearson_r	3	R+Z	D+G+OR	1					99	67	
-fisher_z	4	R+Z	D+G+OR		0.863				19	10	
-pearson_r	5	R+Z	D+G+OR	0.278		0.934	1	sd			12
-fisher_z	6	R+Z	D+G+OR		0.275	0.554	0.54	raw			77
+pearson_r	1	R+Z	D+G+OR	0.467							98
+fisher_z	2	R+Z	D+G+OR		0.575						57
+pearson_r	3	R+Z	D+G+OR	0.005					80	86	
+fisher_z	4	R+Z	D+G+OR		0.79				88	13	
+pearson_r	5	R+Z	D+G+OR	0.386		0.36	1	sd			39
+fisher_z	6	R+Z	D+G+OR		0.238	0.383	0.54	raw			71

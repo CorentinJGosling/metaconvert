@@ -1,4 +1,4 @@
 all_info_expected	study_id	natural_es	converted_es	min_exp	min_nexp	q1_exp	q1_nexp	med_exp	med_nexp	q3_exp	q3_nexp	max_exp	max_nexp	n_exp	n_nexp
-med_min_max_quarts	1	N/A	D+G+MD+OR+R+Z	13	17	25	37	37	57	49	77	61	97	84	88
-med_min_max_quarts	2	N/A	D+G+MD+OR+R+Z			15	12	30	24	45	36			97	105
-med_min_max	3	N/A	D+G+MD+OR+R+Z	17	16			41	42			65	68	10	20
+med_min_max_quarts	1	N/A	D+G+MD+OR+R+Z	16	10	33	30	50	50	67	70	84	90	19	25
+med_min_max_quarts	2	N/A	D+G+MD+OR+R+Z			10	17	20	34	30	51			80	88
+med_min_max	3	N/A	D+G+MD+OR+R+Z	17	12			41	38			65	64	94	101

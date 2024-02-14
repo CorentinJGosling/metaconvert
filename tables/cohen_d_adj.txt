@@ -1,2 +1,2 @@
 all_info_expected	study_id	natural_es	converted_es	cohen_d_adj	cov_outcome_r	n_cov_ancova	n_exp	n_nexp
-cohen_d_adj	5	D+G	OR+R+Z	0.268	0.3	5	57	53
+cohen_d_adj	5	D+G	OR+R+Z	0.011	0.25	4	84	81

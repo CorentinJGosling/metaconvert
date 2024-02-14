@@ -1,5 +1,5 @@
 all_info_expected	study_id	natural_es	converted_es	paired_f_exp	paired_f_nexp	paired_f_pval_exp	paired_f_pval_nexp	paired_t_exp	paired_t_nexp	paired_t_pval_exp	paired_t_pval_nexp	r_pre_post_exp	r_pre_post_nexp	n_exp	n_nexp
-paired_f	1	D+G	OR+R+Z	3.26	1.01							0.635	0.65	67	72
-paired_f_pval	2	D+G	OR+R+Z			0.023	0.0847					0.661	0.584	77	85
-paired_t	3	D+G	OR+R+Z					1.37	0.12			0.562	0.489	100	106
-paired_t_pval	4	D+G	OR+R+Z							0.00457	0.00857	0.983	1.071	51	47
+paired_f	1	D+G	OR+R+Z	4.2	5.91							0.719	0.696	79	75
+paired_f_pval	2	D+G	OR+R+Z			0.0837	0.0333					0.751	0.695	75	103
+paired_t	3	D+G	OR+R+Z					3.59	0.6			0.809	0.731	52	65
+paired_t_pval	4	D+G	OR+R+Z							0.0049	0.00713	0.113	0.024	98	111

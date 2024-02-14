@@ -1,3 +1,3 @@
 all_info_expected	study_id	natural_es	converted_es	beta_std	beta_unstd	dv_sd	n_cases	n_exp
-beta_std	1	D+G	OR+R+Z	0.423		0.99	78	72
-beta_unstd	2	D+G	OR+R+Z		87.25	54.566	24	16
+beta_std	1	D+G	OR+R+Z	0.423		0.99	60	55
+beta_unstd	2	D+G	OR+R+Z		87.25	54.566	96	93

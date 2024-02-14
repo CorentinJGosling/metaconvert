@@ -1,4 +1,4 @@
-all_info_expected	study_id	natural_es	converted_es	plot_mean_exp	plot_mean_nexp	plot_mean_sd_exp	plot_mean_sd_nexp	plot_mean_se_exp	plot_mean_se_nexp	plot_mean_ci_lo_exp	plot_mean_ci_up_exp	plot_mean_ci_lo_nexp	plot_mean_ci_up_nexp	n_exp	n_nexp
-plot_means_sd	1	D+G+MD	OR+R+Z	101.2	98.9	15.87	13.87							10	12
-plot_means_se	2	D+G+MD	OR+R+Z	5.94	5.81			0.13	0.13					20	20
-plot_means_ci	3	D+G+MD	OR+R+Z	50	60					45	55	55	65	59	64
+all_info_expected	study_id	natural_es	converted_es	plot_mean_exp	plot_mean_nexp	plot_mean_sd_lo_exp	plot_mean_sd_up_exp	plot_mean_sd_lo_nexp	plot_mean_sd_up_nexp	plot_mean_se_lo_exp	plot_mean_se_up_exp	plot_mean_se_lo_nexp	plot_mean_se_up_nexp	plot_mean_ci_lo_exp	plot_mean_ci_up_exp	plot_mean_ci_lo_nexp	plot_mean_ci_up_nexp	n_exp	n_nexp
+plot_means_sd	1	D+G+MD	OR+R+Z	101.2	98.9	85.33	117.07	83.03	114.77									10	12
+plot_means_se	2	D+G+MD	OR+R+Z	5.94	5.81					0.0700000000000003	11.81	-2.06	13.68					20	20
+plot_means_ci	3	D+G+MD	OR+R+Z	50	60									45	55	55	65	59	64

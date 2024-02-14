@@ -1,3 +1,3 @@
 all_info_expected	study_id	natural_es	converted_es	measure	user_es_measure_crude	user_es_crude	user_se_crude	user_ci_lo_crude	user_ci_up_crude
-user_input_crude	1	Any	N/A	RR	MR	1.56653041142282	0.635		
-user_input_crude	2	Any	N/A	RR	MR	0.989541193613748		-0.280458806386252	2.25954119361375
+user_input_crude	1	Any	N/A	RR	MR	1.02604159583327	0.635		
+user_input_crude	2	Any	N/A	RR	MR	0.631271776841858		-0.638728223158142	1.90127177684186
