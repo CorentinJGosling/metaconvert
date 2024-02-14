@@ -368,14 +368,14 @@ video {
   }
 
   .package_name {
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: bold;
     color: #343434;
     @media screen and (max-width: 1500px) {
-      font-size: 4rem;
+      font-size: 3rem;
     }
     @media screen and (max-width: 450px) {
-      font-size: 2.5rem;
+      font-size: 2rem;
       margin-top: 1rem;
     }
   }
@@ -386,22 +386,22 @@ video {
   h1 {
     color: #4f4f4f;
     font-weight: 500;
-    font-size: 2.4rem;
+    font-size: 2rem;
     max-width: 25ch;
     text-wrap: balance;
     line-height: 100%;
 
     @media screen and (max-width: 1500px) {
-      font-size: 2rem;
+      font-size: 1.5rem;
       max-width: 22ch;
     }
     @media screen and (max-width: 1200px) {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       margin-left: auto;
       margin-right: auto;
     }
     @media screen and (max-width: 450px) {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
   }
 
@@ -414,11 +414,9 @@ video {
     max-width: 50ch;
 
     @media screen and (max-width: 1500px) {
-      font-size: 1.1rem;
       max-width: 35ch;
     }
     @media screen and (max-width: 1200px) {
-      font-size: 1.1rem;
       margin-left: auto;
       margin-right: auto;
     }
@@ -442,11 +440,12 @@ video {
     display: flex;
     gap: 1rem;
     // flex-wrap: wrap;
+    margin-top: 0.5rem;
     @media screen and (max-width: 500px) {
       flex-direction: column;
       margin-left: auto;
       margin-right: auto;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
     }
   }
   .container .btn {
