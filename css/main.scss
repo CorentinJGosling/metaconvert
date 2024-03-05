@@ -331,8 +331,8 @@ video {
   }
   @media screen and (max-width: 1200px) {
     margin-top: 1rem;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     text-align: center;
   }
   @media screen and (max-width: 768px) {
@@ -346,23 +346,15 @@ video {
       align-items: center;
       justify-content: center;
       gap: 0.4rem;
+      margin-top: 2rem;
     }
-    .img1 {
-      width: 100px;
+    .img1,
+    .img2 {
+      width: 120px;
+      height: 30px;
       @media screen and (max-width: 1500px) {
         width: 80px;
-      }
-    }
-    .img2 {
-      width: 170px;
-      @media screen and (max-width: 1500px) {
-        width: 130px;
-      }
-    }
-    .img3 {
-      width: 150px;
-      @media screen and (max-width: 1500px) {
-        width: 110px;
+        height: 20px;
       }
     }
   }
@@ -439,9 +431,8 @@ video {
   .container {
     display: flex;
     gap: 1rem;
-    // flex-wrap: wrap;
     margin-top: 0.5rem;
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 1200px) {
       flex-direction: column;
       margin-left: auto;
       margin-right: auto;
