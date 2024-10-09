@@ -1,0 +1,51 @@
+<div id="cookieNotice" class="cookie-notice">
+  <div class="cookie-notice-content">
+    <p>
+      This website uses cookies to enhance your browsing experience and to
+      analyze website traffic. By continuing to use this website, you consent to
+      the use of cookies and the processing of data collected by cookies, as
+      outlined in our <a href="link-to-privacy-policy">Privacy Policy</a>.
+    </p>
+    <p>
+      We use Google Analytics, a web analytics service provided by Google LLC
+      ("Google"), to collect and analyze information about how visitors interact
+      with our website. This information is collected anonymously and includes
+      data such as the pages visited, the duration of visits, the source of
+      traffic, and other similar metrics. Google Analytics uses cookies to track
+      user interactions.
+    </p>
+    <p>
+      If you prefer to opt-out of Google Analytics tracking, you can install the
+      Google Analytics Opt-out Browser Add-on, available
+      <a href="https://tools.google.com/dlpage/gaoptout">here</a>.
+    </p>
+    <button id="closeCookieNotice">Close</button>
+  </div>
+</div>
+
+<style>
+  .cookie-notice {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 10px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+  }
+
+  .cookie-notice-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  #closeCookieNotice {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+</style>
+<!-- https://tools.google.com/dlpage/gaoptout https://policies.google.com/privacy -->

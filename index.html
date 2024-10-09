@@ -13,6 +13,35 @@
       src="https://www.googletagmanager.com/gtag/js?id=G-EB0MGY4LS8"
     ></script>
     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Check if the cookie notice has been closed
+        var isCookieNoticeClosed = localStorage.getItem("cookieNoticeClosed");
+
+        if (!isCookieNoticeClosed) {
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", "cookie_notice.html", true);
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+              document.body.insertAdjacentHTML("afterbegin", xhr.responseText);
+
+              // Add event listener to close the notice
+              var closeCookieNotice =
+                document.getElementById("closeCookieNotice");
+              closeCookieNotice.addEventListener("click", function () {
+                var cookieNotice = document.getElementById("cookieNotice");
+                cookieNotice.style.display = "none";
+
+                // Set a flag in local storage to indicate that the notice has been closed
+                localStorage.setItem("cookieNoticeClosed", "true");
+              });
+            }
+          };
+          xhr.send();
+        }
+      });
+    </script>
+
+    <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -185,8 +214,8 @@
               </td>
               <td>
                 <i
-                  class="far fa-times-circle fa-2x"
-                  style="color: rgb(156, 27, 27)"
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(222, 159, 1)"
                 ></i>
               </td>
               <td>
@@ -354,15 +383,7 @@
               <td class="table-pkg-col">
                 <i
                   class="far fa-check-circle fa-2x"
-                  style="color: rgb(0, 147, 15)"
-                ></i>
-                <i
-                  class="far fa-check-circle fa-2x"
-                  style="color: rgb(0, 147, 15)"
-                ></i>
-                <i
-                  class="far fa-check-circle fa-2x"
-                  style="color: rgb(0, 147, 15)"
+                  style="color: rgb(222, 159, 1)"
                 ></i>
               </td>
               <td>
@@ -407,15 +428,7 @@
               <td>
                 <i
                   class="far fa-check-circle fa-2x"
-                  style="color: rgb(0, 147, 15)"
-                ></i>
-                <i
-                  class="far fa-check-circle fa-2x"
-                  style="color: rgb(0, 147, 15)"
-                ></i>
-                <i
-                  class="far fa-check-circle fa-2x"
-                  style="color: rgb(0, 147, 15)"
+                  style="color: rgb(222, 159, 1)"
                 ></i>
               </td>
             </tr>
@@ -475,62 +488,6 @@
             </tr>
             <tr>
               <td class="table-left">Dataset comparison</td>
-              <td class="table-pkg-col">
-                <i
-                  class="far fa-check-circle fa-2x"
-                  style="color: rgb(0, 147, 15)"
-                ></i>
-                <i
-                  class="far fa-check-circle fa-2x"
-                  style="color: rgb(0, 147, 15)"
-                ></i>
-                <i
-                  class="far fa-check-circle fa-2x"
-                  style="color: rgb(0, 147, 15)"
-                ></i>
-              </td>
-              <td>
-                <i
-                  class="far fa-times-circle fa-2x"
-                  style="color: rgb(156, 27, 27)"
-                ></i>
-              </td>
-              <td>
-                <i
-                  class="far fa-times-circle fa-2x"
-                  style="color: rgb(156, 27, 27)"
-                ></i>
-              </td>
-
-              <td>
-                <i
-                  class="far fa-times-circle fa-2x"
-                  style="color: rgb(156, 27, 27)"
-                ></i>
-              </td>
-              <td>
-                <i
-                  class="far fa-times-circle fa-2x"
-                  style="color: rgb(156, 27, 27)"
-                ></i>
-              </td>
-              <td>
-                <i
-                  class="far fa-times-circle fa-2x"
-                  style="color: rgb(156, 27, 27)"
-                ></i>
-              </td>
-              <td>
-                <i
-                  class="far fa-times-circle fa-2x"
-                  style="color: rgb(156, 27, 27)"
-                ></i>
-              </td>
-            </tr>
-            <tr>
-              <td class="table-left">
-                Automatically flip effect size direction
-              </td>
               <td class="table-pkg-col">
                 <i
                   class="far fa-check-circle fa-2x"
@@ -657,13 +614,13 @@
               </td>
               <td>
                 <i
-                  style="color: rgb(156, 27, 27)"
+                  style="color: rgb(222, 159, 1)"
                   class="fas fa-code fa-2x"
                 ></i>
               </td>
               <td>
                 <i
-                  style="color: rgb(156, 27, 27)"
+                  style="color: rgb(222, 159, 1)"
                   class="fas fa-code fa-2x"
                 ></i>
               </td>
@@ -676,7 +633,7 @@
               </td>
               <td>
                 <i
-                  style="color: rgb(156, 27, 27)"
+                  style="color: rgb(222, 159, 1)"
                   class="fas fa-code fa-2x"
                 ></i>
               </td>
