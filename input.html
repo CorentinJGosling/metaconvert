@@ -1,1980 +1,949 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="https://unpkg.com/intro.js/introjs.css" />
-    <link rel="stylesheet" href="../styles/input.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="icon" href="../logo/logo.svg" type="image/x-icon" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Data Templates | metaConvert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-
-    <title>Input | metaConvert</title>
-  </head>
-
-  <nav>
-    <div class="logo"><img src="logo/logo.svg" /></div>
-
-    <!-- <div class="badges">
-      <img src="https://img.shields.io/badge/license-GPL-red" class="img1" />
-      <img src="https://www.r-pkg.org/badges/version/metaConvert" class="img2" />
-      <img
-        src="https://cranlogs.r-pkg.org/badges/grand-total/metaConvert"
-        class="img3"
-      />
-    </div> -->
-
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="tutorial.html">Tutorial</a></li>
-      <li><a href="#" class="homepage currentpage">Input data</a></li>
-      <li><a href="app.html">App</a></li>
-    </ul>
-    <div id="hamburger-menu">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </nav>
-  <body>
-    <div class="section_title">
-      Input data enabling <span>effect size computation</span>
-    </div>
-    <div class="center_start">
-      <button class="start_tuto">Need help?</button>
-    </div>
-
-    <div class="glossary">
-      <div>
-        Build a personalized data extraction sheet using the tables below!<br />
-        Each time you select an input data type, you will retrieve a precise
-        description of the columns at the bottom of the page.
-      </div>
-      <div class="gloss_item">
-        <div class="gloss_col">
-          <b>natural_es</b> is the natural effect size measure from the input
-          information.
-        </div>
-        <div class="gloss_col">
-          <b>converted_es</b> is an effect size measure obtained by a
-          <i>converting</i> formula, which necessarily contains a certain degree
-          of approximation.
-        </div>
-      </div>
-    </div>
-    <div class="switch-container">
-      <p>See all effect size measures available</p>
-      <div class="center">
-        <input type="checkbox" class="myCheckbox" />
-      </div>
-    </div>
-
-    <div class="esm">
-      <p>
-        <i class="fas fa-square"></i><i class="fas fa-star"></i
-        ><b> binary variable</b> &nbsp; &nbsp; &nbsp;
-        <i class="fas fa-ruler"></i><b> continuous variable</b>
-      </p>
-      <ul class="responsive-list">
-        <li class="list-header">
-          <div class="col col-1">Predictor</div>
-          <div class="col col-2">Outcome</div>
-          <div class="col col-3">Effect size measure</div>
-          <div class="col col-4">Acronym</div>
-        </li>
-        <li class="list-row">
-          <div class="col col-1" data-label="Independent Variable">
-            <i class="fas fa-square"></i><i class="fas fa-star"></i>
-          </div>
-          <div class="col col-2" data-label="Dependent Variable">
-            <i class="fas fa-ruler"></i>
-          </div>
-          <div class="col col-3" data-label="Effect size measure">
-            Standardized mean difference (Cohen's d + Hedges' g)
-          </div>
-          <div class="col col-4" data-label="Acronym">SMD</div>
-        </li>
-        <li class="list-row">
-          <div class="col col-1" data-label="Independent Variable">
-            <i class="fas fa-square"></i><i class="fas fa-star"></i>
-          </div>
-          <div class="col col-2" data-label="Dependent Variable">
-            <i class="fas fa-ruler"></i>
-          </div>
-          <div class="col col-3" data-label="Effect size measure">
-            Mean Difference
-          </div>
-          <div class="col col-4" data-label="Acronym">MD</div>
-        </li>
-        <li class="list-row">
-          <div class="col col-1" data-label="Independent Variable">
-            <i class="fas fa-square"></i><i class="fas fa-star"></i>
-          </div>
-          <div class="col col-2" data-label="Dependent Variable">
-            <i class="fas fa-ruler"></i>
-          </div>
-          <div class="col col-3" data-label="Effect size measure">
-            Variability Ratio + Coefficient of Variation
-          </div>
-          <div class="col col-4" data-label="Acronym">VAR</div>
-        </li>
-        <li class="list-row">
-          <div class="col col-1" data-label="Independent Variable">
-            <i class="fas fa-ruler"></i>
-          </div>
-          <div class="col col-2" data-label="Dependent Variable">
-            <i class="fas fa-ruler"></i>
-          </div>
-          <div class="col col-3" data-label="Effect size measure">
-            Correlation (standard r and Fisher's r-to-z)
-          </div>
-          <div class="col col-4" data-label="Acronym">COR</div>
-        </li>
-        <li class="list-row">
-          <div class="col col-1" data-label="Independent Variable">
-            <i class="fas fa-square"></i><i class="fas fa-star"></i>
-          </div>
-          <div class="col col-2" data-label="Dependent Variable">
-            <i class="fas fa-square"></i><i class="fas fa-star"></i>
-          </div>
-          <div class="col col-3" data-label="Effect size measure">
-            Odds Ratio
-          </div>
-          <div class="col col-4" data-label="Acronym">OR</div>
-        </li>
-        <li class="list-row">
-          <div class="col col-1" data-label="Independent Variable">
-            <i class="fas fa-square"></i><i class="fas fa-star"></i>
-          </div>
-          <div class="col col-2" data-label="Dependent Variable">
-            <i class="fas fa-square"></i><i class="fas fa-star"></i>
-          </div>
-          <div class="col col-3" data-label="Effect size measure">
-            Risk Ratio
-          </div>
-          <div class="col col-4" data-label="Acronym">RR</div>
-        </li>
-        <li class="list-row">
-          <div class="col col-1" data-label="Independent Variable">
-            <i class="fas fa-square"></i><i class="fas fa-star"></i>
-          </div>
-          <div class="col col-2" data-label="Dependent Variable">
-            <i class="fas fa-square"></i><i class="fas fa-star"></i>
-          </div>
-          <div class="col col-3" data-label="Effect size measure">
-            Number Needed to Treat
-          </div>
-          <div class="col col-4" data-label="Acronym">NNT</div>
-        </li>
-        <li class="list-row">
-          <div class="col col-1" data-label="Independent Variable">
-            <i class="far fa-calendar-alt"></i>
-          </div>
-          <div class="col col-2" data-label="Dependent Variable">
-            <i class="fas fa-square"></i><i class="fas fa-star"></i>
-          </div>
-          <div class="col col-3" data-label="Effect size measure">
-            Incidence Rate Ratio
-          </div>
-          <div class="col col-4" data-label="Acronym">IRR</div>
-        </li>
-      </ul>
-    </div>
-
-    <div id="wrap_table">
-      <h1>Personalized data extraction sheet</h1>
-      <!-- <select id="category-select" onchange="filterTables(this.value)">
-        <option value="all">All</option>
-        <option value="SMD">SMD</option>
-        <option value="rawMD">MD</option>
-        <option value="VAR">VAR</option>
-        <option value="COR">COR</option>
-        <option value="rawOR">OR</option>
-        <option value="rawRR">RR</option>
-        <option value="IRR">IRR</option>
-        <option value="NNT">NNT</option>
-      </select> -->
-
-      <table id="esTable">
-        <thead>
-          <tr>
-            <th>Type of input data</th>
-            <th>Natural <br />effect size <br />measure</th>
-            <th>Converted <br />effect size <br />measure</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-      <button id="downloadBtn_csv">Download CSV</button>
-      <button id="downloadBtn_xlsx">Download Excel</button>
-    </div>
-
-    <!-- SMD rawMD VAR COR rawOR rawRR IRR NNT -->
-    <section class="table_container show_toc" id="data">
-      <div class="table-title" id="smd" data-category="SMD COR rawOR">
-        <h3>1. Cohen's d or Hedges' g (crude)</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/cohen_d.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/cohen_d.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_smd"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item"><b>cohen_d</b> = Cohen's d value.</div>
-          <div class="foot_item"><b>hedges_g</b> = Hedges' g value.</div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div class="table-title" id="or" data-category="SMD COR rawOR rawRR NNT">
-        <h3>2. Odds Ratio</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/or.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/or.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_or"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item"><b>or</b> = Odds Ratio value.</div>
-          <div class="foot_item"><b>logor</b> = log Odds Ratio value.</div>
-          <div class="foot_item">
-            <b>logor_se</b> = standard error of the log odds ratio.
-          </div>
-          <div class="foot_item">
-            <b>logor_pval</b> = p-value of the (log) odds ratio.
-          </div>
-          <div class="foot_item">
-            <b>or_ci_lo</b> = lower bound of the 95% CI around the odds ratio
-            value.
-          </div>
-          <div class="foot_item">
-            <b>or_ci_up</b> = upper bound of the 95% CI around the odds ratio
-            value.
-          </div>
-          <div class="foot_item">
-            <b>logor_ci_lo </b> = lower bound of the 95% CI around the log odds
-            ratio value.
-          </div>
-          <div class="foot_item">
-            <b>logor_ci_up</b> = upper bound of the 95% CI around the log odds
-            ratio value.
-          </div>
-          <div class="foot_item">
-            <b>baseline_risk</b> = proportion of cases/events in the non-exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>small_margin_prop</b> = smallest margin proportion of
-            cases/events in the underlying 2x2 table.
-          </div>
-          <div class="foot_item">
-            <b>n_cases</b> = number of cases/events across exposed/non-exposed
-            groups.
-          </div>
-          <div class="foot_item">
-            <b>n_controls</b> = number of controls/no-event across
-            exposed/non-exposed groups.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div class="table-title" id="rr" data-category="rawRR rawOR NNT">
-        <h3>3. Risk Ratio</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/rr.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/rr.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_rr"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item"><b>rr</b> = risk ratio value.</div>
-          <div class="foot_item"><b>logrr</b> = log risk ratio value.</div>
-          <div class="foot_item">
-            <b>logrr_se</b> = standard error of the log risk ratio.
-          </div>
-          <div class="foot_item">
-            <b>logrr_pval</b> = p-value of the (log) risk ratio.
-          </div>
-          <div class="foot_item">
-            <b>rr_ci_lo</b> = lower bound of the 95% CI around the risk ratio
-            value.
-          </div>
-          <div class="foot_item">
-            <b>rr_ci_up</b> = upper bound of the 95% CI around the risk ratio
-            value.
-          </div>
-          <div class="foot_item">
-            <b>logrr_ci_lo </b> = lower bound of the 95% CI around the log risk
-            ratio value.
-          </div>
-          <div class="foot_item">
-            <b>logrr_ci_up</b> = upper bound of the 95% CI around the log risk
-            ratio value.
-          </div>
-          <div class="foot_item">
-            <b>baseline_risk</b> = proportion of cases/events in the non-exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>n_cases</b> = number of cases/events across exposed/non-exposed
-            groups.
-          </div>
-          <div class="foot_item">
-            <b>n_controls</b> = number of controls/no-event across
-            exposed/non-exposed groups.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div class="table-title" id="cor" data-category="SMD COR rawOR">
-        <h3>4. Pearson's r or Fisher's z</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/cor.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/change_scores.xlsx" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_cor"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>pearson_r</b> = Pearson's correlation coefficient value.
-          </div>
-          <div class="foot_item">
-            <b>fisher_z</b> = Fisher's r-to-z transformed correlation
-            coefficient.
-          </div>
-          <div class="foot_item">
-            <b>sd_iv</b> = standard deviation of the independent variable.
-          </div>
-          <div class="foot_item">
-            <b>unit_increase_iv</b> = value of the independent variable that
-            will be used to estimate the Cohen's d
-          </div>
-          <div class="foot_item">
-            <b>unit_type</b> = the type of unit for the unit_increase_iv column.
-            Must be either "sd" or "value".
-          </div>
-          <div class="foot_item">
-            <b>n_sample</b> = total number of participants.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div class="table-title" id="irr" data-category="IRR">
-        <h3>5. Incidence Ratio Ratio</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/irr.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/irr.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_irr"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>n_cases_exp</b> = number of cases in the exposed group.
-          </div>
-          <div class="foot_item">
-            <b>n_cases_nexp</b> = number of cases in the non-exposed group.
-          </div>
-          <div class="foot_item">
-            <b>time_exp</b> = person-time of disease-free observation in the
-            exposed group.
-          </div>
-          <div class="foot_item">
-            <b>time_nexp</b> = person-time of disease-free observation in the
-            non-exposed group.
-          </div>
-        </div>
-      </div>
-
-      <div class="table-title" id="var" data-category="VAR">
-        <h3>6. Variability indices</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/var.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/var.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_var"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>mean_exp</b> = mean of participants in the experimental/exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>mean_nexp</b> = mean of participants in the
-            non-experimental/non-exposed group.
-          </div>
-          <div class="foot_item">
-            <b>mean_sd_exp</b> = standard deviation of participants in the
-            experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>mean_sd_nexp</b> = standard deviation of participants in the
-            non-experimental/non-exposed group.
-          </div>
-          <div class="foot_item">
-            <b>mean_se_exp</b> = standard error of participants in the
-            experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>mean_se_nexp</b> = standard error of participants in the
-            non-experimental/non-exposed group.
-          </div>
-          <div class="foot_item">
-            <b>mean_ci_lo_exp</b> = lower bound of the 95% CI of the mean of the
-            experimental/exposed group
-          </div>
-          <div class="foot_item">
-            <b>mean_ci_up_exp</b> = upper bound of the 95% CI of the mean of the
-            experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>mean_ci_lo_nexp</b> = lower bound of the 95% CI of the mean of
-            the non-experimental/non-exposed.
-          </div>
-          <div class="foot_item">
-            <b>mean_ci_up_nexp</b> = upper bound of the 95% CI of the mean of
-            the non-experimental/non-exposed.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="contingency"
-        data-category="SMD COR rawOR rawRR NNT"
-      >
-        <h3>7. Contingency (2x2) table or proportions</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/contingency.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/contingency.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-        <div style="overflow-x: auto">
-          <div id="table_contingency"></div>
-        </div>
-        <div class="footnote">
-          <div class="foot_item">
-            <b>n_cases_exp</b> = number of cases/events in the exposed group.
-          </div>
-          <div class="foot_item">
-            <b>n_cases_nexp</b> = number of cases/events in the non exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>n_controls_exp</b> = number of controls/no-event in the exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>n_controls_nexp</b> = number of controls/no-event in the non
-            exposed group.
-          </div>
-          <div class="foot_item">
-            <b>prop_cases_exp</b> = proportion of cases/events in the exposed
-            group (ranging from 0 to 1).
-          </div>
-          <div class="foot_item">
-            <b>prop_cases_nexp</b> = proportion of cases/events in the
-            non-exposed group (ranging from 0 to 1).
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div class="table-title" id="phi" data-category="SMD COR rawOR rawRR NNT">
-        <h3>8. Phi or chi-square</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/phi.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/phi.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_phi"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item"><b>phi</b> = phi coefficient value.</div>
-          <div class="foot_item"><b>chisq</b> = chi-square value.</div>
-          <div class="foot_item"><b>chisq_pval</b> = chi-square p-value.</div>
-          <div class="foot_item">
-            <b>n_sample</b> = total number of participants in the sample.
-          </div>
-          <div class="foot_item">
-            <b>n_cases</b> = total number of cases/events.
-          </div>
-          <div class="foot_item">
-            <b>n_exp</b> = number of participants in the exposed group.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="means"
-        data-category="SMD rawMD VAR COR rawOR"
-      >
-        <h3>9. Means and dispersion</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/means_sd.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/means_sd.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_means"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>mean_exp</b> = mean of participants in the experimental/exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>mean_nexp</b> = mean of participants in the
-            non-experimental/non-exposed group.
-          </div>
-          <div class="foot_item">
-            <b>mean_sd_exp</b> = standard deviation of participants in the
-            experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>mean_sd_nexp</b> = standard deviation of participants in the
-            non-experimental/non-exposed group.
-          </div>
-          <div class="foot_item">
-            <b>mean_se_exp</b> = standard error of participants in the
-            experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>mean_se_nexp</b> = standard error of participants in the
-            non-experimental/non-exposed group.
-          </div>
-          <div class="foot_item">
-            <b>mean_ci_lo_exp</b> = lower bound of the 95% CI of the mean of the
-            experimental/exposed group
-          </div>
-          <div class="foot_item">
-            <b>mean_ci_up_exp</b> = upper bound of the 95% CI of the mean of the
-            experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>mean_ci_lo_nexp</b> = lower bound of the 95% CI of the mean of
-            the non-experimental/non-exposed.
-          </div>
-          <div class="foot_item">
-            <b>mean_ci_up_nexp</b> = upper bound of the 95% CI of the mean of
-            the non-experimental/non-exposed.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="mean_difference_crude"
-        data-category="SMD rawMD COR rawOR"
-      >
-        <h3>10. Mean difference and dispersion</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/mean_difference_crude.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/mean_difference_crude.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_mean_difference_crude"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>md</b> = mean difference between two independent groups.
-          </div>
-          <div class="foot_item">
-            <b>md_sd</b> = standard deviation of the mean difference.
-          </div>
-          <div class="foot_item">
-            <b>md_pval</b> = p-value of the mean difference.
-          </div>
-          <div class="foot_item">
-            <b>md_ci_lo</b> = lower bound of the 95% CI of the mean difference.
-          </div>
-          <div class="foot_item">
-            <b>md_ci_up</b> = upper bound of the 95% CI of the mean difference.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div class="table-title" id="anova" data-category="SMD COR rawOR">
-        <h3>
-          11. ANOVA statistics, Student's t-test, or point-bis correlation
-        </h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/anova.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/anova.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-        <div style="overflow-x: auto">
-          <div id="table_anova"></div>
-        </div>
-        <div class="footnote">
-          <div class="foot_item">
-            <b>anova_f</b> = F-test value from an ANOVA with a binary
-            independent variable.
-          </div>
-          <div class="foot_item">
-            <b>anova_f_pval</b> = p-value from an ANOVA with a binary
-            independent variable.
-          </div>
-          <div class="foot_item">
-            <b>student_t</b> = Student's t-test value.
-          </div>
-          <div class="foot_item">
-            <b>student_t_pval</b> = p-value from value from a Student's t-test
-            value.
-          </div>
-          <div class="foot_item">
-            <b>pt_bis_r</b> = correlation coefficient value from a
-            point-biserial correlation.
-          </div>
-          <div class="foot_item">
-            <b>pt_bis_r_pval</b> = p-value of a point-biserial correlation.
-          </div>
-          <div class="foot_item">
-            <b>etasq</b> = Eta-squared value from an ANOVA with a binary
-            independent variable.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="medians"
-        data-category="SMD rawMD VAR COR rawOR"
-      >
-        <h3>12. Median, range and/or interquartile range</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/medians.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/medians.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_medians"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>min_exp</b> = minimum value of the experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>q1_exp</b> = first quartile of the experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>med_exp</b> = median value of the experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>q3_exp</b> = third quartile of the experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>max_exp</b> = maximum value of the experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>min_nexp</b> = minimum value of the non-experimental/non-exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>q1_nexp</b> = first quartile of the non-experimental/non-exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>med_nexp</b> = median value of the non-experimental/non-exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>q3_nexp</b> = third quartile of the non-experimental/non-exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>max_nexp</b> = maximum value of the non-experimental/non-exposed
-            group.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div class="table-title" id="regression" data-category="SMD COR rawOR">
-        <h3>13. (Un-)Standardized regression coefficient</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/regression.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/regression.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_regression"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>beta_std</b> = standardized regression coefficient value (the
-            predictor of interest must be binary).
-          </div>
-          <div class="foot_item">
-            <b>beta_unstd</b> = unstandardized regression coefficient value (the
-            predictor of interest must be binary).
-          </div>
-          <div class="foot_item">
-            <b>dv_sd</b> = standard deviation of the dependent variable.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="change_scores"
-        data-category="SMD rawMD COR rawOR"
-      >
-        <h3>14. Paired: Mean change and dispersion</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/change_scores.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/change_scores.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_change_scores"></div>
-        </div>
-
-        <div class="footnote"></div>
-      </div>
-
-      <div
-        class="table-title"
-        id="pre_post"
-        data-category="SMD rawMD COR rawOR"
-      >
-        <h3>15. Paired: pre-post means and dispersion</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/pre_post.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/pre_post.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_pre_post">
-            <div class="foot_item">
-              <b>mean_change_exp & mean_change_nexp</b> = mean change of
-              participants in the exposed and non-exposed groups, respectively.
-            </div>
-            <div class="foot_item">
-              <b>mean_change_sd_exp & mean_change_sd_nexp</b> = standard
-              deviations of the mean change for participants in the exposed and
-              non-exposed groups, respectively.
-            </div>
-            <div class="foot_item">
-              <b>mean_change_se_exp & mean_change_se_nexp</b> = standard errors
-              of the mean change for participants in the exposed and non-exposed
-              groups, respectively.
-            </div>
-            <div class="foot_item">
-              <b>mean_change_ci_lo_exp & mean_change_ci_up_exp</b> = bounds of
-              the 95% CI around the mean change for participants in the exposed
-              group.
-            </div>
-            <div class="foot_item">
-              <b>mean_change_ci_lo_nexp & mean_change_ci_up_nexp</b> = bounds of
-              the 95% CI around the mean change for participants in the
-              non-exposed group.
-            </div>
-            <div class="foot_item">
-              <b>r_pre_post_exp & r_pre_post_nexp</b> = correlation between
-              pre-post scores in the exposed and non-exposed groups,
-              respectively.
-            </div>
-            <div class="foot_item">
-              <b>n_exp & n_nexp</b> = number of participants in the exposed and
-              non-exposed groups, respectively.
-            </div>
-          </div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>mean_pre_exp & mean_pre_nexp</b> = mean at baseline in the
-            exposed and non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_exp & mean_nexp</b> = mean at follow-up in the exposed and
-            non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_pre_sd_exp & mean_pre_sd_nexp</b> = standard deviation of
-            the mean at baseline in the exposed and non-exposed groups,
-            respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_sd_exp & mean_sd_nexp</b> = standard deviation of the mean
-            at follow up in the exposed and non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_pre_se_exp & mean_pre_se_nexp</b> = standard error of the
-            mean at baseline in the exposed and non-exposed groups,
-            respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_se_exp & mean_se_nexp</b> = standard error of the mean at
-            follow up in the exposed and non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_pre_ci_lo_exp & mean_pre_ci_up_exp</b> = lower and upper
-            bounds of the 95% CI of the mean of the non-experimental/non-exposed
-            group at baseline in the exposed and non-exposed groups,
-            respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_pre_ci_lo_exp & mean_pre_ci_up_exp</b> = lower and upper
-            bounds of the 95% CI of the mean of the non-experimental/non-exposed
-            group at baseline in the exposed and non-exposed groups,
-            respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_ci_lo_exp & mean_ci_up_exp</b> = lower and upper bounds of
-            the 95% CI of the mean of the non-experimental/non-exposed group at
-            follow up in the exposed and non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>mean_ci_lo_nexp & mean_ci_up_nexp</b> = lower and upper bounds of
-            the 95% CI of the mean of the non-experimental/non-exposed group at
-            follow up in the exposed and non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>r_pre_post_exp & r_pre_post_nexp</b> = correlation between
-            pre-post scores in the exposed and non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div class="table-title" id="paired_anova" data-category="SMD COR rawOR">
-        <h3>16. Paired: Paired F- or t-test</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/paired_anova.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/paired_anova.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_paired_anova"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>paired_f_exp & paired_f_nexp</b> = Paired ANOVA F value in the
-            exposed and non-exposed groups, respectively..
-          </div>
-          <div class="foot_item">
-            <b>paired_f_pval_exp & paired_f_pval_nexp</b> = P-value of the
-            paired ANOVA F in the exposed and non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>paired_t_exp & paired_t_nexp</b> = in the exposed and non-exposed
-            groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>paired_t_pval_exp & paired_t_pval_nexp</b> = Paired t-test value
-            in the exposed and non-exposed groups, respectively.
-          </div>
-          <div class="foot_item">
-            <b>r_pre_post_exp & r_pre_post_nexp</b> = correlation between
-            pre-post scores in the exposed and non-exposed groups, respectively.
-          </div>
-
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div class="table-title" id="smd_adjusted" data-category="SMD COR rawOR">
-        <h3>17. Cohen's d (adjusted)</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/cohen_d_adj.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/cohen_d_adj.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_smd_adjusted"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>cohen_d_adj</b> = Adjusted Cohen's d value.
-          </div>
-          <div class="foot_item">
-            <b>n_cov_ancova</b> = number of covariates in the ANCOVA model.
-          </div>
-          <div class="foot_item">
-            <b>cov_outcome_r</b> correlation between the outcome and covariate
-            (multiple correlation when multiple covariates are included in the
-            ANCOVA model).
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="ancova_statistics"
-        data-category="SMD COR rawOR"
-      >
-        <h3>18. ANCOVA statistics, eta-squared</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/ancova_statistics.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/ancova_statistics.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_ancova_statistics"></div>
-        </div>
-        <div class="footnote">
-          <div class="foot_item">
-            <b>ancova_f</b> = F-test value from an ANCOVA with a binary
-            independent variable.
-          </div>
-          <div class="foot_item">
-            <b>ancova_f_pval</b> = p-value from an ANCOVA with a binary
-            independent variable.
-          </div>
-          <div class="foot_item">
-            <b>ancova_t</b> = t-test value from an ANCOVA with a binary
-            independent variable.
-          </div>
-          <div class="foot_item">
-            <b>ancova_t_pval</b> = p-value from an ANCOVA with a binary
-            independent variable.
-          </div>
-          <div class="foot_item">
-            <b>cohen_d_adj</b> = adjusted Cohen's d value.
-          </div>
-          <div class="foot_item">
-            <b>etasq_adj</b> = adjusted eta-squared value.
-          </div>
-          <div class="foot_item">
-            <b>cov_outcome_r </b> = Covariate-outcome correlation (multiple R if
-            several covariates are included).
-          </div>
-          <div class="foot_item">
-            <b>n_cov_ancova </b> = number of covariates in the ANCOVA model.
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="ancova_means"
-        data-category="SMD rawMD COR rawOR"
-      >
-        <h3>19. Means and dispersion (adjusted)</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/ancova_means.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/ancova_means.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_ancova_means"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>ancova_mean_exp</b> = adjusted mean of participants in the
-            experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_nexp</b> = adjusted mean of participants in the
-            non-experimental/non-exposed group.
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_sd_exp</b> = adjusted standard deviation of
-            participants in the experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_sd_nexp</b> = adjusted standard deviation of
-            participants in the non-experimental/non-exposed group.
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_se_exp</b> = adjusted standard error of participants
-            in the experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_se_nexp</b> = adjusted standard error of participants
-            in the non-experimental/non-exposed group.
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_ci_lo_exp</b> = lower bound of the 95% CI of the
-            adjusted mean of the experimental/exposed group
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_ci_up_exp</b> = upper bound of the 95% CI of the
-            adjusted mean of the experimental/exposed group.
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_ci_lo_nexp</b> = lower bound of the 95% CI of the
-            adjusted mean of the non-experimental/non-exposed.
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_ci_up_nexp</b> = upper bound of the 95% CI of the
-            adjusted mean of the non-experimental/non-exposed.
-          </div>
-          <div class="foot_item">
-            <b>ancova_mean_sd_pooled</b> = adjusted pooled standard deviation.
-          </div>
-          <div class="foot_item">
-            <b>mean_sd_pooled_crude</b> = crude pooled standard deviation.
-          </div>
-          <div class="foot_item">
-            <b>n_cov_ancova</b> = number of covariates in the ANCOVA model.
-          </div>
-          <div class="foot_item">
-            <b>cov_outcome_r</b> = correlation between the outcome and covariate
-            (multiple correlation when multiple covariates are included in the
-            ANCOVA model).
-          </div>
-
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="mean_difference_adjusted"
-        data-category="SMD rawMD COR rawOR"
-      >
-        <h3>20. Mean difference and dispersion (adjusted)</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/mean_difference_adjusted.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/mean_difference_adjusted.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_mean_difference_adjusted"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>ancova_md</b> = adjusted mean difference between two independent
-            groups.
-          </div>
-          <div class="foot_item">
-            <b>ancova_md_sd</b> = standard deviation of the adjusted mean
-            difference.
-          </div>
-          <div class="foot_item">
-            <b>ancova_md_pval</b> = p-value of the adjusted mean difference.
-          </div>
-          <div class="foot_item">
-            <b>ancova_md_ci_lo</b> = lower bound of the 95% CI of the adjusted
-            mean difference.
-          </div>
-          <div class="foot_item">
-            <b>ancova_md_ci_up</b> = upper bound of the 95% CI of the adjusted
-            mean difference.
-          </div>
-          <div class="foot_item">
-            <b>n_cov_ancova</b> = number of covariates in the ANCOVA model.
-          </div>
-          <div class="foot_item">
-            <b>cov_outcome_r</b> = correlation between the outcome and covariate
-            (multiple correlation when multiple covariates are included in the
-            ANCOVA model).
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="plot_means"
-        data-category="SMD rawMD COR rawOR"
-      >
-        <h3>21. From a plot: Raw means and measure of dispersion</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/plot_means.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/plot_means.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_plot_means"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>plot_mean_exp</b> = mean of participants in the
-            experimental/exposed group (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_mean_nexp</b> = mean of participants in the
-            non-experimental/non-exposed group (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_mean_sd_lo_exp</b> = lower bound of an error bar depicting
-            -1 SD from the mean of the experimental/exposed group (extracted
-            from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_mean_sd_lo_nexp</b> = lower bound of an error bar depicting
-            -1 SD from the mean of the non-experimental/non-exposed group
-            (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_mean_sd_up_exp</b> = upper bound of an error bar depicting
-            +1 SD from the mean of the experimental/exposed group (extracted
-            from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_mean_sd_up_nexp</b> = upper bound of an error bar depicting
-            +1 SD from the mean of the non-experimental/non-exposed group
-            (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_mean_se_lo_exp</b> = lower bound of an error bar depicting
-            -1 SE from the mean of the experimental/exposed group (extracted
-            from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_mean_se_lo_nexp</b> = lower bound of an error bar depicting
-            -1 SE from the mean of the non-experimental/non-exposed group
-            (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_mean_se_up_exp</b> = upper bound of an error bar depicting
-            +1 SE from the mean of the experimental/exposed group (extracted
-            from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_mean_se_up_nexp</b> = upper bound of an error bar depicting
-            +1 SE from the mean of the non-experimental/non-exposed group
-            (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_mean_ci_lo_exp</b> = lower bound of an error bar depicting
-            the 95% CI of the mean of the experimental/exposed group (extracted
-            from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_mean_ci_lo_nexp</b> = lower bound of an error bar depicting
-            the 95% CI of the mean of the non-experimental/non-exposed group
-            (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_mean_ci_up_exp</b> = upper bound of an error bar depicting
-            the 95% CI of the mean of the experimental/exposed group (extracted
-            from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_mean_ci_up_nexp</b> = upper bound of an error bar depicting
-            the 95% CI of the mean of the non-experimental/non-exposed group
-            (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="plot_ancova_means"
-        data-category="SMD rawMD COR rawOR"
-      >
-        <h3>22. From plot: adjusted means and dispersion (adjusted)</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/plot_ancova_means.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/plot_ancova_means.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_plot_ancova_means"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>plot_ancova_mean_exp</b> = adjusted mean of participants in the
-            experimental/exposed group (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_ancova_mean_nexp</b> = adjusted mean of participants in the
-            non-experimental/non-exposed group (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_ancova_mean_sd_lo_exp</b> = lower bound of an error bar
-            depicting -1 SD from the adjusted mean of the experimental/exposed
-            group (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_ancova_mean_sd_lo_nexp</b> = lower bound of an error bar
-            depicting -1 SD from the adjusted mean of the
-            non-experimental/non-exposed group (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_ancova_mean_sd_up_exp</b> = upper bound of an error bar
-            depicting +1 SD from the adjusted mean of the experimental/exposed
-            group (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_ancova_mean_sd_up_nexp</b> = upper bound of an error bar
-            depicting +1 SD from the adjusted mean of the
-            non-experimental/non-exposed group (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_ancova_mean_se_lo_exp</b> = lower bound of an error bar
-            depicting -1 SE from the adjusted mean of the experimental/exposed
-            group (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_ancova_mean_se_lo_nexp</b> = lower bound of an error bar
-            depicting -1 SE from the adjusted mean of the
-            non-experimental/non-exposed group (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_ancova_mean_se_up_exp</b> = upper bound of an error bar
-            depicting +1 SE from the adjusted mean of the experimental/exposed
-            group (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_ancova_mean_se_up_nexp</b> = upper bound of an error bar
-            depicting +1 SE from the adjusted mean of the
-            non-experimental/non-exposed group (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_ancova_mean_ci_lo_exp</b> = lower bound of an error bar
-            depicting the 95% CI of the adjusted mean of the
-            experimental/exposed group (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_ancova_mean_ci_lo_nexp</b> = lower bound of an error bar
-            depicting the 95% CI of the adjusted mean of the
-            non-experimental/non-exposed group (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_ancova_mean_ci_up_exp</b> = upper bound of an error bar
-            depicting the 95% CI of the adjusted mean of the
-            experimental/exposed group (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>plot_ancova_mean_ci_up_nexp</b> = upper bound of an error bar
-            depicting the 95% CI of the adjusted mean of the
-            non-experimental/non-exposed group (extracted from a plot).
-          </div>
-          <div class="foot_item">
-            <b>n_exp & n_nexp</b> = number of participants in the exposed and
-            non-exposed groups, respectively.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="user_crude"
-        data-category="SMD COR rawOR rawRR NNT VAR IRR rawMD"
-      >
-        <h3>23. User's input (crude)</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/user_crude.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/user_crude.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_user_crude"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>measure</b> = the target effect size measure (should be one of
-            the 11 effect size measures available in metaConvert).
-          </div>
-          <div class="foot_item">
-            <b>user_es_measure_crude</b> = name of the original effect size
-            measure.
-          </div>
-          <div class="foot_item"><b>user_es_crude</b> = effect size value.</div>
-          <div class="foot_item">
-            <b>user_se_crude</b> = effect size standard error.
-          </div>
-          <div class="foot_item">
-            <b>user_ci_lo_crude & user_ci_up_crude</b> = lower and upper bounds
-            of the 95% CI around the effect size value.
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="table-title"
-        id="user_adjusted"
-        data-category="SMD COR rawOR rawRR NNT VAR IRR rawMD"
-      >
-        <h3>24. User's input (adjusted)</h3>
-        <div class="fictitious_datasets">
-          <div class="excel_file">
-            <a href="../tables/user_adjusted.xlsx" download
-              ><img src="../img/excelformat.svg"
-            /></a>
-          </div>
-          <div class="text_file">
-            <a href="../tables/user_adjusted.txt" download
-              ><img src="../img/textformat.svg"
-            /></a>
-          </div>
-        </div>
-
-        <div style="overflow-x: auto">
-          <div id="table_user_adjusted"></div>
-        </div>
-
-        <div class="footnote">
-          <div class="foot_item">
-            <b>measure</b> = the target effect size measure (should be one of
-            the 11 effect size measures available in metaConvert).
-          </div>
-          <div class="foot_item">
-            <b>user_es_measure_adjusted</b> = name of the original effect size
-            measure.
-          </div>
-          <div class="foot_item">
-            <b>user_es_adjusted</b> = effect size value (should be adjusted).
-          </div>
-          <div class="foot_item">
-            <b>user_se_adjusted</b> = effect size standard error.
-          </div>
-          <div class="foot_item">
-            <b>user_ci_lo_adjusted & user_ci_up_adjusted</b> = lower and upper
-            bounds of the 95% CI around the adjusted effect size value.
-          </div>
-        </div>
-      </div>
-    </section>
-    <script src="https://unpkg.com/intro.js/intro.js"></script>
-
-    <script>
-      $(document).ready(function () {
-        // Add smooth scrolling to all links
-        $("a").on("click", function (event) {
-          if (this.hash !== "") {
-            event.preventDefault();
-
-            // Store hash
-            var hash = this.hash;
-
-            // Animate smooth scroll
-            $("html, body").animate(
-              {
-                scrollTop: $(hash).offset().top,
-              },
-              800,
-              function () {
-                // Add hash (#) to URL when done scrolling
-                window.location.hash = hash;
-              }
-            );
-          }
-        });
-
-        $.get("../tables/pre_post.html", function (data) {
-          $("#table_pre_post").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/cohen_d.html", function (data) {
-          $("#table_smd").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/var.html", function (data) {
-          $("#table_var").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/cohen_d_adj.html", function (data) {
-          $("#table_smd_adjusted").html(data);
-        });
-      });
-
-      $(document).ready(function () {
-        $.get("../tables/mean_difference_crude.html", function (data) {
-          $("#table_mean_difference_crude").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/mean_difference_adjusted.html", function (data) {
-          $("#table_mean_difference_adjusted").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/change_scores.html", function (data) {
-          $("#table_change_scores").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/paired_anova.html", function (data) {
-          $("#table_paired_anova").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/means_sd.html", function (data) {
-          $("#table_means").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/plot_means.html", function (data) {
-          $("#table_plot_means").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/anova.html", function (data) {
-          $("#table_anova").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/ancova_means.html", function (data) {
-          $("#table_ancova_means").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/ancova_statistics.html", function (data) {
-          $("#table_ancova_statistics").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/plot_ancova_means.html", function (data) {
-          $("#table_plot_ancova_means").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/regression.html", function (data) {
-          $("#table_regression").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/cor.html", function (data) {
-          $("#table_cor").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/contingency.html", function (data) {
-          $("#table_contingency").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/or.html", function (data) {
-          $("#table_or").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/rr.html", function (data) {
-          $("#table_rr").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/irr.html", function (data) {
-          $("#table_irr").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/phi.html", function (data) {
-          $("#table_phi").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/medians.html", function (data) {
-          $("#table_medians").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/user_crude.html", function (data) {
-          $("#table_user_crude").html(data);
-        });
-      });
-      $(document).ready(function () {
-        $.get("../tables/user_adjusted.html", function (data) {
-          $("#table_user_adjusted").html(data);
-        });
-      });
-    </script>
-    <script src="../script/input.js"></script>
-  </body>
-</html>
-<!-- <section class="toc-container show_toc" id="toc">
-      <div id="selector" style="margin-left: 0.5rem">
-        <label for="category-select">Select an effect size measure:</label>
-      </div>
-
-      <div class="toc">
-        <ol class="toc_list">
-          <li class="non-clickable-header">Standardized effect sizes</li>
-
-          <li data-category="SMD COR rawOR">
-            <a href="#smd"><span>1.</span> Cohen's d or Hedges' g</a>
-          </li>
-          <li data-category="rawOR rawRR NNT COR SMD">
-            <a href="#or"><span>2.</span> Odds Ratio</a>
-          </li>
-          <li data-category="rawOR rawRR NNT">
-            <a href="#rr"><span>3.</span> Risk Ratio</a>
-          </li>
-          <li data-category="rawOR COR SMD">
-            <a href="#cor"><span>4.</span> Pearson's r or Fisher's z</a>
-          </li>
-          <li data-category="IRR">
-            <a href="#irr"><span>5.</span> Incidence Ratio Ratio</a>
-          </li>
-          <li data-category="VAR">
-            <a href="#var"><span>6.</span> Variability indices</a>
-          </li>
-
-          <li class="non-clickable-header">
-            Dichotomous predictor + Dichotomous outcome
-          </li>
-
-          <li data-category="rawOR rawRR NNT COR SMD">
-            <a href="#contingency"
-              ><span>7.</span> Contingency (2x2) table or proportions</a
-            >
-          </li>
-          <li data-category="rawOR rawRR NNT COR SMD">
-            <a href="#phi"><span>8.</span> Phi or chi-square</a>
-          </li>
-
-          <li class="non-clickable-header">
-            Dichotomous predictor + Quantitative outcome
-          </li>
-          <li data-category="rawOR rawMD COR SMD VAR">
-            <a href="#means"><span>9.</span> Means and dispersion (crude)</a>
-          </li>
-          <li data-category="rawOR rawMD COR SMD VAR">
-            <a href="#mean_difference_crude"
-              ><span>10.</span> Mean difference and dispersion (crude)</a
-            >
-          </li>
-          <li data-category="rawOR COR SMD">
-            <a href="#anova"
-              ><span>11.</span> ANOVA statistics, Student's t-test, or point-bis
-              correlation</a
-            >
-          </li>
-          <li data-category="rawOR rawMD COR SMD VAR">
-            <a href="#medians"
-              ><span>12.</span> Median, range and/or interquartile range</a
-            >
-          </li>
-          <li data-category="rawOR COR SMD">
-            <a href="#regression"
-              ><span>13.</span> (Un-)Standardized regression coefficient</a
-            >
-          </li>
-
-          <li class="non-clickable-header">
-            Special cases: Change + Matched pairs
-          </li>
-          <li data-category="rawOR rawMD COR SMD">
-            <a href="#change_scores"
-              ><span>14.</span> Paired: mean change, and dispersion</a
-            >
-          </li>
-          <li data-category="rawOR rawMD COR SMD">
-            <a href="#pre_post"
-              ><span>15.</span> Paired: pre-post means and dispersion</a
-            >
-          </li>
-          <li data-category="rawOR COR SMD">
-            <a href="#paired_anova"
-              ><span>16.</span> Paired: Paired F- or t-test</a
-            >
-          </li>
-          <li class="non-clickable-header">
-            Special cases: Adjusted input data
-          </li>
-          <li data-category="rawOR COR SMD">
-            <a href="#smd_adjusted"><span>17.</span> Cohen's d (adjusted)</a>
-          </li>
-
-          <li data-category="rawOR COR SMD">
-            <a href="#ancova_statistics"
-              ><span>18.</span> Adjusted: ANCOVA statistics, eta-squared</a
-            >
-          </li>
-          <li data-category="MD rawOR COR SMD">
-            <a href="#ancova_means"
-              ><span>19.</span> Adjusted: Means and dispersion</a
-            >
-          </li>
-          <li data-category="MD rawOR COR SMD">
-            <a href="#mean_difference_adjusted"
-              ><span>20.</span> Adjusted: Mean difference and dispersion</a
-            >
-          </li>
-          <li class="non-clickable-header">
-            Special cases: Extraction from a plot
-          </li>
-
-          <li data-category="MD rawOR COR SMD VAR">
-            <a href="#plot_means"
-              ><span>21.</span> From plot: means and dispersion (crude)</a
-            >
-          </li>
-          <li data-category="MD rawOR COR SMD">
-            <a href="#plot_ancova_means"
-              ><span>22.</span> From plot: adjusted means and dispersion
-              (adjusted)</a
-            >
-          </li>
-          <li class="non-clickable-header">
-            Special cases: other effect size measures
-          </li>
-
-          <li>
-            <a href="#user_crude"><span>23.</span> User's input (crude)</a>
-          </li>
-          <li>
-            <a href="#user_adjusted"
-              ><span>24.</span> User's input (adjusted)</a
-            >
-          </li>
-        </ol>
-      </div>
-    </section> -->
-<!-- <div class="motherplat">
-      <a href="../background/extraction_sheet.xlsx"
-        ><div class="left_hub">
-          <img src="../img/excel.png" class="hub_img" /></div
-      ></a>
-      <a href="../background/extraction_sheet.xlsx" download
-        ><div class="right_hub">
-          Download informative data extraction sheet
-        </div></a
-      >
-      <div class="close-btn">&times;</div>
-    </div> -->
-
-<!-- <div id="popup">
-      <div id="popupContent">
-        <h2>
-          <i class="fas fa-exclamation-triangle"></i> WARNING
-          <i class="fas fa-exclamation-triangle"></i>
-        </h2>
-        <p>
-          This section describes all the combination of input data allowing to
-          estimate and/or convert the 11 effect size measures available in
-          metaConvert.
-        </p>
-        <p style="font-weight: bold">
-          Importantly, it is not because you can obtain the same effect size
-          measure from various input data that it makes sense to pool them in a
-          meta-analysis.
-        </p>
-        <p class="highlight">
-          <b>Exemple:</b> The effect size measure of your meta-analysis is SMD.
-          Even if metaConvert gives you the possibility, it would (generally)
-          have very limited meaning to pool a SMD obtained from a RCT change
-          scores with a SMD obtained by converting a correlation coefficient
-          from a cross-sectional study.
-        </p>
-
-        <p>
-          Use the tables in this section when drafting your protocol:
-          <b>pre-specify the input data you will use</b> to estimate your target
-          effect size measure of your meta-analysis.
-        </p>
-        <span id="closeButton">&times;</span>
-      </div>
-    </div> -->
-<!-- <div class="datasets-container">
-      <div class="download_extract">
-        <div class="toggle-menu" onclick="toggleMenu()">+</div>
-        <ul class="menu">
-          <li style="--i: 1">
-            <a href="../data_extraction/md.csv" download> MD </a>
-          </li>
-          <li style="--i: 2">
-            <a href="../data_extraction/var.csv" download> VAR </a>
-          </li>
-          <li style="--i: 3">
-            <a href="../data_extraction/cor.csv" download> COR </a>
-          </li>
-          <li style="--i: 4">
-            <a href="../data_extraction/or.csv" download> OR </a>
-          </li>
-          <li style="--i: 5">
-            <a href="../data_extraction/rr.csv" download> RR </a>
-          </li>
-          <li style="--i: 6">
-            <a href="../data_extraction/irr.csv" download> IRR </a>
-          </li>
-          <li style="--i: 7">
-            <a href="../data_extraction/nnt.csv" download> NNT </a>
-          </li>
-          <li style="--i: 8">
-            <a href="../data_extraction/smd.csv" download> SMD </a>
-          </li>
+    <link rel="stylesheet" href="https://unpkg.com/intro.js/introjs.css" />
+    <link rel="stylesheet" href="css/main.css" />
+
+    <style>
+        :root {
+            --primary: #7c3aed;
+            --primary-dark: #6d28d9;
+            --primary-light: #a855f7;
+            --primary-rgb: 124, 58, 237;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --text-muted: #9ca3af;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --bg-tertiary: #f3f4f6;
+            --bg-accent: rgba(124, 58, 237, 0.05);
+            --border-light: #e5e7eb;
+            --border-medium: #d1d5db;
+            --border-dark: #9ca3af;
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --transition: all 0.2s ease-in-out;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: "Work Sans", sans-serif;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 120px;
+        }
+
+        /* Main Container */
+        .container { max-width: 1400px; margin: 0 auto; padding: 8rem 2rem 2rem; }
+
+        /* Header Section */
+        .page-header {
+            text-align: center; margin-bottom: 4rem; padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-accent) 100%);
+            border-radius: var(--radius-xl); border: 1px solid var(--border-light); box-shadow: var(--shadow-md);
+        }
+        .page-title { font-size: 3rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem; }
+        .page-subtitle { font-size: 1.25rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto 2rem; }
+        .help-button {
+            display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem;
+            background: var(--primary); color: white; border: none; border-radius: var(--radius-md);
+            font-weight: 600; cursor: pointer; transition: var(--transition); text-decoration: none;
+        }
+        .help-button:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+        /* Effect Size Explorer Section */
+        .explorer-section {
+            background: var(--bg-primary); border: 1px solid var(--border-light); border-radius: var(--radius-xl);
+            padding: 2.5rem; margin-bottom: 3rem; box-shadow: var(--shadow-sm);
+        }
+        .explorer-header { text-align: center; margin-bottom: 2rem; }
+        .explorer-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .explorer-description { font-size: 1.1rem; color: var(--text-secondary); }
+        .glossary-items { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
+        .glossary-item { padding: 1.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-light); display: flex; align-items: center; gap: 1rem; }
+        .glossary-item .icon { font-size: 1.5rem; }
+        .glossary-item.natural { border-left: 4px solid var(--success); }
+        .glossary-item.natural .icon { color: var(--success); }
+        .glossary-item.converted { border-left: 4px solid var(--warning); }
+        .glossary-item.converted .icon { color: var(--warning); }
+        .glossary-item strong { color: var(--text-primary); }
+        .es-toggle-container { text-align: center; padding-top: 2rem; border-top: 1px dashed var(--border-light); }
+        .toggle-label { font-size: 1.1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem; display: block; }
+        .toggle-switch { position: relative; display: inline-block; width: 60px; height: 32px; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border-medium); transition: var(--transition); border-radius: 32px; }
+        .toggle-slider:before { position: absolute; content: ""; height: 24px; width: 24px; left: 4px; bottom: 4px; background-color: white; transition: var(--transition); border-radius: 50%; }
+        input:checked + .toggle-slider { background-color: var(--primary); }
+        input:checked + .toggle-slider:before { transform: translateX(28px); }
+        .esm-grid { display: none; margin-top: 2rem; }
+        .esm-grid.show { display: block; }
+        .esm-table-wrapper { border: 1px solid var(--border-light); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+        .esm-table { width: 100%; border-collapse: collapse; background: var(--bg-primary); }
+        .esm-table th { background: var(--bg-secondary); padding: 1rem; font-weight: 600; color: var(--text-primary); border-bottom: 2px solid var(--border-light); text-align: left; }
+        .esm-table th:last-child { text-align: center; }
+        .esm-table td { padding: 1rem; border-bottom: 1px solid var(--border-light); vertical-align: middle; }
+        .esm-table tr { cursor: pointer; transition: var(--transition); }
+        .esm-table tr:hover { background: var(--bg-accent); }
+        .esm-table tr:last-child td { border-bottom: none; }
+        .esm-table tr.row-active { background: var(--primary) !important; color: white; }
+        .esm-table tr.row-active td, .esm-table tr.row-active td i { color: white; }
+        .clickable-es { cursor: pointer; padding: 0.35rem 0.75rem; border-radius: var(--radius-md); background: var(--bg-accent); color: var(--primary); font-weight: 600; transition: var(--transition); display: inline-block; margin: 0.125rem; border: 1px solid transparent; }
+        .esm-table td:last-child { text-align: center; }
+        .clickable-es:hover, .clickable-es.filter-active { background: var(--primary); color: white; transform: translateY(-1px); border-color: var(--primary-dark); }
+        .esm-table tr.row-active .clickable-es { background: white; color: var(--primary); }
+        .esm-table .var-icon { width: 30px; display: inline-flex; justify-content: center; font-size: 1rem; }
+        .var-icon.predictor { color: #b8880e; }
+        .var-icon.outcome { color: #46786d; }
+        .var-icon.time { color: #6d28d9; }
+
+        /* Data Templates Section */
+        .templates-section { background: var(--bg-primary); border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: 2.5rem; margin-bottom: 2rem; box-shadow: var(--shadow-sm); }
+        .section-header { text-align: center; margin-bottom: 1.5rem; }
+        .section-title { font-size: 2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
+        .section-description { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem; }
+
+        /* Search & Filter Controls */
+        .template-controls {
+            display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center;
+            justify-content: space-between; margin-bottom: 2.5rem; padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .search-bar-container { position: relative; flex-grow: 1; min-width: 250px; }
+        #templateSearch { width: 100%; padding: 0.75rem 0.75rem 0.75rem 2.5rem; font-size: 1rem; border: 1px solid var(--border-medium); border-radius: var(--radius-md); transition: var(--transition); }
+        #templateSearch:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1); outline: none; }
+        .search-bar-container .search-icon { position: absolute; left: 0.875rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+        .view-toggle-container { display: flex; align-items: center; gap: 0.75rem; }
+        .view-toggle-label { font-weight: 500; color: var(--text-secondary); }
+        .view-toggle { display: flex; background: var(--bg-tertiary); border-radius: var(--radius-md); padding: 0.25rem; }
+        .view-toggle-btn { background: none; border: none; padding: 0.5rem 1rem; font-weight: 600; font-size: 0.875rem; border-radius: var(--radius-sm); cursor: pointer; transition: var(--transition); color: var(--text-secondary); }
+        .view-toggle-btn.active { background: var(--bg-primary); color: var(--primary); box-shadow: var(--shadow-sm); }
+        
+        /* Category Selector */
+        .category-selector { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem; }
+        .category-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; padding: 1.5rem; background: var(--bg-primary); border: 2px solid var(--border-light); border-radius: var(--radius-lg); cursor: pointer; transition: var(--transition); }
+        .category-card:hover { border-color: var(--primary-light); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .category-card.active { border-color: var(--primary); background: var(--bg-accent); box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1); transform: translateY(-4px); }
+        .category-icon { font-size: 2rem; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; background: var(--bg-tertiary); border-radius: 50%; color: var(--text-secondary); transition: var(--transition); }
+        .category-card:hover .category-icon, .category-card.active .category-icon { background: var(--primary); color: white; }
+        .category-text h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .category-text p { font-size: 0.9rem; color: var(--text-secondary); margin: 0; }
+
+        /* Templates Grid & Empty State */
+        .templates-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 1.5rem; }
+        .empty-state { display: none; text-align: center; padding: 4rem 2rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 2px dashed var(--border-light); }
+        .empty-state i { font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem; }
+        .empty-state h4 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .empty-state p { color: var(--text-secondary); }
+
+        .template-card {
+            background: var(--bg-primary); border: 2px solid var(--border-light); border-radius: var(--radius-lg);
+            padding: 1.5rem; cursor: pointer; transition: var(--transition); position: relative; display: flex;
+            flex-direction: column;
+        }
+        .template-card.hidden { display: none; }
+        .template-card:hover { border-color: var(--primary-light); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .template-card.selected { border-color: var(--success); background: rgba(16, 185, 129, 0.05); }
+        .template-card.selected::before { content: '\f058'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; color: var(--success); }
+        .template-checkbox { display: none; }
+        .template-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem; padding-right: 2rem; }
+        .template-title { font-size: 1.1rem; font-weight: 600; color: var(--text-primary); margin: 0; flex: 1; }
+        .template-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+        .badge { padding: 0.25rem 0.5rem; font-size: 0.75rem; font-weight: 600; border-radius: var(--radius-sm); border: 1px solid; }
+        .badge.natural { color: var(--success); background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); }
+        .badge.converted { color: var(--warning); background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.3); }
+        .template-columns { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-bottom: 1rem; }
+        .column-tag { padding: 0.25rem 0.5rem; font-size: 0.75rem; background: var(--bg-tertiary); color: var(--text-secondary); border-radius: var(--radius-sm); font-family: monospace; }
+        .template-card-footer { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-light); }
+        .expand-btn { background: none; border: none; color: var(--primary); font-size: 0.875rem; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; width: 100%; justify-content: center; }
+        .expand-btn:hover { text-decoration: underline; }
+        .expand-icon { transition: transform 0.3s ease; }
+        .template-details { display: none; margin-top: 1rem; padding: 1rem; background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--border-light); }
+        .template-details.show { display: block; }
+        .field-description { margin-bottom: 0.75rem; padding: 0.5rem; background: var(--bg-primary); border-radius: var(--radius-sm); font-size: 0.875rem; }
+        .field-name { font-family: monospace; font-weight: 600; color: var(--primary); }
+
+        /* Floating Action Buttons */
+        .floating-actions { position: fixed; bottom: 2rem; right: 2rem; z-index: 1000; display: flex; gap: 1rem; align-items: center; }
+        .action-fab { width: 60px; height: 60px; border: none; border-radius: 50%; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow-lg); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; position: relative; }
+        .preview-fab { background: var(--info); color: white; }
+        .download-fab { background: var(--success); color: white; }
+        .action-fab:hover:not(:disabled) { transform: translateY(-4px); box-shadow: 0 12px 20px rgba(0,0,0,0.15); }
+        .preview-fab:hover:not(:disabled) { background: #2563eb; }
+        .download-fab:hover:not(:disabled) { background: #059669; }
+        .action-fab:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: var(--shadow-lg); }
+        .download-count { position: absolute; top: -8px; right: -8px; background: var(--danger); color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; transform: scale(0); transition: transform 0.2s ease-out; }
+        .download-count.visible { transform: scale(1); }
+        .clear-selection-btn { background: none; border: none; color: var(--danger); font-size: 1rem; cursor: pointer; opacity: 0; transition: var(--transition); padding: 0.5rem; display: flex; align-items: center; gap: 0.5rem; font-weight: 500;}
+        .clear-selection-btn.visible { opacity: 1; }
+
+        /* Modal Styles (Download & Preview) */
+        .download-modal { position: fixed; bottom: 90px; right: 2rem; background: var(--bg-primary); border: 1px solid var(--border-light); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: 1rem; display: none; z-index: 1001; min-width: 200px; }
+        .download-modal.show { display: block; }
+        .download-modal h3 { margin: 0 0 1rem 0; font-size: 1rem; color: var(--text-primary); }
+        .download-option { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; border: none; background: none; width: 100%; text-align: left; border-radius: var(--radius-md); cursor: pointer; transition: var(--transition); margin-bottom: 0.5rem; }
+        .download-option:hover { background: var(--bg-secondary); }
+        .download-option:last-child { margin-bottom: 0; }
+        .option-icon { width: 20px; text-align: center; color: var(--primary); }
+        .preview-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1050; display: none; align-items: center; justify-content: center; }
+        .preview-modal.show { display: flex; }
+.preview-modal-content { 
+    z-index: 999999999999999999;
+    background: var(--bg-primary); 
+    border-radius: var(--radius-xl); 
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: var(--shadow-lg); 
+    width: 90%; 
+    max-width: 1200px; 
+    height: 80vh; 
+    display: flex; 
+    flex-direction: column; 
+    overflow: hidden; 
+    position: relative; 
+}
+        .preview-modal-header { padding: 1.5rem; border-bottom: 1px solid var(--border-light); background: var(--bg-secondary); display: flex; align-items: center; justify-content: space-between; }
+        .preview-modal-title { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin: 0; }
+        .preview-modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-secondary); padding: 0.5rem; border-radius: var(--radius-md); transition: var(--transition); }
+        .preview-modal-close:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+        .preview-modal-body { padding: 1.5rem; overflow-y: auto; flex-grow: 1; }
+        .preview-description { margin-bottom: 1.5rem; padding: 1rem; background: var(--bg-accent); border-radius: var(--radius-md); border-left: 4px solid var(--primary); }
+        .preview-table-container { overflow-x: auto; border: 1px solid var(--border-light); border-radius: var(--radius-md); background: var(--bg-primary); }
+        .preview-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+        .preview-table th { background: var(--bg-secondary); padding: 0.75rem; font-weight: 600; color: var(--text-primary); border-bottom: 2px solid var(--border-light); border-right: 1px solid var(--border-light); text-align: center; min-width: 100px; position: sticky; top: 0; z-index: 1; }
+        .preview-table td { padding: 0.75rem; border-bottom: 1px solid var(--border-light); border-right: 1px solid var(--border-light); text-align: center; font-family: monospace; }
+        .preview-table tr:nth-child(even) { background: var(--bg-secondary); }
+        .preview-table tr:hover { background: var(--bg-accent); }
+        .empty-cell { color: #d1d5db; font-style: italic; }
+        .empty-cell::after { content: '—'; }
+        .preview-modal-footer { padding: 1.5rem; border-top: 1px solid var(--border-light); background: var(--bg-secondary); display: flex; gap: 1rem; justify-content: flex-end; }
+        .btn { padding: 0.75rem 1.5rem; border: none; border-radius: var(--radius-md); font-weight: 600; cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; gap: 0.5rem; }
+        .btn-secondary { background: var(--bg-tertiary); color: var(--text-secondary); border: 1px solid var(--border-medium); }
+        .btn-secondary:hover { background: var(--bg-secondary); color: var(--text-primary); }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .filter-indicator { display: none; text-align: center; margin-bottom: 1.5rem; padding: 0.75rem; background: var(--bg-accent); border-radius: var(--radius-md); color: var(--primary); font-weight: 600; }
+        .filter-indicator.show { display: block; }
+        #filterText strong { background: var(--primary); color: white; padding: 0.1rem 0.5rem; border-radius: var(--radius-sm); font-family: monospace; }
+        .clear-filter { background: none; border: none; color: var(--primary); text-decoration: underline; cursor: pointer; margin-left: 0.5rem; font-weight: 600; }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .page-title { font-size: 2rem; }
+            .page-subtitle { font-size: 1rem; }
+            .container { padding: 6rem 1rem 1rem; }
+            .page-header, .explorer-section, .templates-section { padding: 1.5rem; }
+            .glossary-items, .category-selector, .templates-grid { grid-template-columns: 1fr; }
+            .template-controls { flex-direction: column; align-items: stretch; }
+            .floating-actions { bottom: 1rem; right: 1rem; }
+            .download-modal { right: 1rem; bottom: 80px; }
+            .preview-modal { box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;}
+            .preview-modal-content { width: 95%; height: 95vh; }
+            .preview-modal-title { font-size: 1.2rem; }
+            .preview-modal-footer { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .preview-table th, .preview-table td { padding: 0.5rem 0.25rem; font-size: 0.75rem; min-width: 80px; }
+        }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-in { animation: fadeIn 0.6s ease-out forwards; opacity: 0; }
+        .animate-in:nth-child(2) { animation-delay: 0.1s; }
+        .animate-in:nth-child(3) { animation-delay: 0.2s; }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo"><img src="logo/logo.svg" /></div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <!-- <li><a href="tutorial.html">Tutorial</a></li> -->
+          <li><a href="input.html" class="homepage currentpage">Input data</a></li>
+          <li><a href="app.html" >App</a></li>
         </ul>
-      </div>
-    </div> -->
+        <div id="hamburger-menu"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </nav>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header class="page-header animate-in" id="pageHeader">
+            <h1 class="page-title">Build Your Data Extraction Sheet</h1>
+            <p class="page-subtitle">
+                Select from the templates below to create a custom CSV or Excel file tailored to the statistical data available in your studies.
+            </p>
+            <a href="#" class="help-button" onclick="startTutorial()">
+                <i class="fas fa-question-circle"></i>
+                Need Help? Start Guided Tour
+            </a>
+        </header>
+
+        <!-- Effect Size Explorer Section -->
+        <section class="explorer-section animate-in" id="explorerSection">
+            <div class="explorer-header">
+                <h2 class="explorer-title">Effect Size Explorer</h2>
+                <p class="explorer-description">Understand the types of effect sizes and filter templates by the measure you want to calculate.</p>
+            </div>
+            <div class="glossary-items">
+                <div class="glossary-item natural"><div class="icon"><i class="fas fa-leaf"></i></div><div><strong>🟢 natural_es:</strong> The most direct effect size calculated from the input data, ensuring maximum precision.</div></div>
+                <div class="glossary-item converted"><div class="icon"><i class="fas fa-exchange-alt"></i></div><div><strong>🟡 converted_es:</strong> An effect size derived via a conversion formula, which may introduce a small degree of approximation.</div></div>
+            </div>
+            <div class="es-toggle-container">
+                <label class="toggle-label">Explore Effect Size Measures</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="esToggle">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="esm-grid" id="esmGrid">
+                <div class="esm-table-wrapper">
+                    <table class="esm-table">
+                        <thead>
+                            <tr><th>Predictor Type</th><th>Outcome Type</th><th>Effect Size Measure</th><th>Acronym</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr class="es-row" data-es="SMD"><td><span class="var-icon predictor"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td><span class="var-icon outcome"><i class="fas fa-ruler-combined"></i></span> Continuous</td><td>Standardized Mean Difference</td><td><span class="clickable-es" data-es="SMD">SMD</span></td></tr>
+                            <tr class="es-row" data-es="MD"><td><span class="var-icon predictor"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td><span class="var-icon outcome"><i class="fas fa-ruler-combined"></i></span> Continuous</td><td>Mean Difference</td><td><span class="clickable-es" data-es="MD">MD</span></td></tr>
+                            <tr class="es-row" data-es="VAR"><td><span class="var-icon predictor"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td><span class="var-icon outcome"><i class="fas fa-ruler-combined"></i></span> Continuous</td><td>Variability Ratio / CoV</td><td><span class="clickable-es" data-es="VAR">VAR</span></td></tr>
+                            <tr class="es-row" data-es="COR"><td><span class="var-icon predictor"><i class="fas fa-ruler-combined"></i></span> Continuous</td><td><span class="var-icon outcome"><i class="fas fa-ruler-combined"></i></span> Continuous</td><td>Correlation (r / Fisher's z)</td><td><span class="clickable-es" data-es="COR">COR</span></td></tr>
+                            <tr class="es-row" data-es="OR"><td><span class="var-icon predictor"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td><span class="var-icon outcome"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td>Odds Ratio</td><td><span class="clickable-es" data-es="OR">OR</span></td></tr>
+                            <tr class="es-row" data-es="RR"><td><span class="var-icon predictor"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td><span class="var-icon outcome"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td>Risk Ratio</td><td><span class="clickable-es" data-es="RR">RR</span></td></tr>
+                            <tr class="es-row" data-es="NNT"><td><span class="var-icon predictor"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td><span class="var-icon outcome"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td>Number Needed to Treat</td><td><span class="clickable-es" data-es="NNT">NNT</span></td></tr>
+                            <tr class="es-row" data-es="IRR"><td><span class="var-icon time"><i class="far fa-clock"></i></span> Time</td><td><span class="var-icon outcome"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td>Incidence Rate Ratio</td><td><span class="clickable-es" data-es="IRR">IRR</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Templates Section -->
+        <section class="templates-section animate-in" id="templatesSection">
+            <div class="section-header">
+                <h2 class="section-title">Statistical Data Templates</h2>
+                <p class="section-description">
+                    Filter by data type, search, and select all the templates that match your available data.
+                </p>
+            </div>
+
+            <!-- New Search & Filter Controls -->
+            <div class="template-controls">
+                <div class="search-bar-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="templateSearch" placeholder="Search templates (e.g., 'ANOVA', 't-test', 'beta_std')...">
+                </div>
+                <div class="view-toggle-container" id="viewToggle">
+                    <span class="view-toggle-label">View:</span>
+                    <div class="view-toggle">
+                        <button class="view-toggle-btn active" data-level="basic">Basic</button>
+                        <button class="view-toggle-btn" data-level="all">Show All</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category Selector -->
+            <div class="category-selector" id="categorySelector">
+                <div class="category-card active" data-filter="all"><div class="category-icon"><i class="fas fa-grip"></i></div><div class="category-text"><h4>All Templates</h4><p>Show all available options</p></div></div>
+                <div class="category-card" data-filter="means"><div class="category-icon"><i class="fas fa-chart-line"></i></div><div class="category-text"><h4>Group Averages</h4><p>Means, SDs, t-tests, ANOVA</p></div></div>
+                <div class="category-card" data-filter="proportions"><div class="category-icon"><i class="fas fa-chart-pie"></i></div><div class="category-text"><h4>Proportions</h4><p>Counts, 2x2 tables, OR, RR</p></div></div>
+                <div class="category-card" data-filter="correlations"><div class="category-icon"><i class="fas fa-project-diagram"></i></div><div class="category-text"><h4>Associations</h4><p>Correlations, regression</p></div></div>
+            </div>
+            
+             <!-- Filter Indicator -->
+            <div class="filter-indicator" id="filterIndicator">
+                <span id="filterText">Showing templates for: </span>
+                <button class="clear-filter" onclick="clearAllFilters()">Clear Filter</button>
+            </div>
+
+            <!-- Templates Grid -->
+            <div class="templates-grid" id="templatesGrid">
+                <!-- Templates will be populated by JavaScript -->
+            </div>
+            
+            <!-- Empty State Message -->
+            <div class="empty-state" id="emptyState">
+                <i class="fas fa-box-open"></i>
+                <h4>No Templates Found</h4>
+                <p>Your filter or search criteria did not match any templates. <br>Try adjusting your filters or clearing your search.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-actions" id="floatingActions">
+        <button class="clear-selection-btn" id="clearSelectionBtn" onclick="clearSelection()" title="Clear Selection">
+            <i class="fas fa-times-circle"></i> Clear
+        </button>
+        <button class="action-fab preview-fab" id="previewFab" disabled onclick="showPreviewModal()" title="Preview Sample Data">
+            <i class="fas fa-eye"></i>
+        </button>
+        <button class="action-fab download-fab" id="downloadFab" disabled onclick="toggleDownloadModal()" title="Download Template">
+            <i class="fas fa-download"></i>
+            <span class="download-count" id="downloadCount">0</span>
+        </button>
+        
+        <div class="download-modal" id="downloadModal">
+            <h3>Download Format</h3>
+            <button class="download-option" onclick="generateCSV()"><i class="fas fa-file-csv option-icon"></i><div><div>CSV File</div><small style="color: var(--text-muted);">Comma-separated values</small></div></button>
+            <button class="download-option" onclick="generateXLSX()"><i class="fas fa-file-excel option-icon"></i><div><div>Excel File</div><small style="color: var(--text-muted);">Microsoft Excel format</small></div></button>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div class="preview-modal" id="previewModal">
+        <div class="preview-modal-content">
+            <div class="preview-modal-header"><h2 class="preview-modal-title">Sample Data Preview</h2><button class="preview-modal-close" onclick="closePreviewModal()">×</button></div>
+            <div class="preview-modal-body">
+                <div class="preview-description">
+                    <strong>This is a preview of your custom data sheet with realistic sample values.</strong><br>
+                    Each row represents a common data reporting scenario based on the templates you selected. Use this as a guide for structuring your own data.
+                </div>
+                <div class="preview-table-container"><table class="preview-table" id="previewTable"></table></div>
+            </div>
+            <div class="preview-modal-footer">
+                <button class="btn btn-secondary" onclick="closePreviewModal()">Close</button>
+<button class="btn btn-primary" onclick="downloadSampleExcel()"><i class="fas fa-download"></i>Download This Sample Data (Excel)</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/intro.js/intro.js"></script>
+    <script>
+        // --- DATA DEFINITIONS (TRUNCATED FOR BREVITY) ---
+        const fieldDefinitions = { 'cohen_d': 'Cohen\'s d value', 'hedges_g': 'Hedges\' g value', 'n_exp': 'Number of participants in the exposed group', 'n_nexp': 'Number of participants in the non-exposed group', 'n_sample': 'Total number of participants', 'n_cases': 'Number of cases/events across exposed/non-exposed groups', 'n_controls': 'Number of controls/no-event across exposed/non-exposed groups', 'or': 'Odds Ratio value', 'logor': 'Log Odds Ratio value', 'logor_se': 'Standard error of the log odds ratio', 'logor_pval': 'P-value of the (log) odds ratio', 'or_ci_lo': 'Lower bound of the 95% CI around the odds ratio value', 'or_ci_up': 'Upper bound of the 95% CI around the odds ratio value', 'logor_ci_lo': 'Lower bound of the 95% CI around the log odds ratio value', 'logor_ci_up': 'Upper bound of the 95% CI around the log odds ratio value', 'baseline_risk': 'Proportion of cases/events in the non-exposed group', 'small_margin_prop': 'Smallest margin proportion of cases/events in the underlying 2x2 table', 'rr': 'Risk ratio value', 'logrr': 'Log risk ratio value', 'logrr_se': 'Standard error of the log risk ratio', 'logrr_pval': 'P-value of the (log) risk ratio', 'rr_ci_lo': 'Lower bound of the 95% CI around the risk ratio value', 'rr_ci_up': 'Upper bound of the 95% CI around the risk ratio value', 'logrr_ci_lo': 'Lower bound of the 95% CI around the log risk ratio value', 'logrr_ci_up': 'Upper bound of the 95% CI around the log risk ratio value', 'pearson_r': 'Pearson\'s correlation coefficient value', 'fisher_z': 'Fisher\'s r-to-z transformed correlation coefficient', 'sd_iv': 'Standard deviation of the independent variable', 'unit_increase_iv': 'Value of the independent variable that will be used to estimate the Cohen\'s d', 'unit_type': 'The type of unit for the unit_increase_iv column. Must be either "sd" or "value"', 'n_cases_exp': 'Number of cases in the exposed group', 'n_cases_nexp': 'Number of cases in the non-exposed group', 'time_exp': 'Person-time of disease-free observation in the exposed group', 'time_nexp': 'Person-time of disease-free observation in the non-exposed group', 'mean_exp': 'Mean of participants in the experimental/exposed group', 'mean_nexp': 'Mean of participants in the non-experimental/non-exposed group', 'mean_sd_exp': 'Standard deviation of participants in the experimental/exposed group', 'mean_sd_nexp': 'Standard deviation of participants in the non-experimental/non-exposed group', 'mean_se_exp': 'Standard error of participants in the experimental/exposed group', 'mean_se_nexp': 'Standard error of participants in the non-experimental/non-exposed group', 'mean_ci_lo_exp': 'Lower bound of the 95% CI of the mean of the experimental/exposed group', 'mean_ci_up_exp': 'Upper bound of the 95% CI of the mean of the experimental/exposed group', 'mean_ci_lo_nexp': 'Lower bound of the 95% CI of the mean of the non-experimental/non-exposed group', 'mean_ci_up_nexp': 'Upper bound of the 95% CI of the mean of the non-experimental/non-exposed group', 'n_controls_exp': 'Number of controls/no-event in the exposed group', 'n_controls_nexp': 'Number of controls/no-event in the non exposed group', 'prop_cases_exp': 'Proportion of cases/events in the exposed group (ranging from 0 to 1)', 'prop_cases_nexp': 'Proportion of cases/events in the non-exposed group (ranging from 0 to 1)', 'phi': 'Phi coefficient value', 'chisq': 'Chi-square value', 'chisq_pval': 'Chi-square p-value', 'md': 'Mean difference between two independent groups', 'md_sd': 'Standard deviation of the mean difference', 'md_se': 'Standard error of the mean difference', 'md_pval': 'P-value of the mean difference', 'md_ci_lo': 'Lower bound of the 95% CI of the mean difference', 'md_ci_up': 'Upper bound of the 95% CI of the mean difference', 'anova_f': 'F-test value from an ANOVA with a binary independent variable', 'anova_f_pval': 'P-value from an ANOVA with a binary independent variable', 'student_t': 'Student\'s t-test value', 'student_t_pval': 'P-value from value from a Student\'s t-test value', 'pt_bis_r': 'Correlation coefficient value from a point-biserial correlation', 'pt_bis_r_pval': 'P-value of a point-biserial correlation', 'etasq': 'Eta-squared value from an ANOVA with a binary independent variable', 'min_exp': 'Minimum value of the experimental/exposed group', 'q1_exp': 'First quartile of the experimental/exposed group', 'med_exp': 'Median value of the experimental/exposed group', 'q3_exp': 'Third quartile of the experimental/exposed group', 'max_exp': 'Maximum value of the experimental/exposed group', 'min_nexp': 'Minimum value of the non-experimental/non-exposed group', 'q1_nexp': 'First quartile of the non-experimental/non-exposed group', 'med_nexp': 'Median value of the non-experimental/non-exposed group', 'q3_nexp': 'Third quartile of the non-experimental/non-exposed group', 'max_nexp': 'Maximum value of the non-experimental/non-exposed group', 'beta_std': 'Standardized regression coefficient value (the predictor of interest must be binary)', 'beta_unstd': 'Unstandardized regression coefficient value (the predictor of interest must be binary)', 'dv_sd': 'Standard deviation of the dependent variable', 'mean_change_exp': 'Mean change of participants in the exposed group', 'mean_change_nexp': 'Mean change of participants in the non-exposed group', 'mean_change_sd_exp': 'Standard deviation of the mean change for participants in the exposed group', 'mean_change_sd_nexp': 'Standard deviation of the mean change for participants in the non-exposed group', 'mean_change_se_exp': 'Standard error of the mean change for participants in the exposed group', 'mean_change_se_nexp': 'Standard error of the mean change for participants in the non-exposed group', 'mean_change_ci_lo_exp': 'Lower bound of the 95% CI around the mean change for participants in the exposed group', 'mean_change_ci_up_exp': 'Upper bound of the 95% CI around the mean change for participants in the exposed group', 'mean_change_ci_lo_nexp': 'Lower bound of the 95% CI around the mean change for participants in the non-exposed group', 'mean_change_ci_up_nexp': 'Upper bound of the 95% CI around the mean change for participants in the non-exposed group', 'r_pre_post_exp': 'Correlation between pre-post scores in the exposed group', 'r_pre_post_nexp': 'Correlation between pre-post scores in the non-exposed group', 'mean_pre_exp': 'Mean at baseline in the exposed group', 'mean_pre_nexp': 'Mean at baseline in the non-exposed group', 'mean_pre_sd_exp': 'Standard deviation of the mean at baseline in the exposed group', 'mean_pre_sd_nexp': 'Standard deviation of the mean at baseline in the non-exposed group', 'mean_pre_se_exp': 'Standard error of the mean at baseline in the exposed group', 'mean_pre_se_nexp': 'Standard error of the mean at baseline in the non-exposed group', 'mean_pre_ci_lo_exp': 'Lower bound of the 95% CI of the mean at baseline in the exposed group', 'mean_pre_ci_up_exp': 'Upper bound of the 95% CI of the mean at baseline in the exposed group', 'mean_pre_ci_lo_nexp': 'Lower bound of the 95% CI of the mean at baseline in the non-exposed group', 'mean_pre_ci_up_nexp': 'Upper bound of the 95% CI of the mean at baseline in the non-exposed group', 'paired_f_exp': 'Paired ANOVA F value in the exposed group', 'paired_f_nexp': 'Paired ANOVA F value in the non-exposed group', 'paired_f_pval_exp': 'P-value of the paired ANOVA F in the exposed group', 'paired_f_pval_nexp': 'P-value of the paired ANOVA F in the non-exposed group', 'paired_t_exp': 'Paired t-test value in the exposed group', 'paired_t_nexp': 'Paired t-test value in the non-exposed group', 'paired_t_pval_exp': 'P-value of the paired t-test in the exposed group', 'paired_t_pval_nexp': 'P-value of the paired t-test in the non-exposed group', 'cohen_d_adj': 'Adjusted Cohen\'s d value', 'n_cov_ancova': 'Number of covariates in the ANCOVA model', 'cov_outcome_r': 'Correlation between the outcome and covariate (multiple correlation when multiple covariates are included in the ANCOVA model)', 'ancova_f': 'F-test value from an ANCOVA with a binary independent variable', 'ancova_f_pval': 'P-value from an ANCOVA with a binary independent variable', 'ancova_t': 'T-test value from an ANCOVA with a binary independent variable', 'ancova_t_pval': 'P-value from an ANCOVA with a binary independent variable', 'etasq_adj': 'Adjusted eta-squared value', 'ancova_mean_exp': 'Adjusted mean of participants in the experimental/exposed group', 'ancova_mean_nexp': 'Adjusted mean of participants in the non-experimental/non-exposed group', 'ancova_mean_sd_exp': 'Adjusted standard deviation of participants in the experimental/exposed group', 'ancova_mean_sd_nexp': 'Adjusted standard deviation of participants in the non-experimental/non-exposed group', 'ancova_mean_se_exp': 'Adjusted standard error of participants in the experimental/exposed group', 'ancova_mean_se_nexp': 'Adjusted standard error of participants in the non-experimental/non-exposed group', 'ancova_mean_ci_lo_exp': 'Lower bound of the 95% CI of the adjusted mean of the experimental/exposed group', 'ancova_mean_ci_up_exp': 'Upper bound of the 95% CI of the adjusted mean of the experimental/exposed group', 'ancova_mean_ci_lo_nexp': 'Lower bound of the 95% CI of the adjusted mean of the non-experimental/non-exposed group', 'ancova_mean_ci_up_nexp': 'Upper bound of the 95% CI of the adjusted mean of the non-experimental/non-exposed group', 'ancova_mean_sd_pooled': 'Adjusted pooled standard deviation', 'mean_sd_pooled_crude': 'Crude pooled standard deviation', 'ancova_md': 'Adjusted mean difference between two independent groups', 'ancova_md_sd': 'Standard deviation of the adjusted mean difference', 'ancova_md_pval': 'P-value of the adjusted mean difference', 'ancova_md_ci_lo': 'Lower bound of the 95% CI of the adjusted mean difference', 'ancova_md_ci_up': 'Upper bound of the 95% CI of the adjusted mean difference', 'plot_mean_exp': 'Mean of participants in the experimental/exposed group (extracted from a plot)', 'plot_mean_nexp': 'Mean of participants in the non-experimental/non-exposed group (extracted from a plot)', 'plot_mean_sd_lo_exp': 'Lower bound of an error bar depicting -1 SD from the mean of the experimental/exposed group (extracted from a plot)', 'plot_mean_sd_lo_nexp': 'Lower bound of an error bar depicting -1 SD from the mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_mean_sd_up_exp': 'Upper bound of an error bar depicting +1 SD from the mean of the experimental/exposed group (extracted from a plot)', 'plot_mean_sd_up_nexp': 'Upper bound of an error bar depicting +1 SD from the mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_mean_se_lo_exp': 'Lower bound of an error bar depicting -1 SE from the mean of the experimental/exposed group (extracted from a plot)', 'plot_mean_se_lo_nexp': 'Lower bound of an error bar depicting -1 SE from the mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_mean_se_up_exp': 'Upper bound of an error bar depicting +1 SE from the mean of the experimental/exposed group (extracted from a plot)', 'plot_mean_se_up_nexp': 'Upper bound of an error bar depicting +1 SE from the non-experimental/non-exposed group (extracted from a plot)', 'plot_mean_ci_lo_exp': 'Lower bound of an error bar depicting the 95% CI of the mean of the experimental/exposed group (extracted from a plot)', 'plot_mean_ci_lo_nexp': 'Lower bound of an error bar depicting the 95% CI of the mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_mean_ci_up_exp': 'Upper bound of an error bar depicting the 95% CI of the mean of the experimental/exposed group (extracted from a plot)', 'plot_mean_ci_up_nexp': 'Upper bound of an error bar depicting the 95% CI of the mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_exp': 'Adjusted mean of participants in the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_nexp': 'Adjusted mean of participants in the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_sd_lo_exp': 'Lower bound of an error bar depicting -1 SD from the adjusted mean of the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_sd_lo_nexp': 'Lower bound of an error bar depicting -1 SD from the adjusted mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_sd_up_exp': 'Upper bound of an error bar depicting +1 SD from the adjusted mean of the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_sd_up_nexp': 'Upper bound of an error bar depicting +1 SD from the adjusted mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_se_lo_exp': 'Lower bound of an error bar depicting -1 SE from the adjusted mean of the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_se_lo_nexp': 'Lower bound of an error bar depicting -1 SE from the adjusted mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_se_up_exp': 'Upper bound of an error bar depicting +1 SE from the adjusted mean of the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_se_up_nexp': 'Upper bound of an error bar depicting +1 SE from the adjusted mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_ci_lo_exp': 'Lower bound of an error bar depicting the 95% CI of the adjusted mean of the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_ci_lo_nexp': 'Lower bound of an error bar depicting the 95% CI of the adjusted mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_ci_up_exp': 'Upper bound of an error bar depicting the 95% CI of the adjusted mean of the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_ci_up_nexp': 'Upper bound of an error bar depicting the 95% CI of the adjusted mean of the non-experimental/non-exposed group (extracted from a plot)', 'measure': 'The target effect size measure (should be one of the 11 effect size measures available in metaConvert)', 'user_es_measure_crude': 'Name of the original effect size measure', 'user_es_crude': 'Effect size value', 'user_se_crude': 'Effect size standard error', 'user_ci_lo_crude': 'Lower bound of the 95% CI around the effect size value', 'user_ci_up_crude': 'Upper bound of the 95% CI around the effect size value', 'user_es_measure_adjusted': 'Name of the original effect size measure', 'user_es_adjusted': 'Effect size value (should be adjusted)', 'user_se_adjusted': 'Effect size standard error', 'user_ci_lo_adjusted': 'Lower bound of the 95% CI around the adjusted effect size value', 'user_ci_up_adjusted': 'Upper bound of the 95% CI around the adjusted effect size value', 'study_id': 'Unique identifier for each study', 'author': 'First author of the study', 'year': 'Publication year', 'predictor': 'Description of the predictor/exposure variable', 'outcome': 'Description of the outcome variable', 'info_expected': 'Additional information or notes about the study' };
+        const templates = [
+            { id: 'cohen_d', name: "Cohen's d or Hedges' g", columns: ['cohen_d', 'hedges_g', 'n_exp', 'n_nexp'], naturalES: 'SMD', convertedES: 'OR+COR', category: 'means', level: 'basic' },
+            { id: 'means_dispersion', name: 'Means and dispersion', columns: ['mean_exp', 'mean_nexp', 'mean_sd_exp', 'mean_sd_nexp', 'mean_se_exp', 'mean_se_nexp', 'mean_ci_lo_exp', 'mean_ci_up_exp', 'mean_ci_lo_nexp', 'mean_ci_up_nexp', 'n_exp', 'n_nexp'], naturalES: 'SMD+MD', convertedES: 'OR+COR', category: 'means', level: 'basic' },
+            { id: 'anova', name: 'ANOVA, t-test, or point-bis correlation', columns: ['anova_f', 'anova_f_pval', 'student_t', 'student_t_pval', 'pt_bis_r', 'pt_bis_r_pval', 'etasq', 'n_exp', 'n_nexp'], naturalES: 'SMD', convertedES: 'OR+COR', category: 'means', level: 'basic' },
+            { id: 'mean_difference', name: 'Mean difference and dispersion', columns: ['md', 'md_sd', 'md_pval', 'md_ci_lo', 'md_ci_up', 'n_exp', 'n_nexp'], naturalES: 'SMD+MD', convertedES: 'OR+COR', category: 'means', level: 'basic' },
+            { id: 'regression', name: '(Un-)Standardized regression coefficient', columns: ['beta_std', 'beta_unstd', 'dv_sd', 'n_exp', 'n_nexp'], naturalES: 'SMD', convertedES: 'OR+COR', category: 'correlations', level: 'basic' },
+            { id: 'odds_ratio', name: 'Odds Ratio', columns: ['or', 'logor', 'logor_se', 'logor_pval', 'or_ci_lo', 'or_ci_up', 'logor_ci_lo', 'logor_ci_up', 'baseline_risk', 'small_margin_prop', 'n_cases', 'n_controls', 'n_exp', 'n_nexp'], naturalES: 'OR', convertedES: 'RR+NNT+SMD+COR', category: 'proportions', level: 'basic' },
+            { id: 'risk_ratio', name: 'Risk Ratio', columns: ['rr', 'logrr', 'logrr_se', 'logrr_pval', 'rr_ci_lo', 'rr_ci_up', 'logrr_ci_lo', 'logrr_ci_up', 'baseline_risk', 'n_cases', 'n_controls', 'n_exp', 'n_nexp'], naturalES: 'RR', convertedES: 'OR+NNT', category: 'proportions', level: 'basic' },
+            { id: 'contingency', name: 'Contingency (2x2) table or proportions', columns: ['n_cases_exp', 'n_cases_nexp', 'n_controls_exp', 'n_controls_nexp', 'prop_cases_exp', 'prop_cases_nexp', 'n_exp', 'n_nexp'], naturalES: 'OR+RR+NNT', convertedES: 'SMD+COR', category: 'proportions', level: 'basic' },
+            { id: 'correlation', name: "Pearson's r or Fisher's z", columns: ['pearson_r', 'fisher_z', 'sd_iv', 'unit_increase_iv', 'unit_type', 'n_sample', 'n_exp', 'n_nexp'], naturalES: 'COR', convertedES: 'SMD+OR', category: 'correlations', level: 'basic' },
+            { id: 'phi_chi', name: 'Phi or chi-square', columns: ['phi', 'chisq', 'chisq_pval', 'n_sample', 'n_cases', 'n_exp'], naturalES: 'OR+RR+NNT', convertedES: 'SMD+COR', category: 'proportions', level: 'advanced' },
+            { id: 'incidence_ratio', name: 'Incidence Rate Ratio', columns: ['n_cases_exp', 'n_cases_nexp', 'time_exp', 'time_nexp'], naturalES: 'IRR', convertedES: 'N/A', category: 'proportions', level: 'basic' },
+            { id: 'variability', name: 'Variability indices', columns: ['mean_exp', 'mean_nexp', 'mean_sd_exp', 'mean_sd_nexp', 'mean_se_exp', 'mean_se_nexp', 'mean_ci_lo_exp', 'mean_ci_up_exp', 'mean_ci_lo_nexp', 'mean_ci_up_nexp', 'n_exp', 'n_nexp'], naturalES: 'VAR', convertedES: 'N/A', category: 'means', level: 'advanced' },
+            { id: 'medians', name: 'Median, range and/or IQR', columns: ['min_exp', 'q1_exp', 'med_exp', 'q3_exp', 'max_exp', 'min_nexp', 'q1_nexp', 'med_nexp', 'q3_nexp', 'max_nexp', 'n_exp', 'n_nexp'], naturalES: 'SMD', convertedES: 'MD+OR+COR', category: 'means', level: 'advanced' },
+            { id: 'paired_change', name: 'Paired: Mean change and dispersion', columns: ['mean_change_exp', 'mean_change_nexp', 'mean_change_sd_exp', 'mean_change_sd_nexp', 'mean_change_se_exp', 'mean_change_se_nexp', 'mean_change_ci_lo_exp', 'mean_change_ci_up_exp', 'mean_change_ci_lo_nexp', 'mean_change_ci_up_nexp', 'r_pre_post_exp', 'r_pre_post_nexp', 'n_exp', 'n_nexp'], naturalES: 'SMD+MD', convertedES: 'OR+COR', category: 'means', level: 'advanced' },
+            { id: 'paired_pre_post', name: 'Paired: pre-post means and dispersion', columns: ['mean_pre_exp', 'mean_exp', 'mean_pre_nexp', 'mean_nexp', 'mean_pre_sd_exp', 'mean_sd_exp', 'mean_pre_sd_nexp', 'mean_sd_nexp', 'mean_pre_se_exp', 'mean_se_exp', 'mean_pre_se_nexp', 'mean_se_nexp', 'mean_pre_ci_lo_exp', 'mean_pre_ci_up_exp', 'mean_pre_ci_lo_nexp', 'mean_pre_ci_up_nexp', 'mean_ci_lo_exp', 'mean_ci_up_exp', 'mean_ci_lo_nexp', 'mean_ci_up_nexp', 'r_pre_post_exp', 'r_pre_post_nexp', 'n_exp', 'n_nexp'], naturalES: 'SMD+MD', convertedES: 'OR+COR', category: 'means', level: 'advanced' },
+            { id: 'paired_tests', name: 'Paired: Paired F- or t-test', columns: ['paired_f_exp', 'paired_f_nexp', 'paired_f_pval_exp', 'paired_f_pval_nexp', 'paired_t_exp', 'paired_t_nexp', 'paired_t_pval_exp', 'paired_t_pval_nexp', 'r_pre_post_exp', 'r_pre_post_nexp', 'n_exp', 'n_nexp'], naturalES: 'SMD', convertedES: 'OR+COR', category: 'means', level: 'advanced' },
+            { id: 'cohen_d_adj', name: 'Adjusted: Cohen\'s d', columns: ['cohen_d_adj', 'n_cov_ancova', 'cov_outcome_r', 'n_exp', 'n_nexp'], naturalES: 'SMD', convertedES: 'OR+COR', category: 'means', level: 'advanced' },
+            { id: 'ancova_stats', name: 'Adjusted: ANCOVA statistics, eta-squared', columns: ['ancova_f', 'ancova_f_pval', 'ancova_t', 'ancova_t_pval', 'cohen_d_adj', 'etasq_adj', 'cov_outcome_r', 'n_cov_ancova', 'n_exp', 'n_nexp'], naturalES: 'SMD', convertedES: 'OR+COR', category: 'means', level: 'advanced' },
+            { id: 'ancova_means', name: 'Adjusted: Means and dispersion', columns: ['ancova_mean_exp', 'ancova_mean_nexp', 'ancova_mean_sd_exp', 'ancova_mean_sd_nexp', 'ancova_mean_se_exp', 'ancova_mean_se_nexp', 'ancova_mean_ci_lo_exp', 'ancova_mean_ci_up_exp', 'ancova_mean_ci_lo_nexp', 'ancova_mean_ci_up_nexp', 'ancova_mean_sd_pooled', 'mean_sd_pooled_crude', 'n_cov_ancova', 'cov_outcome_r', 'n_exp', 'n_nexp'], naturalES: 'SMD+MD', convertedES: 'OR+COR', category: 'means', level: 'advanced' },
+            { id: 'ancova_md', name: 'Adjusted: Mean difference and dispersion', columns: ['ancova_md', 'ancova_md_sd', 'ancova_md_pval', 'ancova_md_ci_lo', 'ancova_md_ci_up', 'n_cov_ancova', 'cov_outcome_r', 'n_exp', 'n_nexp'], naturalES: 'SMD+MD', convertedES: 'OR+COR', category: 'means', level: 'advanced' },
+            { id: 'plot_means', name: 'From a plot: Raw means', columns: ['plot_mean_exp', 'plot_mean_nexp', 'plot_mean_sd_lo_exp', 'plot_mean_sd_lo_nexp', 'plot_mean_sd_up_exp', 'plot_mean_sd_up_nexp', 'plot_mean_se_lo_exp', 'plot_mean_se_lo_nexp', 'plot_mean_se_up_exp', 'plot_mean_se_up_nexp', 'plot_mean_ci_lo_exp', 'plot_mean_ci_lo_nexp', 'plot_mean_ci_up_exp', 'plot_mean_ci_up_nexp', 'n_exp', 'n_nexp'], naturalES: 'SMD+MD', convertedES: 'OR+COR', category: 'means', level: 'advanced' },
+            { id: 'plot_ancova', name: 'Adjusted: From plot: adjusted means', columns: ['plot_ancova_mean_exp', 'plot_ancova_mean_nexp', 'plot_ancova_mean_sd_lo_exp', 'plot_ancova_mean_sd_lo_nexp', 'plot_ancova_mean_sd_up_exp', 'plot_ancova_mean_sd_up_nexp', 'plot_ancova_mean_se_lo_exp', 'plot_ancova_mean_se_lo_nexp', 'plot_ancova_mean_se_up_exp', 'plot_ancova_mean_se_up_nexp', 'plot_ancova_mean_ci_lo_exp', 'plot_ancova_mean_ci_lo_nexp', 'plot_ancova_mean_ci_up_exp', 'plot_ancova_mean_ci_up_nexp', 'n_exp', 'n_nexp'], naturalES: 'SMD+MD', convertedES: 'OR+COR', category: 'means', level: 'advanced' },
+            { id: 'user_crude', name: 'User\'s input', columns: ['measure', 'user_es_measure_crude', 'user_es_crude', 'user_se_crude', 'user_ci_lo_crude', 'user_ci_up_crude'], naturalES: 'Any', convertedES: 'N/A', category: 'correlations', level: 'advanced' },
+            { id: 'user_adjusted', name: 'Adjusted: User\'s input', columns: ['measure', 'user_es_measure_adjusted', 'user_es_adjusted', 'user_se_adjusted', 'user_ci_lo_adjusted', 'user_ci_up_adjusted'], naturalES: 'Any', convertedES: 'N/A', category: 'correlations', level: 'advanced' }
+        ];
+        const dataScenarios = { 'cohen_d': [{ columns: ['cohen_d', 'n_exp', 'n_nexp'] }, { columns: ['hedges_g', 'n_exp', 'n_nexp'] }], 'odds_ratio': [{ columns: ['or', 'or_ci_lo', 'or_ci_up', 'n_exp', 'n_nexp'] }, { columns: ['logor', 'logor_se', 'n_exp', 'n_nexp'] }], 'risk_ratio': [{ columns: ['rr', 'rr_ci_lo', 'rr_ci_up', 'n_exp', 'n_nexp'] }, { columns: ['logrr', 'logrr_se', 'n_exp', 'n_nexp'] }], 'correlation': [{ columns: ['pearson_r', 'n_sample'] }, { columns: ['fisher_z', 'n_sample'] }], 'incidence_ratio': [{ columns: ['n_cases_exp', 'n_cases_nexp', 'time_exp', 'time_nexp'] }], 'variability': [{ columns: ['mean_exp', 'mean_nexp', 'mean_sd_exp', 'mean_sd_nexp', 'n_exp', 'n_nexp'] }], 'contingency': [{ columns: ['n_cases_exp', 'n_cases_nexp', 'n_controls_exp', 'n_controls_nexp'] }, { columns: ['prop_cases_exp', 'prop_cases_nexp', 'n_exp', 'n_nexp'] }], 'phi_chi': [{ columns: ['phi', 'n_sample'] }, { columns: ['chisq', 'chisq_pval', 'n_sample'] }], 'means_dispersion': [{ columns: ['mean_exp', 'mean_nexp', 'mean_sd_exp', 'mean_sd_nexp', 'n_exp', 'n_nexp'] }, { columns: ['mean_exp', 'mean_nexp', 'mean_se_exp', 'mean_se_nexp', 'n_exp', 'n_nexp'] }], 'mean_difference': [{ columns: ['md', 'md_sd', 'n_exp', 'n_nexp'] }, { columns: ['md', 'md_ci_lo', 'md_ci_up', 'n_exp', 'n_nexp'] }], 'anova': [{ columns: ['anova_f', 'n_exp', 'n_nexp'] }, { columns: ['student_t', 'n_exp', 'n_nexp'] }], 'medians': [{ columns: ['med_exp', 'med_nexp', 'q1_exp', 'q3_exp', 'q1_nexp', 'q3_nexp', 'n_exp', 'n_nexp'] }], 'regression': [{ columns: ['beta_std', 'n_exp', 'n_nexp'] }, { columns: ['beta_unstd', 'dv_sd', 'n_exp', 'n_nexp'] }], 'paired_change': [{ columns: ['mean_change_exp', 'mean_change_nexp', 'mean_change_sd_exp', 'mean_change_sd_nexp', 'n_exp', 'n_nexp'] }], 'paired_pre_post': [{ columns: ['mean_pre_exp', 'mean_exp', 'mean_pre_sd_exp', 'mean_sd_exp', 'r_pre_post_exp', 'n_exp', 'n_nexp'] }], 'paired_tests': [{ columns: ['paired_t_exp', 'n_exp', 'n_nexp'] }], 'cohen_d_adj': [{ columns: ['cohen_d_adj', 'n_cov_ancova', 'n_exp', 'n_nexp'] }], 'ancova_stats': [{ columns: ['ancova_f', 'n_cov_ancova', 'n_exp', 'n_nexp'] }], 'ancova_means': [{ columns: ['ancova_mean_exp', 'ancova_mean_nexp', 'ancova_mean_se_exp', 'ancova_mean_se_nexp', 'n_exp', 'n_nexp'] }], 'ancova_md': [{ columns: ['ancova_md', 'ancova_md_ci_lo', 'ancova_md_ci_up', 'n_exp', 'n_nexp'] }], 'plot_means': [{ columns: ['plot_mean_exp', 'plot_mean_nexp', 'plot_mean_sd_lo_exp', 'plot_mean_sd_up_exp', 'n_exp', 'n_nexp'] }], 'plot_ancova': [{ columns: ['plot_ancova_mean_exp', 'plot_ancova_mean_nexp', 'plot_ancova_mean_se_lo_exp', 'plot_ancova_mean_se_up_exp', 'n_exp', 'n_nexp'] }], 'user_crude': [{ columns: ['measure', 'user_es_crude', 'user_se_crude'] }], 'user_adjusted': [{ columns: ['measure', 'user_es_adjusted', 'user_ci_lo_adjusted', 'user_ci_up_adjusted'] }] };
+        
+        // --- GLOBAL STATE ---
+        let selectedTemplates = new Set();
+        let currentEffectSizeFilter = null;
+        let currentLevelFilter = 'basic';
+        let currentCategoryFilter = 'all';
+        let currentSearchQuery = '';
+        
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTemplates();
+            initializeEventListeners();
+            updateActionButtons();
+            applyFilters();
+        });
+
+        // --- All other JavaScript functions remain the same ---
+        
+        function initializeEventListeners() {
+            document.getElementById('esToggle').addEventListener('change', e => document.getElementById('esmGrid').classList.toggle('show', e.target.checked));
+            
+            document.querySelectorAll('.view-toggle-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.view-toggle-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentLevelFilter = this.dataset.level;
+                    applyFilters();
+                });
+            });
+            
+            document.getElementById('templateSearch').addEventListener('input', e => {
+                currentSearchQuery = e.target.value.toLowerCase();
+                applyFilters();
+            });
+            
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    currentCategoryFilter = this.dataset.filter;
+                    clearEffectSizeFilter();
+                    applyFilters();
+                });
+            });
+
+            document.querySelectorAll('.clickable-es, .es-row').forEach(el => {
+                el.addEventListener('click', e => {
+                    e.stopPropagation();
+                    applyEffectSizeFilter(el.dataset.es);
+                });
+            });
+
+            document.addEventListener('click', e => {
+                const downloadModal = document.getElementById('downloadModal');
+                const downloadFab = document.getElementById('downloadFab');
+                const previewModal = document.getElementById('previewModal');
+                if (!downloadModal.contains(e.target) && !downloadFab.contains(e.target)) downloadModal.classList.remove('show');
+                if (e.target === previewModal) closePreviewModal();
+            });
+        }
+        
+        function renderTemplates() {
+            const grid = document.getElementById('templatesGrid');
+            grid.innerHTML = '';
+            templates.forEach(template => grid.appendChild(createTemplateCard(template)));
+        }
+
+        function createTemplateCard(template) {
+            const card = document.createElement('div');
+            card.className = 'template-card';
+            card.dataset.id = template.id;
+            card.dataset.category = template.category;
+            card.dataset.level = template.level;
+            card.dataset.naturalEs = template.naturalES;
+            const searchContent = `${template.name} ${template.columns.join(' ')}`.toLowerCase();
+            card.dataset.search = searchContent;
+
+            const naturalBadge = template.naturalES !== 'N/A' ? `<span class="badge natural">${template.naturalES}</span>` : '';
+            const convertedBadge = template.convertedES !== 'N/A' ? `<span class="badge converted">→ ${template.convertedES}</span>` : '';
+            const columnTags = template.columns.slice(0, 5).map(col => `<span class="column-tag" title="${fieldDefinitions[col] || 'No description available.'}">${col}</span>`).join('');
+            const moreColumns = template.columns.length > 5 ? `<span class="column-tag">+${template.columns.length - 5} more</span>` : '';
+            const fieldDescriptions = template.columns.map(col => `<div class="field-description"><span class="field-name">${col}</span>: ${fieldDefinitions[col] || 'N/A'}</div>`).join('');
+
+            card.innerHTML = `
+                <div class="template-header"><h3 class="template-title">${template.name}</h3></div>
+                <div class="template-badges">${naturalBadge} ${convertedBadge}</div>
+                <div class="template-columns">${columnTags} ${moreColumns}</div>
+                <div class="template-card-footer">
+                    <button class="expand-btn" onclick="toggleTemplateDetails(event, '${template.id}')">
+                        <span class="expand-text">Show Descriptions</span><i class="fas fa-chevron-down expand-icon"></i>
+                    </button>
+                </div>
+                <div class="template-details" id="details-${template.id}">${fieldDescriptions}</div>
+            `;
+            card.addEventListener('click', e => !e.target.closest('.expand-btn') && toggleTemplate(template.id));
+            return card;
+        }
+        
+        function toggleTemplate(templateId) {
+            const card = document.querySelector(`[data-id="${templateId}"]`);
+            const isSelected = card.classList.toggle('selected');
+            if (isSelected) selectedTemplates.add(templateId); else selectedTemplates.delete(templateId);
+            updateActionButtons();
+        }
+
+        function toggleTemplateDetails(event, templateId) {
+            event.stopPropagation();
+            const details = document.getElementById(`details-${templateId}`);
+            const button = event.currentTarget;
+            const text = button.querySelector('.expand-text');
+            const icon = button.querySelector('.expand-icon');
+            const isShowing = details.classList.toggle('show');
+            text.textContent = isShowing ? 'Hide Descriptions' : 'Show Descriptions';
+            icon.style.transform = isShowing ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+
+        function applyFilters() {
+            let visibleCount = 0;
+            document.querySelectorAll('.template-card').forEach(card => {
+                const categoryMatch = currentCategoryFilter === 'all' || card.dataset.category === currentCategoryFilter;
+                const levelMatch = currentLevelFilter === 'all' || card.dataset.level === 'basic';
+                const searchMatch = currentSearchQuery === '' || card.dataset.search.includes(currentSearchQuery);
+                const esMatch = currentEffectSizeFilter === null || (card.dataset.naturalEs && card.dataset.naturalEs.split('+').includes(currentEffectSizeFilter));
+                
+                if (categoryMatch && levelMatch && searchMatch && esMatch) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            document.getElementById('emptyState').style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        function applyEffectSizeFilter(effectSize) {
+            if (currentEffectSizeFilter === effectSize) {
+                clearAllFilters(); return;
+            }
+            clearAllFilters(false);
+            currentEffectSizeFilter = effectSize;
+            highlightEffectSize(effectSize);
+            showFilterIndicator(effectSize);
+            applyFilters();
+        }
+
+        function highlightEffectSize(effectSize) {
+            document.querySelectorAll(`.clickable-es[data-es="${effectSize}"], .es-row[data-es="${effectSize}"]`).forEach(el => {
+                el.classList.add(el.matches('.es-row') ? 'row-active' : 'filter-active');
+            });
+        }
+        
+        function clearEffectSizeFilter() {
+             currentEffectSizeFilter = null;
+             document.querySelectorAll('.filter-active, .row-active').forEach(el => el.classList.remove('filter-active', 'row-active'));
+             document.getElementById('filterIndicator').classList.remove('show');
+        }
+        
+        function showFilterIndicator(effectSize) {
+            document.getElementById('filterIndicator').querySelector('#filterText').innerHTML = `Showing templates for: <strong>${effectSize}</strong>`;
+            document.getElementById('filterIndicator').classList.add('show');
+        }
+
+        function clearAllFilters(clearCategory = true) {
+            clearEffectSizeFilter();
+            if (clearCategory) {
+                currentCategoryFilter = 'all';
+                document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
+                document.querySelector('[data-filter="all"]').classList.add('active');
+            }
+            applyFilters();
+        }
+        
+        function clearSelection() {
+            selectedTemplates.clear();
+            document.querySelectorAll('.template-card.selected').forEach(card => card.classList.remove('selected'));
+            updateActionButtons();
+        }
+        
+        function updateActionButtons() {
+            const count = selectedTemplates.size;
+            const hasSelection = count > 0;
+            document.getElementById('previewFab').disabled = !hasSelection;
+            document.getElementById('downloadFab').disabled = !hasSelection;
+            document.getElementById('clearSelectionBtn').classList.toggle('visible', hasSelection);
+            const countEl = document.getElementById('downloadCount');
+            countEl.textContent = count;
+            countEl.classList.toggle('visible', hasSelection);
+        }
+
+        function toggleDownloadModal() { selectedTemplates.size > 0 && document.getElementById('downloadModal').classList.toggle('show'); }
+        function showPreviewModal() { if (selectedTemplates.size > 0) { generatePreviewTable(); document.getElementById('previewModal').classList.add('show'); } }
+        function closePreviewModal() { document.getElementById('previewModal').classList.remove('show'); }
+        
+function generateSampleValue(fieldName, index = 0) {
+    const data = {
+        'study_id': i => `Study_${String(i + 1).padStart(3, '0')}`,
+        'author': ['Smith', 'Johnson', 'Lee', 'Garcia', 'Williams', 'Brown', 'Davis', 'Miller'],
+        'year': [2020, 2021, 2022, 2023, 2024],
+        'predictor': ['CBT', 'Exercise', 'Diet', 'Mindfulness', 'Medication', 'Therapy'],
+        'outcome': ['Depression', 'Anxiety', 'Weight Loss', 'Stress', 'Quality of Life', 'Sleep Quality'],
+        'info_expected': t => `Data from template: ${t}`,
+        'n_exp': [58, 75, 42, 91, 63, 87, 54, 69],
+        'n_nexp': [61, 73, 45, 89, 67, 82, 59, 71],
+        'n_sample': [119, 148, 87, 180, 130, 169, 113, 140],
+        'n_cases': [34, 45, 28, 52, 39, 47],
+        'n_controls': [85, 103, 67, 89, 91, 102],
+        'n_cases_exp': [19, 28, 15, 31, 22, 26],
+        'n_cases_nexp': [15, 17, 13, 21, 17, 21],
+        'n_controls_exp': [39, 47, 27, 60, 41, 61],
+        'n_controls_nexp': [46, 56, 32, 68, 50, 61],
+        'time_exp': [834, 956, 712, 1023, 889, 945],
+        'time_nexp': [867, 978, 734, 1056, 912, 967],
+        'cohen_d': [0.45, 0.72, 0.38, 0.61, 0.53, 0.67],
+        'hedges_g': [0.43, 0.69, 0.36, 0.58, 0.51, 0.64],
+        'or': [1.85, 2.34, 1.67, 2.12, 1.93, 2.28],
+        'logor': [0.615, 0.850, 0.513, 0.751, 0.658, 0.824],
+        'logor_se': [0.20, 0.19, 0.22, 0.18, 0.21, 0.17],
+        'or_ci_lo': [1.22, 1.59, 1.08, 1.46, 1.26, 1.64],
+        'or_ci_up': [2.81, 3.44, 2.58, 3.08, 2.95, 3.17],
+        'logor_ci_lo': [0.223, 0.466, 0.082, 0.398, 0.236, 0.492],
+        'logor_ci_up': [1.007, 1.234, 0.944, 1.104, 1.080, 1.156],
+        'rr': [1.65, 1.89, 1.52, 1.78, 1.71, 1.84],
+        'logrr': [0.50, 0.63, 0.42, 0.58, 0.54, 0.61],
+        'logrr_se': [0.18, 0.17, 0.19, 0.16, 0.18, 0.15],
+        'logrr_pval': [0.005, 0.001, 0.027, 0.001, 0.003, 0.001],
+        'rr_ci_lo': [1.16, 1.35, 1.05, 1.30, 1.21, 1.37],
+        'rr_ci_up': [2.35, 2.62, 2.21, 2.44, 2.44, 2.47],
+        'logrr_ci_lo': [0.147, 0.297, 0.048, 0.266, 0.187, 0.316],
+        'logrr_ci_up': [0.853, 0.963, 0.792, 0.894, 0.893, 0.904],
+        'pearson_r': [0.42, 0.58, 0.35, 0.51, 0.46, 0.55],
+        'fisher_z': [0.45, 0.66, 0.37, 0.56, 0.50, 0.62],
+        'sd_iv': [2.1, 2.3, 1.9, 2.5, 2.2, 2.4],
+        'unit_increase_iv': [1, 2, 1, 1, 2, 1],
+        'unit_type': ['sd', 'value', 'sd', 'sd', 'value', 'sd'],
+        'mean_exp': [42.3, 38.7, 35.1, 46.8, 41.2, 39.5],
+        'mean_nexp': [38.1, 34.2, 31.5, 42.3, 37.8, 35.1],
+        'mean_sd_exp': [8.2, 9.1, 7.5, 9.8, 8.6, 8.9],
+        'mean_sd_nexp': [8.7, 8.9, 7.8, 9.2, 8.9, 9.1],
+        'mean_se_exp': [1.08, 1.05, 1.12, 1.02, 1.09, 1.03],
+        'mean_se_nexp': [1.11, 1.04, 1.15, 1.01, 1.12, 1.05],
+        'mean_ci_lo_exp': [40.2, 36.6, 32.8, 44.8, 39.1, 37.5],
+        'mean_ci_up_exp': [44.4, 40.8, 37.4, 48.8, 43.3, 41.5],
+        'mean_ci_lo_nexp': [36.0, 32.1, 29.2, 40.3, 35.6, 33.0],
+        'mean_ci_up_nexp': [40.2, 36.3, 33.8, 44.3, 40.0, 37.2],
+        'baseline_risk': [0.25, 0.18, 0.31, 0.22, 0.28, 0.20],
+        'small_margin_prop': [0.15, 0.12, 0.18, 0.14, 0.16, 0.13],
+        'prop_cases_exp': [0.32, 0.37, 0.28, 0.34, 0.35, 0.30],
+        'prop_cases_nexp': [0.24, 0.23, 0.29, 0.24, 0.25, 0.26],
+        'phi': [0.38, 0.52, 0.31, 0.45, 0.41, 0.48],
+        'chisq': [6.23, 9.87, 4.56, 8.12, 7.34, 9.01],
+        'chisq_pval': [0.012, 0.002, 0.033, 0.004, 0.007, 0.003],
+'md': [4.2, 4.5, 3.6, 4.5, 3.4, 4.4],
+'md_sd': [1.8, 1.9, 1.6, 2.1, 1.7, 2.0],
+'md_se': [0.24, 0.22, 0.26, 0.21, 0.25, 0.23],
+'md_pval': [0.001, 0.001, 0.023, 0.001, 0.002, 0.001],
+'md_ci_lo': [3.73, 4.07, 3.09, 4.09, 2.91, 3.95],
+'md_ci_up': [4.67, 4.93, 4.11, 4.91, 3.89, 4.85],
+        'anova_f': [5.48, 8.35, 4.12, 7.23, 6.01, 7.89],
+        'anova_f_pval': [0.021, 0.004, 0.045, 0.008, 0.015, 0.005],
+        'student_t': [2.34, 2.89, 2.03, 2.69, 2.45, 2.81],
+        'student_t_pval': [0.021, 0.004, 0.045, 0.008, 0.015, 0.005],
+        'pt_bis_r': [0.19, 0.25, 0.16, 0.23, 0.21, 0.24],
+        'pt_bis_r_pval': [0.021, 0.004, 0.045, 0.008, 0.015, 0.005],
+        'etasq': [0.04, 0.08, 0.03, 0.07, 0.05, 0.07],
+        'min_exp': [24, 20, 18, 26, 22, 21],
+        'q1_exp': [36.2, 32.1, 28.5, 40.2, 35.1, 33.2],
+        'med_exp': [41.5, 38.2, 34.8, 46.1, 40.8, 38.9],
+        'q3_exp': [47.8, 44.3, 41.2, 52.8, 46.9, 45.1],
+        'max_exp': [62, 58, 54, 68, 61, 59],
+        'min_nexp': [22, 18, 16, 24, 20, 19],
+        'q1_nexp': [32.4, 28.8, 25.2, 36.8, 32.1, 29.5],
+        'med_nexp': [37.8, 33.9, 31.2, 42.1, 37.5, 34.8],
+        'q3_nexp': [43.2, 39.6, 36.8, 47.2, 42.8, 40.2],
+        'max_nexp': [58, 54, 50, 64, 57, 55],
+        'beta_std': [0.41, 0.56, 0.34, 0.49, 0.43, 0.52],
+        'beta_unstd': [3.8, 4.2, 3.2, 4.5, 3.6, 4.1],
+        'dv_sd': [9.3, 7.5, 9.4, 9.2, 8.4, 7.9],
+        'mean_change_exp': [3.8, 4.2, 3.1, 4.6, 3.5, 4.0],
+        'mean_change_nexp': [1.2, 1.4, 0.8, 1.6, 1.1, 1.3],
+        'mean_change_sd_exp': [2.1, 2.3, 1.9, 2.5, 2.0, 2.2],
+        'mean_change_sd_nexp': [2.2, 2.1, 2.0, 2.3, 2.1, 2.0],
+        'mean_change_se_exp': [0.28, 0.27, 0.29, 0.26, 0.28, 0.26],
+        'mean_change_se_nexp': [0.28, 0.25, 0.30, 0.24, 0.26, 0.24],
+        'mean_change_ci_lo_exp': [3.3, 3.7, 2.5, 4.1, 2.9, 3.5],
+        'mean_change_ci_up_exp': [4.3, 4.7, 3.7, 5.1, 4.1, 4.5],
+        'mean_change_ci_lo_nexp': [0.6, 0.9, 0.2, 1.1, 0.6, 0.8],
+        'mean_change_ci_up_nexp': [1.8, 1.9, 1.4, 2.1, 1.6, 1.8],
+        'r_pre_post_exp': [0.73, 0.68, 0.71, 0.75, 0.69, 0.72],
+        'r_pre_post_nexp': [0.71, 0.66, 0.69, 0.73, 0.67, 0.70],
+        'mean_pre_exp': [38.5, 34.5, 31.7, 42.2, 37.7, 35.5],
+        'mean_pre_nexp': [37.3, 33.8, 30.9, 41.1, 36.9, 34.6],
+        'mean_pre_sd_exp': [7.8, 8.5, 7.2, 9.1, 8.0, 8.3],
+        'mean_pre_sd_nexp': [7.9, 8.3, 7.4, 8.9, 8.2, 8.1],
+        'mean_pre_se_exp': [1.02, 0.98, 1.05, 0.95, 1.01, 0.97],
+        'mean_pre_se_nexp': [1.01, 0.97, 1.06, 0.94, 1.00, 0.96],
+        'mean_pre_ci_lo_exp': [36.5, 32.6, 29.6, 40.3, 35.7, 33.6],
+        'mean_pre_ci_up_exp': [40.5, 36.4, 33.8, 44.1, 39.7, 37.4],
+        'mean_pre_ci_lo_nexp': [35.3, 31.9, 28.8, 39.2, 34.9, 32.7],
+        'mean_pre_ci_up_nexp': [39.3, 35.7, 33.0, 43.0, 38.9, 36.5],
+        'paired_f_exp': [4.1, 4.5, 3.8, 4.7, 4.2, 4.4],
+        'paired_f_nexp': [1.8, 2.1, 1.5, 2.3, 1.9, 2.0],
+        'paired_f_pval_exp': [0.045, 0.035, 0.053, 0.032, 0.042, 0.037],
+        'paired_f_pval_nexp': [0.183, 0.151, 0.225, 0.132, 0.171, 0.161],
+        'paired_t_exp': [2.02, 2.12, 1.95, 2.17, 2.05, 2.10],
+        'paired_t_nexp': [1.34, 1.45, 1.22, 1.52, 1.38, 1.41],
+        'paired_t_pval_exp': [0.045, 0.035, 0.053, 0.032, 0.042, 0.037],
+        'paired_t_pval_nexp': [0.183, 0.151, 0.225, 0.132, 0.171, 0.161],
+        'cohen_d_adj': [0.39, 0.65, 0.32, 0.55, 0.46, 0.61],
+        'n_cov_ancova': [1, 2, 1, 3, 2, 1],
+        'cov_outcome_r': [0.32, 0.28, 0.35, 0.31, 0.29, 0.33],
+        'ancova_f': [4.8, 7.2, 3.9, 6.5, 5.3, 6.8],
+        'ancova_f_pval': [0.031, 0.008, 0.052, 0.012, 0.023, 0.010],
+        'ancova_t': [2.19, 2.68, 1.97, 2.55, 2.30, 2.61],
+        'ancova_t_pval': [0.031, 0.008, 0.052, 0.012, 0.023, 0.010],
+        'etasq_adj': [0.03, 0.07, 0.02, 0.06, 0.04, 0.06],
+        'ancova_mean_exp': [41.5, 37.9, 34.3, 45.8, 40.5, 38.8],
+        'ancova_mean_nexp': [38.9, 34.8, 31.8, 42.8, 38.1, 35.9],
+        'ancova_mean_sd_exp': [8.0, 8.8, 7.3, 9.5, 8.3, 8.6],
+        'ancova_mean_sd_nexp': [8.4, 8.6, 7.6, 8.9, 8.6, 8.8],
+        'ancova_mean_se_exp': [1.05, 1.02, 1.08, 0.99, 1.06, 1.01],
+        'ancova_mean_se_nexp': [1.07, 1.01, 1.09, 0.97, 1.05, 1.02],
+        'ancova_mean_ci_lo_exp': [39.4, 35.9, 32.1, 43.8, 38.4, 36.8],
+        'ancova_mean_ci_up_exp': [43.6, 39.9, 36.5, 47.8, 42.6, 40.8],
+        'ancova_mean_ci_lo_nexp': [36.8, 32.8, 29.6, 40.9, 36.0, 33.9],
+        'ancova_mean_ci_up_nexp': [41.0, 36.8, 34.0, 44.7, 40.2, 37.9],
+        'ancova_mean_sd_pooled': [8.2, 8.7, 7.4, 9.2, 8.4, 8.7],
+        'mean_sd_pooled_crude': [8.4, 9.0, 7.6, 9.5, 8.7, 9.0],
+        'ancova_md': [2.6, 3.1, 2.5, 3.0, 2.4, 2.9],
+        'ancova_md_sd': [1.2, 1.1, 1.3, 1.2, 1.0, 1.1],
+        'ancova_md_pval': [0.031, 0.008, 0.052, 0.012, 0.023, 0.010],
+        'ancova_md_ci_lo': [0.5, 0.7, 0.3, 0.8, 0.6, 0.9],
+        'ancova_md_ci_up': [4.7, 5.5, 4.7, 5.2, 4.2, 4.9],
+        'plot_mean_exp': [42, 38, 35, 47, 41, 39],
+        'plot_mean_nexp': [38, 34, 32, 42, 38, 35],
+        'plot_mean_sd_lo_exp': [34, 29, 28, 37, 33, 30],
+        'plot_mean_sd_lo_nexp': [30, 25, 24, 33, 29, 26],
+        'plot_mean_sd_up_exp': [50, 47, 42, 57, 49, 48],
+        'plot_mean_sd_up_nexp': [46, 43, 40, 51, 47, 44],
+        'plot_mean_se_lo_exp': [41, 37, 34, 46, 40, 38],
+        'plot_mean_se_lo_nexp': [37, 33, 31, 41, 37, 34],
+        'plot_mean_se_up_exp': [43, 39, 36, 48, 42, 40],
+        'plot_mean_se_up_nexp': [39, 35, 33, 43, 39, 36],
+        'plot_mean_ci_lo_exp': [40, 36, 33, 45, 39, 37],
+        'plot_mean_ci_lo_nexp': [36, 32, 30, 40, 36, 33],
+        'plot_mean_ci_up_exp': [44, 40, 37, 49, 43, 41],
+        'plot_mean_ci_up_nexp': [40, 36, 34, 44, 40, 37],
+        'plot_ancova_mean_exp': [41, 37, 34, 46, 40, 38],
+        'plot_ancova_mean_nexp': [38, 34, 32, 42, 38, 35],
+        'plot_ancova_mean_sd_lo_exp': [33, 28, 27, 36, 32, 29],
+        'plot_ancova_mean_sd_lo_nexp': [30, 25, 24, 33, 30, 26],
+        'plot_ancova_mean_sd_up_exp': [49, 46, 41, 56, 48, 47],
+        'plot_ancova_mean_sd_up_nexp': [46, 43, 40, 51, 46, 44],
+        'plot_ancova_mean_se_lo_exp': [40, 36, 33, 45, 39, 37],
+        'plot_ancova_mean_se_lo_nexp': [37, 33, 31, 41, 37, 34],
+        'plot_ancova_mean_se_up_exp': [42, 38, 35, 47, 41, 39],
+        'plot_ancova_mean_se_up_nexp': [39, 35, 33, 43, 39, 36],
+        'plot_ancova_mean_ci_lo_exp': [39, 35, 32, 44, 38, 36],
+        'plot_ancova_mean_ci_lo_nexp': [36, 32, 30, 40, 36, 33],
+        'plot_ancova_mean_ci_up_exp': [43, 39, 36, 48, 42, 40],
+        'plot_ancova_mean_ci_up_nexp': [40, 36, 34, 44, 40, 37],
+        'measure': ['SMD', 'OR', 'COR', 'RR', 'MD', 'NNT'],
+        'user_es_measure_crude': ['cohen_d', 'odds_ratio', 'pearson_r', 'beta', 'mean_diff'],
+        'user_es_crude': [0.45, 1.85, 0.42, 0.38, 3.2],
+        'user_se_crude': [0.20, 0.19, 0.18, 0.21, 0.8],
+        'user_ci_lo_crude': [0.05, 1.25, 0.06, -0.03, 1.6],
+        'user_ci_up_crude': [0.85, 2.45, 0.78, 0.79, 4.8],
+        'user_es_measure_adjusted': ['cohen_d_adj', 'odds_ratio_adj', 'pearson_r_adj', 'beta_adj'],
+        'user_es_adjusted': [0.39, 1.6, 0.35, 0.32],
+        'user_se_adjusted': [0.18, 0.17, 0.16, 0.19],
+        'user_ci_lo_adjusted': [0.03, 1.1, 0.03, -0.05],
+        'user_ci_up_adjusted': [0.75, 2.1, 0.67, 0.69]
+    };
+    
+    const values = data[fieldName];
+    
+    // Handle special function cases
+    if (fieldName === 'study_id' && typeof values === 'function') {
+        return values(index);
+    }
+    
+    if (fieldName === 'info_expected' && typeof values === 'function') {
+        // This will be handled in the calling function
+        return values;
+    }
+    
+    // Handle arrays - pick random value
+    if (Array.isArray(values)) {
+        return values[Math.floor(Math.random() * values.length)];
+    }
+    
+    // Default fallback for unknown fields
+    return (Math.random() * 10).toFixed(2);
+}
+
+let previewHeaders = [];
+function generatePreviewTable() { 
+    const selectedTemplateObjects = templates.filter(t => selectedTemplates.has(t.id)); 
+    const allColumns = [...new Set(selectedTemplateObjects.flatMap(t => t.columns))]; 
+    const fixedColumns = ['study_id', 'author', 'year', 'predictor', 'outcome', 'info_expected']; 
+    previewHeaders = [...fixedColumns, ...allColumns.sort()]; 
+    const allScenarios = selectedTemplateObjects.flatMap(template => (dataScenarios[template.id] || [{ columns: template.columns.slice(0, 4) }]).map(scenario => ({ ...scenario, templateName: template.name }))); 
+    const table = document.getElementById('previewTable'); 
+    let tableHTML = `<thead><tr>${previewHeaders.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>`; 
+    
+    allScenarios.forEach((scenario, i) => { 
+        const row = {}; 
+        previewHeaders.forEach(header => { 
+            if (fixedColumns.includes(header) || scenario.columns.includes(header)) { 
+                row[header] = (header === 'info_expected') ? `${scenario.templateName}` : generateSampleValue(header, i); 
+            } else { 
+                row[header] = ''; 
+            } 
+        }); 
+        tableHTML += `<tr>${previewHeaders.map(h => `<td class="${row[h] === '' ? 'empty-cell' : ''}">${row[h]}</td>`).join('')}</tr>`; 
+    }); 
+    
+    tableHTML += '</tbody>'; 
+    table.innerHTML = tableHTML; 
+}
+function downloadSampleExcel() { 
+    const table = document.getElementById('previewTable'); 
+    let data = []; 
+    
+    // Get headers
+    let headerRow = []; 
+    table.querySelectorAll('thead th').forEach(th => headerRow.push(th.innerText)); 
+    data.push(headerRow);
+    
+    // Get data rows
+    table.querySelectorAll('tbody tr').forEach(tr => { 
+        let row = []; 
+        tr.querySelectorAll('td').forEach(td => { 
+            let text = td.innerText; 
+            if (td.classList.contains('empty-cell')) text = ''; 
+            row.push(text); 
+        }); 
+        data.push(row); 
+    }); 
+    
+    // Create Excel file
+    const ws = XLSX.utils.aoa_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sample Data');
+    const buffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    downloadBlob(new Blob([buffer], { type: 'application/octet-stream' }), 'metaConvert_sample_data.xlsx');
+}
+
+function generateCSV() { if (selectedTemplates.size === 0) return; const headers = getCombinedHeaders(); downloadFile(headers.join(',') + '\n', 'metaConvert_template.csv', 'text/csv'); document.getElementById('downloadModal').classList.remove('show'); }
+        function generateXLSX() { if (selectedTemplates.size === 0) return; const headers = getCombinedHeaders(); const ws = XLSX.utils.aoa_to_sheet([headers]); const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, 'Extraction Sheet'); const buffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' }); downloadBlob(new Blob([buffer], { type: 'application/octet-stream' }), 'metaConvert_template.xlsx'); document.getElementById('downloadModal').classList.remove('show'); }
+        function getCombinedHeaders() { const selectedTemplateObjects = templates.filter(t => selectedTemplates.has(t.id)); const allColumns = [...new Set(selectedTemplateObjects.flatMap(t => t.columns))]; const fixedColumns = ['study_id', 'author', 'year', 'predictor', 'outcome', 'info_expected']; return [...fixedColumns, ...allColumns.sort()]; }
+        function downloadFile(content, filename, mimeType) { downloadBlob(new Blob([content], { type: mimeType }), filename); }
+        function downloadBlob(blob, filename) { const link = document.createElement('a'); const url = URL.createObjectURL(blob); link.href = url; link.download = filename; document.body.appendChild(link); link.click(); document.body.removeChild(link); URL.revokeObjectURL(url); }
+
+        // --- FIX: IMPROVED INTERACTIVE TUTORIAL with added step ---
+        function startTutorial() {
+            const intro = introJs();
+            intro.setOptions({
+                steps: [{
+                    title: 'Welcome!',
+                    intro: 'This quick tour will show you how to build your custom data extraction sheet.'
+                }, {
+                    element: document.querySelector('#explorerSection'),
+                    title: 'Filter by Effect Size',
+                    intro: 'If you know which effect size you need (like SMD or OR), use this interactive table to filter the templates below.',
+                    position: 'bottom'
+                }, {
+                    element: document.querySelector('#viewToggle'),
+                    title: 'Adjust Your View',
+                    intro: "Use these buttons to switch between a 'Basic' view with the most common templates and a view that shows 'All' available templates, including advanced ones.",
+                    position: 'bottom'
+                },{
+                    element: document.querySelector('#categorySelector'),
+                    title: 'Filter by Data Type',
+                    intro: 'You can also filter templates by the general type of statistical data you have (e.g., Group Averages, Proportions).',
+                    position: 'bottom'
+                }, {
+                    element: document.querySelector('.template-card:not(.hidden)'),
+                    title: 'Select Your Templates',
+                    intro: 'Click on any card that matches the data you can extract from your studies. Select as many as you need!',
+                    position: 'bottom'
+                }, {
+                    element: document.querySelector('#floatingActions'),
+                    title: 'Preview & Download',
+                    intro: 'Once you select templates, these buttons become active. You can preview a sample sheet or download your custom file in CSV or Excel format.',
+                    position: 'left'
+                }],
+                showProgress: true,
+                showBullets: false,
+                exitOnOverlayClick: true,
+                tooltipClass: 'customTooltip' // Optional: for custom styling
+            });
+            intro.start();
+        }
+    </script>
+</body>
+</html>
