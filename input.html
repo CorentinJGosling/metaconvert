@@ -1310,8 +1310,12 @@
         let previewHeaders = [];
         function getCombinedHeaders() {
             const objs = templates.filter(t => selectedSources.has(t.id));
-            const statCols = [...new Set(objs.flatMap(t => t.columns))].sort();
-            const revCols = includeReverse ? reverseColsFor(objs.map(t => t.id)).sort() : [];
+            // Keep each template's intended column order (e.g. mean -> sd -> se -> ci,
+            // exp before nexp, min -> q1 -> median -> q3 -> max). Alphabetical sorting
+            // scrambled these groups (95% CI ended up before the means); the Set already
+            // de-duplicates shared columns while preserving first-appearance order.
+            const statCols = [...new Set(objs.flatMap(t => t.columns))];
+            const revCols = includeReverse ? reverseColsFor(objs.map(t => t.id)) : [];
             return [...FIXED, ...statCols, ...revCols].filter(h => !excludedCols.has(h));
         }
         function generatePreviewTable() {
