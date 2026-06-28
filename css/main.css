@@ -12,6 +12,19 @@
   scroll-behavior: smooth;
 }
 
+/* fixed-nav offset: keep the hero from being clipped under the bar */
+html {
+  scroll-padding-top: 90px;
+}
+body {
+  padding-top: 64px;
+}
+@media screen and (max-width: 768px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
 img,
 picture,
 svg,
@@ -22,6 +35,8 @@ video {
 
 nav {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   display: grid;
   grid-auto-flow: column;
@@ -226,13 +241,21 @@ nav {
   top: 19px;
 }
 
+/* Cap and center the hero so that on large screens it doesn't spread
+   edge-to-edge (which reads as "zoomed in") — keeps it in line with the
+   1180px-capped sections below. The cap only binds above 1600px, so the
+   1440px and smaller layouts are unaffected. */
 .contain_pres {
-  padding-left: 5rem;
-  padding-right: 5rem;
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
   display: grid;
   grid-template-columns: auto auto;
-  align-items: center;
-  justify-content: space-evenly;
+  align-items: start;
+  justify-content: space-between;
+  gap: 4rem;
 }
 @media screen and (max-width: 1800px) {
   .contain_pres {
@@ -241,11 +264,11 @@ nav {
 }
 @media screen and (max-width: 1500px) {
   .contain_pres {
-    justify-content: center;
+    justify-content: space-between;
     gap: 3rem;
     padding-top: 3rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
 }
 @media screen and (max-width: 1200px) {
@@ -264,22 +287,22 @@ nav {
 }
 
 .pres_right {
-  margin-top: 4rem;
+  margin-top: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  width: 850px;
+  width: 520px;
 }
 @media screen and (max-width: 1800px) {
   .pres_right {
-    width: 700px;
+    width: 520px;
   }
 }
 @media screen and (max-width: 1500px) {
   .pres_right {
-    width: 600px;
+    width: 520px;
   }
 }
 @media screen and (max-width: 1200px) {
@@ -294,8 +317,8 @@ nav {
 }
 
 video {
-  width: 640px;
-  height: 360px;
+  width: 520px;
+  height: 293px;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 @media screen and (max-width: 700px) {
@@ -318,7 +341,7 @@ video {
 }
 
 .pres_left {
-  margin-top: 4rem;
+  margin-top: 1.5rem;
   width: 100%;
   display: grid;
   align-items: end;
@@ -357,25 +380,26 @@ video {
   }
 }
 .pres_left .badges .img1,
-.pres_left .badges .img2 {
-  width: 120px;
-  height: 30px;
+.pres_left .badges .img2,
+.pres_left .badges .img3 {
+  width: auto;
+  height: 23px;
 }
 @media screen and (max-width: 1500px) {
   .pres_left .badges .img1,
-  .pres_left .badges .img2 {
-    width: 80px;
-    height: 20px;
+  .pres_left .badges .img2,
+  .pres_left .badges .img3 {
+    height: 18px;
   }
 }
 .pres_left .package_name {
-  font-size: 4rem;
+  font-size: 3.2rem;
   font-weight: bold;
   color: #343434;
 }
 @media screen and (max-width: 1500px) {
   .pres_left .package_name {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 }
 @media screen and (max-width: 450px) {
@@ -1054,4 +1078,234 @@ h3 {
 .barc {
   border-radius: 2px;
   display: none;
-}/*# sourceMappingURL=main.css.map */
+}
+
+/* =====================================================================
+   Publications strip — signals the peer-reviewed backing near the top.
+   ===================================================================== */
+.pubs {
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+.pubs-head {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #343434;
+  margin-bottom: 1.8rem;
+}
+.pubs-head span {
+  color: #d66268;
+}
+.pubs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+@media screen and (max-width: 760px) {
+  .pubs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.pub {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border: 1px solid #e6e6e0;
+  border-radius: 10px;
+  padding: 1.5rem 1.6rem;
+  transition: box-shadow 0.25s ease, transform 0.25s ease,
+    border-color 0.25s ease;
+}
+.pub:hover {
+  transform: translateY(-3px);
+  border-color: #e0c4c6;
+  box-shadow: 0 20px 44px -28px rgba(33, 31, 56, 0.55);
+}
+.pub-top {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.8rem;
+}
+.pub-tool {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #20242b;
+}
+.pub-badge {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+.pub-badge.published {
+  color: #1f7a3d;
+  background: #e3f3e8;
+  border: 1px solid #bfe3cb;
+}
+.pub-badge.review {
+  color: #8a6512;
+  background: #faf0d8;
+  border: 1px solid #ecd9a8;
+}
+.pub-title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #2b2f36;
+  margin-bottom: 0.55rem;
+}
+.pub-authors {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #6b727c;
+}
+
+/* =====================================================================
+   metaDETECT banner — a compact, clickable entry point to the framework
+   page. Indigo ties back to the footer; the dot-grid echoes the network
+   nodes in the logo; the brand glow bleeds in from the right.
+   ===================================================================== */
+.md-banner {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 2.2rem 2.7rem;
+  border-radius: 0;
+  color: #fff;
+  background-color: #211f38;
+  background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 0
+    ),
+    linear-gradient(135deg, #211f38 0%, #2c2a47 55%, #1d1b33 100%);
+  background-size: 22px 22px, 100% 100%;
+  box-shadow: 0 24px 50px -24px rgba(33, 31, 56, 0.8);
+}
+@media screen and (max-width: 1280px) {
+  .md-banner {
+    margin: 4rem 2rem;
+  }
+}
+.md-banner-glow {
+  position: absolute;
+  top: -45%;
+  right: -5%;
+  width: 45%;
+  height: 190%;
+  background: radial-gradient(
+    closest-side,
+    rgba(214, 98, 104, 0.28),
+    transparent
+  );
+  pointer-events: none;
+}
+.md-banner-text {
+  position: relative;
+  z-index: 1;
+}
+.md-banner-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f0a7ab;
+}
+.md-banner-eyebrow .md-new {
+  background: #d66268;
+  color: #fff;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+}
+.md-banner-title {
+  font-size: clamp(1.5rem, 2.4vw, 2.15rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin-top: 0.7rem;
+}
+.md-banner-sub {
+  margin-top: 0.6rem;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #c2c0d6;
+  max-width: 64ch;
+}
+.md-banner-ctas {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.md-banner-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  white-space: nowrap;
+  text-decoration: none;
+  background: #fff;
+  color: #211f38;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.85rem 1.6rem;
+  border: 1px solid #fff;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.5);
+  transition: gap 0.28s ease, background 0.28s ease, border-color 0.28s ease;
+}
+.md-banner-cta:hover {
+  gap: 0.95rem;
+  background: #ffe7ea;
+  border-color: #ffe7ea;
+}
+.md-banner-cta.ghost {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: none;
+}
+.md-banner-cta.ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+}
+.md-banner-cta:focus-visible {
+  outline: 3px solid #ef93b6;
+  outline-offset: 4px;
+}
+@media screen and (max-width: 760px) {
+  .md-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.9rem 1.6rem;
+    gap: 1.6rem;
+  }
+  .md-banner-ctas {
+    align-self: stretch;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .md-banner-cta {
+    transition: none;
+  }
+}
+/*# sourceMappingURL=main.css.map */

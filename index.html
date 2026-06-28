@@ -50,7 +50,7 @@
 
       gtag("config", "G-EB0MGY4LS8");
     </script>
-    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/main.css?v=3" />
     <!-- scroll appear -->
     <link
       rel="stylesheet"
@@ -68,7 +68,7 @@
 
     <ul class="nav-links">
       <li><a href="#" class="homepage currentpage">Home</a></li>
-      <!-- <li><a href="tutorial.html">Tutorial</a></li> -->
+      <li><a href="metadetect.html">metaDETECT</a></li>
       <li><a href="input.html">Input data</a></li>
       <li><a href="app.html">App</a></li>
     </ul>
@@ -93,29 +93,41 @@
             src="https://www.r-pkg.org/badges/version/metaConvert"
             class="img2"
           />
-          <!-- <img src="https://cranlogs.r-pkg.org/badges/metaConvert" />
+          <img
+            src="https://cranlogs.r-pkg.org/badges/metaConvert"
+            class="img3"
+          />
           <img
             src="https://cranlogs.r-pkg.org/badges/grand-total/metaConvert"
             class="img3"
-          /> -->
+          />
         </div>
 
         <div class="package_name">metaConvert</div>
         <h1>
-          <span><u>Automated</u></span> computations of effect sizes
+          <span><u>Automated</u></span> effect sizes &amp; error detection
         </h1>
         <h2>
-          metaConvert is a no-code, free and open-source tool facilitating
-          effect size computations. More information on the calculations used in
-          this tool can be found in its dedicated
+          A no-code, free and open-source tool that
+          <b>computes and converts effect sizes</b> and, with the new
+          <b>metaDETECT</b> framework, <b>automatically detects likely
+          data-extraction errors</b> in your meta-analysis.
+        </h2>
+        <p
+          style="
+            color: #676767;
+            font-size: 0.95rem;
+            font-weight: 300;
+            max-width: 50ch;
+          "
+        >
+          More on the calculations can be found on its
           <a
             class="btn_git"
             href="https://cran.r-project.org/web//packages/metaConvert/index.html"
             target="_blank"
+            >CRAN</a
           >
-            CRAN
-          </a>
-
           or
           <a
             class="btn_git"
@@ -123,8 +135,8 @@
             target="_blank"
             >github</a
           >
-          page
-        </h2>
+          page.
+        </p>
         <div class="container">
           <div class="btn"><a href="app.html">Open the app</a></div>
           <!-- <div class="btn">
@@ -154,6 +166,82 @@
         </div> -->
       </div>
     </section>
+
+    <section class="md-banner" id="metadetect">
+      <span class="md-banner-glow" aria-hidden="true"></span>
+      <div class="md-banner-text">
+        <div class="md-banner-eyebrow">
+          <span class="md-new">New</span> the metaDETECT framework
+        </div>
+        <div class="md-banner-title">
+          Catch data-extraction errors before starting your analyses
+        </div>
+        <div class="md-banner-sub">
+          metaConvert now automatically applies the criteria proposed in the
+          metaDETECT framework, running more than 50 checks to ensure the
+          quality of your data. See how these checks work, with worked examples.
+        </div>
+      </div>
+      <div class="md-banner-ctas">
+        <a
+          class="md-banner-cta"
+          href="metadetect.html#users"
+          target="_blank"
+          rel="noopener"
+        >
+          For meta-analysts <span aria-hidden="true">→</span>
+        </a>
+        <a
+          class="md-banner-cta ghost"
+          href="metadetect.html#reviewers"
+          target="_blank"
+          rel="noopener"
+        >
+          For reviewers &amp; editors <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="pubs">
+      <div class="pubs-head">Backed by <span>peer-reviewed research</span></div>
+      <div class="pubs-grid">
+        <a class="pub" href="metadetect.html">
+          <div class="pub-top">
+            <span class="pub-tool">metaDETECT</span>
+            <span class="pub-badge review">Under review</span>
+          </div>
+          <div class="pub-title">
+            Automated detection of data extraction errors in meta-analysis: the
+            metaDETECT framework and software
+          </div>
+          <div class="pub-authors">
+            Gosling CJ, Garcia-Argibay M, Haza Gomez B, Fusar-Poli P, Radua J,
+            Solmi M, Delorme R, Riley RD, Cortese S.
+          </div>
+        </a>
+        <a
+          class="pub"
+          href="https://doi.org/10.1017/rsm.2025.11"
+          target="_blank"
+          rel="noopener"
+        >
+          <div class="pub-top">
+            <span class="pub-tool">metaConvert</span>
+            <span class="pub-badge published">Published</span>
+          </div>
+          <div class="pub-title">
+            metaConvert: an automatic suite for estimation of 11 different effect
+            size measures and flexible conversion across them
+          </div>
+          <div class="pub-authors">
+            Gosling CJ, Cortese S, Solmi M, Haza B, Vieta E, Delorme R,
+            Fusar-Poli P, Radua J. Research Synthesis Methods.
+            2025;16(3):575-586. doi:10.1017/rsm.2025.11
+          </div>
+        </a>
+      </div>
+    </section>
+
     <section class="section_tools">
       <div class="section_title">Unique <span>features</span></div>
 
@@ -172,6 +260,76 @@
             </tr>
           </thead>
           <tbody class="table-hover">
+            <tr style="background: #fdeef0">
+              <td class="table-left" style="font-weight: bold">
+                Data-extraction error detection
+                <span
+                  style="
+                    display: inline-block;
+                    background: #d66268;
+                    color: #fff;
+                    font-size: 0.62rem;
+                    font-weight: bold;
+                    padding: 2px 8px;
+                    border-radius: 10px;
+                    margin-left: 6px;
+                    vertical-align: middle;
+                    letter-spacing: 0.5px;
+                  "
+                  >metaDETECT</span
+                >
+              </td>
+              <td class="table-pkg-col">
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+                <i
+                  class="far fa-check-circle fa-2x"
+                  style="color: rgb(0, 147, 15)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="far fa-times-circle fa-2x"
+                  style="color: rgb(156, 27, 27)"
+                ></i>
+              </td>
+            </tr>
             <tr>
               <td class="table-left">Automatic workflow</td>
               <td class="table-pkg-col">

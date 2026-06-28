@@ -3,269 +3,396 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Data Templates | metaConvert</title>
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Build your extraction sheet | metaConvert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/intro.js/introjs.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="icon" href="logo/logo.svg" type="image/svg+xml" />
 
     <style>
+        /* =========================================================
+           metaConvert · extraction-sheet builder
+           Brand: rose #d66268 / #ba474d + indigo ink #211f38
+           A 3-step "conversion instrument": data in -> effect sizes out
+           ========================================================= */
         :root {
-            --primary: #7c3aed;
-            --primary-dark: #6d28d9;
-            --primary-light: #a855f7;
-            --primary-rgb: 124, 58, 237;
-            --success: #10b981;
-            --danger: #ef4444;
-            --warning: #f59e0b;
-            --info: #3b82f6;
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
-            --text-muted: #9ca3af;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f9fafb;
-            --bg-tertiary: #f3f4f6;
-            --bg-accent: rgba(124, 58, 237, 0.05);
-            --border-light: #e5e7eb;
-            --border-medium: #d1d5db;
-            --border-dark: #9ca3af;
-            --radius-sm: 0.375rem;
-            --radius-md: 0.5rem;
-            --radius-lg: 0.75rem;
-            --radius-xl: 1rem;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --transition: all 0.2s ease-in-out;
+            --rose: #d66268;
+            --rose-deep: #ba474d;
+            --rose-700: #9c3b40;
+            --rose-50: #fdf3f3;
+            --rose-100: #fbe7e8;
+            --rose-200: #f3ced0;
+            --ink: #211f38;
+            --ink-2: #2c2a47;
+            --ink-soft: #4a4763;
+            --paper: #faf7f7;
+            --card: #ffffff;
+            --line: #ece6e6;
+            --line-2: #ded6d6;
+            --text: #272430;
+            --muted: #756f7d;
+            --faint: #a8a2b0;
+            --nat: #3f6f64;          /* natural effect size (computed directly) */
+            --nat-bg: #eef5f2;
+            --nat-line: #bcd6cd;
+            --conv: #9a6b12;         /* converted effect size (derived) */
+            --conv-bg: #faf3e2;
+            --conv-line: #e7d2a4;
+            --r-sm: 8px;
+            --r-md: 12px;
+            --r-lg: 18px;
+            --sh-sm: 0 1px 2px rgba(33,31,56,.06);
+            --sh-md: 0 14px 30px -18px rgba(33,31,56,.30);
+            --sh-lg: 0 28px 56px -26px rgba(33,31,56,.42);
+            --ease: cubic-bezier(.22,.61,.36,1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body {
-            font-family: "Work Sans", sans-serif;
-            background-color: var(--bg-secondary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            padding-bottom: 120px;
+        body { background: var(--paper); color: var(--text); }
+
+        /* ---- scope: neutralise main.css's global element rules ---- */
+        .mc-wrap, .mc-wrap * { font-family: "Work Sans", system-ui, sans-serif; }
+        .mc-wrap h1, .mc-wrap h2, .mc-wrap h3,
+        .mc-wrap h4, .mc-wrap h5 { border: 0; text-align: left; margin: 0; font-weight: 600; line-height: 1.18; color: var(--ink); }
+        .mc-wrap table { border-collapse: collapse; }
+        .mc-wrap th, .mc-wrap td { border: 0; width: auto; height: auto !important; font-size: inherit; font-weight: inherit; text-align: left; padding: 0; }
+        .mc-wrap input, .mc-wrap button { font: inherit; }
+        .mc-wrap button { cursor: pointer; }
+        /* display face — placed after the scope rule so it wins on source order */
+        .mc-eyebrow, .mc-h1, .mc-step-num, .mc-tally-n, .mc-summary-n,
+        .mc-group-kicker { font-family: "Space Grotesk", "Work Sans", sans-serif; }
+        /* keep Font Awesome glyphs — the broad ".mc-wrap *" rule above otherwise
+           ties FA's .fas selector on specificity and wins on source order,
+           clobbering the icon font and rendering tofu boxes */
+        .mc-wrap i.fas, .mc-wrap i.fa-solid { font-family: "Font Awesome 6 Free" !important; font-weight: 900 !important; }
+        .mc-wrap i.far, .mc-wrap i.fa-regular { font-family: "Font Awesome 6 Free" !important; font-weight: 400 !important; }
+
+        .mc-wrap :focus-visible { outline: 3px solid var(--rose); outline-offset: 3px; border-radius: 4px; }
+
+        .mc-wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 6rem;
         }
 
-        /* Main Container */
-        .container { max-width: 1400px; margin: 0 auto; padding: 8rem 2rem 2rem; }
-
-        /* Header Section */
-        .page-header {
-            text-align: center; margin-bottom: 4rem; padding: 4rem 2rem;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-accent) 100%);
-            border-radius: var(--radius-xl); border: 1px solid var(--border-light); box-shadow: var(--shadow-md);
+        /* ---------------- HERO ---------------- */
+        .mc-hero { padding: 1rem 0 2rem; max-width: 760px; }
+        .mc-eyebrow {
+            display: inline-flex; align-items: center; gap: .55rem;
+            font-size: .74rem; font-weight: 600; letter-spacing: .16em;
+            text-transform: uppercase; color: var(--rose-deep);
         }
-        .page-title { font-size: 3rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem; }
-        .page-subtitle { font-size: 1.25rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto 2rem; }
-        .help-button {
-            display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem;
-            background: var(--primary); color: white; border: none; border-radius: var(--radius-md);
-            font-weight: 600; cursor: pointer; transition: var(--transition); text-decoration: none;
+        .mc-eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--rose); display: inline-block; }
+        .mc-h1 {
+            font-size: clamp(2rem, 4.2vw, 2.9rem); font-weight: 700; letter-spacing: -.02em;
+            margin-top: .85rem !important; color: var(--ink);
         }
-        .help-button:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-
-        /* Effect Size Explorer Section */
-        .explorer-section {
-            background: var(--bg-primary); border: 1px solid var(--border-light); border-radius: var(--radius-xl);
-            padding: 2.5rem; margin-bottom: 3rem; box-shadow: var(--shadow-sm);
+        .mc-sub { margin-top: .9rem; font-size: 1.08rem; line-height: 1.55; color: var(--ink-soft); }
+        .mc-sub b { color: var(--rose-deep); font-weight: 600; }
+        .mc-help {
+            margin-top: 1.4rem; display: inline-flex; align-items: center; gap: .5rem;
+            background: none; border: 1px solid var(--line-2); border-radius: 999px;
+            padding: .5rem 1rem; color: var(--ink-soft); font-weight: 500; font-size: .9rem;
+            transition: all .2s var(--ease);
         }
-        .explorer-header { text-align: center; margin-bottom: 2rem; }
-        .explorer-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .explorer-description { font-size: 1.1rem; color: var(--text-secondary); }
-        .glossary-items { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
-        .glossary-item { padding: 1.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-light); display: flex; align-items: center; gap: 1rem; }
-        .glossary-item .icon { font-size: 1.5rem; }
-        .glossary-item.natural { border-left: 4px solid var(--success); }
-        .glossary-item.natural .icon { color: var(--success); }
-        .glossary-item.converted { border-left: 4px solid var(--warning); }
-        .glossary-item.converted .icon { color: var(--warning); }
-        .glossary-item strong { color: var(--text-primary); }
-        .es-toggle-container { text-align: center; padding-top: 2rem; border-top: 1px dashed var(--border-light); }
-        .toggle-label { font-size: 1.1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem; display: block; }
-        .toggle-switch { position: relative; display: inline-block; width: 60px; height: 32px; }
-        .toggle-switch input { opacity: 0; width: 0; height: 0; }
-        .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border-medium); transition: var(--transition); border-radius: 32px; }
-        .toggle-slider:before { position: absolute; content: ""; height: 24px; width: 24px; left: 4px; bottom: 4px; background-color: white; transition: var(--transition); border-radius: 50%; }
-        input:checked + .toggle-slider { background-color: var(--primary); }
-        input:checked + .toggle-slider:before { transform: translateX(28px); }
-        .esm-grid { display: none; margin-top: 2rem; }
-        .esm-grid.show { display: block; }
-        .esm-table-wrapper { border: 1px solid var(--border-light); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
-        .esm-table { width: 100%; border-collapse: collapse; background: var(--bg-primary); }
-        .esm-table th { background: var(--bg-secondary); padding: 1rem; font-weight: 600; color: var(--text-primary); border-bottom: 2px solid var(--border-light); text-align: left; }
-        .esm-table th:last-child { text-align: center; }
-        .esm-table td { padding: 1rem; border-bottom: 1px solid var(--border-light); vertical-align: middle; }
-        .esm-table tr { cursor: pointer; transition: var(--transition); }
-        .esm-table tr:hover { background: var(--bg-accent); }
-        .esm-table tr:last-child td { border-bottom: none; }
-        .esm-table tr.row-active { background: var(--primary) !important; color: white; }
-        .esm-table tr.row-active td, .esm-table tr.row-active td i { color: white; }
-        .clickable-es { cursor: pointer; padding: 0.35rem 0.75rem; border-radius: var(--radius-md); background: var(--bg-accent); color: var(--primary); font-weight: 600; transition: var(--transition); display: inline-block; margin: 0.125rem; border: 1px solid transparent; }
-        .esm-table td:last-child { text-align: center; }
-        .clickable-es:hover, .clickable-es.filter-active { background: var(--primary); color: white; transform: translateY(-1px); border-color: var(--primary-dark); }
-        .esm-table tr.row-active .clickable-es { background: white; color: var(--primary); }
-        .esm-table .var-icon { width: 30px; display: inline-flex; justify-content: center; font-size: 1rem; }
-        .var-icon.predictor { color: #b8880e; }
-        .var-icon.outcome { color: #46786d; }
-        .var-icon.time { color: #6d28d9; }
+        .mc-help:hover { border-color: var(--rose); color: var(--rose-deep); background: var(--rose-50); }
 
-        /* Data Templates Section */
-        .templates-section { background: var(--bg-primary); border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: 2.5rem; margin-bottom: 2rem; box-shadow: var(--shadow-sm); }
-        .section-header { text-align: center; margin-bottom: 1.5rem; }
-        .section-title { font-size: 2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
-        .section-description { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem; }
-
-        /* Search & Filter Controls */
-        .template-controls {
-            display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center;
-            justify-content: space-between; margin-bottom: 2.5rem; padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border-light);
+        /* ---------------- STEPPER ---------------- */
+        .mc-stepper {
+            position: sticky; top: 64px; z-index: 40;
+            display: flex; align-items: center; gap: .25rem;
+            padding: .65rem .85rem; margin: 0 0 2.25rem;
+            background: rgba(255,255,255,.86); backdrop-filter: blur(10px);
+            border: 1px solid var(--line); border-radius: 999px; box-shadow: var(--sh-sm);
         }
-        .search-bar-container { position: relative; flex-grow: 1; min-width: 250px; }
-        #templateSearch { width: 100%; padding: 0.75rem 0.75rem 0.75rem 2.5rem; font-size: 1rem; border: 1px solid var(--border-medium); border-radius: var(--radius-md); transition: var(--transition); }
-        #templateSearch:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1); outline: none; }
-        .search-bar-container .search-icon { position: absolute; left: 0.875rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
-        .view-toggle-container { display: flex; align-items: center; gap: 0.75rem; }
-        .view-toggle-label { font-weight: 500; color: var(--text-secondary); }
-        .view-toggle { display: flex; background: var(--bg-tertiary); border-radius: var(--radius-md); padding: 0.25rem; }
-        .view-toggle-btn { background: none; border: none; padding: 0.5rem 1rem; font-weight: 600; font-size: 0.875rem; border-radius: var(--radius-sm); cursor: pointer; transition: var(--transition); color: var(--text-secondary); }
-        .view-toggle-btn.active { background: var(--bg-primary); color: var(--primary); box-shadow: var(--shadow-sm); }
-        
-        /* Category Selector */
-        .category-selector { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem; }
-        .category-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; padding: 1.5rem; background: var(--bg-primary); border: 2px solid var(--border-light); border-radius: var(--radius-lg); cursor: pointer; transition: var(--transition); }
-        .category-card:hover { border-color: var(--primary-light); transform: translateY(-4px); box-shadow: var(--shadow-md); }
-        .category-card.active { border-color: var(--primary); background: var(--bg-accent); box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1); transform: translateY(-4px); }
-        .category-icon { font-size: 2rem; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; background: var(--bg-tertiary); border-radius: 50%; color: var(--text-secondary); transition: var(--transition); }
-        .category-card:hover .category-icon, .category-card.active .category-icon { background: var(--primary); color: white; }
-        .category-text h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
-        .category-text p { font-size: 0.9rem; color: var(--text-secondary); margin: 0; }
-
-        /* Templates Grid & Empty State */
-        .templates-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 1.5rem; }
-        .empty-state { display: none; text-align: center; padding: 4rem 2rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 2px dashed var(--border-light); }
-        .empty-state i { font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem; }
-        .empty-state h4 { font-size: 1.25rem; margin-bottom: 0.5rem; }
-        .empty-state p { color: var(--text-secondary); }
-
-        .template-card {
-            background: var(--bg-primary); border: 2px solid var(--border-light); border-radius: var(--radius-lg);
-            padding: 1.5rem; cursor: pointer; transition: var(--transition); position: relative; display: flex;
-            flex-direction: column;
+        .mc-step {
+            flex: 1; display: flex; align-items: center; gap: .7rem;
+            background: none; border: 0; padding: .55rem .7rem; border-radius: 999px;
+            text-align: left; transition: background .2s var(--ease); min-width: 0;
         }
-        .template-card.hidden { display: none; }
-        .template-card:hover { border-color: var(--primary-light); transform: translateY(-4px); box-shadow: var(--shadow-md); }
-        .template-card.selected { border-color: var(--success); background: rgba(16, 185, 129, 0.05); }
-        .template-card.selected::before { content: '\f058'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; color: var(--success); }
-        .template-checkbox { display: none; }
-        .template-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem; padding-right: 2rem; }
-        .template-title { font-size: 1.1rem; font-weight: 600; color: var(--text-primary); margin: 0; flex: 1; }
-        .template-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
-        .badge { padding: 0.25rem 0.5rem; font-size: 0.75rem; font-weight: 600; border-radius: var(--radius-sm); border: 1px solid; }
-        .badge.natural { color: var(--success); background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); }
-        .badge.converted { color: var(--warning); background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.3); }
-        .template-columns { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-bottom: 1rem; }
-        .column-tag { padding: 0.25rem 0.5rem; font-size: 0.75rem; background: var(--bg-tertiary); color: var(--text-secondary); border-radius: var(--radius-sm); font-family: monospace; }
-        .template-card-footer { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-light); }
-        .expand-btn { background: none; border: none; color: var(--primary); font-size: 0.875rem; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; width: 100%; justify-content: center; }
-        .expand-btn:hover { text-decoration: underline; }
-        .expand-icon { transition: transform 0.3s ease; }
-        .template-details { display: none; margin-top: 1rem; padding: 1rem; background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--border-light); }
-        .template-details.show { display: block; }
-        .field-description { margin-bottom: 0.75rem; padding: 0.5rem; background: var(--bg-primary); border-radius: var(--radius-sm); font-size: 0.875rem; }
-        .field-name { font-family: monospace; font-weight: 600; color: var(--primary); }
+        .mc-step:not(:disabled):hover { background: var(--rose-50); }
+        .mc-step:disabled { opacity: .55; cursor: not-allowed; }
+        .mc-step-num {
+            flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%;
+            display: grid; place-items: center; font-size: .95rem; font-weight: 600;
+            background: #efeaf0; color: var(--muted);
+            border: 1.5px solid transparent; transition: all .25s var(--ease);
+        }
+        .mc-step-text { display: flex; flex-direction: column; line-height: 1.15; min-width: 0; }
+        .mc-step-k { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); font-weight: 600; }
+        .mc-step-l { font-size: .95rem; font-weight: 600; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .mc-step.is-active .mc-step-num { background: var(--rose); color: #fff; box-shadow: 0 6px 14px -6px var(--rose-deep); }
+        .mc-step.is-active .mc-step-l { color: var(--ink); }
+        .mc-step.is-done .mc-step-num { background: var(--nat); color: #fff; }
+        .mc-step.is-done .mc-step-num::after { content: "\2713"; font-family: inherit; }
+        .mc-step.is-done .mc-step-num { font-size: 0; }
+        .mc-step.is-done .mc-step-num::after { font-size: .95rem; }
+        .mc-step-sep { flex: 0 0 18px; height: 2px; background: var(--line-2); border-radius: 2px; }
 
-        /* Floating Action Buttons */
-        .floating-actions { position: fixed; bottom: 2rem; right: 2rem; z-index: 1000; display: flex; gap: 1rem; align-items: center; }
-        .action-fab { width: 60px; height: 60px; border: none; border-radius: 50%; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow-lg); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; position: relative; }
-        .preview-fab { background: var(--info); color: white; }
-        .download-fab { background: var(--success); color: white; }
-        .action-fab:hover:not(:disabled) { transform: translateY(-4px); box-shadow: 0 12px 20px rgba(0,0,0,0.15); }
-        .preview-fab:hover:not(:disabled) { background: #2563eb; }
-        .download-fab:hover:not(:disabled) { background: #059669; }
-        .action-fab:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: var(--shadow-lg); }
-        .download-count { position: absolute; top: -8px; right: -8px; background: var(--danger); color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; transform: scale(0); transition: transform 0.2s ease-out; }
-        .download-count.visible { transform: scale(1); }
-        .clear-selection-btn { background: none; border: none; color: var(--danger); font-size: 1rem; cursor: pointer; opacity: 0; transition: var(--transition); padding: 0.5rem; display: flex; align-items: center; gap: 0.5rem; font-weight: 500;}
-        .clear-selection-btn.visible { opacity: 1; }
+        /* ---------------- PANELS ---------------- */
+        .mc-panel { display: none; }
+        .mc-panel.is-active { display: block; animation: mcIn .4s var(--ease) both; }
+        @keyframes mcIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+        .mc-panel-head { margin-bottom: 1.6rem; }
+        .mc-panel-title { font-size: 1.7rem; font-weight: 700; letter-spacing: -.01em; }
+        .mc-panel-help { margin-top: .5rem; font-size: 1rem; color: var(--muted); max-width: 70ch; line-height: 1.5; }
+        .mc-panel-help code { font-family: ui-monospace, Menlo, Consolas, monospace; background: var(--rose-50); color: var(--rose-deep); padding: .05rem .35rem; border-radius: 5px; font-size: .9em; }
+        .mc-panel-help b { color: var(--rose-deep); font-weight: 600; }
+        .mc-cards-lead { display: flex; align-items: center; gap: .6rem; font-weight: 600; color: var(--ink); font-size: 1.05rem; margin: 1.6rem 0 1rem; }
+        .mc-cards-lead i { color: var(--rose); }
 
-        /* Modal Styles (Download & Preview) */
-        .download-modal { position: fixed; bottom: 90px; right: 2rem; background: var(--bg-primary); border: 1px solid var(--border-light); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: 1rem; display: none; z-index: 1001; min-width: 200px; }
-        .download-modal.show { display: block; }
-        .download-modal h3 { margin: 0 0 1rem 0; font-size: 1rem; color: var(--text-primary); }
-        .download-option { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; border: none; background: none; width: 100%; text-align: left; border-radius: var(--radius-md); cursor: pointer; transition: var(--transition); margin-bottom: 0.5rem; }
-        .download-option:hover { background: var(--bg-secondary); }
-        .download-option:last-child { margin-bottom: 0; }
-        .option-icon { width: 20px; text-align: center; color: var(--primary); }
-        .preview-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1050; display: none; align-items: center; justify-content: center; }
-        .preview-modal.show { display: flex; }
-.preview-modal-content { 
-    z-index: 999999999999999999;
-    background: var(--bg-primary); 
-    border-radius: var(--radius-xl); 
-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    box-shadow: var(--shadow-lg); 
-    width: 90%; 
-    max-width: 1200px; 
-    height: 80vh; 
-    display: flex; 
-    flex-direction: column; 
-    overflow: hidden; 
-    position: relative; 
-}
-        .preview-modal-header { padding: 1.5rem; border-bottom: 1px solid var(--border-light); background: var(--bg-secondary); display: flex; align-items: center; justify-content: space-between; }
-        .preview-modal-title { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin: 0; }
-        .preview-modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-secondary); padding: 0.5rem; border-radius: var(--radius-md); transition: var(--transition); }
-        .preview-modal-close:hover { background: var(--bg-tertiary); color: var(--text-primary); }
-        .preview-modal-body { padding: 1.5rem; overflow-y: auto; flex-grow: 1; }
-        .preview-description { margin-bottom: 1.5rem; padding: 1rem; background: var(--bg-accent); border-radius: var(--radius-md); border-left: 4px solid var(--primary); }
-        .preview-table-container { overflow-x: auto; border: 1px solid var(--border-light); border-radius: var(--radius-md); background: var(--bg-primary); }
-        .preview-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
-        .preview-table th { background: var(--bg-secondary); padding: 0.75rem; font-weight: 600; color: var(--text-primary); border-bottom: 2px solid var(--border-light); border-right: 1px solid var(--border-light); text-align: center; min-width: 100px; position: sticky; top: 0; z-index: 1; }
-        .preview-table td { padding: 0.75rem; border-bottom: 1px solid var(--border-light); border-right: 1px solid var(--border-light); text-align: center; font-family: monospace; }
-        .preview-table tr:nth-child(even) { background: var(--bg-secondary); }
-        .preview-table tr:hover { background: var(--bg-accent); }
-        .empty-cell { color: #d1d5db; font-style: italic; }
-        .empty-cell::after { content: '—'; }
-        .preview-modal-footer { padding: 1.5rem; border-top: 1px solid var(--border-light); background: var(--bg-secondary); display: flex; gap: 1rem; justify-content: flex-end; }
-        .btn { padding: 0.75rem 1.5rem; border: none; border-radius: var(--radius-md); font-weight: 600; cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; gap: 0.5rem; }
-        .btn-secondary { background: var(--bg-tertiary); color: var(--text-secondary); border: 1px solid var(--border-medium); }
-        .btn-secondary:hover { background: var(--bg-secondary); color: var(--text-primary); }
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover { background: var(--primary-dark); }
-        .filter-indicator { display: none; text-align: center; margin-bottom: 1.5rem; padding: 0.75rem; background: var(--bg-accent); border-radius: var(--radius-md); color: var(--primary); font-weight: 600; }
-        .filter-indicator.show { display: block; }
-        #filterText strong { background: var(--primary); color: white; padding: 0.1rem 0.5rem; border-radius: var(--radius-sm); font-family: monospace; }
-        .clear-filter { background: none; border: none; color: var(--primary); text-decoration: underline; cursor: pointer; margin-left: 0.5rem; font-weight: 600; }
-        
-        @media (max-width: 768px) {
+        /* ---- Step 1 controls ---- */
+        .mc-controls { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1.1rem; }
+        .mc-search { position: relative; flex: 1 1 280px; }
+        .mc-search i { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--faint); }
+        .mc-search input {
+            width: 100%; padding: .8rem 1rem .8rem 2.65rem; font-size: 1rem;
+            background: var(--card); border: 1px solid var(--line-2); border-radius: var(--r-md);
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .mc-search input:focus { outline: none; border-color: var(--rose); box-shadow: 0 0 0 4px var(--rose-100); }
+        .mc-seg { display: inline-flex; background: #f0eaeb; border-radius: var(--r-md); padding: .25rem; }
+        .mc-seg button { border: 0; background: none; padding: .55rem 1.1rem; font-weight: 600; font-size: .9rem; color: var(--muted); border-radius: 9px; transition: all .2s var(--ease); }
+        .mc-seg button.is-on { background: var(--card); color: var(--rose-deep); box-shadow: var(--sh-sm); }
+
+        /* ---- effect-size selector (always visible, above the search) ---- */
+        .mc-reverse { margin-bottom: 1.5rem; border: 1px solid var(--line); border-radius: var(--r-md); background: #fff; padding: 1.15rem 1.25rem; }
+        .mc-reverse-head { display: flex; align-items: center; gap: .6rem; font-weight: 600; color: var(--ink); font-size: 1.05rem; }
+        .mc-reverse-head i { color: var(--rose); }
+        .mc-reverse-help { font-size: .9rem; color: var(--muted); margin: .4rem 0 .9rem; }
+        .mc-es-table { width: 100%; font-size: .9rem; }
+        .mc-es-table thead th { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); font-weight: 600; padding: .35rem .6rem; border-bottom: 1px solid var(--line); }
+        .mc-es-row { cursor: pointer; transition: background .15s; }
+        .mc-es-row td { padding: .55rem .6rem; border-bottom: 1px solid var(--line); color: var(--ink-soft); }
+        .mc-es-row:hover { background: var(--rose-50); }
+        .mc-es-row.is-on { background: var(--rose); box-shadow: inset 3px 0 0 var(--rose-700); }
+        .mc-es-row.is-on td { color: #fff; }
+        /* selected rows get their OWN hover — darken rather than lighten, so the
+           active measure stays unmistakably "on" while showing it is interactive */
+        .mc-es-row.is-on:hover { background: var(--rose-deep); }
+        .mc-es-row .mc-es-ac { font-weight: 700; color: var(--rose-deep); font-family: ui-monospace, monospace; }
+        .mc-es-row.is-on .mc-es-ac { color: #fff; }
+        .mc-vico { width: 22px; display: inline-block; text-align: center; margin-right: .35rem; }
+        .mc-vico.pred { color: var(--conv); }
+        .mc-vico.out { color: var(--nat); }
+        .mc-vico.time { color: var(--rose); }
+        .mc-es-row.is-on .mc-vico { color: rgba(255,255,255,.85); }
+        .mc-reverse-active { margin-top: .8rem; font-size: .9rem; color: var(--ink-soft); }
+        .mc-reverse-active strong { font-family: ui-monospace, monospace; background: var(--rose); color: #fff; padding: .1rem .5rem; border-radius: 5px; }
+        .mc-reverse-active button { margin-left: .5rem; border: 0; background: none; color: var(--rose-deep); text-decoration: underline; font-weight: 600; }
+
+        /* ---- groups + cards ---- */
+        .mc-group { margin-bottom: 2.1rem; }
+        .mc-group.is-hidden { display: none; }
+        .mc-group-head { display: flex; align-items: center; gap: .85rem; margin-bottom: 1rem; }
+        .mc-group-icon { flex: 0 0 auto; width: 42px; height: 42px; border-radius: 11px; display: grid; place-items: center; background: var(--rose-50); color: var(--rose-deep); font-size: 1.1rem; }
+        .mc-group-title { font-size: 1.12rem; font-weight: 700; }
+        .mc-group-blurb { font-size: .9rem; color: var(--muted); margin-top: .1rem; }
+        .mc-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+
+        .mc-card {
+            position: relative; background: var(--card); border: 1.5px solid var(--line);
+            border-radius: var(--r-md); padding: 1.15rem 1.2rem; cursor: pointer;
+            transition: border-color .15s var(--ease), box-shadow .15s var(--ease);
+            display: flex; flex-direction: column;
+        }
+        .mc-card.is-hidden { display: none; }
+        /* no lift on hover — a clear rose border + pointer signals it is clickable */
+        .mc-card:hover { border-color: var(--rose); box-shadow: var(--sh-sm); }
+        .mc-card:hover.is-sel { border-color: var(--rose-deep); }
+        .mc-card.is-sel { border-color: var(--rose); background: var(--rose-50); }
+        .mc-card-check {
+            position: absolute; top: .9rem; right: .9rem; width: 24px; height: 24px; border-radius: 50%;
+            display: grid; place-items: center; background: var(--rose); color: #fff; font-size: .75rem;
+            transform: scale(0); transition: transform .25s var(--ease);
+        }
+        .mc-card.is-sel .mc-card-check { transform: scale(1); }
+        .mc-card-top { display: flex; align-items: flex-start; gap: .5rem; padding-right: 1.8rem; }
+        .mc-card-title { font-size: 1.04rem; font-weight: 600; color: var(--ink); }
+        .mc-tag-adv { flex: 0 0 auto; font-size: .64rem; letter-spacing: .07em; text-transform: uppercase; font-weight: 700; color: var(--conv); background: var(--conv-bg); border: 1px solid var(--conv-line); padding: .12rem .4rem; border-radius: 5px; margin-top: .15rem; }
+        .mc-card-ex { font-size: .9rem; color: var(--muted); margin-top: .45rem; line-height: 1.45; flex: 1; }
+        .mc-card-es { display: flex; align-items: center; flex-wrap: wrap; gap: .35rem; margin-top: .9rem; }
+        .mc-arrow { color: var(--faint); font-weight: 700; margin-right: .1rem; }
+
+        .mc-badge { font-size: .72rem; font-weight: 700; letter-spacing: .02em; padding: .2rem .5rem; border-radius: 6px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+        .mc-badge-nat { color: var(--nat); background: var(--nat-bg); border: 1px solid var(--nat-line); }
+        .mc-badge-conv { color: var(--conv); background: var(--conv-bg); border: 1px dashed var(--conv-line); }
+
+        .mc-card-cols-btn { margin-top: 1rem; align-self: flex-start; background: none; border: 0; color: var(--rose-deep); font-size: .85rem; font-weight: 600; display: inline-flex; align-items: center; gap: .45rem; padding: 0; }
+        .mc-card-cols-btn:hover { text-decoration: underline; }
+        .mc-chev { transition: transform .25s; font-size: .7rem; }
+        .mc-card-cols-btn.is-open .mc-chev { transform: rotate(180deg); }
+        .mc-card-cols { display: none; flex-wrap: wrap; gap: .35rem; margin-top: .8rem; padding-top: .8rem; border-top: 1px solid var(--line); }
+        .mc-card-cols.is-open { display: flex; }
+        .mc-coltag { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .72rem; color: var(--ink-soft); background: #f4eff0; border: 1px solid var(--line); padding: .15rem .45rem; border-radius: 5px; cursor: help; }
+
+        /* ---- empty ---- */
+        .mc-empty { text-align: center; padding: 3rem 1rem; color: var(--muted); }
+        .mc-empty i { font-size: 2.2rem; color: var(--faint); }
+        .mc-empty h4 { margin: .8rem 0 .3rem; font-size: 1.15rem; color: var(--ink); }
+
+        /* ---- action bar ---- */
+        .mc-actionbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 2rem; padding-top: 1.4rem; border-top: 1px solid var(--line); flex-wrap: wrap; }
+        .mc-selcount { font-size: 1rem; color: var(--ink-soft); }
+        .mc-selcount #mcSelN { font-weight: 700; color: var(--ink); font-family: "Space Grotesk", sans-serif; }
+        .mc-unlocked { display: inline-flex; align-items: center; flex-wrap: wrap; gap: .3rem; margin-left: .4rem; }
+        .mc-muted { color: var(--faint); font-size: .9rem; }
+
+        .mc-btn { display: inline-flex; align-items: center; gap: .55rem; border: 0; border-radius: var(--r-md); padding: .8rem 1.5rem; font-weight: 600; font-size: 1rem; transition: all .2s var(--ease); }
+        .mc-btn-primary { background: var(--rose); color: #fff; box-shadow: 0 10px 22px -12px var(--rose-deep); }
+        .mc-btn-primary:hover { background: var(--rose-deep); transform: translateY(-2px); }
+        .mc-btn-primary:disabled { background: #e3d8d9; color: #b6a9ab; box-shadow: none; cursor: not-allowed; transform: none; }
+        .mc-btn-soft { background: var(--rose-100); color: var(--rose-deep); }
+        .mc-btn-soft:hover { background: var(--rose-200); }
+        .mc-btn-ghost { background: none; border: 1px solid var(--line-2); color: var(--ink-soft); }
+        .mc-btn-ghost:hover { border-color: var(--rose); color: var(--rose-deep); }
+
+        /* ---------------- STEP 2 ---------------- */
+        .mc-two { display: grid; grid-template-columns: 1fr 320px; gap: 1.75rem; align-items: start; }
+        .mc-colgroup { margin-bottom: 1.4rem; }
+        .mc-colgroup-title { font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--rose-deep); font-weight: 700; margin-bottom: .6rem; }
+        .mc-colgroup.is-fixed .mc-colgroup-title { color: var(--ink-soft); }
+        .mc-collist { display: flex; flex-direction: column; gap: .4rem; }
+        .mc-colrow {
+            display: grid; grid-template-columns: auto 200px 1fr; align-items: center; gap: .9rem;
+            background: var(--card); border: 1px solid var(--line); border-radius: var(--r-sm);
+            padding: .65rem .9rem; transition: opacity .2s, border-color .2s;
+        }
+        .mc-colrow.is-off { opacity: .5; }
+        .mc-colrow.is-locked { background: var(--rose-50); border-color: var(--rose-100); }
+        .mc-colrow input { width: 18px; height: 18px; accent-color: var(--rose); }
+        .mc-col-name { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85rem; font-weight: 600; color: var(--ink); word-break: break-all; }
+        .mc-col-desc { font-size: .85rem; color: var(--muted); line-height: 1.4; }
+
+        .mc-side { position: sticky; top: 130px; display: flex; flex-direction: column; gap: 1rem; }
+        .mc-ledger { background: var(--ink); color: #fff; border-radius: var(--r-md); padding: 1.25rem; box-shadow: var(--sh-md); }
+        .mc-ledger-head { margin-bottom: 1.1rem; }
+        /* .mc-ledger prefix beats the global ".mc-wrap h4" color reset (else dark-on-dark) */
+        .mc-ledger .mc-ledger-title { color: #fff; font-size: 1.02rem; font-weight: 600; }
+        .mc-ledger-note { color: #b6b2cc; font-size: .82rem; margin-top: .25rem; line-height: 1.4; }
+        .mc-ledger-empty { color: #aaa6c0; font-size: .88rem; line-height: 1.55; }
+        .mc-ledger-row { padding: .85rem 0; border-top: 1px solid rgba(255,255,255,.1); }
+        .mc-ledger-row:first-of-type { border-top: 0; padding-top: 0; }
+        .mc-ledger-k { display: flex; align-items: flex-start; gap: .55rem; font-size: .86rem; color: #d7d4e6; margin-bottom: .6rem; }
+        .mc-ledger-k .mc-dot { margin-top: .35rem; }
+        .mc-ledger-hint { display: block; font-size: .73rem; color: #8f8ba6; font-weight: 400; margin-top: .12rem; }
+        .mc-ledger-v { display: flex; flex-wrap: wrap; gap: .35rem; }
+        .mc-dot { width: 9px; height: 9px; border-radius: 50%; flex: 0 0 auto; }
+        .mc-dot-nat { background: #79c2ad; }
+        .mc-dot-conv { background: #e6c06a; }
+        .mc-ledger .mc-muted { color: #8a86a0; }
+        .mc-tally { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 1.25rem; text-align: center; }
+        .mc-tally-n { font-size: 2.6rem; font-weight: 700; color: var(--rose-deep); line-height: 1; }
+        .mc-tally-l { font-size: .9rem; color: var(--ink-soft); margin-top: .2rem; }
+        .mc-tally-sub { font-size: .82rem; color: var(--faint); margin-top: .5rem; }
+
+        /* ---------------- STEP 3 ---------------- */
+        .mc-summary { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem 2.5rem; padding: 1.4rem 1.6rem; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); margin-bottom: 1.5rem; }
+        .mc-summary-stat { display: flex; align-items: baseline; gap: .5rem; }
+        .mc-summary-n { font-size: 2rem; font-weight: 700; color: var(--rose-deep); }
+        .mc-summary-l { font-size: .9rem; color: var(--muted); }
+        .mc-summary-es { display: flex; flex-direction: column; gap: .45rem; }
+        .mc-summary-es > div { display: flex; flex-wrap: wrap; gap: .35rem; }
+
+        .mc-preview-wrap { overflow-x: auto; border: 1px solid var(--line-2); border-radius: var(--r-md); background: var(--card); box-shadow: var(--sh-sm); }
+        .mc-preview-table { width: 100%; font-size: .82rem; }
+        .mc-preview-table th { position: sticky; top: 0; z-index: 2; background: var(--rose-50); color: var(--ink); font-weight: 600; padding: .7rem .8rem !important; border-bottom: 2px solid var(--rose-100); border-right: 1px solid var(--line); white-space: nowrap; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .76rem; }
+        .mc-preview-table td { padding: .6rem .8rem !important; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); white-space: nowrap; font-family: ui-monospace, Menlo, Consolas, monospace; color: var(--ink-soft); }
+        .mc-preview-table tbody tr:nth-child(even) { background: #fbf8f8; }
+        .mc-preview-table tbody tr:hover { background: var(--rose-50); }
+        .mc-preview-table .mc-sticky { position: sticky; left: 0; z-index: 1; background: #f6f1f1; font-weight: 600; color: var(--ink); border-right: 2px solid var(--line-2); }
+        .mc-preview-table thead .mc-sticky { z-index: 3; background: #f3e7e8; }
+        .mc-preview-table .empty-cell { color: #d9d2d3; }
+        .mc-preview-table .empty-cell::after { content: "\2014"; }
+
+        .mc-downloads { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem; margin-top: 1.5rem; padding: 1.5rem 1.6rem; background: linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 100%); border-radius: var(--r-md); box-shadow: var(--sh-md); }
+        .mc-dl-text { color: #fff; display: flex; flex-direction: column; gap: .2rem; }
+        .mc-dl-text strong { font-size: 1.1rem; font-weight: 600; }
+        .mc-dl-text span { font-size: .88rem; color: #c2bfd4; }
+        .mc-dl-btns { display: flex; flex-wrap: wrap; gap: .7rem; }
+        .mc-downloads .mc-btn-ghost { border-color: rgba(255,255,255,.3); color: #fff; }
+        .mc-downloads .mc-btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,.1); color: #fff; }
+
+        /* ---------------- STEP 1: two-column build + live sheet ---------------- */
+        .mc-build { display: grid; grid-template-columns: minmax(0, 1fr) 460px; gap: 1.75rem; align-items: start; }
+        .mc-build-main { min-width: 0; }
+        .mc-build-side { position: sticky; top: 130px; display: flex; flex-direction: column; gap: 1rem; }
+        .mc-build-cta { justify-content: center; }
+        .mc-livesheet-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 1.1rem 1.15rem; }
+        .mc-livesheet-head { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; font-weight: 600; color: var(--ink); }
+        .mc-livesheet-head span { font-family: "Space Grotesk", sans-serif; font-size: .82rem; font-weight: 600; color: var(--rose-deep); white-space: nowrap; }
+        .mc-livesheet-empty { font-size: .88rem; color: var(--muted); margin-top: .55rem; line-height: 1.45; }
+        .mc-livesheet-cap { font-size: .78rem; color: var(--muted); margin-top: .5rem; }
+        .mc-livesheet-wrap { margin-top: .7rem; max-height: 420px; overflow: auto; border: 1px solid var(--line); border-radius: var(--r-sm); }
+        .mc-livesheet-table { width: 100%; font-size: .78rem; }
+        .mc-livesheet-table th { position: sticky; top: 0; z-index: 1; background: var(--rose-50); color: var(--ink); font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .72rem; font-weight: 600; padding: .5rem .6rem !important; border-bottom: 1px solid var(--rose-100); border-right: 1px solid var(--line); white-space: nowrap; }
+        .mc-livesheet-table td { padding: .45rem .6rem !important; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); color: var(--ink-soft); font-family: ui-monospace, Menlo, Consolas, monospace; white-space: nowrap; }
+        .mc-livesheet-table .mc-sticky { position: sticky; left: 0; background: #f6f1f1; }
+        .mc-livesheet-table thead .mc-sticky { z-index: 2; background: #f3e7e8; }
+        .mc-livesheet-table th.is-new { animation: mcFlash .7s var(--ease); }
+        @keyframes mcFlash { 0% { background: var(--rose); color: #fff; } 100% { background: var(--rose-50); color: var(--ink); } }
+
+        /* ---------------- STEP 2: collapsible column customizer ---------------- */
+        .mc-customize { margin-bottom: 1.5rem; border: 1px solid var(--line); border-radius: var(--r-md); background: #fff; }
+        .mc-customize > summary { list-style: none; cursor: pointer; padding: .9rem 1.15rem; display: flex; align-items: center; gap: .6rem; font-weight: 600; color: var(--ink-soft); }
+        .mc-customize > summary::-webkit-details-marker { display: none; }
+        .mc-customize > summary i { color: var(--rose); }
+        .mc-customize > summary::after { content: "\f078"; font-family: "Font Awesome 6 Free"; font-weight: 900; margin-left: auto; font-size: .8rem; color: var(--faint); transition: transform .25s; }
+        .mc-customize[open] > summary::after { transform: rotate(180deg); }
+        .mc-customize-body { padding: 0 1.15rem 1.15rem; }
+        .mc-customize-help { font-size: .9rem; color: var(--muted); margin-bottom: 1rem; }
+        .mc-customize-help code { font-family: ui-monospace, Menlo, Consolas, monospace; background: var(--rose-50); color: var(--rose-deep); padding: .05rem .35rem; border-radius: 5px; font-size: .9em; }
+
+        /* ---------------- Direction controls (reverse_*) ---------------- */
+        .mc-direction { display: flex; align-items: flex-start; gap: .9rem; margin: 0 0 1rem; padding: .9rem 1.1rem; background: var(--rose-50); border: 1px solid var(--rose-100); border-radius: var(--r-md); }
+        .mc-direction-text { display: flex; flex-direction: column; gap: .2rem; }
+        .mc-direction-title { font-weight: 600; color: var(--ink); display: inline-flex; align-items: center; gap: .45rem; }
+        .mc-direction-title i { color: var(--rose-deep); }
+        .mc-direction-title code, .mc-direction-sub code, .mc-direction-eg code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85em; background: #fff; color: var(--rose-deep); padding: .03rem .32rem; border-radius: 4px; border: 1px solid var(--rose-100); }
+        .mc-direction-sub { font-size: .9rem; color: var(--ink-soft); line-height: 1.5; }
+        .mc-direction-link { background: none; border: 0; color: var(--rose-deep); font-weight: 600; text-decoration: underline; padding: 0; font-size: inherit; }
+        .mc-direction-eg { margin: -.4rem 0 1.4rem; padding: 1rem 1.1rem; background: #fff; border: 1px solid var(--line); border-left: 3px solid var(--rose); border-radius: var(--r-sm); font-size: .9rem; color: var(--ink-soft); line-height: 1.6; }
+        .mc-direction-eg code { background: var(--rose-50); }
+        .mc-switch { position: relative; display: inline-block; width: 44px; height: 25px; flex: 0 0 auto; margin-top: .1rem; }
+        .mc-switch input { opacity: 0; width: 0; height: 0; }
+        .mc-switch-slider { position: absolute; inset: 0; cursor: pointer; background: #cdc6c6; border-radius: 999px; transition: background .2s var(--ease); }
+        .mc-switch-slider::before { content: ""; position: absolute; height: 19px; width: 19px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: transform .2s var(--ease); box-shadow: var(--sh-sm); }
+        .mc-switch input:checked + .mc-switch-slider { background: var(--rose); }
+        .mc-switch input:checked + .mc-switch-slider::before { transform: translateX(19px); }
+        .mc-switch input:focus-visible + .mc-switch-slider { outline: 3px solid var(--rose); outline-offset: 2px; }
+        /* reverse columns shown dimmed in both sheets — they are controls, not data */
+        .mc-livesheet-table th.mc-rev, .mc-preview-table th.mc-rev { color: var(--muted); font-style: italic; background: #f7f2f2; }
+        .mc-livesheet-table td.mc-rev, .mc-preview-table td.mc-rev { color: var(--faint); background: #fcfafa; }
+        .mc-livesheet-table td.mc-rev.is-true, .mc-preview-table td.mc-rev.is-true { color: var(--rose-deep); font-weight: 700; }
+
+        /* ---------------- RESPONSIVE ---------------- */
+        @media (max-width: 900px) {
+            .mc-build { grid-template-columns: 1fr; }
+            .mc-build-side { position: static; }
+            .mc-two { grid-template-columns: 1fr; }
+            .mc-side { position: static; flex-direction: row; flex-wrap: wrap; }
+            .mc-ledger, .mc-tally { flex: 1 1 240px; }
+            .mc-colrow { grid-template-columns: auto 1fr; }
+            .mc-col-desc { grid-column: 2; }
+        }
+        @media (max-width: 640px) {
             .nav-links { display: none; }
-            .page-title { font-size: 2rem; }
-            .page-subtitle { font-size: 1rem; }
-            .container { padding: 6rem 1rem 1rem; }
-            .page-header, .explorer-section, .templates-section { padding: 1.5rem; }
-            .glossary-items, .category-selector, .templates-grid { grid-template-columns: 1fr; }
-            .template-controls { flex-direction: column; align-items: stretch; }
-            .floating-actions { bottom: 1rem; right: 1rem; }
-            .download-modal { right: 1rem; bottom: 80px; }
-            .preview-modal { box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;}
-            .preview-modal-content { width: 95%; height: 95vh; }
-            .preview-modal-title { font-size: 1.2rem; }
-            .preview-modal-footer { flex-direction: column; }
-            .btn { width: 100%; justify-content: center; }
-            .preview-table th, .preview-table td { padding: 0.5rem 0.25rem; font-size: 0.75rem; min-width: 80px; }
+            .mc-wrap { padding: 1.75rem 1rem 5rem; }
+            .mc-stepper { top: 56px; padding: .5rem; border-radius: var(--r-lg); }
+            .mc-step-text { display: none; }
+            .mc-step { flex: 0 0 auto; justify-content: center; }
+            .mc-step-sep { flex: 1; }
+            .mc-cards { grid-template-columns: 1fr; }
+            .mc-actionbar { flex-direction: column-reverse; align-items: stretch; }
+            .mc-actionbar .mc-btn { justify-content: center; }
+            .mc-downloads { flex-direction: column; align-items: stretch; }
+            .mc-dl-btns .mc-btn { flex: 1; justify-content: center; }
         }
-        
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-in { animation: fadeIn 0.6s ease-out forwards; opacity: 0; }
-        .animate-in:nth-child(2) { animation-delay: 0.1s; }
-        .animate-in:nth-child(3) { animation-delay: 0.2s; }
-
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+            html { scroll-behavior: auto; }
+        }
     </style>
 </head>
 <body>
@@ -273,167 +400,149 @@ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         <div class="logo"><img src="logo/logo.svg" /></div>
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
-          <!-- <li><a href="tutorial.html">Tutorial</a></li> -->
+          <li><a href="metadetect.html">metaDETECT</a></li>
           <li><a href="input.html" class="homepage currentpage">Input data</a></li>
-          <li><a href="app.html" >App</a></li>
+          <li><a href="app.html">App</a></li>
         </ul>
         <div id="hamburger-menu"><span></span><span></span><span></span><span></span><span></span><span></span></div>
     </nav>
 
-    <div class="container">
-        <!-- Header Section -->
-        <header class="page-header animate-in" id="pageHeader">
-            <h1 class="page-title">Build Your Data Extraction Sheet</h1>
-            <p class="page-subtitle">
-                Select from the templates below to create a custom CSV or Excel file tailored to the statistical data available in your studies.
-            </p>
-            <a href="#" class="help-button" onclick="startTutorial()">
-                <i class="fas fa-question-circle"></i>
-                Need Help? Start Guided Tour
-            </a>
+    <div class="mc-wrap">
+        <!-- HERO -->
+        <header class="mc-hero">
+            <span class="mc-eyebrow">metaConvert &middot; extraction sheet</span>
+            <h1 class="mc-h1">Build your data extraction sheet</h1>
+            <p class="mc-sub">Choose the <b>effect sizes you plan to compute</b> and the statistics you expect to extract. metaConvert assembles the exact spreadsheet columns you'll need &mdash; watch the sheet build itself as you go, so it's ready before you open the first study.</p>
         </header>
 
-        <!-- Effect Size Explorer Section -->
-        <section class="explorer-section animate-in" id="explorerSection">
-            <div class="explorer-header">
-                <h2 class="explorer-title">Effect Size Explorer</h2>
-                <p class="explorer-description">Understand the types of effect sizes and filter templates by the measure you want to calculate.</p>
-            </div>
-            <div class="glossary-items">
-                <div class="glossary-item natural"><div class="icon"><i class="fas fa-leaf"></i></div><div><strong>🟢 natural_es:</strong> The most direct effect size calculated from the input data, ensuring maximum precision.</div></div>
-                <div class="glossary-item converted"><div class="icon"><i class="fas fa-exchange-alt"></i></div><div><strong>🟡 converted_es:</strong> An effect size derived via a conversion formula, which may introduce a small degree of approximation.</div></div>
-            </div>
-            <div class="es-toggle-container">
-                <label class="toggle-label">Explore Effect Size Measures</label>
-                <label class="toggle-switch">
-                    <input type="checkbox" id="esToggle">
-                    <span class="toggle-slider"></span>
-                </label>
-            </div>
-            <div class="esm-grid" id="esmGrid">
-                <div class="esm-table-wrapper">
-                    <table class="esm-table">
-                        <thead>
-                            <tr><th>Predictor Type</th><th>Outcome Type</th><th>Effect Size Measure</th><th>Acronym</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr class="es-row" data-es="SMD"><td><span class="var-icon predictor"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td><span class="var-icon outcome"><i class="fas fa-ruler-combined"></i></span> Continuous</td><td>Standardized Mean Difference</td><td><span class="clickable-es" data-es="SMD">SMD</span></td></tr>
-                            <tr class="es-row" data-es="MD"><td><span class="var-icon predictor"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td><span class="var-icon outcome"><i class="fas fa-ruler-combined"></i></span> Continuous</td><td>Mean Difference</td><td><span class="clickable-es" data-es="MD">MD</span></td></tr>
-                            <tr class="es-row" data-es="VAR"><td><span class="var-icon predictor"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td><span class="var-icon outcome"><i class="fas fa-ruler-combined"></i></span> Continuous</td><td>Variability Ratio / CoV</td><td><span class="clickable-es" data-es="VAR">VAR</span></td></tr>
-                            <tr class="es-row" data-es="COR"><td><span class="var-icon predictor"><i class="fas fa-ruler-combined"></i></span> Continuous</td><td><span class="var-icon outcome"><i class="fas fa-ruler-combined"></i></span> Continuous</td><td>Correlation (r / Fisher's z)</td><td><span class="clickable-es" data-es="COR">COR</span></td></tr>
-                            <tr class="es-row" data-es="OR"><td><span class="var-icon predictor"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td><span class="var-icon outcome"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td>Odds Ratio</td><td><span class="clickable-es" data-es="OR">OR</span></td></tr>
-                            <tr class="es-row" data-es="RR"><td><span class="var-icon predictor"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td><span class="var-icon outcome"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td>Risk Ratio</td><td><span class="clickable-es" data-es="RR">RR</span></td></tr>
-                            <tr class="es-row" data-es="NNT"><td><span class="var-icon predictor"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td><span class="var-icon outcome"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td>Number Needed to Treat</td><td><span class="clickable-es" data-es="NNT">NNT</span></td></tr>
-                            <tr class="es-row" data-es="IRR"><td><span class="var-icon time"><i class="far fa-clock"></i></span> Time</td><td><span class="var-icon outcome"><i class="fas fa-square-poll-vertical"></i></span> Binary</td><td>Incidence Rate Ratio</td><td><span class="clickable-es" data-es="IRR">IRR</span></td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
+        <!-- STEPPER -->
+        <nav class="mc-stepper" aria-label="Progress">
+            <button class="mc-step is-active" data-step="1" onclick="goStep(1)">
+                <span class="mc-step-num">1</span>
+                <span class="mc-step-text"><span class="mc-step-k">Step 1</span><span class="mc-step-l">Build your sheet</span></span>
+            </button>
+            <span class="mc-step-sep" aria-hidden="true"></span>
+            <button class="mc-step" data-step="2" onclick="goStep(2)" disabled>
+                <span class="mc-step-num">2</span>
+                <span class="mc-step-text"><span class="mc-step-k">Step 2</span><span class="mc-step-l">Review &amp; download</span></span>
+            </button>
+        </nav>
 
-        <!-- Data Templates Section -->
-        <section class="templates-section animate-in" id="templatesSection">
-            <div class="section-header">
-                <h2 class="section-title">Statistical Data Templates</h2>
-                <p class="section-description">
-                    Filter by data type, search, and select all the templates that match your available data.
-                </p>
+        <!-- ===================== STEP 1 — BUILD ===================== -->
+        <section class="mc-panel is-active" id="panel-1">
+            <div class="mc-panel-head">
+                <h2 class="mc-panel-title">What will you extract?</h2>
+                <p class="mc-panel-help">Plan this at the protocol stage &mdash; you don't need the studies in hand yet. Choose the <b>effect sizes you'll compute</b> and the statistics you expect to collect; your sheet builds itself on the right as you go.</p>
             </div>
 
-            <!-- New Search & Filter Controls -->
-            <div class="template-controls">
-                <div class="search-bar-container">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" id="templateSearch" placeholder="Search templates (e.g., 'ANOVA', 't-test', 'beta_std')...">
+            <div class="mc-build">
+            <div class="mc-build-main">
+            <section class="mc-reverse" id="mcReverse">
+                <div class="mc-reverse-head"><i class="fas fa-bullseye"></i> Effect sizes you want to compute</div>
+                <p class="mc-reverse-help">Pick a measure to show only the data sources that can produce it. Optional &mdash; you can also just browse every source below.</p>
+                <table class="mc-es-table">
+                    <thead><tr><th>Predictor</th><th>Outcome</th><th>Effect size measure</th><th>Acronym</th></tr></thead>
+                    <tbody>
+                        <tr class="mc-es-row" data-es="SMD"><td><span class="mc-vico pred"><i class="fas fa-square-poll-vertical"></i></span>Binary</td><td><span class="mc-vico out"><i class="fas fa-ruler-combined"></i></span>Continuous</td><td>Standardized mean difference</td><td><span class="mc-es-ac">SMD</span></td></tr>
+                        <tr class="mc-es-row" data-es="MD"><td><span class="mc-vico pred"><i class="fas fa-square-poll-vertical"></i></span>Binary</td><td><span class="mc-vico out"><i class="fas fa-ruler-combined"></i></span>Continuous</td><td>Mean difference</td><td><span class="mc-es-ac">MD</span></td></tr>
+                        <tr class="mc-es-row" data-es="VAR"><td><span class="mc-vico pred"><i class="fas fa-square-poll-vertical"></i></span>Binary</td><td><span class="mc-vico out"><i class="fas fa-ruler-combined"></i></span>Continuous</td><td>Variability ratio / CoV</td><td><span class="mc-es-ac">VAR</span></td></tr>
+                        <tr class="mc-es-row" data-es="COR"><td><span class="mc-vico out"><i class="fas fa-ruler-combined"></i></span>Continuous</td><td><span class="mc-vico out"><i class="fas fa-ruler-combined"></i></span>Continuous</td><td>Correlation (r / Fisher's z)</td><td><span class="mc-es-ac">COR</span></td></tr>
+                        <tr class="mc-es-row" data-es="OR"><td><span class="mc-vico pred"><i class="fas fa-square-poll-vertical"></i></span>Binary</td><td><span class="mc-vico pred"><i class="fas fa-square-poll-vertical"></i></span>Binary</td><td>Odds ratio</td><td><span class="mc-es-ac">OR</span></td></tr>
+                        <tr class="mc-es-row" data-es="RR"><td><span class="mc-vico pred"><i class="fas fa-square-poll-vertical"></i></span>Binary</td><td><span class="mc-vico pred"><i class="fas fa-square-poll-vertical"></i></span>Binary</td><td>Risk ratio</td><td><span class="mc-es-ac">RR</span></td></tr>
+                        <tr class="mc-es-row" data-es="NNT"><td><span class="mc-vico pred"><i class="fas fa-square-poll-vertical"></i></span>Binary</td><td><span class="mc-vico pred"><i class="fas fa-square-poll-vertical"></i></span>Binary</td><td>Number needed to treat</td><td><span class="mc-es-ac">NNT</span></td></tr>
+                        <tr class="mc-es-row" data-es="IRR"><td><span class="mc-vico time"><i class="far fa-clock"></i></span>Time</td><td><span class="mc-vico pred"><i class="fas fa-square-poll-vertical"></i></span>Binary</td><td>Incidence rate ratio</td><td><span class="mc-es-ac">IRR</span></td></tr>
+                    </tbody>
+                </table>
+                <div class="mc-reverse-active" id="mcEsActive" hidden>Showing sources for <strong id="mcEsName"></strong><button type="button" onclick="clearEsFilter()">clear</button></div>
+            </section>
+
+            <div class="mc-cards-lead"><i class="fas fa-layer-group"></i> Statistics you'll extract</div>
+            <div class="mc-controls">
+                <div class="mc-search">
+                    <i class="fas fa-search"></i>
+                    <input id="mcSearch" type="text" placeholder="Search statistics (e.g. ANOVA, t-test, odds ratio, beta)&hellip;">
                 </div>
-                <div class="view-toggle-container" id="viewToggle">
-                    <span class="view-toggle-label">View:</span>
-                    <div class="view-toggle">
-                        <button class="view-toggle-btn active" data-level="basic">Basic</button>
-                        <button class="view-toggle-btn" data-level="all">Show All</button>
-                    </div>
+                <div class="mc-seg" id="mcLevel" role="group" aria-label="Source detail">
+                    <button class="is-on" data-level="basic">Common</button>
+                    <button data-level="all">All sources</button>
                 </div>
-            </div>
-            
-            <!-- Category Selector -->
-            <div class="category-selector" id="categorySelector">
-                <div class="category-card active" data-filter="all"><div class="category-icon"><i class="fas fa-grip"></i></div><div class="category-text"><h4>All Templates</h4><p>Show all available options</p></div></div>
-                <div class="category-card" data-filter="means"><div class="category-icon"><i class="fas fa-chart-line"></i></div><div class="category-text"><h4>Group Averages</h4><p>Means, SDs, t-tests, ANOVA</p></div></div>
-                <div class="category-card" data-filter="proportions"><div class="category-icon"><i class="fas fa-chart-pie"></i></div><div class="category-text"><h4>Proportions</h4><p>Counts, 2x2 tables, OR, RR</p></div></div>
-                <div class="category-card" data-filter="correlations"><div class="category-icon"><i class="fas fa-project-diagram"></i></div><div class="category-text"><h4>Associations</h4><p>Correlations, regression</p></div></div>
-            </div>
-            
-             <!-- Filter Indicator -->
-            <div class="filter-indicator" id="filterIndicator">
-                <span id="filterText">Showing templates for: </span>
-                <button class="clear-filter" onclick="clearAllFilters()">Clear Filter</button>
             </div>
 
-            <!-- Templates Grid -->
-            <div class="templates-grid" id="templatesGrid">
-                <!-- Templates will be populated by JavaScript -->
-            </div>
-            
-            <!-- Empty State Message -->
-            <div class="empty-state" id="emptyState">
+            <div id="mcGroups"></div>
+            <div class="mc-empty" id="mcEmpty" hidden>
                 <i class="fas fa-box-open"></i>
-                <h4>No Templates Found</h4>
-                <p>Your filter or search criteria did not match any templates. <br>Try adjusting your filters or clearing your search.</p>
+                <h4>No sources match</h4>
+                <p>Clear the search or filters to see all options.</p>
+            </div>
+            </div><!-- /.mc-build-main -->
+
+            <aside class="mc-build-side">
+                <div class="mc-ledger" id="mcLedger"></div>
+                <div class="mc-livesheet-card">
+                    <div class="mc-livesheet-head">Your sheet <span id="mcLiveCount">0 columns</span></div>
+                    <p class="mc-livesheet-empty" id="mcLiveEmpty">Pick a statistic below (or an effect size above) and the columns appear here instantly.</p>
+                    <p class="mc-livesheet-cap" id="mcLiveCap" style="display:none;">Example values shown &mdash; your data replaces them.</p>
+                    <div class="mc-livesheet-wrap" id="mcLiveWrap" style="display:none;"><table class="mc-livesheet-table" id="mcLiveSheet"></table></div>
+                </div>
+                <button class="mc-btn mc-btn-primary mc-build-cta" id="mcToReview" onclick="goStep(2)" disabled>Review &amp; download <i class="fas fa-arrow-right"></i></button>
+            </aside>
+            </div><!-- /.mc-build -->
+        </section>
+
+        <!-- ===================== STEP 2 — REVIEW ===================== -->
+        <section class="mc-panel" id="panel-2">
+            <div class="mc-panel-head">
+                <h2 class="mc-panel-title">Review &amp; download</h2>
+                <p class="mc-panel-help">A preview of your sheet with realistic sample values. Each row is one study &mdash; replace the samples with your data.</p>
+            </div>
+            <div class="mc-summary" id="mcSummary"></div>
+
+            <div class="mc-direction">
+                <label class="mc-switch" title="Add reverse_* direction columns to your sheet">
+                    <input type="checkbox" id="mcReverseToggle" checked>
+                    <span class="mc-switch-slider"></span>
+                </label>
+                <div class="mc-direction-text">
+                    <span class="mc-direction-title"><i class="fas fa-arrow-right-arrow-left"></i> Direction controls <code>reverse_*</code></span>
+                    <span class="mc-direction-sub">Adds a TRUE/FALSE column per statistic so you can flip a study whose outcome runs the opposite way &mdash; keeping every effect size pointing the same direction. <button type="button" class="mc-direction-link" id="mcDirWhy">Show example</button></span>
+                </div>
+            </div>
+            <div class="mc-direction-eg" id="mcDirEg" hidden>
+                <strong>Example.</strong> Say you define your effect so <em>higher = improvement</em>. Most studies report it that way &mdash; leave their <code>reverse_*</code> blank. But one trial scored the scale so <em>higher = worse</em>: put <code>TRUE</code> in that row's <code>reverse_md</code> (or whichever statistic you entered) and metaConvert flips its sign, so it pools in the same direction as the rest.
+            </div>
+
+            <details class="mc-customize">
+                <summary><i class="fas fa-sliders"></i> Adjust which columns to include</summary>
+                <div class="mc-customize-body">
+                    <p class="mc-customize-help">Untick any column you won't fill &mdash; <code>study_id</code> stays, it links your rows. The preview updates as you change them.</p>
+                    <div id="mcCols"></div>
+                </div>
+            </details>
+
+            <div class="mc-preview-wrap"><table class="mc-preview-table" id="previewTable"></table></div>
+            <div class="mc-downloads">
+                <div class="mc-dl-text">
+                    <strong>Download your sheet</strong>
+                    <span>The empty template has headers only &mdash; ready for your data.</span>
+                </div>
+                <div class="mc-dl-btns">
+                    <button class="mc-btn mc-btn-primary" onclick="generateXLSX()"><i class="fas fa-file-excel"></i> Excel (.xlsx)</button>
+                    <button class="mc-btn mc-btn-soft" onclick="generateCSV()"><i class="fas fa-file-csv"></i> CSV</button>
+                    <button class="mc-btn mc-btn-ghost" onclick="downloadSampleExcel()"><i class="fas fa-flask-vial"></i> With sample values</button>
+                </div>
+            </div>
+            <div class="mc-actionbar">
+                <button class="mc-btn mc-btn-ghost" onclick="goStep(1)"><i class="fas fa-arrow-left"></i> Back to building</button>
             </div>
         </section>
     </div>
 
-    <!-- Floating Action Buttons -->
-    <div class="floating-actions" id="floatingActions">
-        <button class="clear-selection-btn" id="clearSelectionBtn" onclick="clearSelection()" title="Clear Selection">
-            <i class="fas fa-times-circle"></i> Clear
-        </button>
-        <button class="action-fab preview-fab" id="previewFab" disabled onclick="showPreviewModal()" title="Preview Sample Data">
-            <i class="fas fa-eye"></i>
-        </button>
-        <button class="action-fab download-fab" id="downloadFab" disabled onclick="toggleDownloadModal()" title="Download Template">
-            <i class="fas fa-download"></i>
-            <span class="download-count" id="downloadCount">0</span>
-        </button>
-        
-        <div class="download-modal" id="downloadModal">
-            <h3>Download Format</h3>
-            <button class="download-option" onclick="generateCSV()"><i class="fas fa-file-csv option-icon"></i><div><div>CSV File</div><small style="color: var(--text-muted);">Comma-separated values</small></div></button>
-            <button class="download-option" onclick="generateXLSX()"><i class="fas fa-file-excel option-icon"></i><div><div>Excel File</div><small style="color: var(--text-muted);">Microsoft Excel format</small></div></button>
-        </div>
-    </div>
-
-    <!-- Preview Modal -->
-    <div class="preview-modal" id="previewModal">
-        <div class="preview-modal-content">
-            <div class="preview-modal-header"><h2 class="preview-modal-title">Sample Data Preview</h2><button class="preview-modal-close" onclick="closePreviewModal()">×</button></div>
-            <div class="preview-modal-body">
-                <div class="preview-description">
-                    <strong>This is a preview of your custom data sheet with realistic sample values.</strong><br>
-                    Each row represents a common data reporting scenario based on the templates you selected. Use this as a guide for structuring your own data.
-                </div>
-                <div class="preview-table-container"><table class="preview-table" id="previewTable"></table></div>
-            </div>
-            <div class="preview-modal-footer">
-                <button class="btn btn-secondary" onclick="closePreviewModal()">Close</button>
-<button class="btn btn-primary" onclick="downloadSampleExcel()"><i class="fas fa-download"></i>Download This Sample Data (Excel)</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://unpkg.com/intro.js/intro.js"></script>
     <script>
-
-
         const navbar = document.querySelector("nav");
         window.addEventListener("scroll", () => {
-        if (window.scrollY > 0) {
-            navbar.classList.add("scrolled");
-        } else {
-            navbar.classList.remove("scrolled");
-        }
+            if (window.scrollY > 0) { navbar.classList.add("scrolled"); }
+            else { navbar.classList.remove("scrolled"); }
         });
-
 
         const fieldDefinitions = { 'cohen_d': 'Cohen\'s d value', 'hedges_g': 'Hedges\' g value', 'n_exp': 'Number of participants in the exposed group', 'n_nexp': 'Number of participants in the non-exposed group', 'n_sample': 'Total number of participants', 'n_cases': 'Number of cases/events across exposed/non-exposed groups', 'n_controls': 'Number of controls/no-event across exposed/non-exposed groups', 'or': 'Odds Ratio value', 'logor': 'Log Odds Ratio value', 'logor_se': 'Standard error of the log odds ratio', 'logor_pval': 'P-value of the (log) odds ratio', 'or_ci_lo': 'Lower bound of the 95% CI around the odds ratio value', 'or_ci_up': 'Upper bound of the 95% CI around the odds ratio value', 'logor_ci_lo': 'Lower bound of the 95% CI around the log odds ratio value', 'logor_ci_up': 'Upper bound of the 95% CI around the log odds ratio value', 'baseline_risk': 'Proportion of cases/events in the non-exposed group', 'small_margin_prop': 'Smallest margin proportion of cases/events in the underlying 2x2 table', 'rr': 'Risk ratio value', 'logrr': 'Log risk ratio value', 'logrr_se': 'Standard error of the log risk ratio', 'logrr_pval': 'P-value of the (log) risk ratio', 'rr_ci_lo': 'Lower bound of the 95% CI around the risk ratio value', 'rr_ci_up': 'Upper bound of the 95% CI around the risk ratio value', 'logrr_ci_lo': 'Lower bound of the 95% CI around the log risk ratio value', 'logrr_ci_up': 'Upper bound of the 95% CI around the log risk ratio value', 'pearson_r': 'Pearson\'s correlation coefficient value', 'fisher_z': 'Fisher\'s r-to-z transformed correlation coefficient', 'sd_iv': 'Standard deviation of the independent variable', 'unit_increase_iv': 'Value of the independent variable that will be used to estimate the Cohen\'s d', 'unit_type': 'The type of unit for the unit_increase_iv column. Must be either "sd" or "value"', 'n_cases_exp': 'Number of cases in the exposed group', 'n_cases_nexp': 'Number of cases in the non-exposed group', 'time_exp': 'Person-time of disease-free observation in the exposed group', 'time_nexp': 'Person-time of disease-free observation in the non-exposed group', 'mean_exp': 'Mean of participants in the experimental/exposed group', 'mean_nexp': 'Mean of participants in the non-experimental/non-exposed group', 'mean_sd_exp': 'Standard deviation of participants in the experimental/exposed group', 'mean_sd_nexp': 'Standard deviation of participants in the non-experimental/non-exposed group', 'mean_se_exp': 'Standard error of participants in the experimental/exposed group', 'mean_se_nexp': 'Standard error of participants in the non-experimental/non-exposed group', 'mean_ci_lo_exp': 'Lower bound of the 95% CI of the mean of the experimental/exposed group', 'mean_ci_up_exp': 'Upper bound of the 95% CI of the mean of the experimental/exposed group', 'mean_ci_lo_nexp': 'Lower bound of the 95% CI of the mean of the non-experimental/non-exposed group', 'mean_ci_up_nexp': 'Upper bound of the 95% CI of the mean of the non-experimental/non-exposed group', 'n_controls_exp': 'Number of controls/no-event in the exposed group', 'n_controls_nexp': 'Number of controls/no-event in the non exposed group', 'prop_cases_exp': 'Proportion of cases/events in the exposed group (ranging from 0 to 1)', 'prop_cases_nexp': 'Proportion of cases/events in the non-exposed group (ranging from 0 to 1)', 'phi': 'Phi coefficient value', 'chisq': 'Chi-square value', 'chisq_pval': 'Chi-square p-value', 'md': 'Mean difference between two independent groups', 'md_sd': 'Standard deviation of the mean difference', 'md_se': 'Standard error of the mean difference', 'md_pval': 'P-value of the mean difference', 'md_ci_lo': 'Lower bound of the 95% CI of the mean difference', 'md_ci_up': 'Upper bound of the 95% CI of the mean difference', 'anova_f': 'F-test value from an ANOVA with a binary independent variable', 'anova_f_pval': 'P-value from an ANOVA with a binary independent variable', 'student_t': 'Student\'s t-test value', 'student_t_pval': 'P-value from value from a Student\'s t-test value', 'pt_bis_r': 'Correlation coefficient value from a point-biserial correlation', 'pt_bis_r_pval': 'P-value of a point-biserial correlation', 'etasq': 'Eta-squared value from an ANOVA with a binary independent variable', 'min_exp': 'Minimum value of the experimental/exposed group', 'q1_exp': 'First quartile of the experimental/exposed group', 'med_exp': 'Median value of the experimental/exposed group', 'q3_exp': 'Third quartile of the experimental/exposed group', 'max_exp': 'Maximum value of the experimental/exposed group', 'min_nexp': 'Minimum value of the non-experimental/non-exposed group', 'q1_nexp': 'First quartile of the non-experimental/non-exposed group', 'med_nexp': 'Median value of the non-experimental/non-exposed group', 'q3_nexp': 'Third quartile of the non-experimental/non-exposed group', 'max_nexp': 'Maximum value of the non-experimental/non-exposed group', 'beta_std': 'Standardized regression coefficient value (the predictor of interest must be binary)', 'beta_unstd': 'Unstandardized regression coefficient value (the predictor of interest must be binary)', 'dv_sd': 'Standard deviation of the dependent variable', 'mean_change_exp': 'Mean change of participants in the exposed group', 'mean_change_nexp': 'Mean change of participants in the non-exposed group', 'mean_change_sd_exp': 'Standard deviation of the mean change for participants in the exposed group', 'mean_change_sd_nexp': 'Standard deviation of the mean change for participants in the non-exposed group', 'mean_change_se_exp': 'Standard error of the mean change for participants in the exposed group', 'mean_change_se_nexp': 'Standard error of the mean change for participants in the non-exposed group', 'mean_change_ci_lo_exp': 'Lower bound of the 95% CI around the mean change for participants in the exposed group', 'mean_change_ci_up_exp': 'Upper bound of the 95% CI around the mean change for participants in the exposed group', 'mean_change_ci_lo_nexp': 'Lower bound of the 95% CI around the mean change for participants in the non-exposed group', 'mean_change_ci_up_nexp': 'Upper bound of the 95% CI around the mean change for participants in the non-exposed group', 'r_pre_post_exp': 'Correlation between pre-post scores in the exposed group', 'r_pre_post_nexp': 'Correlation between pre-post scores in the non-exposed group', 'mean_pre_exp': 'Mean at baseline in the exposed group', 'mean_pre_nexp': 'Mean at baseline in the non-exposed group', 'mean_pre_sd_exp': 'Standard deviation of the mean at baseline in the exposed group', 'mean_pre_sd_nexp': 'Standard deviation of the mean at baseline in the non-exposed group', 'mean_pre_se_exp': 'Standard error of the mean at baseline in the exposed group', 'mean_pre_se_nexp': 'Standard error of the mean at baseline in the non-exposed group', 'mean_pre_ci_lo_exp': 'Lower bound of the 95% CI of the mean at baseline in the exposed group', 'mean_pre_ci_up_exp': 'Upper bound of the 95% CI of the mean at baseline in the exposed group', 'mean_pre_ci_lo_nexp': 'Lower bound of the 95% CI of the mean at baseline in the non-exposed group', 'mean_pre_ci_up_nexp': 'Upper bound of the 95% CI of the mean at baseline in the non-exposed group', 'paired_f_exp': 'Paired ANOVA F value in the exposed group', 'paired_f_nexp': 'Paired ANOVA F value in the non-exposed group', 'paired_f_pval_exp': 'P-value of the paired ANOVA F in the exposed group', 'paired_f_pval_nexp': 'P-value of the paired ANOVA F in the non-exposed group', 'paired_t_exp': 'Paired t-test value in the exposed group', 'paired_t_nexp': 'Paired t-test value in the non-exposed group', 'paired_t_pval_exp': 'P-value of the paired t-test in the exposed group', 'paired_t_pval_nexp': 'P-value of the paired t-test in the non-exposed group', 'cohen_d_adj': 'Adjusted Cohen\'s d value', 'n_cov_ancova': 'Number of covariates in the ANCOVA model', 'cov_outcome_r': 'Correlation between the outcome and covariate (multiple correlation when multiple covariates are included in the ANCOVA model)', 'ancova_f': 'F-test value from an ANCOVA with a binary independent variable', 'ancova_f_pval': 'P-value from an ANCOVA with a binary independent variable', 'ancova_t': 'T-test value from an ANCOVA with a binary independent variable', 'ancova_t_pval': 'P-value from an ANCOVA with a binary independent variable', 'etasq_adj': 'Adjusted eta-squared value', 'ancova_mean_exp': 'Adjusted mean of participants in the experimental/exposed group', 'ancova_mean_nexp': 'Adjusted mean of participants in the non-experimental/non-exposed group', 'ancova_mean_sd_exp': 'Adjusted standard deviation of participants in the experimental/exposed group', 'ancova_mean_sd_nexp': 'Adjusted standard deviation of participants in the non-experimental/non-exposed group', 'ancova_mean_se_exp': 'Adjusted standard error of participants in the experimental/exposed group', 'ancova_mean_se_nexp': 'Adjusted standard error of participants in the non-experimental/non-exposed group', 'ancova_mean_ci_lo_exp': 'Lower bound of the 95% CI of the adjusted mean of the experimental/exposed group', 'ancova_mean_ci_up_exp': 'Upper bound of the 95% CI of the adjusted mean of the experimental/exposed group', 'ancova_mean_ci_lo_nexp': 'Lower bound of the 95% CI of the adjusted mean of the non-experimental/non-exposed group', 'ancova_mean_ci_up_nexp': 'Upper bound of the 95% CI of the adjusted mean of the non-experimental/non-exposed group', 'ancova_mean_sd_pooled': 'Adjusted pooled standard deviation', 'mean_sd_pooled_crude': 'Crude pooled standard deviation', 'ancova_md': 'Adjusted mean difference between two independent groups', 'ancova_md_sd': 'Standard deviation of the adjusted mean difference', 'ancova_md_pval': 'P-value of the adjusted mean difference', 'ancova_md_ci_lo': 'Lower bound of the 95% CI of the adjusted mean difference', 'ancova_md_ci_up': 'Upper bound of the 95% CI of the adjusted mean difference', 'plot_mean_exp': 'Mean of participants in the experimental/exposed group (extracted from a plot)', 'plot_mean_nexp': 'Mean of participants in the non-experimental/non-exposed group (extracted from a plot)', 'plot_mean_sd_lo_exp': 'Lower bound of an error bar depicting -1 SD from the mean of the experimental/exposed group (extracted from a plot)', 'plot_mean_sd_lo_nexp': 'Lower bound of an error bar depicting -1 SD from the mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_mean_sd_up_exp': 'Upper bound of an error bar depicting +1 SD from the mean of the experimental/exposed group (extracted from a plot)', 'plot_mean_sd_up_nexp': 'Upper bound of an error bar depicting +1 SD from the mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_mean_se_lo_exp': 'Lower bound of an error bar depicting -1 SE from the mean of the experimental/exposed group (extracted from a plot)', 'plot_mean_se_lo_nexp': 'Lower bound of an error bar depicting -1 SE from the mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_mean_se_up_exp': 'Upper bound of an error bar depicting +1 SE from the mean of the experimental/exposed group (extracted from a plot)', 'plot_mean_se_up_nexp': 'Upper bound of an error bar depicting +1 SE from the non-experimental/non-exposed group (extracted from a plot)', 'plot_mean_ci_lo_exp': 'Lower bound of an error bar depicting the 95% CI of the mean of the experimental/exposed group (extracted from a plot)', 'plot_mean_ci_lo_nexp': 'Lower bound of an error bar depicting the 95% CI of the mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_mean_ci_up_exp': 'Upper bound of an error bar depicting the 95% CI of the mean of the experimental/exposed group (extracted from a plot)', 'plot_mean_ci_up_nexp': 'Upper bound of an error bar depicting the 95% CI of the mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_exp': 'Adjusted mean of participants in the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_nexp': 'Adjusted mean of participants in the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_sd_lo_exp': 'Lower bound of an error bar depicting -1 SD from the adjusted mean of the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_sd_lo_nexp': 'Lower bound of an error bar depicting -1 SD from the adjusted mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_sd_up_exp': 'Upper bound of an error bar depicting +1 SD from the adjusted mean of the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_sd_up_nexp': 'Upper bound of an error bar depicting +1 SD from the adjusted mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_se_lo_exp': 'Lower bound of an error bar depicting -1 SE from the adjusted mean of the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_se_lo_nexp': 'Lower bound of an error bar depicting -1 SE from the adjusted mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_se_up_exp': 'Upper bound of an error bar depicting +1 SE from the adjusted mean of the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_se_up_nexp': 'Upper bound of an error bar depicting +1 SE from the adjusted mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_ci_lo_exp': 'Lower bound of an error bar depicting the 95% CI of the adjusted mean of the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_ci_lo_nexp': 'Lower bound of an error bar depicting the 95% CI of the adjusted mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_ci_up_exp': 'Upper bound of an error bar depicting the 95% CI of the adjusted mean of the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_ci_up_nexp': 'Upper bound of an error bar depicting the 95% CI of the adjusted mean of the non-experimental/non-exposed group (extracted from a plot)', 'measure': 'The target effect size measure (should be one of the 11 effect size measures available in metaConvert)', 'user_es_measure_crude': 'Name of the original effect size measure', 'user_es_crude': 'Effect size value', 'user_se_crude': 'Effect size standard error', 'user_ci_lo_crude': 'Lower bound of the 95% CI around the effect size value', 'user_ci_up_crude': 'Upper bound of the 95% CI around the effect size value', 'user_es_measure_adjusted': 'Name of the original effect size measure', 'user_es_adjusted': 'Effect size value (should be adjusted)', 'user_se_adjusted': 'Effect size standard error', 'user_ci_lo_adjusted': 'Lower bound of the 95% CI around the adjusted effect size value', 'user_ci_up_adjusted': 'Upper bound of the 95% CI around the adjusted effect size value', 'study_id': 'Unique identifier for each study', 'author': 'First author of the study', 'year': 'Publication year', 'predictor': 'Description of the predictor/exposure variable', 'outcome': 'Description of the outcome variable', 'info_expected': 'Additional information or notes about the study' };
         const templates = [
@@ -463,200 +572,380 @@ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
             { id: 'user_adjusted', name: 'Adjusted: User\'s input', columns: ['measure', 'user_es_measure_adjusted', 'user_es_adjusted', 'user_se_adjusted', 'user_ci_lo_adjusted', 'user_ci_up_adjusted'], naturalES: 'Any', convertedES: 'N/A', category: 'correlations', level: 'advanced' }
         ];
         const dataScenarios = { 'cohen_d': [{ columns: ['cohen_d', 'n_exp', 'n_nexp'] }, { columns: ['hedges_g', 'n_exp', 'n_nexp'] }], 'odds_ratio': [{ columns: ['or', 'or_ci_lo', 'or_ci_up', 'n_exp', 'n_nexp'] }, { columns: ['logor', 'logor_se', 'n_exp', 'n_nexp'] }], 'risk_ratio': [{ columns: ['rr', 'rr_ci_lo', 'rr_ci_up', 'n_exp', 'n_nexp'] }, { columns: ['logrr', 'logrr_se', 'n_exp', 'n_nexp'] }], 'correlation': [{ columns: ['pearson_r', 'n_sample'] }, { columns: ['fisher_z', 'n_sample'] }], 'incidence_ratio': [{ columns: ['n_cases_exp', 'n_cases_nexp', 'time_exp', 'time_nexp'] }], 'variability': [{ columns: ['mean_exp', 'mean_nexp', 'mean_sd_exp', 'mean_sd_nexp', 'n_exp', 'n_nexp'] }], 'contingency': [{ columns: ['n_cases_exp', 'n_cases_nexp', 'n_controls_exp', 'n_controls_nexp'] }, { columns: ['prop_cases_exp', 'prop_cases_nexp', 'n_exp', 'n_nexp'] }], 'phi_chi': [{ columns: ['phi', 'n_sample'] }, { columns: ['chisq', 'chisq_pval', 'n_sample'] }], 'means_dispersion': [{ columns: ['mean_exp', 'mean_nexp', 'mean_sd_exp', 'mean_sd_nexp', 'n_exp', 'n_nexp'] }, { columns: ['mean_exp', 'mean_nexp', 'mean_se_exp', 'mean_se_nexp', 'n_exp', 'n_nexp'] }], 'mean_difference': [{ columns: ['md', 'md_sd', 'n_exp', 'n_nexp'] }, { columns: ['md', 'md_ci_lo', 'md_ci_up', 'n_exp', 'n_nexp'] }], 'anova': [{ columns: ['anova_f', 'n_exp', 'n_nexp'] }, { columns: ['student_t', 'n_exp', 'n_nexp'] }], 'medians': [{ columns: ['med_exp', 'med_nexp', 'q1_exp', 'q3_exp', 'q1_nexp', 'q3_nexp', 'n_exp', 'n_nexp'] }], 'regression': [{ columns: ['beta_std', 'n_exp', 'n_nexp'] }, { columns: ['beta_unstd', 'dv_sd', 'n_exp', 'n_nexp'] }], 'paired_change': [{ columns: ['mean_change_exp', 'mean_change_nexp', 'mean_change_sd_exp', 'mean_change_sd_nexp', 'n_exp', 'n_nexp'] }], 'paired_pre_post': [{ columns: ['mean_pre_exp', 'mean_exp', 'mean_pre_sd_exp', 'mean_sd_exp', 'r_pre_post_exp', 'n_exp', 'n_nexp'] }], 'paired_tests': [{ columns: ['paired_t_exp', 'n_exp', 'n_nexp'] }], 'cohen_d_adj': [{ columns: ['cohen_d_adj', 'n_cov_ancova', 'n_exp', 'n_nexp'] }], 'ancova_stats': [{ columns: ['ancova_f', 'n_cov_ancova', 'n_exp', 'n_nexp'] }], 'ancova_means': [{ columns: ['ancova_mean_exp', 'ancova_mean_nexp', 'ancova_mean_se_exp', 'ancova_mean_se_nexp', 'n_exp', 'n_nexp'] }], 'ancova_md': [{ columns: ['ancova_md', 'ancova_md_ci_lo', 'ancova_md_ci_up', 'n_exp', 'n_nexp'] }], 'plot_means': [{ columns: ['plot_mean_exp', 'plot_mean_nexp', 'plot_mean_sd_lo_exp', 'plot_mean_sd_up_exp', 'n_exp', 'n_nexp'] }], 'plot_ancova': [{ columns: ['plot_ancova_mean_exp', 'plot_ancova_mean_nexp', 'plot_ancova_mean_se_lo_exp', 'plot_ancova_mean_se_up_exp', 'n_exp', 'n_nexp'] }], 'user_crude': [{ columns: ['measure', 'user_es_crude', 'user_se_crude'] }], 'user_adjusted': [{ columns: ['measure', 'user_es_adjusted', 'user_ci_lo_adjusted', 'user_ci_up_adjusted'] }] };
-        
-        // --- GLOBAL STATE ---
-        let selectedTemplates = new Set();
-        let currentEffectSizeFilter = null;
-        let currentLevelFilter = 'basic';
-        let currentCategoryFilter = 'all';
-        let currentSearchQuery = '';
-        
-        // --- INITIALIZATION ---
-        document.addEventListener('DOMContentLoaded', function() {
-            renderTemplates();
-            initializeEventListeners();
-            updateActionButtons();
-            applyFilters();
-        });
 
-        // --- All other JavaScript functions remain the same ---
-        
-        function initializeEventListeners() {
-            document.getElementById('esToggle').addEventListener('change', e => document.getElementById('esmGrid').classList.toggle('show', e.target.checked));
-            
-            document.querySelectorAll('.view-toggle-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.view-toggle-btn').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    currentLevelFilter = this.dataset.level;
-                    applyFilters();
-                });
-            });
-            
-            document.getElementById('templateSearch').addEventListener('input', e => {
-                currentSearchQuery = e.target.value.toLowerCase();
-                applyFilters();
-            });
-            
-            document.querySelectorAll('.category-card').forEach(card => {
-                card.addEventListener('click', function() {
-                    document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
-                    this.classList.add('active');
-                    currentCategoryFilter = this.dataset.filter;
-                    clearEffectSizeFilter();
-                    applyFilters();
-                });
-            });
+        // ---------- wizard config + state ----------
+        const GROUPS = [
+            { key: 'means', label: 'Group means, SDs & tests', icon: 'fa-chart-line', blurb: 'Continuous outcomes compared between two groups.' },
+            { key: 'counts', label: 'Counts, 2×2 tables & ratios', icon: 'fa-chart-pie', blurb: 'Binary outcomes: events, proportions, odds & risks.' },
+            { key: 'correlations', label: 'Correlations & regression', icon: 'fa-diagram-project', blurb: 'Associations between continuous variables.' },
+            { key: 'computed', label: 'Already-computed effect sizes', icon: 'fa-wand-magic-sparkles', blurb: 'An effect size and its uncertainty you already have.' }
+        ];
+        const examples = {
+            cohen_d: "A reported Cohen's d or Hedges' g, plus the two group sizes.",
+            means_dispersion: 'Group means with their SDs, SEs, or confidence intervals.',
+            anova: 'An F, t, or point-biserial r comparing two groups.',
+            mean_difference: 'A mean difference with its SD, CI, or p-value.',
+            regression: 'A standardized or raw regression coefficient (binary predictor).',
+            odds_ratio: 'An odds ratio with a CI, SE, or p-value.',
+            risk_ratio: 'A risk ratio with a CI, SE, or p-value.',
+            contingency: 'A 2×2 table of counts, or the group proportions.',
+            correlation: "A Pearson's r or a Fisher's z.",
+            phi_chi: 'A phi coefficient or a chi-square statistic.',
+            incidence_ratio: 'Event counts and person-time for each group.',
+            variability: 'Group means and SDs, for variability / CoV ratios.',
+            medians: 'A median with its range and/or interquartile range.',
+            paired_change: 'Mean change scores with dispersion (paired design).',
+            paired_pre_post: 'Pre- and post-means with dispersion (paired design).',
+            paired_tests: 'Paired F- or t-tests from a within-subject design.',
+            cohen_d_adj: "An adjusted Cohen's d from an ANCOVA model.",
+            ancova_stats: 'ANCOVA F, t, or eta-squared statistics.',
+            ancova_means: 'Adjusted (ANCOVA) means with their dispersion.',
+            ancova_md: 'An adjusted mean difference with its dispersion.',
+            plot_means: 'Means read off a figure with error bars.',
+            plot_ancova: 'Adjusted means read off a figure with error bars.',
+            user_crude: 'An effect size you already computed yourself.',
+            user_adjusted: 'An adjusted effect size you already computed.'
+        };
+        function groupOf(t) {
+            if (t.id === 'user_crude' || t.id === 'user_adjusted') return 'computed';
+            if (t.category === 'proportions') return 'counts';
+            if (t.category === 'correlations') return 'correlations';
+            return 'means';
+        }
+        const FIXED = ['study_id', 'author', 'year', 'predictor', 'outcome', 'info_expected'];
+        const FIXED_LABEL = { study_id: 'Unique study identifier (links your rows)', author: 'First author of the study', year: 'Publication year', predictor: 'Predictor / exposure variable', outcome: 'Outcome variable', info_expected: 'Free-text notes about the study' };
 
-            document.querySelectorAll('.clickable-es, .es-row').forEach(el => {
-                el.addEventListener('click', e => {
-                    e.stopPropagation();
-                    applyEffectSizeFilter(el.dataset.es);
-                });
-            });
+        let selectedSources = new Set();
+        let excludedCols = new Set();
+        let currentStep = 1;
+        let level = 'basic';
+        let search = '';
+        let esFilter = null;
+        let includeReverse = true;
 
-            document.addEventListener('click', e => {
-                const downloadModal = document.getElementById('downloadModal');
-                const downloadFab = document.getElementById('downloadFab');
-                const previewModal = document.getElementById('previewModal');
-                if (!downloadModal.contains(e.target) && !downloadFab.contains(e.target)) downloadModal.classList.remove('show');
-                if (e.target === previewModal) closePreviewModal();
+        // Direction-control columns metaConvert reads for each source. Each reverse_*
+        // flag flips the sign of its paired statistic for a row, so studies that score
+        // the outcome the opposite way can be harmonised. (Names verified against
+        // R/data_extraction.R.)
+        const REVERSE_BY_TEMPLATE = {
+            cohen_d: ['reverse_d', 'reverse_g'],
+            means_dispersion: ['reverse_means'],
+            anova: ['reverse_anova_f', 'reverse_anova_f_pval', 'reverse_student_t', 'reverse_student_t_pval', 'reverse_pt_bis_r', 'reverse_pt_bis_r_pval', 'reverse_etasq'],
+            mean_difference: ['reverse_md'],
+            regression: ['reverse_beta_std', 'reverse_beta_unstd'],
+            odds_ratio: ['reverse_or', 'reverse_or_pval'],
+            risk_ratio: ['reverse_rr', 'reverse_rr_pval'],
+            contingency: ['reverse_2x2', 'reverse_prop'],
+            correlation: ['reverse_pearson_r', 'reverse_fisher_z'],
+            phi_chi: ['reverse_phi', 'reverse_chisq', 'reverse_chisq_pval'],
+            incidence_ratio: ['reverse_irr'],
+            variability: ['reverse_means_variability'],
+            medians: ['reverse_med'],
+            paired_change: ['reverse_mean_change'],
+            paired_pre_post: ['reverse_means_pre_post'],
+            paired_tests: ['reverse_paired_t', 'reverse_paired_t_pval', 'reverse_paired_f', 'reverse_paired_f_pval'],
+            ancova_stats: ['reverse_ancova_t', 'reverse_ancova_f', 'reverse_ancova_t_pval', 'reverse_ancova_f_pval'],
+            ancova_means: ['reverse_ancova_means'],
+            ancova_md: ['reverse_ancova_md'],
+            plot_means: ['reverse_plot_means'],
+            plot_ancova: ['reverse_plot_ancova_means']
+        };
+        function reverseColsFor(ids) {
+            return [...new Set(ids.flatMap(id => REVERSE_BY_TEMPLATE[id] || []))];
+        }
+        function colDesc(col) {
+            if (col.indexOf('reverse_') === 0) {
+                return 'Direction control — set TRUE to flip the sign of this study’s effect so every study points the same way (leave blank for no change).';
+            }
+            return fieldDefinitions[col] || 'No description available.';
+        }
+
+        // ---------- Step 1 rendering ----------
+        function renderGroups() {
+            const host = document.getElementById('mcGroups');
+            host.innerHTML = '';
+            GROUPS.forEach(g => {
+                const inGroup = templates.filter(t => groupOf(t) === g.key);
+                if (!inGroup.length) return;
+                const sec = document.createElement('div');
+                sec.className = 'mc-group';
+                sec.dataset.group = g.key;
+                sec.innerHTML = `<div class="mc-group-head"><span class="mc-group-icon"><i class="fas ${g.icon}"></i></span><div><h3 class="mc-group-title">${g.label}</h3><p class="mc-group-blurb">${g.blurb}</p></div></div><div class="mc-cards"></div>`;
+                const cards = sec.querySelector('.mc-cards');
+                inGroup.forEach(t => cards.appendChild(makeCard(t)));
+                host.appendChild(sec);
             });
         }
-        
-        function renderTemplates() {
-            const grid = document.getElementById('templatesGrid');
-            grid.innerHTML = '';
-            templates.forEach(template => grid.appendChild(createTemplateCard(template)));
+        function esBadgeList(natStr, convStr) {
+            const nat = (natStr || '').split('+').filter(x => x && x !== 'N/A');
+            const conv = (convStr || '').split('+').filter(x => x && x !== 'N/A');
+            const n = nat.map(x => `<span class="mc-badge mc-badge-nat">${x === 'Any' ? 'Any measure' : x}</span>`).join('');
+            const c = conv.map(x => `<span class="mc-badge mc-badge-conv">${x}</span>`).join('');
+            return `<span class="mc-arrow" aria-hidden="true">→</span>${n}${c}`;
         }
-
-        function createTemplateCard(template) {
+        function makeCard(t) {
             const card = document.createElement('div');
-            card.className = 'template-card';
-            card.dataset.id = template.id;
-            card.dataset.category = template.category;
-            card.dataset.level = template.level;
-            card.dataset.naturalEs = template.naturalES;
-            const searchContent = `${template.name} ${template.columns.join(' ')}`.toLowerCase();
-            card.dataset.search = searchContent;
-
-            const naturalBadge = template.naturalES !== 'N/A' ? `<span class="badge natural">${template.naturalES}</span>` : '';
-            const convertedBadge = template.convertedES !== 'N/A' ? `<span class="badge converted">→ ${template.convertedES}</span>` : '';
-            const columnTags = template.columns.slice(0, 5).map(col => `<span class="column-tag" title="${fieldDefinitions[col] || 'No description available.'}">${col}</span>`).join('');
-            const moreColumns = template.columns.length > 5 ? `<span class="column-tag">+${template.columns.length - 5} more</span>` : '';
-            const fieldDescriptions = template.columns.map(col => `<div class="field-description"><span class="field-name">${col}</span>: ${fieldDefinitions[col] || 'N/A'}</div>`).join('');
-
+            card.className = 'mc-card';
+            card.dataset.id = t.id;
+            card.dataset.level = t.level;
+            card.dataset.nat = t.naturalES;
+            card.dataset.conv = t.convertedES;
+            card.dataset.search = (t.name + ' ' + t.columns.join(' ') + ' ' + (examples[t.id] || '')).toLowerCase();
+            const adv = t.level !== 'basic' ? '<span class="mc-tag-adv">advanced</span>' : '';
+            const cols = t.columns.map(c => `<span class="mc-coltag" title="${(fieldDefinitions[c] || 'No description available.').replace(/"/g, '&quot;')}">${c}</span>`).join('');
             card.innerHTML = `
-                <div class="template-header"><h3 class="template-title">${template.name}</h3></div>
-                <div class="template-badges">${naturalBadge} ${convertedBadge}</div>
-                <div class="template-columns">${columnTags} ${moreColumns}</div>
-                <div class="template-card-footer">
-                    <button class="expand-btn" onclick="toggleTemplateDetails(event, '${template.id}')">
-                        <span class="expand-text">Show Descriptions</span><i class="fas fa-chevron-down expand-icon"></i>
-                    </button>
-                </div>
-                <div class="template-details" id="details-${template.id}">${fieldDescriptions}</div>
-            `;
-            card.addEventListener('click', e => !e.target.closest('.expand-btn') && toggleTemplate(template.id));
+                <div class="mc-card-check" aria-hidden="true"><i class="fas fa-check"></i></div>
+                <div class="mc-card-top"><h4 class="mc-card-title">${t.name}</h4>${adv}</div>
+                <p class="mc-card-ex">${examples[t.id] || ''}</p>
+                <div class="mc-card-es">${esBadgeList(t.naturalES, t.convertedES)}</div>
+                <button class="mc-card-cols-btn" type="button"><i class="fas fa-table-columns"></i> Columns (${t.columns.length}) <i class="fas fa-chevron-down mc-chev"></i></button>
+                <div class="mc-card-cols">${cols}</div>`;
+            card.setAttribute('role', 'button');
+            card.tabIndex = 0;
+            card.setAttribute('aria-pressed', 'false');
+            card.setAttribute('aria-label', t.name + ' — select as a data source');
+            card.addEventListener('click', e => {
+                const colsBtn = e.target.closest('.mc-card-cols-btn');
+                if (colsBtn) {
+                    e.stopPropagation();
+                    colsBtn.classList.toggle('is-open');
+                    colsBtn.setAttribute('aria-expanded', colsBtn.classList.contains('is-open'));
+                    card.querySelector('.mc-card-cols').classList.toggle('is-open');
+                    return;
+                }
+                toggleSource(t.id, card);
+            });
+            card.addEventListener('keydown', e => {
+                if (e.target.closest('.mc-card-cols-btn')) return;
+                if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggleSource(t.id, card); }
+            });
             return card;
         }
-        
-        function toggleTemplate(templateId) {
-            const card = document.querySelector(`[data-id="${templateId}"]`);
-            const isSelected = card.classList.toggle('selected');
-            if (isSelected) selectedTemplates.add(templateId); else selectedTemplates.delete(templateId);
-            updateActionButtons();
+        function toggleSource(id, card) {
+            if (selectedSources.has(id)) { selectedSources.delete(id); card.classList.remove('is-sel'); }
+            else { selectedSources.add(id); card.classList.add('is-sel'); }
+            card.setAttribute('aria-pressed', card.classList.contains('is-sel'));
+            syncSelectionUI();
         }
 
-        function toggleTemplateDetails(event, templateId) {
-            event.stopPropagation();
-            const details = document.getElementById(`details-${templateId}`);
-            const button = event.currentTarget;
-            const text = button.querySelector('.expand-text');
-            const icon = button.querySelector('.expand-icon');
-            const isShowing = details.classList.toggle('show');
-            text.textContent = isShowing ? 'Hide Descriptions' : 'Show Descriptions';
-            icon.style.transform = isShowing ? 'rotate(180deg)' : 'rotate(0deg)';
+        // ---------- filtering ----------
+        function applyStep1Filter() {
+            let visible = 0;
+            document.querySelectorAll('.mc-card').forEach(card => {
+                const levelOk = level === 'all' || card.dataset.level === 'basic';
+                const searchOk = !search || card.dataset.search.includes(search);
+                const esOk = !esFilter || (card.dataset.nat + '+' + card.dataset.conv).split('+').includes(esFilter);
+                const show = levelOk && searchOk && esOk;
+                card.classList.toggle('is-hidden', !show);
+                if (show) visible++;
+            });
+            document.querySelectorAll('.mc-group').forEach(sec => {
+                const any = [...sec.querySelectorAll('.mc-card')].some(c => !c.classList.contains('is-hidden'));
+                sec.classList.toggle('is-hidden', !any);
+            });
+            document.getElementById('mcEmpty').hidden = visible !== 0;
+        }
+        // simplest single source to extract for each measure — clicking a measure
+        // preselects it so the sheet starts building immediately
+        const ES_STARTERS = {
+            SMD: ['means_dispersion'],
+            MD: ['mean_difference'],
+            VAR: ['variability'],
+            COR: ['correlation'],
+            OR: ['contingency'],
+            RR: ['contingency'],
+            NNT: ['contingency'],
+            IRR: ['incidence_ratio']
+        };
+        function setEsFilter(es) {
+            if (esFilter === es) { clearEsFilter(); return; }
+            esFilter = es;
+            document.querySelectorAll('.mc-es-row').forEach(r => r.classList.toggle('is-on', r.dataset.es === es));
+            document.getElementById('mcEsName').textContent = es;
+            document.getElementById('mcEsActive').hidden = false;
+            const ids = ES_STARTERS[es] || [];
+            // if the simplest producer is an advanced source (e.g. VAR), reveal advanced so its card shows
+            if (ids.some(id => { const t = templates.find(x => x.id === id); return t && t.level !== 'basic'; })) {
+                level = 'all';
+                document.querySelectorAll('#mcLevel button').forEach(b => b.classList.toggle('is-on', b.dataset.level === 'all'));
+            }
+            applyStep1Filter();
+            // preselect a simple starting source for this measure
+            ids.forEach(id => {
+                if (selectedSources.has(id)) return;
+                const card = document.querySelector(`.mc-card[data-id="${id}"]`);
+                if (card) { selectedSources.add(id); card.classList.add('is-sel'); card.setAttribute('aria-pressed', 'true'); }
+            });
+            syncSelectionUI();
+        }
+        function clearEsFilter() {
+            esFilter = null;
+            document.querySelectorAll('.mc-es-row').forEach(r => r.classList.remove('is-on'));
+            document.getElementById('mcEsActive').hidden = true;
+            applyStep1Filter();
         }
 
-        function applyFilters() {
-            let visibleCount = 0;
-            document.querySelectorAll('.template-card').forEach(card => {
-                const categoryMatch = currentCategoryFilter === 'all' || card.dataset.category === currentCategoryFilter;
-                const levelMatch = currentLevelFilter === 'all' || card.dataset.level === 'basic';
-                const searchMatch = currentSearchQuery === '' || card.dataset.search.includes(currentSearchQuery);
-                const esMatch = currentEffectSizeFilter === null || (card.dataset.naturalEs && card.dataset.naturalEs.split('+').includes(currentEffectSizeFilter));
-                
-                if (categoryMatch && levelMatch && searchMatch && esMatch) {
-                    card.classList.remove('hidden');
-                    visibleCount++;
-                } else {
-                    card.classList.add('hidden');
+        // ---------- unlocked effect sizes ----------
+        function unlocked() {
+            const nat = new Set(), conv = new Set();
+            selectedSources.forEach(id => {
+                const t = templates.find(x => x.id === id);
+                (t.naturalES || '').split('+').forEach(x => { if (x && x !== 'N/A') nat.add(x); });
+                (t.convertedES || '').split('+').forEach(x => { if (x && x !== 'N/A') conv.add(x); });
+            });
+            nat.forEach(x => conv.delete(x));
+            return { nat: [...nat], conv: [...conv] };
+        }
+        const ES_FULL = { SMD: 'Standardized mean difference', MD: 'Mean difference', OR: 'Odds ratio', RR: 'Risk ratio', NNT: 'Number needed to treat', COR: "Correlation (r / Fisher's z)", IRR: 'Incidence rate ratio', VAR: 'Variability ratio / CoV', Any: 'Your effect-size measure' };
+        function natChip(x) { return `<span class="mc-badge mc-badge-nat" title="${ES_FULL[x] || x} — computed directly">${x === 'Any' ? 'Any' : x}</span>`; }
+        function convChip(x) { return `<span class="mc-badge mc-badge-conv" title="${ES_FULL[x] || x} — derived by conversion">${x}</span>`; }
+
+        function syncSelectionUI() {
+            const n = selectedSources.size;
+            renderLedger();
+            renderLiveSheet();
+            document.getElementById('mcToReview').disabled = n === 0;
+            document.querySelector('.mc-step[data-step="2"]').disabled = n === 0;
+        }
+
+        // ---------- live sheet: rebuilds reactively whenever the selection changes ----------
+        let prevLiveCols = new Set();
+        const LIVE_ROWS = 6;
+        const liveValCache = {};
+        // cache one sample value per (column, row) so numbers stay stable as columns are added/removed
+        function liveVal(header, row) {
+            if (!liveValCache[header]) liveValCache[header] = [];
+            if (liveValCache[header][row] === undefined) {
+                liveValCache[header][row] = header === 'info_expected' ? '—' : generateSampleValue(header, row);
+            }
+            return liveValCache[header][row];
+        }
+        function renderLiveSheet() {
+            const headers = getCombinedHeaders();
+            const table = document.getElementById('mcLiveSheet');
+            const wrap = document.getElementById('mcLiveWrap');
+            const empty = document.getElementById('mcLiveEmpty');
+            const cap = document.getElementById('mcLiveCap');
+            document.getElementById('mcLiveCount').textContent = headers.length + (headers.length === 1 ? ' column' : ' columns');
+            if (selectedSources.size === 0) {
+                wrap.style.display = 'none';
+                empty.style.display = 'block';
+                cap.style.display = 'none';
+                table.innerHTML = '';
+                prevLiveCols = new Set();
+                return;
+            }
+            empty.style.display = 'none';
+            cap.style.display = 'block';
+            wrap.style.display = 'block';
+            const head = '<thead><tr>' + headers.map(h => {
+                const isNew = !prevLiveCols.has(h);
+                const rev = h.indexOf('reverse_') === 0;
+                return `<th class="${h === 'study_id' ? 'mc-sticky' : ''}${isNew ? ' is-new' : ''}${rev ? ' mc-rev' : ''}">${h}</th>`;
+            }).join('') + '</tr></thead>';
+            let body = '<tbody>';
+            for (let r = 0; r < LIVE_ROWS; r++) {
+                body += '<tr>' + headers.map(h => {
+                    const v = liveVal(h, r);
+                    const rev = h.indexOf('reverse_') === 0;
+                    return `<td class="${h === 'study_id' ? 'mc-sticky' : ''}${rev ? ' mc-rev' : ''}${rev && v === 'TRUE' ? ' is-true' : ''}">${v}</td>`;
+                }).join('') + '</tr>';
+            }
+            body += '</tbody>';
+            table.innerHTML = head + body;
+            prevLiveCols = new Set(headers);
+        }
+        function renderLedger() {
+            const u = unlocked();
+            const host = document.getElementById('mcLedger');
+            const head = `<div class="mc-ledger-head"><h4 class="mc-ledger-title">Effect sizes you can compute</h4><p class="mc-ledger-note">Updates as you pick sources below.</p></div>`;
+            if (!u.nat.length && !u.conv.length) {
+                host.innerHTML = head + `<p class="mc-ledger-empty">Nothing picked yet — choose a source and the measures you'll be able to compute appear here.</p>`;
+                return;
+            }
+            host.innerHTML = head + `
+                <div class="mc-ledger-row"><div class="mc-ledger-k"><span class="mc-dot mc-dot-nat"></span><span>Computed directly<span class="mc-ledger-hint">exact, straight from your data</span></span></div><div class="mc-ledger-v">${u.nat.length ? u.nat.map(natChip).join('') : '<span class="mc-muted">none yet</span>'}</div></div>
+                <div class="mc-ledger-row"><div class="mc-ledger-k"><span class="mc-dot mc-dot-conv"></span><span>By conversion<span class="mc-ledger-hint">via a formula — slight approximation</span></span></div><div class="mc-ledger-v">${u.conv.length ? u.conv.map(convChip).join('') : '<span class="mc-muted">none yet</span>'}</div></div>`;
+        }
+
+        // ---------- navigation (2 steps) ----------
+        function goStep(n) {
+            if (n === 2 && selectedSources.size === 0) return;
+            currentStep = n;
+            document.querySelectorAll('.mc-panel').forEach(p => p.classList.remove('is-active'));
+            document.getElementById('panel-' + n).classList.add('is-active');
+            document.querySelectorAll('.mc-step').forEach(s => {
+                const k = +s.dataset.step;
+                s.classList.toggle('is-active', k === n);
+                s.classList.toggle('is-done', k < n);
+            });
+            if (n === 1) { renderLedger(); renderLiveSheet(); }
+            if (n === 2) renderReview();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ---------- Step 2: review & download ----------
+        function renderReview() {
+            buildCustomize();
+            generatePreviewTable();
+            updateReviewSummary();
+        }
+        function updateReviewSummary() {
+            const u = unlocked();
+            const total = getCombinedHeaders().length;
+            document.getElementById('mcSummary').innerHTML = `
+                <div class="mc-summary-stat"><span class="mc-summary-n">${total}</span><span class="mc-summary-l">columns</span></div>
+                <div class="mc-summary-stat"><span class="mc-summary-n">${selectedSources.size}</span><span class="mc-summary-l">data sources</span></div>
+                <div class="mc-summary-es"><span class="mc-summary-l">You'll be able to compute</span><div>${u.nat.map(natChip).join('')}${u.conv.map(convChip).join('')}</div></div>`;
+        }
+        function buildCustomize() {
+            const host = document.getElementById('mcCols');
+            host.innerHTML = '';
+            host.appendChild(colGroup('Study identification', FIXED.map(c => ({ col: c, desc: FIXED_LABEL[c], locked: c === 'study_id' })), true));
+            const shown = new Set(FIXED);
+            const objs = templates.filter(t => selectedSources.has(t.id));
+            objs.forEach(t => {
+                const cols = t.columns.filter(c => !shown.has(c));
+                cols.forEach(c => shown.add(c));
+                if (!cols.length) return;
+                host.appendChild(colGroup('From: ' + t.name, cols.map(c => ({ col: c, desc: colDesc(c) })), false));
+            });
+            if (includeReverse) {
+                const rev = reverseColsFor(objs.map(t => t.id)).filter(c => !shown.has(c));
+                if (rev.length) host.appendChild(colGroup('Direction controls (reverse_*)', rev.map(c => ({ col: c, desc: colDesc(c) })), false));
+            }
+        }
+        function colGroup(title, items, fixed) {
+            const div = document.createElement('div');
+            div.className = 'mc-colgroup' + (fixed ? ' is-fixed' : '');
+            div.innerHTML = `<h4 class="mc-colgroup-title">${title}</h4>`;
+            const list = document.createElement('div');
+            list.className = 'mc-collist';
+            items.forEach(it => {
+                const on = !excludedCols.has(it.col);
+                const row = document.createElement('label');
+                row.className = 'mc-colrow' + (on ? '' : ' is-off') + (it.locked ? ' is-locked' : '');
+                row.innerHTML = `<input type="checkbox" ${on ? 'checked' : ''} ${it.locked ? 'disabled' : ''}>
+                    <span class="mc-col-name">${it.col}</span>
+                    <span class="mc-col-desc">${it.desc || ''}</span>`;
+                const cb = row.querySelector('input');
+                if (!it.locked) {
+                    cb.addEventListener('change', () => {
+                        if (cb.checked) excludedCols.delete(it.col); else excludedCols.add(it.col);
+                        row.classList.toggle('is-off', !cb.checked);
+                        generatePreviewTable();
+                        updateReviewSummary();
+                    });
                 }
+                list.appendChild(row);
             });
-            document.getElementById('emptyState').style.display = visibleCount === 0 ? 'block' : 'none';
+            div.appendChild(list);
+            return div;
         }
 
-        function applyEffectSizeFilter(effectSize) {
-            if (currentEffectSizeFilter === effectSize) {
-                clearAllFilters(); return;
-            }
-            clearAllFilters(false);
-            currentEffectSizeFilter = effectSize;
-            highlightEffectSize(effectSize);
-            showFilterIndicator(effectSize);
-            applyFilters();
-        }
-
-        function highlightEffectSize(effectSize) {
-            document.querySelectorAll(`.clickable-es[data-es="${effectSize}"], .es-row[data-es="${effectSize}"]`).forEach(el => {
-                el.classList.add(el.matches('.es-row') ? 'row-active' : 'filter-active');
-            });
-        }
-        
-        function clearEffectSizeFilter() {
-             currentEffectSizeFilter = null;
-             document.querySelectorAll('.filter-active, .row-active').forEach(el => el.classList.remove('filter-active', 'row-active'));
-             document.getElementById('filterIndicator').classList.remove('show');
-        }
-        
-        function showFilterIndicator(effectSize) {
-            document.getElementById('filterIndicator').querySelector('#filterText').innerHTML = `Showing templates for: <strong>${effectSize}</strong>`;
-            document.getElementById('filterIndicator').classList.add('show');
-        }
-
-        function clearAllFilters(clearCategory = true) {
-            clearEffectSizeFilter();
-            if (clearCategory) {
-                currentCategoryFilter = 'all';
-                document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
-                document.querySelector('[data-filter="all"]').classList.add('active');
-            }
-            applyFilters();
-        }
-        
-        function clearSelection() {
-            selectedTemplates.clear();
-            document.querySelectorAll('.template-card.selected').forEach(card => card.classList.remove('selected'));
-            updateActionButtons();
-        }
-        
-        function updateActionButtons() {
-            const count = selectedTemplates.size;
-            const hasSelection = count > 0;
-            document.getElementById('previewFab').disabled = !hasSelection;
-            document.getElementById('downloadFab').disabled = !hasSelection;
-            document.getElementById('clearSelectionBtn').classList.toggle('visible', hasSelection);
-            const countEl = document.getElementById('downloadCount');
-            countEl.textContent = count;
-            countEl.classList.toggle('visible', hasSelection);
-        }
-
-        function toggleDownloadModal() { selectedTemplates.size > 0 && document.getElementById('downloadModal').classList.toggle('show'); }
-        function showPreviewModal() { if (selectedTemplates.size > 0) { generatePreviewTable(); document.getElementById('previewModal').classList.add('show'); } }
-        function closePreviewModal() { document.getElementById('previewModal').classList.remove('show'); }
-        
-function generateSampleValue(fieldName, index = 0) {
+        function generateSampleValue(fieldName, index = 0) {
+    // direction-control columns are boolean flags — show one flipped study as an example
+    if (fieldName.indexOf('reverse_') === 0) return index === 1 ? 'TRUE' : 'FALSE';
     // Define coordinated sets for OR values (log-scale symmetric)
     const orSets = [
         { or: 1.85, logor: 0.615, se: 0.20, pval: 0.002, ci_lo: 1.22, ci_up: 2.81, logor_ci_lo: 0.223, logor_ci_up: 1.007, baseline_risk: 0.25, small_margin_prop: 0.15 },
@@ -991,130 +1280,133 @@ function generateSampleValue(fieldName, index = 0) {
         'user_ci_lo_adjusted': () => userAdjustedSets[index % userAdjustedSets.length].ci_lo,
         'user_ci_up_adjusted': () => userAdjustedSets[index % userAdjustedSets.length].ci_up
     };
-    
+
     const values = data[fieldName];
-    
+
     // Handle special function cases
     if (fieldName === 'study_id' && typeof values === 'function') {
         return values(index);
     }
-    
+
     if (fieldName === 'info_expected' && typeof values === 'function') {
         return values;
     }
-    
+
     // Handle coordinated sets (functions)
     if (typeof values === 'function') {
         return values();
     }
-    
+
     // Handle arrays - pick random value
     if (Array.isArray(values)) {
         return values[Math.floor(Math.random() * values.length)];
     }
-    
+
     // Default fallback for unknown fields
     return (Math.random() * 10).toFixed(2);
 }
-let previewHeaders = [];
-function generatePreviewTable() { 
-    const selectedTemplateObjects = templates.filter(t => selectedTemplates.has(t.id)); 
-    const allColumns = [...new Set(selectedTemplateObjects.flatMap(t => t.columns))]; 
-    const fixedColumns = ['study_id', 'author', 'year', 'predictor', 'outcome', 'info_expected']; 
-    previewHeaders = [...fixedColumns, ...allColumns.sort()]; 
-    const allScenarios = selectedTemplateObjects.flatMap(template => (dataScenarios[template.id] || [{ columns: template.columns.slice(0, 4) }]).map(scenario => ({ ...scenario, templateName: template.name }))); 
-    const table = document.getElementById('previewTable'); 
-    let tableHTML = `<thead><tr>${previewHeaders.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>`; 
-    
-    allScenarios.forEach((scenario, i) => { 
-        const row = {}; 
-        previewHeaders.forEach(header => { 
-            if (fixedColumns.includes(header) || scenario.columns.includes(header)) { 
-                row[header] = (header === 'info_expected') ? `${scenario.templateName}` : generateSampleValue(header, i); 
-            } else { 
-                row[header] = ''; 
-            } 
-        }); 
-        tableHTML += `<tr>${previewHeaders.map(h => `<td class="${row[h] === '' ? 'empty-cell' : ''}">${row[h]}</td>`).join('')}</tr>`; 
-    }); 
-    
-    tableHTML += '</tbody>'; 
-    table.innerHTML = tableHTML; 
-}
-function downloadSampleExcel() { 
-    const table = document.getElementById('previewTable'); 
-    let data = []; 
-    
-    // Get headers
-    let headerRow = []; 
-    table.querySelectorAll('thead th').forEach(th => headerRow.push(th.innerText)); 
-    data.push(headerRow);
-    
-    // Get data rows
-    table.querySelectorAll('tbody tr').forEach(tr => { 
-        let row = []; 
-        tr.querySelectorAll('td').forEach(td => { 
-            let text = td.innerText; 
-            if (td.classList.contains('empty-cell')) text = ''; 
-            row.push(text); 
-        }); 
-        data.push(row); 
-    }); 
-    
-    // Create Excel file
-    const ws = XLSX.utils.aoa_to_sheet(data);
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sample Data');
-    const buffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-    downloadBlob(new Blob([buffer], { type: 'application/octet-stream' }), 'metaConvert_sample_data.xlsx');
-}
 
-function generateCSV() { if (selectedTemplates.size === 0) return; const headers = getCombinedHeaders(); downloadFile(headers.join(',') + '\n', 'metaConvert_template.csv', 'text/csv'); document.getElementById('downloadModal').classList.remove('show'); }
-        function generateXLSX() { if (selectedTemplates.size === 0) return; const headers = getCombinedHeaders(); const ws = XLSX.utils.aoa_to_sheet([headers]); const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, 'Extraction Sheet'); const buffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' }); downloadBlob(new Blob([buffer], { type: 'application/octet-stream' }), 'metaConvert_template.xlsx'); document.getElementById('downloadModal').classList.remove('show'); }
-        function getCombinedHeaders() { const selectedTemplateObjects = templates.filter(t => selectedTemplates.has(t.id)); const allColumns = [...new Set(selectedTemplateObjects.flatMap(t => t.columns))]; const fixedColumns = ['study_id', 'author', 'year', 'predictor', 'outcome', 'info_expected']; return [...fixedColumns, ...allColumns.sort()]; }
+        // ---------- preview + downloads ----------
+        let previewHeaders = [];
+        function getCombinedHeaders() {
+            const objs = templates.filter(t => selectedSources.has(t.id));
+            const statCols = [...new Set(objs.flatMap(t => t.columns))].sort();
+            const revCols = includeReverse ? reverseColsFor(objs.map(t => t.id)).sort() : [];
+            return [...FIXED, ...statCols, ...revCols].filter(h => !excludedCols.has(h));
+        }
+        function generatePreviewTable() {
+            const objs = templates.filter(t => selectedSources.has(t.id));
+            previewHeaders = getCombinedHeaders();
+            const allScenarios = objs.flatMap(template => (dataScenarios[template.id] || [{ columns: template.columns.slice(0, 4) }]).map(scenario => ({ ...scenario, templateName: template.name })));
+            const table = document.getElementById('previewTable');
+            let tableHTML = `<thead><tr>${previewHeaders.map(h => `<th class="${h === 'study_id' ? 'mc-sticky' : ''}${h.indexOf('reverse_') === 0 ? ' mc-rev' : ''}">${h}</th>`).join('')}</tr></thead><tbody>`;
+            allScenarios.forEach((scenario, i) => {
+                const row = {};
+                previewHeaders.forEach(header => {
+                    if (header.indexOf('reverse_') === 0) {
+                        row[header] = generateSampleValue(header, i);
+                    } else if (FIXED.includes(header) || scenario.columns.includes(header)) {
+                        row[header] = (header === 'info_expected') ? `${scenario.templateName}` : generateSampleValue(header, i);
+                    } else {
+                        row[header] = '';
+                    }
+                });
+                tableHTML += `<tr>${previewHeaders.map(h => {
+                    const rev = h.indexOf('reverse_') === 0;
+                    const cls = `${h === 'study_id' ? 'mc-sticky' : ''}${rev ? ' mc-rev' : ''}${row[h] === '' ? ' empty-cell' : ''}${rev && row[h] === 'TRUE' ? ' is-true' : ''}`;
+                    return `<td class="${cls}">${row[h]}</td>`;
+                }).join('')}</tr>`;
+            });
+            tableHTML += '</tbody>';
+            table.innerHTML = tableHTML;
+        }
+        function downloadSampleExcel() {
+            const table = document.getElementById('previewTable');
+            let data = [];
+            let headerRow = [];
+            table.querySelectorAll('thead th').forEach(th => headerRow.push(th.innerText));
+            data.push(headerRow);
+            table.querySelectorAll('tbody tr').forEach(tr => {
+                let row = [];
+                tr.querySelectorAll('td').forEach(td => {
+                    let text = td.innerText;
+                    if (td.classList.contains('empty-cell')) text = '';
+                    row.push(text);
+                });
+                data.push(row);
+            });
+            const ws = XLSX.utils.aoa_to_sheet(data);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Sample Data');
+            const buffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+            downloadBlob(new Blob([buffer], { type: 'application/octet-stream' }), 'metaConvert_sample_data.xlsx');
+        }
+        function generateCSV() {
+            if (selectedSources.size === 0) return;
+            const headers = getCombinedHeaders();
+            downloadFile(headers.join(',') + '\n', 'metaConvert_template.csv', 'text/csv');
+        }
+        function generateXLSX() {
+            if (selectedSources.size === 0) return;
+            const headers = getCombinedHeaders();
+            const ws = XLSX.utils.aoa_to_sheet([headers]);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Extraction Sheet');
+            const buffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+            downloadBlob(new Blob([buffer], { type: 'application/octet-stream' }), 'metaConvert_template.xlsx');
+        }
         function downloadFile(content, filename, mimeType) { downloadBlob(new Blob([content], { type: mimeType }), filename); }
         function downloadBlob(blob, filename) { const link = document.createElement('a'); const url = URL.createObjectURL(blob); link.href = url; link.download = filename; document.body.appendChild(link); link.click(); document.body.removeChild(link); URL.revokeObjectURL(url); }
 
-        // --- FIX: IMPROVED INTERACTIVE TUTORIAL with added step ---
-        function startTutorial() {
-            const intro = introJs();
-            intro.setOptions({
-                steps: [{
-                    title: 'Welcome!',
-                    intro: 'This quick tour will show you how to build your custom data extraction sheet.'
-                }, {
-                    element: document.querySelector('#explorerSection'),
-                    title: 'Filter by Effect Size',
-                    intro: 'If you know which effect size you need (like SMD or OR), use this interactive table to filter the templates below.',
-                    position: 'bottom'
-                }, {
-                    element: document.querySelector('#viewToggle'),
-                    title: 'Adjust Your View',
-                    intro: "Use these buttons to switch between a 'Basic' view with the most common templates and a view that shows 'All' available templates, including advanced ones.",
-                    position: 'bottom'
-                },{
-                    element: document.querySelector('#categorySelector'),
-                    title: 'Filter by Data Type',
-                    intro: 'You can also filter templates by the general type of statistical data you have (e.g., Group Averages, Proportions).',
-                    position: 'bottom'
-                }, {
-                    element: document.querySelector('.template-card:not(.hidden)'),
-                    title: 'Select Your Templates',
-                    intro: 'Click on any card that matches the data you can extract from your studies. Select as many as you need!',
-                    position: 'bottom'
-                }, {
-                    element: document.querySelector('#floatingActions'),
-                    title: 'Preview & Download',
-                    intro: 'Once you select templates, these buttons become active. You can preview a sample sheet or download your custom file in CSV or Excel format.',
-                    position: 'left'
-                }],
-                showProgress: true,
-                showBullets: false,
-                exitOnOverlayClick: true,
-                tooltipClass: 'customTooltip' // Optional: for custom styling
+        // ---------- init ----------
+        document.addEventListener('DOMContentLoaded', function () {
+            renderGroups();
+            document.getElementById('mcSearch').addEventListener('input', e => { search = e.target.value.toLowerCase(); applyStep1Filter(); });
+            document.querySelectorAll('#mcLevel button').forEach(b => b.addEventListener('click', function () {
+                document.querySelectorAll('#mcLevel button').forEach(x => x.classList.remove('is-on'));
+                this.classList.add('is-on');
+                level = this.dataset.level;
+                applyStep1Filter();
+            }));
+            document.querySelectorAll('.mc-es-row').forEach(r => {
+                r.tabIndex = 0;
+                r.setAttribute('role', 'button');
+                r.addEventListener('click', () => setEsFilter(r.dataset.es));
+                r.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); setEsFilter(r.dataset.es); } });
             });
-            intro.start();
-        }
+            document.getElementById('mcReverseToggle').addEventListener('change', e => {
+                includeReverse = e.target.checked;
+                renderLiveSheet();
+                if (currentStep === 2) renderReview();
+            });
+            document.getElementById('mcDirWhy').addEventListener('click', function () {
+                const eg = document.getElementById('mcDirEg');
+                eg.hidden = !eg.hidden;
+                this.textContent = eg.hidden ? 'Show example' : 'Hide example';
+            });
+            applyStep1Filter();
+            syncSelectionUI();
+        });
     </script>
 </body>
 </html>

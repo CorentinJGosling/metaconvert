@@ -1,0 +1,3439 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/main.css?v=2" />
+    <link rel="icon" href="logo/logo.svg" type="image/svg+xml" />
+    <title>metaDETECT | metaConvert</title>
+
+    <style>
+      /* ===================== metaDETECT — editorial guide ===================== */
+      .mdp {
+        --ink: #20242b;
+        --muted: #5b6573;
+        --soft: #6b727c;
+        --rule: #e6e6e0;
+        --paper: #f7f7f3;
+        --accent: #d66268;
+        --invalid: #9c2b2b;
+        --unusual: #8a6712;
+        --discordant: #6a4a86;
+        color: var(--ink);
+        background: #fff;
+      }
+      .mdp h1,
+      .mdp h2,
+      .mdp h3 {
+        font-family: "Work Sans", "Avenir Next LT Pro", sans-serif;
+      }
+      .mdp code {
+        font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+        font-size: 0.88em;
+        color: #3a3f47;
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-radius: 3px;
+        padding: 0 4px;
+      }
+
+      /* ============================ HERO ============================
+         Branded split hero on the metaConvert indigo (same surface as the
+         home-page metaDETECT banner and the footer), so arriving from the
+         banner feels continuous. Signature = a live "detection panel": a
+         forest plot where one study is caught and flagged, echoing the one
+         highlighted node in the metaConvert logo's network. */
+      .md-hero {
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+        background-color: #211f38;
+        background-image: radial-gradient(
+            circle at 1px 1px,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 0
+          ),
+          linear-gradient(135deg, #211f38 0%, #2c2a47 55%, #1d1b33 100%);
+        background-size: 22px 22px, 100% 100%;
+      }
+      .md-hero-glow {
+        position: absolute;
+        top: -45%;
+        right: -8%;
+        width: 50%;
+        height: 200%;
+        background: radial-gradient(
+          closest-side,
+          rgba(214, 98, 104, 0.32),
+          transparent
+        );
+        pointer-events: none;
+      }
+      .md-hero-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 4.2rem 2rem 4rem;
+        display: grid;
+        grid-template-columns: 1.04fr 0.96fr;
+        gap: 3.2rem;
+        align-items: center;
+      }
+      /* let both grid tracks shrink instead of being held open by the panel's
+         min-content (the long monospace es_flags line) */
+      .md-hero-copy,
+      .md-hero-panel {
+        min-width: 0;
+      }
+      .md-hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #f0a7ab;
+      }
+      .md-hero-eyebrow .md-new {
+        background: #d66268;
+        color: #fff;
+        padding: 3px 9px;
+        border-radius: 999px;
+        font-size: 0.66rem;
+        letter-spacing: 0.08em;
+      }
+      .md-hero h1 {
+        font-size: clamp(2.7rem, 5vw, 4rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 0.98;
+        margin-top: 1rem;
+        color: #fff;
+      }
+      .md-hero h1 .det {
+        color: #ec767c;
+      }
+      .md-hero-tag {
+        font-size: clamp(1.05rem, 1.4vw, 1.22rem);
+        font-weight: 300;
+        line-height: 1.6;
+        color: #c8c6dc;
+        max-width: 46ch;
+        margin-top: 1.15rem;
+      }
+      .md-hero-tag b {
+        font-weight: 500;
+        color: #fff;
+      }
+      /* three families = the page's true taxonomy, used as the structure */
+      .md-fam-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 0 0 0.9rem;
+      }
+      .md-fam-mark {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        font-size: 0.86rem;
+        font-weight: 600;
+        color: #d9d7e6;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        padding: 0.42rem 0.85rem 0.42rem 0.7rem;
+        transition: background 0.2s ease, border-color 0.2s ease,
+          transform 0.2s ease;
+      }
+      .md-fam-mark:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.28);
+        transform: translateY(-1px);
+      }
+      .md-fam-mark::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--dot);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--dot) 26%, transparent);
+      }
+      .md-hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-top: 2rem;
+      }
+      .md-hero-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.98rem;
+        padding: 0.78rem 1.4rem;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        transition: background 0.22s ease, gap 0.22s ease,
+          border-color 0.22s ease, transform 0.22s ease;
+      }
+      .md-hero-btn.solid {
+        background: #fff;
+        color: #211f38;
+        box-shadow: 0 10px 24px -12px rgba(0, 0, 0, 0.6);
+      }
+      .md-hero-btn.solid:hover {
+        gap: 0.85rem;
+        background: #ffe7ea;
+      }
+      .md-hero-btn.line {
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.32);
+      }
+      .md-hero-btn.line:hover {
+        gap: 0.85rem;
+        border-color: #fff;
+        background: rgba(255, 255, 255, 0.07);
+      }
+      .md-hero-btn:focus-visible {
+        outline: 3px solid #ef93b6;
+        outline-offset: 3px;
+      }
+
+      /* ---- detection panel (the signature) ---- */
+      .md-screen {
+        background: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 34px 70px -30px rgba(0, 0, 0, 0.7),
+          0 2px 0 rgba(255, 255, 255, 0.06) inset;
+      }
+      .md-screen-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.65rem 0.95rem;
+        background: #edeef1;
+        border-bottom: 1px solid #e0e1e6;
+      }
+      .md-screen-dots {
+        display: inline-flex;
+        gap: 5px;
+      }
+      .md-screen-dots i {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #cfd2d8;
+      }
+      .md-screen-name {
+        font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+        font-size: 0.74rem;
+        color: #5b6573;
+      }
+      .md-screen-status {
+        margin-left: auto;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #8a5e08;
+        background: #fbecc7;
+        border-radius: 999px;
+        padding: 2px 9px;
+      }
+      .md-screen-body {
+        position: relative;
+        padding: 0.5rem 0.4rem 0.2rem;
+        background: #fff;
+      }
+      .md-screen-body svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .md-fp-lab {
+        font: 600 12.5px "Work Sans", sans-serif;
+      }
+      .md-fp-val {
+        font: 11px "Cascadia Code", Consolas, monospace;
+      }
+      .md-fp-axis {
+        font: 10.5px "Work Sans", sans-serif;
+        fill: #9aa0a8;
+      }
+      .md-scan {
+        position: absolute;
+        top: 6px;
+        bottom: 6px;
+        left: 0;
+        width: 38%;
+        pointer-events: none;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(217, 162, 63, 0.18) 60%,
+          rgba(217, 162, 63, 0.5)
+        );
+        border-right: 2px solid rgba(176, 122, 18, 0.85);
+        opacity: 0;
+        animation: md-sweep 4s cubic-bezier(0.4, 0, 0.2, 1) 0.4s 1 forwards;
+      }
+      @keyframes md-sweep {
+        0% {
+          left: -40%;
+          opacity: 0;
+        }
+        12% {
+          opacity: 1;
+        }
+        82% {
+          opacity: 1;
+        }
+        100% {
+          left: 100%;
+          opacity: 0;
+        }
+      }
+      /* the caught row + the flag line resolve in after the sweep passes */
+      .md-flagband,
+      .md-flagmark,
+      .md-screen-flag {
+        opacity: 0;
+        animation: md-reveal 0.5s ease 3.6s 1 forwards;
+      }
+      @keyframes md-reveal {
+        from {
+          opacity: 0;
+          transform: translateY(4px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .md-screen-flag {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.8rem 0.95rem;
+        background: #f4f5f7;
+        border-top: 1px solid #e0e1e6;
+        font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+        font-size: 0.79rem;
+        line-height: 1.4;
+        color: #3a3f47;
+      }
+      .md-screen-flag .tag {
+        flex: 0 0 auto;
+        font-size: 0.68rem;
+        font-weight: 700;
+        color: #8a5e08;
+        background: #fff;
+        border: 1px solid #ecdcae;
+        border-radius: 4px;
+        padding: 3px 7px;
+      }
+      .md-screen-flag b {
+        color: #20242b;
+        font-weight: 600;
+      }
+      .md-screen-flag span:last-child {
+        overflow-wrap: anywhere;
+      }
+
+      @media screen and (max-width: 980px) {
+        .md-hero-inner {
+          grid-template-columns: 1fr;
+          gap: 2.3rem;
+          padding-top: 3.2rem;
+        }
+        .md-hero-tag {
+          max-width: 60ch;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .md-scan {
+          display: none;
+        }
+        .md-flagband,
+        .md-flagmark,
+        .md-screen-flag,
+        .md-fam-mark,
+        .md-hero-btn {
+          opacity: 1;
+          animation: none;
+          transform: none;
+        }
+      }
+
+      /* ---- audience switch (labeled segmented control, pinned) ----
+         A framed control rather than two bare text links: a label tells the
+         reader what the choice does, the segmented pill shows which path is
+         live, and it stays pinned under the nav so switching is always at hand. */
+      .mdp-tabs-wrap {
+        position: sticky;
+        top: 64px;
+        z-index: 50;
+        background: #fff;
+        border-bottom: 1px solid var(--rule);
+        box-shadow: 0 6px 14px -12px rgba(33, 31, 56, 0.4);
+      }
+      .mdp-tabs {
+        max-width: 940px;
+        margin: 0 auto;
+        padding: 0.8rem 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem 0.95rem;
+      }
+      .mdp-tabs-label {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .mdp-seg {
+        display: inline-flex;
+        gap: 0.25rem;
+        padding: 4px;
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+      }
+      .mdp-tab {
+        font-family: inherit;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--muted);
+        background: none;
+        border: none;
+        border-radius: 999px;
+        padding: 0.48rem 1.15rem;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: color 0.18s ease, background 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+      .mdp-tab:hover {
+        color: var(--ink);
+      }
+      .mdp-tab.is-active {
+        color: var(--ink);
+        background: #fff;
+        box-shadow: 0 1px 2px rgba(33, 31, 56, 0.14),
+          0 0 0 1px rgba(33, 31, 56, 0.04);
+      }
+      .mdp-tab.is-active::before {
+        content: "";
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent);
+        margin-right: 0.5rem;
+        vertical-align: 0.08em;
+      }
+      .mdp-tab:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      .mdp-panel {
+        display: none;
+      }
+      .mdp-panel.is-active {
+        display: block;
+      }
+
+      /* ---- generic section ---- */
+      .mdp-section {
+        max-width: 940px;
+        margin: 0 auto;
+        padding: 3.2rem 1.5rem 0;
+      }
+      .mdp-section + .mdp-section {
+        padding-top: 3.2rem;
+      }
+      .mdp-kicker {
+        font-size: 0.74rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .mdp-h2 {
+        font-size: clamp(1.55rem, 2.6vw, 2.05rem);
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        line-height: 1.18;
+        margin-top: 0.55rem;
+        color: var(--ink);
+      }
+      .mdp-intro {
+        font-size: 1.08rem;
+        line-height: 1.72;
+        color: #3c424b;
+        max-width: 70ch;
+        margin-top: 1rem;
+      }
+      .mdp-intro b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* ---- two-stage ---- */
+      .mdp-steps {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 2rem;
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .mdp-step {
+        padding: 1.6rem 1.7rem;
+      }
+      .mdp-step + .mdp-step {
+        border-left: 1px solid var(--rule);
+      }
+      .mdp-step .num {
+        font-family: "Cascadia Code", Consolas, monospace;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+      }
+      .mdp-step h3 {
+        all: unset;
+        display: block;
+        font-family: "Work Sans", "Avenir Next LT Pro", sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin: 0.45rem 0 0.5rem;
+      }
+      .mdp-step p {
+        font-size: 0.97rem;
+        line-height: 1.62;
+        color: #4b525c;
+      }
+      .mdp-step .catches {
+        margin-top: 0.85rem;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+      .mdp-step .catches b {
+        color: #3c424b;
+      }
+
+      /* ---- read a flag ---- */
+      .mdp-anat {
+        margin-top: 2rem;
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+        padding: 1.5rem 1.6rem;
+      }
+      .mdp-anat .lead {
+        font-family: "Cascadia Code", Consolas, monospace;
+        font-size: clamp(0.8rem, 1.5vw, 1rem);
+        color: #2b2f36;
+        line-height: 1.85;
+      }
+      .mdp-anat .pill {
+        border-radius: 3px;
+        padding: 1px 5px;
+        white-space: nowrap;
+      }
+      .mdp-anat .p1 {
+        background: rgba(156, 43, 43, 0.1);
+        color: #8f2222;
+      }
+      .mdp-anat .p2 {
+        background: rgba(138, 103, 18, 0.14);
+        color: #7a5c0f;
+      }
+      .mdp-anat .p3 {
+        background: rgba(106, 74, 134, 0.14);
+        color: #5d4080;
+      }
+      .mdp-anat .legend {
+        list-style: none;
+        margin: 1.3rem 0 0;
+        padding: 1.3rem 0 0;
+        border-top: 1px solid var(--rule);
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.4rem;
+      }
+      .mdp-anat .legend li {
+        font-size: 0.9rem;
+        color: #4b525c;
+        line-height: 1.5;
+      }
+      .mdp-anat .legend b {
+        display: block;
+        color: var(--ink);
+        font-size: 0.74rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 0.25rem;
+      }
+
+      /* ---- family blocks ---- */
+      .mdp-fam {
+        --sev: var(--accent);
+        margin-top: 1.8rem;
+        background: #fff;
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .mdp-fam-head {
+        padding: 1.4rem 1.7rem 1.2rem;
+        border-bottom: 1px solid var(--rule);
+      }
+      .mdp-fam-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--sev);
+      }
+      .mdp-fam-tag::before {
+        content: "";
+        width: 11px;
+        height: 11px;
+        border-radius: 2px;
+        background: var(--sev);
+      }
+      .mdp-fam-head h3 {
+        all: unset;
+        display: block;
+        font-family: "Work Sans", "Avenir Next LT Pro", sans-serif;
+        font-size: 1.45rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin: 0.5rem 0 0.3rem;
+      }
+      .mdp-fam-head .sub {
+        font-size: 1rem;
+        line-height: 1.55;
+        color: var(--soft);
+      }
+      .mdp-fam-body {
+        padding: 1.6rem 1.7rem 1.8rem;
+      }
+      .mdp-fam-body .mdp-gd {
+        margin-top: 1.5rem;
+        padding-top: 1.4rem;
+        border-top: 1px solid var(--rule);
+      }
+      .mdp-gd p {
+        max-width: 76ch;
+      }
+      .mdp-ex-label,
+      .mdp-gd-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.7rem;
+      }
+      .mdp-data {
+        font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+        font-size: 0.85rem;
+        line-height: 1.55;
+        color: #2b2f36;
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+        padding: 1rem 1.1rem;
+      }
+      .mdp-data .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 2px 0;
+      }
+      .mdp-data .row .k {
+        color: var(--muted);
+      }
+      .mdp-data .bad {
+        color: #9c2b2b;
+        font-weight: 600;
+      }
+      .mdp-data .note {
+        color: #8a8f98;
+      }
+      .mdp-data hr {
+        border: none;
+        border-top: 1px dashed #d7d7cf;
+        margin: 0.55rem 0;
+      }
+      .mdp-data .res {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .mdp-flag {
+        display: flex;
+        gap: 0.55rem;
+        align-items: flex-start;
+        margin-top: 0.8rem;
+        font-family: "Cascadia Code", Consolas, monospace;
+        font-size: 0.81rem;
+        line-height: 1.45;
+        color: #2b2f36;
+        background: #fff;
+        border: 1px solid var(--rule);
+        border-left: 3px solid var(--sev);
+        border-radius: 3px;
+        padding: 0.65rem 0.8rem;
+      }
+      .mdp-flag .ico {
+        color: var(--sev);
+      }
+      .mdp-gd p {
+        font-size: 0.98rem;
+        line-height: 1.62;
+        color: #4b525c;
+      }
+      .mdp-gd p + p {
+        margin-top: 0.65rem;
+      }
+      .mdp-gd b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .mdp-also {
+        margin-top: 1.1rem;
+      }
+      .mdp-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 0.45rem;
+      }
+      .mdp-chip {
+        font-family: "Cascadia Code", Consolas, monospace;
+        font-size: 0.76rem;
+        color: #4b525c;
+        background: #fff;
+        border: 1px solid var(--rule);
+        padding: 3px 8px;
+        border-radius: 3px;
+        white-space: nowrap;
+      }
+
+      /* ---- spreadsheet worked example ---- */
+      .mdp-sheet-wrap {
+        overflow-x: auto;
+      }
+      .mdp-sheet {
+        border-collapse: collapse;
+        font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+        font-size: 0.82rem;
+      }
+      .mdp-sheet th,
+      .mdp-sheet td {
+        border: 1px solid var(--rule);
+        padding: 0.45rem 0.65rem;
+        text-align: right;
+        white-space: nowrap;
+        height: auto !important;
+      }
+      .mdp-sheet th {
+        width: auto;
+        background: #edeff2;
+        color: #5b6573;
+        font-weight: 600;
+        font-size: 0.73rem;
+        letter-spacing: 0.01em;
+      }
+      .mdp-sheet td {
+        font-size: 0.82rem;
+        color: #2b2f36;
+        background: #fff;
+      }
+      .mdp-sheet .rowh {
+        text-align: left;
+        background: #edeff2;
+        color: #5b6573;
+        font-weight: 600;
+      }
+      .mdp-sheet td.bad {
+        background: #f7d9d9;
+        color: #9c1c1c;
+        font-weight: 700;
+      }
+      .mdp-sheet-note {
+        margin-top: 0.65rem;
+        font-family: "Cascadia Code", Consolas, monospace;
+        font-size: 0.8rem;
+        color: #8a8f98;
+      }
+      .mdp-derived {
+        margin-top: 0.7rem;
+        font-family: "Cascadia Code", Consolas, monospace;
+        font-size: 0.85rem;
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+        padding: 0.7rem 0.95rem;
+        max-width: 340px;
+      }
+      .mdp-derived .r {
+        display: flex;
+        justify-content: space-between;
+        gap: 1.5rem;
+        padding: 2px 0;
+      }
+      .mdp-derived .r .k {
+        color: var(--muted);
+      }
+      .mdp-derived .r .v {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* ---- flag anatomy key ---- */
+      .anat-flag {
+        font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+        font-size: clamp(0.82rem, 1.5vw, 1rem);
+        color: #2b2f36;
+        line-height: 1.9;
+        margin-bottom: 1.1rem;
+      }
+      .seg {
+        font-family: "Cascadia Code", Consolas, monospace;
+        border-radius: 3px;
+        padding: 1px 5px;
+        white-space: nowrap;
+      }
+      .seg.s1 {
+        background: rgba(156, 43, 43, 0.1);
+        color: #8f2222;
+      }
+      .seg.s2 {
+        background: rgba(138, 103, 18, 0.14);
+        color: #7a5c0f;
+      }
+      .seg.s3 {
+        background: #eae8e1;
+        color: #5b6573;
+      }
+      .seg.s4 {
+        background: rgba(106, 74, 134, 0.14);
+        color: #5d4080;
+      }
+      .anat-key {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 640px;
+        border-top: 1px solid var(--rule);
+      }
+      .anat-key td {
+        padding: 0.6rem 0.5rem;
+        border-bottom: 1px solid var(--rule);
+        vertical-align: top;
+        text-align: left;
+        height: auto !important;
+        font-size: 0.92rem;
+        color: #4b525c;
+      }
+      .anat-key td:first-child {
+        width: 1%;
+        white-space: nowrap;
+        padding-right: 1.5rem;
+      }
+
+      /* ---- code ---- */
+      .mdp-code {
+        margin-top: 0;
+        font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+        font-size: 0.86rem;
+        line-height: 1.7;
+        white-space: pre;
+        color: #2b2f36;
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        padding: 1rem 1.1rem;
+        overflow-x: auto;
+      }
+      .mdp-code .c {
+        color: #8a8f98;
+      }
+      .mdp-code .fn {
+        color: #3a5b8c;
+      }
+      .mdp-code .str {
+        color: #9c2b2b;
+      }
+      .mdp-code .out {
+        color: #8a8f98;
+      }
+
+      /* ---- reviewer / forest ---- */
+      .mdp-callout {
+        margin-top: 1.5rem;
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-left: 3px solid var(--accent);
+        border-radius: 3px;
+        padding: 1rem 1.2rem;
+        font-size: 0.98rem;
+        line-height: 1.6;
+        color: #4b525c;
+      }
+      .fp-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1.6rem;
+        margin-top: 0;
+        border-bottom: 1px solid var(--rule);
+      }
+      .fp-tab {
+        font-family: inherit;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--muted);
+        background: none;
+        border: none;
+        padding: 0.85rem 0;
+        cursor: pointer;
+        position: relative;
+        transition: color 0.15s ease;
+      }
+      .fp-tab:hover {
+        color: var(--ink);
+      }
+      .fp-tab.is-active {
+        color: var(--ink);
+      }
+      .fp-tab.is-active::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 2px;
+        background: var(--accent);
+      }
+      .fp-panel {
+        display: none;
+      }
+      .fp-panel.is-active {
+        display: block;
+      }
+      .fp-card {
+        margin-top: 1.6rem;
+        display: grid;
+        grid-template-columns: 1.1fr auto 0.9fr;
+        gap: 1.5rem;
+        align-items: stretch;
+      }
+      .fp-forest {
+        border: none;
+        padding: 0.2rem 0;
+        background: transparent;
+      }
+      /* appearance shown above the plot in the left box (reviewer cards) */
+      .us-appear {
+        margin-bottom: 1rem;
+        padding-bottom: 0.95rem;
+        border-bottom: 1px solid var(--rule);
+      }
+      .us-appear .lab {
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: #20242b;
+      }
+      .us-appear p {
+        margin-top: 0.3rem;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: #3c424b;
+      }
+      .fp-forest svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        max-width: 100%;
+      }
+      .fp-forest .fp-lab {
+        font: 500 12.5px "Work Sans", sans-serif;
+      }
+      .fp-forest .fp-val {
+        font: 11.5px "Cascadia Code", Consolas, monospace;
+      }
+      .fp-forest .fp-axis {
+        font: 11px "Work Sans", sans-serif;
+        fill: #9aa0a8;
+      }
+      .fp-explain h3 {
+        all: unset;
+        display: block;
+        font-family: "Work Sans", "Avenir Next LT Pro", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .fp-row {
+        margin-top: 1.05rem;
+      }
+      .fp-row .lab {
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: #20242b;
+      }
+      .fp-row p {
+        font-size: 0.97rem;
+        line-height: 1.55;
+        color: #4b525c;
+        margin-top: 0.25rem;
+      }
+      .fp-row p b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .fp-fam {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--sev, var(--accent));
+        margin-top: 0.35rem;
+      }
+      .fp-fam::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 2px;
+        background: var(--sev, var(--accent));
+      }
+
+      /* ---- users: family tabs + cards (mirror the forest tabs) ---- */
+      /* tabbed worked-example module: a blank tab header sits under a top
+         rule; the active content panel below is tinted a very light pastel
+         of its family's pin colour (red / amber / purple) */
+      .md-tabmod {
+        margin-top: 2rem;
+        border-top: 1px solid var(--rule);
+      }
+      .us-panel.is-active,
+      .fp-panel.is-active {
+        padding: 1.4rem 1.5rem 1.7rem;
+        border-radius: 0 0 12px 12px;
+      }
+      #us-invalid {
+        background: #fcf0f0; /* invalid · red pin */
+      }
+      #us-unusual {
+        background: #fdf6e8; /* unusual · amber pin */
+      }
+      #us-discordant {
+        background: #f5f1fb; /* discordant · purple pin */
+      }
+      /* reviewers: tint each forest-plot pattern by its severity */
+      #fp-large,
+      #fp-outlier,
+      #fp-precise {
+        background: #fdf6e8; /* unusual */
+      }
+      #fp-direction {
+        background: #f5f1fb; /* discordant */
+      }
+      #fp-duplicate {
+        background: #eef3f8; /* info */
+      }
+      .us-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1.6rem;
+        margin-top: 0;
+        border-bottom: 1px solid var(--rule);
+      }
+      .us-tab {
+        font-family: inherit;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--muted);
+        background: none;
+        border: none;
+        padding: 0.85rem 0;
+        cursor: pointer;
+        position: relative;
+        transition: color 0.15s ease;
+      }
+      .us-tab:hover {
+        color: var(--ink);
+      }
+      .us-tab.is-active {
+        color: var(--ink);
+      }
+      .us-tab.is-active::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 2px;
+        background: var(--accent);
+      }
+      .us-panel {
+        display: none;
+      }
+      .us-panel.is-active {
+        display: block;
+      }
+      .us-card {
+        margin-top: 1.6rem;
+      }
+      .us-grid {
+        display: grid;
+        grid-template-columns: 300px auto 1fr;
+        gap: 1.5rem;
+        align-items: stretch;
+      }
+      .us-side {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+      .us-side-head {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--sev, var(--ink));
+        margin-bottom: 0.6rem;
+      }
+      .us-box {
+        flex: 1;
+        min-width: 0;
+        border: 1px solid var(--rule);
+        border-radius: 8px;
+        padding: 1.3rem 1.4rem;
+        background: #fff;
+      }
+      .us-box.us-ex {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .us-arrow {
+        align-self: center;
+        color: var(--sev, #9aa0a8);
+        font-size: 1.7rem;
+        line-height: 1;
+        padding: 0 0.1rem;
+      }
+      /* the observed problem, shown with the data in the left box */
+      .us-wrong {
+        margin-top: 1rem;
+        padding-top: 0.95rem;
+        border-top: 1px solid var(--rule);
+      }
+      .us-wrong .lab {
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: #20242b;
+      }
+      .us-wrong p {
+        margin-top: 0.3rem;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: #3c424b;
+      }
+      /* flag = the es_flags output line — styled as console output,
+         deliberately distinct from the family definition lead */
+      .us-flag-head {
+        margin-top: 1.7rem;
+        margin-bottom: 0.55rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--sev);
+      }
+      .us-flag {
+        margin-top: 0;
+        align-items: center;
+        gap: 0.65rem;
+        border: 1px solid var(--rule);
+        border-left: 1px solid var(--rule);
+        border-radius: 8px;
+        background: #f4f5f7;
+        padding: 0.8rem 0.95rem;
+        color: #3a3f47;
+      }
+      .us-flag .ico {
+        display: none;
+      }
+      .us-flag::before {
+        content: "es_flags";
+        flex: 0 0 auto;
+        font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--sev);
+        background: #fff;
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+        padding: 3px 8px;
+      }
+      @media screen and (max-width: 760px) {
+        .us-grid {
+          grid-template-columns: 1fr;
+        }
+        .us-arrow {
+          justify-self: center;
+          transform: rotate(90deg);
+          margin: 0.1rem 0;
+        }
+        .us-panel.is-active,
+        .fp-panel.is-active {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+      }
+
+      /* transposed record (field : value) — narrow, fits beside the text */
+      .mdp-rec {
+        border-collapse: collapse;
+        font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+        font-size: 0.83rem;
+      }
+      .mdp-rec th,
+      .mdp-rec td {
+        border: 1px solid var(--rule);
+        padding: 0.38rem 0.75rem;
+        height: auto !important;
+      }
+      .mdp-rec th {
+        text-align: left;
+        background: #edeff2;
+        color: #5b6573;
+        font-weight: 600;
+        font-size: 0.78rem;
+        white-space: nowrap;
+      }
+      .mdp-rec td {
+        text-align: right;
+        background: #fff;
+        color: #2b2f36;
+      }
+      .mdp-rec td.bad {
+        background: #f7d9d9;
+        color: #9c1c1c;
+        font-weight: 700;
+      }
+      .mdp-rec td.warn {
+        background: #fbecc7;
+        color: #8a5e08;
+        font-weight: 700;
+      }
+
+      /* family definition lead (top of each family panel) */
+      .us-def {
+        margin-top: 0;
+        padding-left: 1.1rem;
+        border-left: 3px solid var(--sev, var(--accent));
+      }
+      .us-def h3 {
+        all: unset;
+        display: block;
+        font-family: "Work Sans", "Avenir Next LT Pro", sans-serif;
+        font-size: 1.45rem;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .us-def p {
+        margin-top: 0.3rem;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: #4b525c;
+        max-width: 72ch;
+      }
+
+      /* app tutorial (preview / coming soon) */
+      .soon {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 0.6rem;
+        font-family: "Work Sans", sans-serif;
+        font-size: 0.58em;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #6b727c;
+        background: #edeef1;
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+        padding: 3px 11px;
+      }
+      .app-steps {
+        margin: 1.9rem 0 0;
+        padding: 0;
+        list-style: none;
+        counter-reset: step;
+        max-width: 72ch;
+      }
+      .app-steps li {
+        position: relative;
+        counter-increment: step;
+        padding: 0 0 1.3rem 3.1rem;
+        font-size: 1.02rem;
+        line-height: 1.55;
+        color: #6b727c;
+      }
+      .app-steps li:last-child {
+        padding-bottom: 0;
+      }
+      .app-steps li::before {
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: -0.15rem;
+        width: 1.95rem;
+        height: 1.95rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #8a8f98;
+        background: #f1f1f3;
+        border: 1px solid var(--rule);
+        border-radius: 50%;
+      }
+      .app-steps li:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        left: 0.97rem;
+        top: 1.95rem;
+        bottom: 0.3rem;
+        width: 1px;
+        background: var(--rule);
+      }
+      .app-steps li b {
+        color: #3c424b;
+        font-weight: 600;
+      }
+      .app-note {
+        margin-top: 1.7rem;
+        padding: 0.9rem 1.1rem;
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        font-size: 0.92rem;
+        line-height: 1.55;
+        color: #6b727c;
+      }
+
+      /* ---- worked walkthrough: a numbered story with illustrations ---- */
+      .mw {
+        margin-top: 2.2rem;
+        counter-reset: mw;
+      }
+      .mw-step {
+        position: relative;
+        counter-increment: mw;
+        padding: 0 0 2.3rem 3.5rem;
+      }
+      .mw-step:last-child {
+        padding-bottom: 0;
+      }
+      .mw-step::before {
+        content: counter(mw);
+        position: absolute;
+        left: 0;
+        top: -0.1rem;
+        width: 2.2rem;
+        height: 2.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Work Sans", sans-serif;
+        font-size: 0.98rem;
+        font-weight: 700;
+        color: #fff;
+        background: var(--accent);
+        border-radius: 50%;
+      }
+      .mw-step:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        left: 1.085rem;
+        top: 2.5rem;
+        bottom: 0.1rem;
+        width: 2px;
+        background: var(--rule);
+      }
+      .mw-step h4 {
+        all: unset;
+        display: block;
+        font-family: "Work Sans", "Avenir Next LT Pro", sans-serif;
+        font-size: 1.18rem;
+        font-weight: 700;
+        color: var(--ink);
+        padding-top: 0.2rem;
+        margin-bottom: 0.35rem;
+      }
+      .mw-step > p {
+        font-size: 0.99rem;
+        line-height: 1.62;
+        color: #4b525c;
+        max-width: 72ch;
+      }
+      .mw-step > p b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .mw-step > p + p {
+        margin-top: 0.5rem;
+      }
+      .mw-fig {
+        margin-top: 1.1rem;
+        border: 1px solid var(--rule);
+        border-radius: 10px;
+        background: #fff;
+        padding: 1.1rem 1.2rem;
+        overflow-x: auto;
+      }
+      .mw-fig .mdp-flag {
+        margin-top: 0;
+      }
+      .mw-fig .mdp-flag + .mdp-flag {
+        margin-top: 0.7rem;
+      }
+      .mw-fig-cap {
+        margin-top: 0.85rem;
+        font-size: 0.82rem;
+        line-height: 1.5;
+        color: var(--muted);
+      }
+      .mw-fig-cap b {
+        color: #3c424b;
+        font-weight: 600;
+      }
+      .mw-fig-lab {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.55rem;
+      }
+      .mw-fig-lab + .mdp-sheet-wrap {
+        margin-bottom: 0.2rem;
+      }
+      .mw-forest svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        max-width: 540px;
+        margin: 0 auto;
+      }
+      /* RevMan-style forest plot: data columns + plot in one figure */
+      .mw-rm svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        min-width: 660px;
+      }
+      .rm-hd {
+        font: 700 11px "Work Sans", sans-serif;
+        fill: #5b6573;
+      }
+      .rm-sub {
+        font: 10px "Work Sans", sans-serif;
+        fill: #9aa0a8;
+      }
+      .rm-name {
+        font: 600 11.5px "Work Sans", sans-serif;
+      }
+      .rm-num {
+        font: 11px "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+      }
+      .rm-es {
+        font: 10.5px "Cascadia Code", Consolas, monospace;
+      }
+      .rm-ax {
+        font: 10px "Work Sans", sans-serif;
+        fill: #9aa0a8;
+      }
+      .mw a {
+        color: #ba474d;
+        font-weight: 600;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(186, 71, 77, 0.4);
+      }
+      .mw a:hover {
+        border-bottom-color: #ba474d;
+      }
+
+      /* source PDFs (meta-analyst, step 1) */
+      .mw-pdfs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 1.15rem;
+      }
+      .mw-pdf {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.45rem;
+        width: 108px;
+        text-align: center;
+      }
+      .mw-pdf svg {
+        width: 44px;
+        height: auto;
+        display: block;
+      }
+      .mw-pdf .nm {
+        font-family: "Work Sans", sans-serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #3c424b;
+        line-height: 1.25;
+      }
+      .mw-pdf .rep {
+        font-family: "Cascadia Code", Consolas, monospace;
+        font-size: 0.68rem;
+        color: var(--muted);
+        line-height: 1.3;
+      }
+      .mw-pdf.is-key .nm {
+        color: var(--ink);
+      }
+      .mw-pdf.is-key .rep {
+        color: #8f3b40;
+      }
+
+      /* stylized results-section excerpt (meta-analyst, step 2) */
+      .mw-excerpt {
+        border: 1px solid var(--rule);
+        border-radius: 8px;
+        background: #fff;
+        overflow: hidden;
+        max-width: 660px;
+      }
+      .mw-excerpt-tag {
+        font-family: "Work Sans", sans-serif;
+        font-size: 0.71rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--muted);
+        background: var(--paper);
+        border-bottom: 1px solid var(--rule);
+        padding: 0.5rem 1.05rem;
+      }
+      .mw-excerpt-body {
+        margin: 0;
+        padding: 1rem 1.1rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 0.96rem;
+        line-height: 1.78;
+        color: #2b2f36;
+      }
+      .mw-excerpt-body + .mw-excerpt-body {
+        padding-top: 0;
+      }
+      .mw-excerpt-body.secondary {
+        color: #9aa0a8;
+      }
+      .stat {
+        background: rgba(214, 98, 104, 0.13);
+        border-radius: 3px;
+        padding: 0 4px;
+        font-family: "Cascadia Code", Consolas, monospace;
+        font-size: 0.84em;
+        color: #8f3b40;
+        white-space: nowrap;
+      }
+      .mw-excerpt-foot {
+        font-size: 0.83rem;
+        line-height: 1.55;
+        color: var(--muted);
+        background: var(--paper);
+        border-top: 1px solid var(--rule);
+        padding: 0.7rem 1.1rem;
+      }
+      .mw-excerpt-foot b {
+        color: #3c424b;
+        font-weight: 600;
+      }
+
+      /* reviewers: two-part signposting (overview vs worked example) */
+      /* two-part signpost: a numbered table of contents */
+      .rv-parts {
+        border-top: 2px solid var(--ink);
+        max-width: 660px;
+        margin-top: 1.5rem;
+      }
+      .rv-part {
+        display: flex;
+        align-items: center;
+        gap: 1.3rem;
+        padding: 1.15rem 0.5rem;
+        border-bottom: 1px solid var(--rule);
+        text-decoration: none;
+        color: inherit;
+        transition: background 0.15s ease, padding-left 0.15s ease;
+      }
+      .rv-part:hover {
+        background: var(--paper);
+        padding-left: 0.85rem;
+      }
+      .rv-part-no {
+        flex: 0 0 auto;
+        width: 2rem;
+        font-family: "Work Sans", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 1;
+        color: var(--accent);
+      }
+      .rv-part-txt {
+        flex: 1;
+        min-width: 0;
+        line-height: 1.32;
+      }
+      .rv-part-kicker {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .rv-part-txt b {
+        display: block;
+        color: var(--ink);
+        font-size: 1.12rem;
+        font-weight: 700;
+        margin-top: 1px;
+      }
+      .rv-part-desc {
+        display: block;
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-top: 2px;
+      }
+      .rv-part-arrow {
+        flex: 0 0 auto;
+        color: var(--accent);
+        font-size: 1.2rem;
+        opacity: 0.5;
+        transition: transform 0.15s ease, opacity 0.15s ease;
+      }
+      .rv-part:hover .rv-part-arrow {
+        opacity: 1;
+        transform: translateX(3px);
+      }
+      /* sticky "you are here" part header (offset set in JS via --part-top) */
+      .part-head {
+        position: sticky;
+        top: var(--part-top, 135px);
+        z-index: 40;
+        background: #fff;
+        padding: 0.85rem 0 0.7rem;
+        border-bottom: 1px solid var(--rule);
+      }
+      .rv-h {
+        all: unset;
+        display: block;
+        font-family: "Work Sans", "Avenir Next LT Pro", sans-serif;
+        font-size: clamp(1.4rem, 2.3vw, 1.75rem);
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        line-height: 1.15;
+        color: var(--ink);
+        margin-top: 0.4rem;
+      }
+      @media screen and (max-width: 540px) {
+        .rv-part {
+          gap: 1rem;
+        }
+        .rv-part-no {
+          width: 1.6rem;
+          font-size: 1.35rem;
+        }
+        .rv-part-arrow {
+          display: none;
+        }
+      }
+
+      /* ---- checklist ---- */
+      .mdp-check {
+        margin-top: 2.4rem;
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+        padding: 1.8rem 1.9rem 1.9rem;
+      }
+      .mdp-check h3 {
+        all: unset;
+        display: block;
+        font-family: "Work Sans", "Avenir Next LT Pro", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .mdp-check ul {
+        list-style: none;
+        margin: 1.3rem 0 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.85rem 2rem;
+      }
+      .mdp-check li {
+        position: relative;
+        padding-left: 1.6rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #3c424b;
+      }
+      .mdp-check li::before {
+        content: "\2713";
+        position: absolute;
+        left: 0;
+        top: 0.05rem;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      /* ---- footer-of-page actions ---- */
+      .mdp-cta {
+        max-width: 940px;
+        margin: 2.6rem auto 4.5rem;
+        padding: 0 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+      }
+      .mdp-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.97rem;
+        padding: 0.7rem 1.3rem;
+        border-radius: 3px;
+        border: 1px solid var(--rule);
+        transition: background 0.15s ease, border-color 0.15s ease;
+      }
+      .mdp-btn.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+      .mdp-btn.primary:hover {
+        background: #ba474d;
+      }
+      .mdp-btn.ghost {
+        background: #fff;
+        color: var(--ink);
+      }
+      .mdp-btn.ghost:hover {
+        border-color: #c8c8c0;
+      }
+
+      @media screen and (max-width: 820px) {
+        .mdp-steps,
+        .fp-card,
+        .mdp-check ul {
+          grid-template-columns: 1fr;
+        }
+        .mdp-step + .mdp-step {
+          border-left: none;
+          border-top: 1px solid var(--rule);
+        }
+      }
+      @media screen and (max-width: 520px) {
+        .mdp-data,
+        .mdp-flag {
+          font-size: 0.76rem;
+        }
+        .mdp-tabs-wrap {
+          top: 56px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .mdp-tab,
+        .fp-tab,
+        .mdp-btn {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+
+  <nav>
+    <div class="logo"><a href="index.html"><img src="logo/logo.svg" /></a></div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="homepage">Home</a></li>
+      <li><a href="metadetect.html" class="currentpage">metaDETECT</a></li>
+      <li><a href="input.html">Input data</a></li>
+      <li><a href="app.html">App</a></li>
+    </ul>
+    <div id="hamburger-menu">
+      <span></span><span></span><span></span><span></span><span></span
+      ><span></span>
+    </div>
+  </nav>
+
+  <body class="mdp">
+    <!-- ===================== HERO ===================== -->
+    <header class="md-hero">
+      <span class="md-hero-glow" aria-hidden="true"></span>
+      <div class="md-hero-inner">
+        <div class="md-hero-copy">
+          <div class="md-hero-eyebrow">
+            <span class="md-new">New</span> a framework inside metaConvert
+          </div>
+          <h1>meta<span class="det">DETECT</span></h1>
+          <p class="md-hero-tag">
+            metaDETECT is the <b>data-extraction error</b> framework now built
+            into <b>metaConvert</b>. As the package computes your effect sizes,
+            it checks every study in a pairwise meta-analysis and flags the
+            values that don't add up, before they reach your pooled estimate.
+          </p>
+
+          <div class="md-hero-cta">
+            <a class="md-hero-btn solid" href="#how">
+              See how the checks work <span aria-hidden="true">↓</span>
+            </a>
+            <a class="md-hero-btn line" href="app.html">
+              Run them in the app <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- signature: family pins sitting on top of the forest plot -->
+        <div class="md-hero-panel">
+          <div class="md-fam-row">
+            <a class="md-fam-mark" href="#how" data-us="invalid"
+               style="--dot: #e0686d">Invalid</a>
+            <a class="md-fam-mark" href="#how" data-us="unusual"
+               style="--dot: #d9a23f">Unusual</a>
+            <a class="md-fam-mark" href="#how" data-us="discordant"
+               style="--dot: #a98fd0">Discordant</a>
+          </div>
+          <div class="md-screen" role="img"
+               aria-label="Illustrative forest plot: four consistent studies and one, Engel 2022, flagged as Unusual for an unusually large Hedges' g of 3.05.">
+          <div class="md-screen-bar">
+            <span class="md-screen-dots" aria-hidden="true"
+              ><i></i><i></i><i></i></span>
+            <span class="md-screen-name">forest · Hedges' g</span>
+            <span class="md-screen-status md-flagmark">Unusual</span>
+          </div>
+          <div class="md-screen-body">
+            <div class="md-scan" aria-hidden="true"></div>
+            <svg viewBox="0 0 440 200" aria-hidden="true">
+              <!-- caught-row highlight (revealed after the sweep) -->
+              <g class="md-flagband">
+                <rect x="0" y="142" width="440" height="32"
+                      fill="rgba(217,162,63,0.20)" />
+              </g>
+              <!-- null line -->
+              <line x1="132" y1="14" x2="132" y2="174"
+                    stroke="#d6d6d1" stroke-dasharray="4 4" />
+              <!-- Adler -->
+              <text x="12" y="34" class="md-fp-lab" fill="#2b2f36">Adler 2018</text>
+              <line x1="145.8" y1="30" x2="183.7" y2="30" stroke="#2b2f36" stroke-width="1.5" />
+              <line x1="145.8" y1="25" x2="145.8" y2="35" stroke="#2b2f36" stroke-width="1.5" />
+              <line x1="183.7" y1="25" x2="183.7" y2="35" stroke="#2b2f36" stroke-width="1.5" />
+              <rect x="160.3" y="25.5" width="9" height="9" fill="#2b2f36" />
+              <!-- Bauer -->
+              <text x="12" y="66" class="md-fp-lab" fill="#2b2f36">Bauer 2019</text>
+              <line x1="155.3" y1="62" x2="194.8" y2="62" stroke="#2b2f36" stroke-width="1.5" />
+              <line x1="155.3" y1="57" x2="155.3" y2="67" stroke="#2b2f36" stroke-width="1.5" />
+              <line x1="194.8" y1="57" x2="194.8" y2="67" stroke="#2b2f36" stroke-width="1.5" />
+              <rect x="170.6" y="57.5" width="9" height="9" fill="#2b2f36" />
+              <!-- Conti -->
+              <text x="12" y="98" class="md-fp-lab" fill="#2b2f36">Conti 2020</text>
+              <line x1="141.1" y1="94" x2="182.2" y2="94" stroke="#2b2f36" stroke-width="1.5" />
+              <line x1="141.1" y1="89" x2="141.1" y2="99" stroke="#2b2f36" stroke-width="1.5" />
+              <line x1="182.2" y1="89" x2="182.2" y2="99" stroke="#2b2f36" stroke-width="1.5" />
+              <rect x="157.1" y="89.5" width="9" height="9" fill="#2b2f36" />
+              <!-- Diaz -->
+              <text x="12" y="130" class="md-fp-lab" fill="#2b2f36">Diaz 2021</text>
+              <line x1="150.6" y1="126" x2="190.1" y2="126" stroke="#2b2f36" stroke-width="1.5" />
+              <line x1="150.6" y1="121" x2="150.6" y2="131" stroke="#2b2f36" stroke-width="1.5" />
+              <line x1="190.1" y1="121" x2="190.1" y2="131" stroke="#2b2f36" stroke-width="1.5" />
+              <rect x="165.8" y="121.5" width="9" height="9" fill="#2b2f36" />
+              <!-- Engel (flagged: Unusual) -->
+              <text x="12" y="162" class="md-fp-lab" fill="#a86a0c">Engel 2022</text>
+              <line x1="344.8" y1="158" x2="400" y2="158" stroke="#a86a0c" stroke-width="1.6" />
+              <line x1="344.8" y1="153" x2="344.8" y2="163" stroke="#a86a0c" stroke-width="1.6" />
+              <line x1="400" y1="153" x2="400" y2="163" stroke="#a86a0c" stroke-width="1.6" />
+              <rect x="368" y="153.5" width="9" height="9" fill="#a86a0c" />
+              <text x="338" y="162" text-anchor="end" class="md-fp-val md-flagmark"
+                    fill="#a86a0c">g = 3.05</text>
+              <!-- axis -->
+              <text x="132" y="192" text-anchor="middle" class="md-fp-axis">no effect</text>
+            </svg>
+          </div>
+          <div class="md-screen-flag">
+            <span class="tag">es_flags</span>
+            <span>Unusual - Large SMD: |g| = 3.05 (threshold: 3) - <b>Engel 2022</b></span>
+          </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===================== AUDIENCE SWITCH ===================== -->
+    <div class="mdp-tabs-wrap">
+      <div class="mdp-tabs">
+        <span class="mdp-tabs-label" id="audience-label">Guidance for</span>
+        <div class="mdp-seg" role="tablist" aria-labelledby="audience-label">
+          <button
+            class="mdp-tab is-active"
+            data-tab="users"
+            role="tab"
+            aria-selected="true"
+          >
+            Meta-analysts
+          </button>
+          <button
+            class="mdp-tab"
+            data-tab="reviewers"
+            role="tab"
+            aria-selected="false"
+          >
+            Reviewers &amp; editors
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================= -->
+    <!-- ======================= USERS PANEL ========================= -->
+    <!-- ============================================================= -->
+    <div class="mdp-panel is-active" id="panel-users" role="tabpanel">
+      <!-- how it works -->
+      <section class="mdp-section" id="how" style="scroll-margin-top: 130px">
+        <div class="mdp-kicker">For meta-analysts</div>
+        <h2 class="mdp-h2">Checking your extraction before you pool</h2>
+        <p class="mdp-intro">
+          metaDETECT checks <b>every row</b> of your extraction at two stages:
+          the <b>values you entered</b> (the Invalid family) and the
+          <b>effect sizes</b> they produce (the Unusual and Discordant
+          families). It flags any that do not hold up, before they reach your
+          meta-analysis. This guidance is organised in two parts.
+        </p>
+        <div class="rv-parts">
+          <a class="rv-part" href="#us-families">
+            <span class="rv-part-no">1</span>
+            <span class="rv-part-txt">
+              <span class="rv-part-kicker">Part one</span>
+              <b>The three families</b>
+              <span class="rv-part-desc">What each check looks for and why.</span>
+            </span>
+            <span class="rv-part-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="rv-part" href="#us-worked">
+            <span class="rv-part-no">2</span>
+            <span class="rv-part-txt">
+              <span class="rv-part-kicker">Part two</span>
+              <b>A worked example</b>
+              <span class="rv-part-desc">Catching an inconsistency a forest plot cannot show.</span>
+            </span>
+            <span class="rv-part-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
+        <div class="part-sec">
+        <div
+          class="mdp-kicker part-head"
+          id="us-families"
+          style="margin-top: 2.8rem; scroll-margin-top: 160px"
+        >
+          Part 1 &middot; The three families
+        </div>
+        <h3 class="rv-h">Three families of error</h3>
+        <p class="mdp-intro">
+          Each tab isolates one family: a worked example, what makes the value
+          wrong, and how to resolve it. Select a family.
+        </p>
+
+        <div class="md-tabmod">
+        <div class="us-tabs" role="tablist" aria-label="Error families">
+          <button class="us-tab is-active" data-us="invalid" role="tab" aria-selected="true">
+            Invalid
+          </button>
+          <button class="us-tab" data-us="unusual" role="tab" aria-selected="false">
+            Unusual
+          </button>
+          <button class="us-tab" data-us="discordant" role="tab" aria-selected="false">
+            Discordant
+          </button>
+        </div>
+
+        <!-- INVALID -->
+        <div class="us-panel is-active" id="us-invalid">
+          <div class="us-def" style="--sev: var(--invalid)">
+            <h3>Mathematically impossible</h3>
+            <p>Values that cannot be true for any study, whatever the data.</p>
+          </div>
+          <div class="us-card" style="--sev: var(--invalid)">
+            <div class="us-grid">
+              <div class="us-side">
+                <div class="us-side-head">Worked example</div>
+                <div class="us-box us-ex">
+                <div class="mdp-sheet-wrap">
+                  <table class="mdp-rec">
+                    <tr><th>study</th><td>Smith 2021</td></tr>
+                    <tr><th>or</th><td>1.80</td></tr>
+                    <tr><th>ci_low</th><td class="bad">2.10</td></tr>
+                    <tr><th>ci_up</th><td class="bad">1.55</td></tr>
+                  </table>
+                </div>
+                <div class="us-wrong">
+                  <div class="lab">What's wrong</div>
+                  <p>
+                    The interval's lower bound (2.10) is above its upper bound
+                    (1.55). No estimate can fall below its own floor.
+                  </p>
+                </div>
+              </div>
+              </div>
+              <div class="us-arrow" aria-hidden="true">→</div>
+              <div class="us-side">
+                <div class="us-side-head">How to resolve it</div>
+                <div class="us-box fp-explain">
+                <div class="fp-row">
+                  <div class="lab">Likely cause</div>
+                  <p>The two bounds were swapped, or a digit was dropped.</p>
+                </div>
+                <div class="fp-row">
+                  <div class="lab">What to do</div>
+                  <p>
+                    Re-enter the interval in the right order. The value is set to
+                    <code>NA</code> so it cannot enter the pool.
+                  </p>
+                </div>
+                <div class="fp-row">
+                  <div class="lab">Also in this family</div>
+                  <div class="mdp-chips">
+                    <span class="mdp-chip">SD &lt; 0</span>
+                    <span class="mdp-chip">|r| &gt; 1</span>
+                    <span class="mdp-chip">OR / RR ≤ 0</span>
+                    <span class="mdp-chip">RD ∉ [−1, 1]</span>
+                    <span class="mdp-chip">estimate ∉ its CI</span>
+                    <span class="mdp-chip">cells &gt; margin</span>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+            <div class="us-flag-head">metaDETECT flag</div>
+            <div class="mdp-flag us-flag">
+              <span class="ico">&#9873;</span>
+              <span>Inverted CI for 'or': lower &gt; upper, set to NA</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- UNUSUAL -->
+        <div class="us-panel" id="us-unusual">
+          <div class="us-def" style="--sev: var(--unusual)">
+            <h3>Statistically implausible</h3>
+            <p>Values that are technically possible but highly improbable, given the rest of the dataset.</p>
+          </div>
+          <div class="us-card" style="--sev: var(--unusual)">
+            <div class="us-grid">
+              <div class="us-side">
+                <div class="us-side-head">Worked example</div>
+                <div class="us-box us-ex">
+                <div class="mdp-sheet-wrap">
+                  <table class="mdp-rec">
+                    <tr><th>study</th><td>Lee 2020</td></tr>
+                    <tr><th>mean_exp</th><td>18.4</td></tr>
+                    <tr><th>mean_sd_exp</th><td class="bad">1.2</td></tr>
+                    <tr><th>n_exp</th><td>54</td></tr>
+                    <tr><th>mean_nexp</th><td>12.1</td></tr>
+                    <tr><th>mean_sd_nexp</th><td class="bad">1.4</td></tr>
+                    <tr><th>n_nexp</th><td>51</td></tr>
+                  </table>
+                </div>
+                <div class="us-wrong">
+                  <div class="lab">What's wrong</div>
+                  <p>
+                    The two SDs (1.2 and 1.4) are about ten times smaller than
+                    the peers in the pool (≈ 14), giving a Hedges' g of 4.70.
+                  </p>
+                </div>
+              </div>
+              </div>
+              <div class="us-arrow" aria-hidden="true">→</div>
+              <div class="us-side">
+                <div class="us-side-head">How to resolve it</div>
+                <div class="us-box fp-explain">
+                <div class="fp-row">
+                  <div class="lab">Likely cause</div>
+                  <p>A standard error entered as a standard deviation (SD ≈ SE × √n).</p>
+                </div>
+                <div class="fp-row">
+                  <div class="lab">What to do</div>
+                  <p>
+                    Check whether the column is an SD or an SE, against the
+                    sample size. The value is kept, not deleted.
+                  </p>
+                </div>
+                <div class="fp-row">
+                  <div class="lab">Also in this family</div>
+                  <div class="mdp-chips">
+                    <span class="mdp-chip">|logOR| &gt; 5</span>
+                    <span class="mdp-chip">α / ICC &gt; 0.99</span>
+                    <span class="mdp-chip">n-ratio &gt; 10</span>
+                    <span class="mdp-chip">SE ≫ ES</span>
+                    <span class="mdp-chip">cross-row IQR outlier</span>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+            <div class="us-flag-head">metaDETECT flag</div>
+            <div class="mdp-flag us-flag">
+              <span class="ico">&#9873;</span>
+              <span>Large SMD: |g| = 4.70 (threshold: 3) (from means_sd)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- DISCORDANT -->
+        <div class="us-panel" id="us-discordant">
+          <div class="us-def" style="--sev: var(--discordant)">
+            <h3>Inconsistent across methods</h3>
+            <p>Independent computations of the same effect that ought to agree, but do not.</p>
+          </div>
+          <div class="us-card" style="--sev: var(--discordant)">
+            <div class="us-grid">
+              <div class="us-side">
+                <div class="us-side-head">Worked example</div>
+                <div class="us-box us-ex">
+                <div class="mdp-sheet-wrap">
+                  <table class="mdp-rec">
+                    <tr><th>study</th><td>Park 2019</td></tr>
+                    <tr><th>mean_exp</th><td>13.1</td></tr>
+                    <tr><th>mean_sd_exp</th><td>5.1</td></tr>
+                    <tr><th>n_exp</th><td>52</td></tr>
+                    <tr><th>mean_nexp</th><td>12.0</td></tr>
+                    <tr><th>mean_sd_nexp</th><td>5.4</td></tr>
+                    <tr><th>n_nexp</th><td>53</td></tr>
+                    <tr><th>student_t</th><td>3.18</td></tr>
+                  </table>
+                </div>
+                <div class="mdp-derived">
+                  <div class="r">
+                    <span class="k">from means + SDs</span><span class="v">g = 0.21</span>
+                  </div>
+                  <div class="r">
+                    <span class="k">from student_t</span><span class="v">g = 0.62</span>
+                  </div>
+                </div>
+                <div class="us-wrong">
+                  <div class="lab">What's wrong</div>
+                  <p>The two estimates disagree: g = 0.21 versus g = 0.62.</p>
+                </div>
+              </div>
+              </div>
+              <div class="us-arrow" aria-hidden="true">→</div>
+              <div class="us-side">
+                <div class="us-side-head">How to resolve it</div>
+                <div class="us-box fp-explain">
+                <div class="fp-row">
+                  <div class="lab">Likely cause</div>
+                  <p>At least one of the redundant inputs was mis-extracted.</p>
+                </div>
+                <div class="fp-row">
+                  <div class="lab">What to do</div>
+                  <p>
+                    Re-check the means, the SDs and the t. The disagreement
+                    localises the suspect value.
+                  </p>
+                </div>
+                <div class="fp-row">
+                  <div class="lab">Also in this family</div>
+                  <div class="mdp-chips">
+                    <span class="mdp-chip">CI overlap = 0</span>
+                    <span class="mdp-chip">large min-max range</span>
+                    <span class="mdp-chip">CI width ≠ SE</span>
+                    <span class="mdp-chip">cross-study sign flip</span>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+            <div class="us-flag-head">metaDETECT flag</div>
+            <div class="mdp-flag us-flag">
+              <span class="ico">&#9873;</span>
+              <span>Low CI overlap between min/max estimates: 31.2% (threshold: 85%) - min: means_sd, max: student_t</span>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+
+        <!-- worked example walkthrough -->
+        <div id="us-worked" class="part-sec" style="margin-top: 3.6rem; scroll-margin-top: 160px">
+          <div class="mdp-kicker part-head">Part 2 &middot; A worked example</div>
+          <h3 class="rv-h">From the source articles to a clean dataset</h3>
+          <p class="mdp-intro">
+            The analyst works from the included articles, recording each study's
+            statistics in the wide-format sheet. Capturing <b>every</b> statistic
+            a paper reports for an effect - not only the minimum one formula
+            needs - gives metaDETECT more than one estimate of that effect to
+            compare. Run before pooling, metaDETECT then surfaces an error a
+            forest plot cannot: two redundant statistics in one row that
+            disagree, while the value entering the model still looks unremarkable.
+          </p>
+
+          <div class="mw">
+            <div class="mw-step">
+              <h4>Collect the source articles</h4>
+              <p>
+                It begins with the included studies themselves: each
+                article is the source for one row, and the analyst records its
+                statistics directly from the paper. Five trials are included
+                here; what each reports varies, and one, <b>Okafor 2020</b>, also
+                reports a Student's <i>t</i> for the comparison.
+              </p>
+              <div class="mw-fig">
+                <div class="mw-pdfs">
+                  <div class="mw-pdf"><svg viewBox="0 0 48 60" aria-hidden="true"><path d="M7 1.5h25.5L46 15v41.5a2.5 2.5 0 0 1-2.5 2.5H7a2.5 2.5 0 0 1-2.5-2.5V4A2.5 2.5 0 0 1 7 1.5z" fill="#fff" stroke="#d3d3cc" stroke-width="1.4"/><path d="M32.5 1.5V12a3 3 0 0 0 3 3H46z" fill="#eef0f3" stroke="#d3d3cc" stroke-width="1.4"/><line x1="11" y1="23" x2="31" y2="23" stroke="#e4e4de" stroke-width="2.4"/><line x1="11" y1="29" x2="26" y2="29" stroke="#e4e4de" stroke-width="2.4"/><rect x="10" y="38" width="28" height="13" rx="2.5" fill="#c0414a"/><text x="24" y="47.5" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="8.5" font-weight="700" fill="#fff">PDF</text></svg><span class="nm">Adesina 2018</span><span class="rep">means + SDs</span></div>
+                  <div class="mw-pdf"><svg viewBox="0 0 48 60" aria-hidden="true"><path d="M7 1.5h25.5L46 15v41.5a2.5 2.5 0 0 1-2.5 2.5H7a2.5 2.5 0 0 1-2.5-2.5V4A2.5 2.5 0 0 1 7 1.5z" fill="#fff" stroke="#d3d3cc" stroke-width="1.4"/><path d="M32.5 1.5V12a3 3 0 0 0 3 3H46z" fill="#eef0f3" stroke="#d3d3cc" stroke-width="1.4"/><line x1="11" y1="23" x2="31" y2="23" stroke="#e4e4de" stroke-width="2.4"/><line x1="11" y1="29" x2="26" y2="29" stroke="#e4e4de" stroke-width="2.4"/><rect x="10" y="38" width="28" height="13" rx="2.5" fill="#c0414a"/><text x="24" y="47.5" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="8.5" font-weight="700" fill="#fff">PDF</text></svg><span class="nm">Brandt 2019</span><span class="rep">means + SDs</span></div>
+                  <div class="mw-pdf is-key"><svg viewBox="0 0 48 60" aria-hidden="true"><path d="M7 1.5h25.5L46 15v41.5a2.5 2.5 0 0 1-2.5 2.5H7a2.5 2.5 0 0 1-2.5-2.5V4A2.5 2.5 0 0 1 7 1.5z" fill="#fff" stroke="#d3d3cc" stroke-width="1.4"/><path d="M32.5 1.5V12a3 3 0 0 0 3 3H46z" fill="#eef0f3" stroke="#d3d3cc" stroke-width="1.4"/><line x1="11" y1="23" x2="31" y2="23" stroke="#e4e4de" stroke-width="2.4"/><line x1="11" y1="29" x2="26" y2="29" stroke="#e4e4de" stroke-width="2.4"/><rect x="10" y="38" width="28" height="13" rx="2.5" fill="#c0414a"/><text x="24" y="47.5" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="8.5" font-weight="700" fill="#fff">PDF</text></svg><span class="nm">Okafor 2020</span><span class="rep">means, SDs + t</span></div>
+                  <div class="mw-pdf"><svg viewBox="0 0 48 60" aria-hidden="true"><path d="M7 1.5h25.5L46 15v41.5a2.5 2.5 0 0 1-2.5 2.5H7a2.5 2.5 0 0 1-2.5-2.5V4A2.5 2.5 0 0 1 7 1.5z" fill="#fff" stroke="#d3d3cc" stroke-width="1.4"/><path d="M32.5 1.5V12a3 3 0 0 0 3 3H46z" fill="#eef0f3" stroke="#d3d3cc" stroke-width="1.4"/><line x1="11" y1="23" x2="31" y2="23" stroke="#e4e4de" stroke-width="2.4"/><line x1="11" y1="29" x2="26" y2="29" stroke="#e4e4de" stroke-width="2.4"/><rect x="10" y="38" width="28" height="13" rx="2.5" fill="#c0414a"/><text x="24" y="47.5" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="8.5" font-weight="700" fill="#fff">PDF</text></svg><span class="nm">Petrov 2021</span><span class="rep">means + SDs</span></div>
+                  <div class="mw-pdf"><svg viewBox="0 0 48 60" aria-hidden="true"><path d="M7 1.5h25.5L46 15v41.5a2.5 2.5 0 0 1-2.5 2.5H7a2.5 2.5 0 0 1-2.5-2.5V4A2.5 2.5 0 0 1 7 1.5z" fill="#fff" stroke="#d3d3cc" stroke-width="1.4"/><path d="M32.5 1.5V12a3 3 0 0 0 3 3H46z" fill="#eef0f3" stroke="#d3d3cc" stroke-width="1.4"/><line x1="11" y1="23" x2="31" y2="23" stroke="#e4e4de" stroke-width="2.4"/><line x1="11" y1="29" x2="26" y2="29" stroke="#e4e4de" stroke-width="2.4"/><rect x="10" y="38" width="28" height="13" rx="2.5" fill="#c0414a"/><text x="24" y="47.5" text-anchor="middle" font-family="Work Sans, sans-serif" font-size="8.5" font-weight="700" fill="#fff">PDF</text></svg><span class="nm">Sandberg 2022</span><span class="rep">means + SDs</span></div>
+                </div>
+                <div class="mw-fig-cap">
+                  Each article is the primary source for one study. Most report
+                  group means and standard deviations; Okafor 2020 also reports a
+                  test statistic, a second route to the same effect.
+                </div>
+              </div>
+            </div>
+
+            <div class="mw-step">
+              <h4>Extract every statistic reported for the effect</h4>
+              <p>
+                A paper usually reports an effect several ways - group means and
+                standard deviations, a test statistic, a confidence interval, a
+                p-value. Extract all of them, not only the one a single formula
+                needs: metaConvert turns each into an effect size, and the
+                agreement between those routes is the check that follows. Each
+                statistic must be matched to the right outcome, since a paper
+                reports more than one.
+              </p>
+              <div class="mw-fig">
+                <div class="mw-excerpt">
+                  <div class="mw-excerpt-tag">Okafor 2020 &middot; results section</div>
+                  <p class="mw-excerpt-body">
+                    &ldquo;Primary outcome (cognitive score): the intervention
+                    group exceeded control (<span class="stat">24.6 &plusmn; 6.3</span>
+                    versus <span class="stat">21.7 &plusmn; 6.5</span>;
+                    <span class="stat">n = 52, 48</span>),
+                    <span class="stat">t(98) = 2.26</span>,
+                    <span class="stat">P = .026</span>.&rdquo;
+                  </p>
+                  <p class="mw-excerpt-body secondary">
+                    &ldquo;Secondary outcome (fatigue scale): a larger separation
+                    was observed, t(98) = 4.78, P &lt; .001.&rdquo;
+                  </p>
+                  <div class="mw-excerpt-foot">
+                    <b>One effect, several routes.</b> The means, SDs, sample
+                    sizes and the primary-outcome <i>t</i> all describe the
+                    cognitive-score effect, and each yields an effect size. The
+                    <i>t</i> = 4.78 belongs to a different outcome and must not be
+                    paired with this comparison.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mw-step">
+              <h4>Record each statistic in the extraction sheet</h4>
+              <p>
+                Each study occupies one row. Okafor 2020 carries both the group
+                statistics and its reported <i>t</i> (in the
+                <code>student_t</code> column), giving metaDETECT two estimates of
+                that effect to compare; the other four offer a single route.
+              </p>
+              <div class="mw-fig">
+                <div class="mdp-sheet-wrap">
+                  <table class="mdp-sheet">
+                    <tr>
+                      <th>study_id</th>
+                      <th>n_exp</th><th>mean_exp</th><th>mean_sd_exp</th>
+                      <th>n_nexp</th><th>mean_nexp</th><th>mean_sd_nexp</th>
+                      <th>student_t</th>
+                    </tr>
+                    <tr><td class="rowh">Adesina 2018</td><td>44</td><td>31.2</td><td>7.4</td><td>45</td><td>27.6</td><td>7.6</td><td>&mdash;</td></tr>
+                    <tr><td class="rowh">Brandt 2019</td><td>39</td><td>28.9</td><td>6.9</td><td>41</td><td>25.7</td><td>7.2</td><td>&mdash;</td></tr>
+                    <tr><td class="rowh">Okafor 2020</td><td>52</td><td>24.6</td><td>6.3</td><td>48</td><td>21.7</td><td>6.5</td><td>4.78</td></tr>
+                    <tr><td class="rowh">Petrov 2021</td><td>50</td><td>35.1</td><td>8.1</td><td>49</td><td>30.9</td><td>8.4</td><td>&mdash;</td></tr>
+                    <tr><td class="rowh">Sandberg 2022</td><td>36</td><td>19.8</td><td>5.9</td><td>38</td><td>16.9</td><td>6.1</td><td>&mdash;</td></tr>
+                  </table>
+                </div>
+                <div class="mw-fig-cap">
+                  The column names are metaConvert's recognised inputs; the
+                  <a href="input.html">input-data page</a> lists every one. Only
+                  Okafor 2020 provides a second route, so only its row can be
+                  cross-checked.
+                </div>
+              </div>
+            </div>
+
+            <div class="mw-step">
+              <h4>metaDETECT flags suspect estimates before pooling</h4>
+              <p>
+                metaConvert recomputes every effect size each row allows, and
+                metaDETECT checks all of them - including the routes a forest plot
+                discards - and flags any that disagree. In R this is two lines;
+                the same sheet is uploaded, and the same checks run, in the web
+                application:
+              </p>
+              <div class="mdp-code" style="margin-top: 1rem"><span class="c">## compute every effect size, then flag suspect rows</span>
+res &lt;- <span class="fn">convert_df</span>(data, measure = <span class="str">"g"</span>)
+<span class="fn">summary</span>(res, flags = <span class="str">TRUE</span>)</div>
+              <p style="margin-top: 0.95rem">
+                The summary returns one row per study: the selected estimate in
+                <code>es_crude</code>, its standard error in <code>se_crude</code>,
+                and any checks in <code>flags_crude</code>. Four rows are clear;
+                Okafor 2020 carries a flag.
+              </p>
+              <div class="mw-fig">
+                <div class="mdp-sheet-wrap">
+                  <table class="mdp-sheet">
+                    <tr>
+                      <th>study_id</th><th>es_crude</th><th>se_crude</th><th>flags_crude</th>
+                    </tr>
+                    <tr><td class="rowh">Adesina 2018</td><td>0.476</td><td>0.213</td><td>&mdash;</td></tr>
+                    <tr><td class="rowh">Brandt 2019</td><td>0.449</td><td>0.224</td><td>&mdash;</td></tr>
+                    <tr><td class="rowh">Okafor 2020</td><td>0.450</td><td>0.201</td><td><span style="color: var(--discordant); font-weight: 700">Discordant</span></td></tr>
+                    <tr><td class="rowh">Petrov 2021</td><td>0.505</td><td>0.203</td><td>&mdash;</td></tr>
+                    <tr><td class="rowh">Sandberg 2022</td><td>0.478</td><td>0.233</td><td>&mdash;</td></tr>
+                  </table>
+                </div>
+                <div class="mdp-flag" style="--sev: var(--discordant); margin-top: 1rem">
+                  <span class="ico">&#9873;</span>
+                  <span><b>Discordant</b> - Low CI overlap between min/max estimates: 24% (threshold: 85%) - min: means_sd, max: student_t</span>
+                </div>
+                <div class="mw-fig-cap">
+                  <code>es_crude</code>, <code>se_crude</code> and
+                  <code>flags_crude</code> are the crude-scope columns metaConvert
+                  returns by default; the <code>flags_crude</code> cell above is
+                  abbreviated to its family, and the complete message appears
+                  beneath the table.
+                </div>
+              </div>
+            </div>
+
+            <div class="mw-step">
+              <h4>Read the flag, and correct it at the source</h4>
+              <p>
+                The two routes for Okafor 2020 disagree. The means and standard
+                deviations give <i>g</i> = 0.45; the recorded <i>t</i> = 4.78
+                implies <i>g</i> = 0.95, more than twice as large, and the two
+                confidence intervals overlap by only 24 percent. Because both
+                describe the same comparison, they cannot both be right.
+              </p>
+              <div class="mw-fig">
+                <div class="mdp-derived" style="max-width: 460px">
+                  <div class="r"><span class="k">from means + SDs</span><span class="v">g = 0.45&nbsp; [0.05, 0.85]</span></div>
+                  <div class="r"><span class="k">from student_t</span><span class="v">g = 0.95&nbsp; [0.53, 1.37]</span></div>
+                  <div class="r"><span class="k">CI overlap</span><span class="v">24% (threshold 85%)</span></div>
+                </div>
+                <div class="mw-fig-cap">
+                  Two estimates of one effect that ought to coincide. metaConvert
+                  carries the higher-ranked means-and-SD estimate, <i>g</i> = 0.45,
+                  into the analysis, so a forest plot would look entirely normal;
+                  the conflict shows only when metaDETECT checks the second route.
+                </div>
+              </div>
+              <p style="margin-top: 1rem">
+                Returning to the article resolves it: the <i>t</i> = 4.78 is the
+                secondary-outcome (fatigue) value, recorded in place of the
+                primary-outcome statistic, <i>t</i> = 2.26. With the value
+                corrected, the two routes coincide (<i>g</i> = 0.45 from each,
+                intervals overlapping by 99.8 percent) and the row clears:
+              </p>
+              <div class="mw-fig">
+                <div class="mdp-sheet-wrap">
+                  <table class="mdp-sheet">
+                    <tr>
+                      <th>study_id</th>
+                      <th>mean_exp</th><th>mean_sd_exp</th>
+                      <th>mean_nexp</th><th>mean_sd_nexp</th>
+                      <th>student_t</th><th>es_crude</th><th>flags_crude</th>
+                    </tr>
+                    <tr><td class="rowh">Okafor 2020</td><td>24.6</td><td>6.3</td><td>21.7</td><td>6.5</td><td>2.26</td><td>0.450</td><td>&mdash;</td></tr>
+                  </table>
+                </div>
+                <div class="mw-fig-cap">
+                  The means and SDs were always the higher-ranked route, so the
+                  selected estimate is unchanged (<code>es_crude</code> = 0.450);
+                  with the corrected <i>t</i> = 2.26 the two routes now agree, and
+                  metaDETECT no longer flags the row.
+                </div>
+              </div>
+              <div class="mdp-callout" style="margin-top: 1.1rem">
+                <b>Why capture the redundant statistic.</b> Had only the means and
+                SDs been extracted, Okafor 2020 would have entered the pool at a
+                plausible <i>g</i> = 0.45 and the mis-recorded <i>t</i> would never
+                have been examined. The second route is what gives metaConvert a
+                value to disagree with, and metaDETECT is what reads the
+                disagreement before pooling.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- checklist -->
+        <div class="mdp-check">
+          <h3>Checklist before pooling</h3>
+          <ul>
+            <li>Was every statistic each paper reports for an effect captured, not only the minimum one formula needs?</li>
+            <li>Where a row offers two routes to the same effect, do they agree?</li>
+            <li>Is any effect size implausibly large for the intervention or exposure?</li>
+            <li>Does any estimate sit far from the rest of the pool?</li>
+            <li>Does any study point opposite to the others, with its interval excluding the null?</li>
+            <li>Does the same trial enter the dataset more than once?</li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="mdp-cta">
+        <a class="mdp-btn primary" href="app.html"
+          >Run the checks in the app <span aria-hidden="true">→</span></a
+        >
+        <a class="mdp-btn ghost" href="input.html">How to enter your data</a>
+      </div>
+    </div>
+
+    <!-- ============================================================= -->
+    <!-- ===================== REVIEWERS PANEL ======================= -->
+    <!-- ============================================================= -->
+    <div class="mdp-panel" id="panel-reviewers" role="tabpanel">
+      <section class="mdp-section">
+        <div class="mdp-kicker">For reviewers &amp; editors</div>
+        <h2 class="mdp-h2">Detecting extraction errors in a published meta-analysis</h2>
+        <p class="mdp-intro">
+          Reviewers and editors rarely hold the data file, yet a substantial
+          share of extraction errors remain detectable from the published forest
+          plot together with the source articles. This guidance is organised in
+          two parts.
+        </p>
+        <div class="rv-parts">
+          <a class="rv-part" href="#rv-patterns">
+            <span class="rv-part-no">1</span>
+            <span class="rv-part-txt">
+              <span class="rv-part-kicker">Part one</span>
+              <b>The patterns</b>
+              <span class="rv-part-desc">Recurring visual signatures that warrant scrutiny.</span>
+            </span>
+            <span class="rv-part-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="rv-part" href="#rv-worked">
+            <span class="rv-part-no">2</span>
+            <span class="rv-part-txt">
+              <span class="rv-part-kicker">Part two</span>
+              <b>A worked review</b>
+              <span class="rv-part-desc">Verifying one suspect estimate, from plot to author query.</span>
+            </span>
+            <span class="rv-part-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
+        <div class="part-sec">
+        <div
+          class="mdp-kicker part-head"
+          id="rv-patterns"
+          style="margin-top: 2.8rem; scroll-margin-top: 160px"
+        >
+          Part 1 &middot; The patterns
+        </div>
+        <h3 class="rv-h">Error patterns visible in forest plots</h3>
+        <p class="mdp-intro">
+          Each tab isolates one recurring pattern: its visual signature, its
+          likely cause, and the metaDETECT check that flags it.
+        </p>
+        <div class="mdp-callout">
+          The plots are illustrative; the highlighted study is the one that
+          warrants scrutiny.
+        </div>
+
+        <!-- forest tabs -->
+        <div class="md-tabmod">
+        <div class="fp-tabs" role="tablist" aria-label="Forest-plot patterns">
+          <button class="fp-tab is-active" data-fp="large" role="tab" aria-selected="true">
+            Very large effect
+          </button>
+          <button class="fp-tab" data-fp="outlier" role="tab" aria-selected="false">
+            Outlier effect
+          </button>
+          <button class="fp-tab" data-fp="precise" role="tab" aria-selected="false">
+            Excess precision
+          </button>
+          <button class="fp-tab" data-fp="direction" role="tab" aria-selected="false">
+            Opposite direction
+          </button>
+          <button class="fp-tab" data-fp="duplicate" role="tab" aria-selected="false">
+            Duplicate study
+          </button>
+        </div>
+
+        <!-- LARGE -->
+        <div class="fp-panel is-active" id="fp-large" role="tabpanel">
+          <div class="us-def" style="--sev: var(--unusual)">
+            <h3>An implausibly large effect</h3>
+          </div>
+          <div class="fp-card" style="--sev: var(--unusual)">
+            <div class="us-side">
+              <div class="us-side-head">Forest plot</div>
+              <div class="us-box">
+                <div class="us-appear">
+                  <div class="lab">Appearance</div>
+                  <p>
+                    One study's effect is far larger than any intervention could
+                    plausibly produce: here a standardised mean difference above 3.
+                  </p>
+                </div>
+                <div class="fp-forest" id="forest-large"></div>
+              </div>
+            </div>
+            <div class="us-arrow" aria-hidden="true">→</div>
+            <div class="us-side">
+              <div class="us-side-head">How to read it</div>
+              <div class="us-box fp-explain">
+                <div class="fp-row">
+                  <div class="lab">Likely cause</div>
+                  <p>
+                    A standard error entered as a standard deviation, or a unit
+                    error. For scale, an SMD of 3 on a cognitive test is a
+                    45-point IQ gain (3 × the 15-point SD).
+                  </p>
+                </div>
+                <div class="fp-row">
+                  <div class="lab">Detected by</div>
+                  <span class="fp-fam">Unusual: |g| &gt; 3</span>
+                </div>
+                <div class="fp-row">
+                  <div class="lab">Reviewer action</div>
+                  <p>
+                    Convert the effect back to the test's units. If the implied
+                    change is clinically impossible, an input is wrong.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OUTLIER -->
+        <div class="fp-panel" id="fp-outlier" role="tabpanel">
+          <div class="us-def" style="--sev: var(--unusual)">
+            <h3>An outlying effect estimate</h3>
+          </div>
+          <div class="fp-card" style="--sev: var(--unusual)">
+            <div class="us-side">
+              <div class="us-side-head">Forest plot</div>
+              <div class="us-box">
+                <div class="us-appear">
+                  <div class="lab">Appearance</div>
+                  <p>
+                    One study sits far from the others, though its value is not
+                    impossible on its own.
+                  </p>
+                </div>
+                <div class="fp-forest" id="forest-outlier"></div>
+              </div>
+            </div>
+            <div class="us-arrow" aria-hidden="true">→</div>
+            <div class="us-side">
+              <div class="us-side-head">How to read it</div>
+              <div class="us-box fp-explain">
+                <div class="fp-row">
+                  <div class="lab">Likely cause</div>
+                  <p>A wrong row or arm, a unit mismatch, or a misread statistic.</p>
+                </div>
+                <div class="fp-row">
+                  <div class="lab">Detected by</div>
+                  <span class="fp-fam">Unusual: cross-study outlier</span>
+                </div>
+                <div class="fp-row">
+                  <div class="lab">Reviewer action</div>
+                  <p>Re-extract that study from the source and recompute.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRECISE -->
+        <div class="fp-panel" id="fp-precise" role="tabpanel">
+          <div class="us-def" style="--sev: var(--unusual)">
+            <h3>An implausibly narrow interval</h3>
+          </div>
+          <div class="fp-card" style="--sev: var(--unusual)">
+            <div class="us-side">
+              <div class="us-side-head">Forest plot</div>
+              <div class="us-box">
+                <div class="us-appear">
+                  <div class="lab">Appearance</div>
+                  <p>
+                    One interval is very short and its square dominates the plot,
+                    though the study is no larger than its neighbours.
+                  </p>
+                </div>
+                <div class="fp-forest" id="forest-precise"></div>
+              </div>
+            </div>
+            <div class="us-arrow" aria-hidden="true">→</div>
+            <div class="us-side">
+              <div class="us-side-head">How to read it</div>
+              <div class="us-box fp-explain">
+                <div class="fp-row">
+                  <div class="lab">Likely cause</div>
+                  <p>
+                    A standard error entered as a confidence-interval width, or an
+                    inflated sample size.
+                  </p>
+                </div>
+                <div class="fp-row">
+                  <div class="lab">Detected by</div>
+                  <span class="fp-fam">Unusual: SE too small for the sample size</span>
+                </div>
+                <div class="fp-row">
+                  <div class="lab">Reviewer action</div>
+                  <p>Check the interval against the reported sample size.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DIRECTION -->
+        <div class="fp-panel" id="fp-direction" role="tabpanel">
+          <div class="us-def" style="--sev: var(--discordant)">
+            <h3>An estimate in the opposite direction</h3>
+          </div>
+          <div class="fp-card" style="--sev: var(--discordant)">
+            <div class="us-side">
+              <div class="us-side-head">Forest plot</div>
+              <div class="us-box">
+                <div class="us-appear">
+                  <div class="lab">Appearance</div>
+                  <p>
+                    One study crosses to the other side of the null, with an
+                    interval that excludes it.
+                  </p>
+                </div>
+                <div class="fp-forest" id="forest-direction"></div>
+              </div>
+            </div>
+            <div class="us-arrow" aria-hidden="true">→</div>
+            <div class="us-side">
+              <div class="us-side-head">How to read it</div>
+              <div class="us-box fp-explain">
+                <div class="fp-row">
+                  <div class="lab">Likely cause</div>
+                  <p>The arms were swapped, or the sign of a difference was dropped.</p>
+                </div>
+                <div class="fp-row">
+                  <div class="lab">Detected by</div>
+                  <span class="fp-fam">Discordant: cross-study direction conflict</span>
+                </div>
+                <div class="fp-row">
+                  <div class="lab">Reviewer action</div>
+                  <p>Confirm which column is the treatment arm for that study.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DUPLICATE -->
+        <div class="fp-panel" id="fp-duplicate" role="tabpanel">
+          <div class="us-def" style="--sev: #4a6a8a">
+            <h3>The same trial, counted twice</h3>
+          </div>
+          <div class="fp-card" style="--sev: #4a6a8a">
+            <div class="us-side">
+              <div class="us-side-head">Forest plot</div>
+              <div class="us-box">
+                <div class="us-appear">
+                  <div class="lab">Appearance</div>
+                  <p>
+                    Two rows carry an identical estimate and confidence interval:
+                    the same trial appears more than once.
+                  </p>
+                </div>
+                <div class="fp-forest" id="forest-duplicate"></div>
+              </div>
+            </div>
+            <div class="us-arrow" aria-hidden="true">→</div>
+            <div class="us-side">
+              <div class="us-side-head">How to read it</div>
+              <div class="us-box fp-explain">
+                <div class="fp-row">
+                  <div class="lab">Likely cause</div>
+                  <p>
+                    Usually an accidental duplicate of one trial. A study can
+                    also contribute several rows legitimately (subgroups,
+                    timepoints, or outcomes), all belonging to the same trial.
+                  </p>
+                </div>
+                <div class="fp-row">
+                  <div class="lab">Detected by</div>
+                  <span class="fp-fam">Info: duplicate study_id</span>
+                </div>
+                <div class="fp-row">
+                  <div class="lab">Reviewer action</div>
+                  <p>
+                    Remove an accidental duplicate. If the rows are genuinely
+                    separate estimates from one trial, model the dependency with
+                    a multilevel or multivariate meta-analysis rather than
+                    entering them independently, so the trial is not
+                    double-counted.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+
+        <!-- worked review walkthrough -->
+        <div id="rv-worked" class="part-sec" style="margin-top: 3.6rem; scroll-margin-top: 160px">
+          <div class="mdp-kicker part-head">Part 2 &middot; A worked review</div>
+          <h3 class="rv-h">Verifying a suspect estimate, from plot to author query</h3>
+          <p class="mdp-intro">
+            A published forest plot reports each trial's group statistics
+            alongside the effect size they yield. The procedure below re-derives
+            those effect sizes with metaConvert and checks them with metaDETECT.
+          </p>
+
+          <div class="mw">
+            <div class="mw-step">
+              <h4>Identify the anomalous estimate</h4>
+              <p>
+                The forest plot lists, for each trial, the per-arm sample size,
+                mean and standard deviation, and the standardised mean difference
+                they produce. Five estimates fall between <i>g</i> = 0.38 and
+                0.61; <b>Nakamura 2021</b> is reported at <b><i>g</i> = 3.04</b>.
+                Its standard deviations (2.0 and 2.1) are also far smaller than
+                those of the other trials (about 10 to 12) - a combination that is
+                implausible for a cognitive-training outcome and requires
+                verification.
+              </p>
+              <div class="mw-fig">
+                <div class="mw-rm" id="rm-forest"></div>
+              </div>
+            </div>
+
+            <div class="mw-step">
+              <h4>Re-derive the estimate, rather than judge it by eye</h4>
+              <p>
+                An implausible value is best confirmed by recomputation. The
+                statistics the plot reports are entered into metaConvert, which
+                recomputes each effect size and applies the metaDETECT checks - an
+                objective record that can be cited in a review.
+              </p>
+            </div>
+
+            <div class="mw-step">
+              <h4>Transcribe the data into one extraction sheet</h4>
+              <p>
+                Every trial is entered in a single sheet: the per-arm summary
+                statistics in the standard columns, and the published effect size
+                in metaConvert's user-input columns - not a column named after the
+                measure. Holding both lets metaConvert recompute each estimate from
+                the raw data and cross-check it against the published value.
+              </p>
+              <div class="mw-fig">
+                <div class="mdp-sheet-wrap">
+                  <table class="mdp-sheet">
+                    <tr>
+                      <th>study</th>
+                      <th>n_exp</th><th>mean_exp</th><th>mean_sd_exp</th>
+                      <th>n_nexp</th><th>mean_nexp</th><th>mean_sd_nexp</th>
+                      <th>user_es_original_measure_crude</th>
+                      <th>user_es_crude</th><th>user_ci_lo_crude</th><th>user_ci_up_crude</th>
+                    </tr>
+                    <tr><td class="rowh">Alvarez 2017</td><td>41</td><td>62.4</td><td>11.0</td><td>43</td><td>57.7</td><td>11.4</td><td>g</td><td>0.42</td><td>0.10</td><td>0.74</td></tr>
+                    <tr><td class="rowh">Bianchi 2018</td><td>38</td><td>58.1</td><td>9.8</td><td>39</td><td>52.6</td><td>10.1</td><td>g</td><td>0.55</td><td>0.22</td><td>0.88</td></tr>
+                    <tr><td class="rowh">Cohen 2019</td><td>52</td><td>70.3</td><td>12.1</td><td>50</td><td>65.8</td><td>11.6</td><td>g</td><td>0.38</td><td>0.05</td><td>0.71</td></tr>
+                    <tr><td class="rowh">Duarte 2020</td><td>45</td><td>49.2</td><td>10.4</td><td>44</td><td>44.1</td><td>10.7</td><td>g</td><td>0.49</td><td>0.16</td><td>0.82</td></tr>
+                    <tr><td class="rowh">Faulkner 2021</td><td>33</td><td>&mdash;</td><td>&mdash;</td><td>31</td><td>&mdash;</td><td>&mdash;</td><td>g</td><td>0.61</td><td>0.20</td><td>1.02</td></tr>
+                    <tr><td class="rowh">Nakamura 2021</td><td>30</td><td>24.5</td><td>2.0</td><td>30</td><td>18.2</td><td>2.1</td><td>g</td><td class="warn">3.04</td><td>2.62</td><td>3.46</td></tr>
+                  </table>
+                </div>
+                <div class="mw-fig-cap">
+                  The reported effect size occupies the user-input columns, never a
+                  column named <code>g</code>;
+                  <code>user_es_target_measure_crude</code> is set from the analysis
+                  measure and is not extracted. Faulkner 2021 reports no means or
+                  SDs, so its effect size alone is used. The
+                  <a href="input.html">input-data page</a> lists every recognised
+                  column.
+                </div>
+              </div>
+            </div>
+
+            <div class="mw-step">
+              <h4>Recompute and check with metaConvert</h4>
+              <p>
+                metaConvert recomputes each effect size from the summary statistics
+                and applies the metaDETECT checks to every row. The procedure runs
+                in R, or without code in the web application:
+              </p>
+              <div class="mdp-code" style="margin-top: 1rem"><span class="c">## recompute every effect size, then check each row</span>
+res &lt;- <span class="fn">convert_df</span>(data, measure = <span class="str">"g"</span>)
+<span class="fn">summary</span>(res, flags = <span class="str">TRUE</span>)</div>
+              <p style="margin-top: 0.95rem">
+                In the <a href="app.html">metaConvert web app</a> the same sheet is
+                uploaded and the metaDETECT panel opened. In either case, one row
+                is returned with a flag:
+              </p>
+              <div class="mdp-flag" style="--sev: var(--unusual)">
+                <span class="ico">&#9873;</span>
+                <span><b>Unusual</b> - Large SMD: |g| = 3.04 (threshold: 3) (from means_sd)</span>
+              </div>
+            </div>
+
+            <div class="mw-step">
+              <h4>Refer the discrepancy to the authors</h4>
+              <p>
+                metaDETECT identifies an implausible value, not its cause. A
+                standardised mean difference of 3.04 corresponds to a separation of
+                approximately three standard deviations between arms. The authors
+                should be asked to verify the means and standard deviations for the
+                trial and, in particular, to confirm whether the reported
+                dispersion is a standard deviation or a standard error - the latter
+                being smaller by a factor of &radic;n.
+              </p>
+              <div class="mdp-callout" style="margin-top: 1.1rem">
+                <b>Suggested query.</b> &ldquo;The reported standardised mean
+                difference for Nakamura 2021 (<i>g</i> &asymp; 3.04) implies a
+                three-standard-deviation separation between arms. Please confirm
+                the group means and standard deviations, and whether the value in
+                the SD column is a standard deviation or a standard error.&rdquo;
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- checklist -->
+        <div class="mdp-check">
+          <h3>Checklist for reviewers</h3>
+          <ul>
+            <li>Is any effect larger than the intervention could plausibly produce?</li>
+            <li>Does any study sit far from the others?</li>
+            <li>Is any interval so narrow that one study holds most of the weight?</li>
+            <li>Does any study point the opposite way, with an interval excluding the null?</li>
+            <li>Does any interval sit unevenly around its estimate?</li>
+            <li>Do two studies report identical numbers?</li>
+            <li>Does the same trial appear more than once?</li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="mdp-cta">
+        <a class="mdp-btn primary" href="app.html"
+          >Run the checks in the app <span aria-hidden="true">→</span></a
+        >
+        <a class="mdp-btn ghost" href="input.html">How to enter your data</a>
+      </div>
+    </div>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+      <div class="footer_left">
+        <div class="footer_logo">metaConvert</div>
+        <address>
+          <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank"
+            ><img src="https://img.shields.io/badge/license-GPL-red" /></a
+          ><br />
+          <a
+            href="https://cran.r-project.org/web/packages/metaConvert/index.html"
+            target="_blank"
+            ><img src="https://www.r-pkg.org/badges/version/metaConvert" /></a
+          ><br />
+          <button type="button" style="border: solid 1px #fff">
+            <a
+              href="mailto: corentin.gosling@parisnanterre.fr"
+              style="
+                text-decoration: none;
+                color: #000;
+                width: 100%;
+                height: 100%;
+                display: block;
+              "
+              >Contact us</a
+            >
+          </button>
+        </address>
+      </div>
+      <div class="footer_mid">
+        <div class="p10">
+          <a
+            href="https://www.parisnanterre.fr/corentin-gosling"
+            target="_blank"
+            ><img src="background/p10.svg" class="img_univ"
+          /></a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      /* ---------- audience + forest tab switching ---------- */
+      document.querySelectorAll(".mdp-tab").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          document.querySelectorAll(".mdp-tab").forEach(function (b) {
+            var on = b === btn;
+            b.classList.toggle("is-active", on);
+            b.setAttribute("aria-selected", on ? "true" : "false");
+          });
+          document.querySelectorAll(".mdp-panel").forEach(function (p) {
+            p.classList.toggle("is-active", p.id === "panel-" + btn.dataset.tab);
+          });
+        });
+      });
+      document.querySelectorAll(".fp-tab").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          document.querySelectorAll(".fp-tab").forEach(function (b) {
+            var on = b === btn;
+            b.classList.toggle("is-active", on);
+            b.setAttribute("aria-selected", on ? "true" : "false");
+          });
+          document.querySelectorAll(".fp-panel").forEach(function (p) {
+            p.classList.toggle("is-active", p.id === "fp-" + btn.dataset.fp);
+          });
+        });
+      });
+      document.querySelectorAll(".us-tab").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          document.querySelectorAll(".us-tab").forEach(function (b) {
+            var on = b === btn;
+            b.classList.toggle("is-active", on);
+            b.setAttribute("aria-selected", on ? "true" : "false");
+          });
+          document.querySelectorAll(".us-panel").forEach(function (p) {
+            p.classList.toggle("is-active", p.id === "us-" + btn.dataset.us);
+          });
+        });
+      });
+
+      /* ---------- hero family markers jump to the worked example ---------- */
+      document.querySelectorAll(".md-fam-mark").forEach(function (mark) {
+        mark.addEventListener("click", function () {
+          var fam = mark.dataset.us;
+          // make sure the "For users" audience panel is the one on screen
+          var usersTab = document.querySelector('.mdp-tab[data-tab="users"]');
+          if (usersTab) usersTab.click();
+          // then open the matching family within it
+          var famTab = document.querySelector('.us-tab[data-us="' + fam + '"]');
+          if (famTab) famTab.click();
+        });
+      });
+
+      /* ---------- deep link from the home banner (#users / #reviewers) ---------- */
+      function applyAudienceHash() {
+        var h = (location.hash || "").replace("#", "");
+        if (h === "users" || h === "reviewers") {
+          var tab = document.querySelector('.mdp-tab[data-tab="' + h + '"]');
+          if (tab) tab.click();
+        }
+      }
+      applyAudienceHash();
+      window.addEventListener("hashchange", applyAudienceHash);
+
+      /* ---------- illustrative forest-plot renderer ---------- */
+      function drawForest(host, cfg) {
+        var S = cfg.studies,
+          showN = !!cfg.showN,
+          W = 560,
+          padL = showN ? 156 : 118,
+          padR = 150,
+          padT = 12,
+          rh = 34;
+        var pooled = cfg.pooled;
+        var rows = S.length + (pooled ? 1 : 0);
+        var H = padT * 2 + rows * rh + (pooled ? 8 : 0) + 18;
+        var vals = [cfg.nullAt];
+        S.forEach(function (s) {
+          vals.push(s.lo, s.hi);
+        });
+        if (pooled) vals.push(pooled.lo, pooled.hi);
+        var lo = Math.min.apply(null, vals),
+          hi = Math.max.apply(null, vals);
+        var pad = (hi - lo) * 0.1 || 1;
+        lo -= pad;
+        hi += pad;
+        var x = function (v) {
+          return padL + ((v - lo) / (hi - lo)) * (W - padL - padR);
+        };
+        var x0 = x(cfg.nullAt);
+        var INK = "#2b2f36",
+          GREEN = "#1f7a3d",
+          RED = cfg.flagColor || "#9c2b2b";
+        var s =
+          '<svg viewBox="0 0 ' +
+          W +
+          " " +
+          H +
+          '" role="img" aria-label="' +
+          (cfg.aria || "illustrative forest plot") +
+          '">';
+        s +=
+          '<line x1="' +
+          x0 +
+          '" y1="' +
+          padT +
+          '" x2="' +
+          x0 +
+          '" y2="' +
+          (padT + rows * rh) +
+          '" stroke="#d6d6d1" stroke-dasharray="4 4"/>';
+        S.forEach(function (st, i) {
+          var y = padT + i * rh + rh / 2;
+          var col = st.flag ? RED : st.good ? GREEN : INK;
+          if (st.flag || st.good)
+            s +=
+              '<rect x="0" y="' +
+              (y - rh / 2) +
+              '" width="' +
+              W +
+              '" height="' +
+              rh +
+              '" fill="' +
+              (st.good ? "rgba(31,122,61,0.07)" : "rgba(0,0,0,0.04)") +
+              '"/>';
+          s +=
+            '<line x1="' +
+            x(st.lo) +
+            '" y1="' +
+            y +
+            '" x2="' +
+            x(st.hi) +
+            '" y2="' +
+            y +
+            '" stroke="' +
+            col +
+            '" stroke-width="1.5"/>';
+          [st.lo, st.hi].forEach(function (b) {
+            s +=
+              '<line x1="' +
+              x(b) +
+              '" y1="' +
+              (y - 4) +
+              '" x2="' +
+              x(b) +
+              '" y2="' +
+              (y + 4) +
+              '" stroke="' +
+              col +
+              '" stroke-width="1.5"/>';
+          });
+          var sz = 7 + (st.w || 0.4) * 13;
+          s +=
+            '<rect x="' +
+            (x(st.est) - sz / 2) +
+            '" y="' +
+            (y - sz / 2) +
+            '" width="' +
+            sz +
+            '" height="' +
+            sz +
+            '" fill="' +
+            col +
+            '"/>';
+          s +=
+            '<text x="8" y="' +
+            (y + 4) +
+            '" class="fp-lab" fill="' +
+            (st.flag ? RED : st.good ? GREEN : INK) +
+            '">' +
+            st.label +
+            "</text>";
+          if (showN)
+            s +=
+              '<text x="' +
+              (padL - 12) +
+              '" y="' +
+              (y + 4) +
+              '" text-anchor="end" class="fp-val" fill="' +
+              (st.flag ? RED : st.good ? GREEN : "#6b727c") +
+              '">n=' +
+              st.n +
+              "</text>";
+          s +=
+            '<text x="' +
+            (W - 8) +
+            '" y="' +
+            (y + 4) +
+            '" text-anchor="end" class="fp-val" fill="' +
+            (st.flag ? RED : "#6b727c") +
+            '">' +
+            st.est.toFixed(2) +
+            " [" +
+            st.lo.toFixed(2) +
+            ", " +
+            st.hi.toFixed(2) +
+            "]</text>";
+        });
+        if (pooled) {
+          var yp = padT + S.length * rh + rh / 2 + 4;
+          var cx = x(pooled.est);
+          s +=
+            '<polygon points="' +
+            x(pooled.lo) +
+            "," +
+            yp +
+            " " +
+            cx +
+            "," +
+            (yp - 7) +
+            " " +
+            x(pooled.hi) +
+            "," +
+            yp +
+            " " +
+            cx +
+            "," +
+            (yp + 7) +
+            '" fill="#20242b"/>';
+          s +=
+            '<text x="8" y="' +
+            (yp + 4) +
+            '" class="fp-lab" font-weight="700" fill="#20242b">Pooled</text>';
+        }
+        s +=
+          '<text x="' +
+          x0 +
+          '" y="' +
+          (H - 4) +
+          '" text-anchor="middle" class="fp-axis">no effect</text>';
+        s += "</svg>";
+        host.innerHTML = s;
+      }
+
+      var FORESTS = {
+        large: {
+          nullAt: 0,
+          aria: "Forest plot of a pool of large effects with one above 3",
+          studies: [
+            { label: "Adler 2018", est: 1.6, lo: 1.3, hi: 1.9, w: 0.5 },
+            { label: "Bauer 2019", est: 2.1, lo: 1.78, hi: 2.42, w: 0.5 },
+            { label: "Conti 2020", est: 1.85, lo: 1.55, hi: 2.15, w: 0.5 },
+            { label: "Diaz 2021", est: 2.4, lo: 2.05, hi: 2.75, w: 0.5 },
+            { label: "Engel 2022", est: 3.2, lo: 2.8, hi: 3.6, w: 0.45, flag: true },
+          ],
+          pooled: { est: 2.2, lo: 1.85, hi: 2.55 },
+        },
+        outlier: {
+          nullAt: 0,
+          aria: "Forest plot with one study far from the others",
+          studies: [
+            { label: "Adams 2019", est: 0.32, lo: 0.1, hi: 0.54, w: 0.5 },
+            { label: "Brown 2020", est: 0.28, lo: 0.05, hi: 0.51, w: 0.45 },
+            { label: "Chen 2021", est: 0.41, lo: 0.18, hi: 0.64, w: 0.5 },
+            { label: "Davis 2021", est: 0.35, lo: 0.12, hi: 0.58, w: 0.45 },
+            { label: "Evans 2022", est: 1.3, lo: 1.02, hi: 1.58, w: 0.45, flag: true },
+          ],
+          pooled: { est: 0.52, lo: 0.2, hi: 0.84 },
+        },
+        precise: {
+          nullAt: 0,
+          showN: true,
+          aria: "Forest plot with equal sample sizes and one far too narrow interval",
+          studies: [
+            { label: "Foster 2018", est: 0.3, lo: 0.04, hi: 0.56, w: 0.18, n: 60 },
+            { label: "Garcia 2019", est: 0.46, lo: 0.16, hi: 0.76, w: 0.18, n: 60 },
+            { label: "Hill 2020", est: 0.39, lo: 0.37, hi: 0.41, w: 1.1, n: 60, flag: true },
+            { label: "Iqbal 2021", est: 0.33, lo: 0.06, hi: 0.6, w: 0.18, n: 60 },
+            { label: "Jones 2022", est: 0.41, lo: 0.13, hi: 0.69, w: 0.18, n: 60 },
+          ],
+          pooled: { est: 0.39, lo: 0.3, hi: 0.48 },
+        },
+        direction: {
+          nullAt: 0,
+          aria: "Forest plot with one study pointing the opposite direction",
+          studies: [
+            { label: "Ivanov 2019", est: 0.4, lo: 0.18, hi: 0.62, w: 0.5 },
+            { label: "Jansen 2020", est: 0.33, lo: 0.1, hi: 0.56, w: 0.45 },
+            { label: "Kim 2021", est: -0.55, lo: -0.8, hi: -0.3, w: 0.5, flag: true },
+            { label: "Lopez 2021", est: 0.37, lo: 0.14, hi: 0.6, w: 0.45 },
+            { label: "Mehta 2022", est: 0.29, lo: 0.05, hi: 0.53, w: 0.45 },
+          ],
+          pooled: { est: 0.18, lo: -0.05, hi: 0.41 },
+        },
+        duplicate: {
+          nullAt: 0,
+          flagColor: "#3f5d78",
+          aria: "Forest plot with the same trial appearing in two rows",
+          studies: [
+            { label: "Alvarez 2019", est: 0.42, lo: 0.18, hi: 0.66, w: 0.45 },
+            { label: "Bianchi 2020", est: 0.35, lo: 0.1, hi: 0.6, w: 0.45 },
+            { label: "Tan 2021", est: 0.5, lo: 0.24, hi: 0.76, w: 0.5, flag: true },
+            { label: "Tan 2021", est: 0.5, lo: 0.24, hi: 0.76, w: 0.5, flag: true },
+            { label: "Wong 2022", est: 0.38, lo: 0.13, hi: 0.63, w: 0.45 },
+          ],
+          pooled: { est: 0.43, lo: 0.25, hi: 0.61 },
+        },
+      };
+      Object.keys(FORESTS).forEach(function (k) {
+        var host = document.getElementById("forest-" + k);
+        if (host) drawForest(host, FORESTS[k]);
+      });
+
+      /* ---- RevMan-style forest: per-arm data columns + plot in one figure ---- */
+      function drawRM(host, cfg) {
+        var S = cfg.studies,
+          P = cfg.pooled;
+        var W = 720,
+          rh = 24,
+          headH = 46;
+        var rows = S.length + (P ? 1 : 0);
+        var H = headH + rows * rh + 22;
+        var vals = [0];
+        S.forEach(function (s) {
+          vals.push(s.lo, s.hi);
+        });
+        if (P) vals.push(P.lo, P.hi);
+        var lo = Math.min.apply(null, vals),
+          hi = Math.max.apply(null, vals);
+        var pad = (hi - lo) * 0.08 || 1;
+        lo -= pad;
+        hi += pad;
+        var pL = 500,
+          pR = 712;
+        var x = function (v) {
+          return pL + ((v - lo) / (hi - lo)) * (pR - pL);
+        };
+        var x0 = x(0);
+        var INK = "#2b2f36",
+          MUT = "#5b6573",
+          AMB = "#a86a0c";
+        var cx = { em: 150, esd: 194, en: 228, cm: 298, csd: 342, cn: 374, smd: 486 };
+        function num(rx, y, v, col) {
+          return (
+            '<text x="' +
+            rx +
+            '" y="' +
+            (y + 3) +
+            '" text-anchor="end" class="rm-num" fill="' +
+            (col || INK) +
+            '">' +
+            (v == null ? "—" : v) +
+            "</text>"
+          );
+        }
+        function smd(e, l, h) {
+          return e.toFixed(2) + " [" + l.toFixed(2) + ", " + h.toFixed(2) + "]";
+        }
+        var s =
+          '<svg viewBox="0 0 ' +
+          W +
+          " " +
+          H +
+          '" role="img" aria-label="' +
+          (cfg.aria || "forest plot with per-arm data") +
+          '">';
+        s += '<text x="4" y="18" class="rm-hd">Study</text>';
+        s += '<text x="189" y="15" text-anchor="middle" class="rm-hd">Experimental</text>';
+        s += '<text x="336" y="15" text-anchor="middle" class="rm-hd">Control</text>';
+        s += '<text x="486" y="18" text-anchor="end" class="rm-hd">SMD [95% CI]</text>';
+        [["Mean", cx.em], ["SD", cx.esd], ["N", cx.en], ["Mean", cx.cm], ["SD", cx.csd], ["N", cx.cn]].forEach(
+          function (c) {
+            s += '<text x="' + c[1] + '" y="34" text-anchor="end" class="rm-sub">' + c[0] + "</text>";
+          }
+        );
+        s += '<line x1="0" y1="' + (headH - 6) + '" x2="' + W + '" y2="' + (headH - 6) + '" stroke="#e0e1e6"/>';
+        s +=
+          '<line x1="' +
+          x0 +
+          '" y1="' +
+          (headH - 2) +
+          '" x2="' +
+          x0 +
+          '" y2="' +
+          (headH + S.length * rh) +
+          '" stroke="#d6d6d1" stroke-dasharray="4 4"/>';
+        S.forEach(function (st, i) {
+          var y = headH + i * rh + rh / 2;
+          var c = st.flag ? AMB : INK;
+          if (st.flag)
+            s +=
+              '<rect x="0" y="' +
+              (headH + i * rh) +
+              '" width="' +
+              W +
+              '" height="' +
+              rh +
+              '" fill="rgba(217,162,63,0.10)"/>';
+          s +=
+            '<text x="4" y="' +
+            (y + 3) +
+            '" class="rm-name" fill="' +
+            (st.flag ? AMB : INK) +
+            '">' +
+            st.label +
+            "</text>";
+          s +=
+            num(cx.em, y, st.em, c) +
+            num(cx.esd, y, st.esd, c) +
+            num(cx.en, y, st.en, c) +
+            num(cx.cm, y, st.cm, c) +
+            num(cx.csd, y, st.csd, c) +
+            num(cx.cn, y, st.cn, c);
+          s +=
+            '<text x="' +
+            cx.smd +
+            '" y="' +
+            (y + 3) +
+            '" text-anchor="end" class="rm-es" fill="' +
+            (st.flag ? AMB : MUT) +
+            '">' +
+            smd(st.est, st.lo, st.hi) +
+            "</text>";
+          s +=
+            '<line x1="' +
+            x(st.lo) +
+            '" y1="' +
+            y +
+            '" x2="' +
+            x(st.hi) +
+            '" y2="' +
+            y +
+            '" stroke="' +
+            c +
+            '" stroke-width="1.4"/>';
+          [st.lo, st.hi].forEach(function (b) {
+            s +=
+              '<line x1="' +
+              x(b) +
+              '" y1="' +
+              (y - 3) +
+              '" x2="' +
+              x(b) +
+              '" y2="' +
+              (y + 3) +
+              '" stroke="' +
+              c +
+              '" stroke-width="1.4"/>';
+          });
+          s +=
+            '<rect x="' + (x(st.est) - 3.5) + '" y="' + (y - 3.5) + '" width="7" height="7" fill="' + c + '"/>';
+        });
+        if (P) {
+          var yp = headH + S.length * rh + rh / 2;
+          s += '<text x="4" y="' + (yp + 3) + '" class="rm-name" fill="#20242b">Pooled</text>';
+          s += num(cx.en, yp, P.en, MUT) + num(cx.cn, yp, P.cn, MUT);
+          s +=
+            '<text x="' +
+            cx.smd +
+            '" y="' +
+            (yp + 3) +
+            '" text-anchor="end" class="rm-es" fill="#20242b" font-weight="700">' +
+            smd(P.est, P.lo, P.hi) +
+            "</text>";
+          var cxp = x(P.est);
+          s +=
+            '<polygon points="' +
+            x(P.lo) +
+            "," +
+            yp +
+            " " +
+            cxp +
+            "," +
+            (yp - 6) +
+            " " +
+            x(P.hi) +
+            "," +
+            yp +
+            " " +
+            cxp +
+            "," +
+            (yp + 6) +
+            '" fill="#20242b"/>';
+        }
+        s += '<text x="' + x0 + '" y="' + (H - 5) + '" text-anchor="middle" class="rm-ax">no effect</text>';
+        s += "</svg>";
+        host.innerHTML = s;
+      }
+      var RM = {
+        aria:
+          "Forest plot listing per-arm means, SDs and sample sizes; Nakamura 2021 reported at g = 3.04",
+        studies: [
+          { label: "Alvarez 2017", em: "62.4", esd: "11.0", en: "41", cm: "57.7", csd: "11.4", cn: "43", est: 0.42, lo: 0.1, hi: 0.74 },
+          { label: "Bianchi 2018", em: "58.1", esd: "9.8", en: "38", cm: "52.6", csd: "10.1", cn: "39", est: 0.55, lo: 0.22, hi: 0.88 },
+          { label: "Cohen 2019", em: "70.3", esd: "12.1", en: "52", cm: "65.8", csd: "11.6", cn: "50", est: 0.38, lo: 0.05, hi: 0.71 },
+          { label: "Duarte 2020", em: "49.2", esd: "10.4", en: "45", cm: "44.1", csd: "10.7", cn: "44", est: 0.49, lo: 0.16, hi: 0.82 },
+          { label: "Faulkner 2021", em: null, esd: null, en: "33", cm: null, csd: null, cn: "31", est: 0.61, lo: 0.2, hi: 1.02 },
+          { label: "Nakamura 2021", em: "24.5", esd: "2.0", en: "30", cm: "18.2", csd: "2.1", cn: "30", est: 3.04, lo: 2.62, hi: 3.46, flag: true },
+        ],
+        pooled: { est: 0.92, lo: 0.27, hi: 1.57, en: "239", cn: "237" },
+      };
+      var rmHost = document.getElementById("rm-forest");
+      if (rmHost) drawRM(rmHost, RM);
+
+      /* ---- sticky part headers sit flush under the pinned audience switch ---- */
+      (function () {
+        var bar = document.querySelector(".mdp-tabs-wrap");
+        if (!bar) return;
+        function setPartTop() {
+          var t = parseFloat(getComputedStyle(bar).top) || 64;
+          var h = bar.getBoundingClientRect().height;
+          document.documentElement.style.setProperty(
+            "--part-top",
+            Math.round(t + h) + "px"
+          );
+        }
+        setPartTop();
+        window.addEventListener("resize", setPartTop);
+        window.addEventListener("load", setPartTop);
+      })();
+    </script>
+    <script src="script/main.js"></script>
+  </body>
+</html>
