@@ -765,20 +765,55 @@ tr:hover .table-pkg-col {
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 2rem 2.5rem;
+  gap: 2.25rem 2rem;
   color: #000;
-  margin: 1rem 3rem 3rem;
+  max-width: 1180px;
+  margin: 1.5rem auto 4rem;
 }
 .team_group .memb {
-  flex: 0 1 300px;
+  flex: 0 1 200px;
   margin-left: 0;
   margin-right: 0;
+}
+.team_group .photo {
+  width: 120px;
+}
+.team_group .read_more {
+  height: auto;
+}
+.team_group .memb_affils {
+  min-height: 6rem;
+}
+.team_group .memb_name {
+  line-height: 1.25;
+  min-height: 2.5em;
+  align-content: center;
+}
+.memb_role {
+  display: inline-block;
+  margin: 0.35rem auto 0.1rem;
+  padding: 0.1rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
+}
+.role_maintainer {
+  background-color: #d66268;
+}
+.role_clinical {
+  background-color: #3f7cb0;
+}
+.role_biostat {
+  background-color: #4f9d69;
 }
 @media screen and (max-width: 1200px) {
   .team_group {
     margin-left: 1rem;
     margin-right: 1rem;
-    gap: 2rem;
   }
 }
 
