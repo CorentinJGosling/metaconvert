@@ -13,7 +13,7 @@
     <title>metaDETECT | metaConvert</title>
 
     <style>
-      /* ===================== metaDETECT — editorial guide ===================== */
+      /* ===================== metaDETECT - editorial guide ===================== */
       .mdp {
         --ink: #20242b;
         --muted: #5b6573;
@@ -1172,7 +1172,7 @@
         line-height: 1.5;
         color: #3c424b;
       }
-      /* flag = the es_flags output line — styled as console output,
+      /* flag = the es_flags output line - styled as console output,
          deliberately distinct from the family definition lead */
       .us-flag-head {
         margin-top: 1.7rem;
@@ -1225,7 +1225,7 @@
         }
       }
 
-      /* transposed record (field : value) — narrow, fits beside the text */
+      /* transposed record (field : value) - narrow, fits beside the text */
       .mdp-rec {
         border-collapse: collapse;
         font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
@@ -1807,6 +1807,7 @@
     <ul class="nav-links">
       <li><a href="index.html" class="homepage">Home</a></li>
       <li><a href="metadetect.html" class="currentpage">metaDETECT</a></li>
+      <li><a href="tutorial.html">Tutorial</a></li>
       <li><a href="input.html">Input data</a></li>
       <li><a href="app.html">App</a></li>
     </ul>
@@ -2305,11 +2306,11 @@
                       <th>n_nexp</th><th>mean_nexp</th><th>mean_sd_nexp</th>
                       <th>student_t</th>
                     </tr>
-                    <tr><td class="rowh">Adesina 2018</td><td>44</td><td>31.2</td><td>7.4</td><td>45</td><td>27.6</td><td>7.6</td><td>&mdash;</td></tr>
-                    <tr><td class="rowh">Brandt 2019</td><td>39</td><td>28.9</td><td>6.9</td><td>41</td><td>25.7</td><td>7.2</td><td>&mdash;</td></tr>
+                    <tr><td class="rowh">Adesina 2018</td><td>44</td><td>31.2</td><td>7.4</td><td>45</td><td>27.6</td><td>7.6</td><td>-</td></tr>
+                    <tr><td class="rowh">Brandt 2019</td><td>39</td><td>28.9</td><td>6.9</td><td>41</td><td>25.7</td><td>7.2</td><td>-</td></tr>
                     <tr><td class="rowh">Okafor 2020</td><td>52</td><td>24.6</td><td>6.3</td><td>48</td><td>21.7</td><td>6.5</td><td>4.78</td></tr>
-                    <tr><td class="rowh">Petrov 2021</td><td>50</td><td>35.1</td><td>8.1</td><td>49</td><td>30.9</td><td>8.4</td><td>&mdash;</td></tr>
-                    <tr><td class="rowh">Sandberg 2022</td><td>36</td><td>19.8</td><td>5.9</td><td>38</td><td>16.9</td><td>6.1</td><td>&mdash;</td></tr>
+                    <tr><td class="rowh">Petrov 2021</td><td>50</td><td>35.1</td><td>8.1</td><td>49</td><td>30.9</td><td>8.4</td><td>-</td></tr>
+                    <tr><td class="rowh">Sandberg 2022</td><td>36</td><td>19.8</td><td>5.9</td><td>38</td><td>16.9</td><td>6.1</td><td>-</td></tr>
                   </table>
                 </div>
                 <div class="mw-fig-cap">
@@ -2345,11 +2346,11 @@ res &lt;- <span class="fn">convert_df</span>(data, measure = <span class="str">"
                     <tr>
                       <th>study_id</th><th>es_crude</th><th>se_crude</th><th>flags_crude</th>
                     </tr>
-                    <tr><td class="rowh">Adesina 2018</td><td>0.476</td><td>0.213</td><td>&mdash;</td></tr>
-                    <tr><td class="rowh">Brandt 2019</td><td>0.449</td><td>0.224</td><td>&mdash;</td></tr>
+                    <tr><td class="rowh">Adesina 2018</td><td>0.476</td><td>0.213</td><td>-</td></tr>
+                    <tr><td class="rowh">Brandt 2019</td><td>0.449</td><td>0.224</td><td>-</td></tr>
                     <tr><td class="rowh">Okafor 2020</td><td>0.450</td><td>0.201</td><td><span style="color: var(--discordant); font-weight: 700">Discordant</span></td></tr>
-                    <tr><td class="rowh">Petrov 2021</td><td>0.505</td><td>0.203</td><td>&mdash;</td></tr>
-                    <tr><td class="rowh">Sandberg 2022</td><td>0.478</td><td>0.233</td><td>&mdash;</td></tr>
+                    <tr><td class="rowh">Petrov 2021</td><td>0.505</td><td>0.203</td><td>-</td></tr>
+                    <tr><td class="rowh">Sandberg 2022</td><td>0.478</td><td>0.233</td><td>-</td></tr>
                   </table>
                 </div>
                 <div class="mdp-flag" style="--sev: var(--discordant); margin-top: 1rem">
@@ -2404,7 +2405,7 @@ res &lt;- <span class="fn">convert_df</span>(data, measure = <span class="str">"
                       <th>mean_nexp</th><th>mean_sd_nexp</th>
                       <th>student_t</th><th>es_crude</th><th>flags_crude</th>
                     </tr>
-                    <tr><td class="rowh">Okafor 2020</td><td>24.6</td><td>6.3</td><td>21.7</td><td>6.5</td><td>2.26</td><td>0.450</td><td>&mdash;</td></tr>
+                    <tr><td class="rowh">Okafor 2020</td><td>24.6</td><td>6.3</td><td>21.7</td><td>6.5</td><td>2.26</td><td>0.450</td><td>-</td></tr>
                   </table>
                 </div>
                 <div class="mw-fig-cap">
@@ -2434,7 +2435,7 @@ res &lt;- <span class="fn">convert_df</span>(data, measure = <span class="str">"
             <li>Where a row offers two routes to the same effect, do they agree?</li>
             <li>Is any effect size implausibly large for the intervention or exposure?</li>
             <li>Does any estimate sit far from the rest of the pool?</li>
-            <li>Does any study point opposite to the others, with its interval excluding the null?</li>
+            <li>Do the studies split into opposed directions &mdash; some intervals entirely above the null, others entirely below?</li>
             <li>Does the same trial enter the dataset more than once?</li>
           </ul>
         </div>
@@ -2653,7 +2654,7 @@ res &lt;- <span class="fn">convert_df</span>(data, measure = <span class="str">"
         <!-- DIRECTION -->
         <div class="fp-panel" id="fp-direction" role="tabpanel">
           <div class="us-def" style="--sev: var(--discordant)">
-            <h3>An estimate in the opposite direction</h3>
+            <h3>Estimates split in both directions</h3>
           </div>
           <div class="fp-card" style="--sev: var(--discordant)">
             <div class="us-side">
@@ -2662,8 +2663,10 @@ res &lt;- <span class="fn">convert_df</span>(data, measure = <span class="str">"
                 <div class="us-appear">
                   <div class="lab">Appearance</div>
                   <p>
-                    One study crosses to the other side of the null, with an
-                    interval that excludes it.
+                    The pool splits into two opposed clusters: a group of studies
+                    is significant in one direction and another group in the
+                    other, each with intervals that exclude the null. A few
+                    studies still straddle it.
                   </p>
                 </div>
                 <div class="fp-forest" id="forest-direction"></div>
@@ -2675,7 +2678,11 @@ res &lt;- <span class="fn">convert_df</span>(data, measure = <span class="str">"
               <div class="us-box fp-explain">
                 <div class="fp-row">
                   <div class="lab">Likely cause</div>
-                  <p>The arms were swapped, or the sign of a difference was dropped.</p>
+                  <p>
+                    In one cluster the treatment and control arms were swapped,
+                    or the sign of a difference was dropped, flipping those
+                    studies across the null.
+                  </p>
                 </div>
                 <div class="fp-row">
                   <div class="lab">Detected by</div>
@@ -2683,7 +2690,7 @@ res &lt;- <span class="fn">convert_df</span>(data, measure = <span class="str">"
                 </div>
                 <div class="fp-row">
                   <div class="lab">Reviewer action</div>
-                  <p>Confirm which column is the treatment arm for that study.</p>
+                  <p>Confirm the arm coding for the studies on each side of the split.</p>
                 </div>
               </div>
             </div>
@@ -2803,7 +2810,7 @@ res &lt;- <span class="fn">convert_df</span>(data, measure = <span class="str">"
                     <tr><td class="rowh">Bianchi 2018</td><td>38</td><td>58.1</td><td>9.8</td><td>39</td><td>52.6</td><td>10.1</td><td>g</td><td>0.55</td><td>0.22</td><td>0.88</td></tr>
                     <tr><td class="rowh">Cohen 2019</td><td>52</td><td>70.3</td><td>12.1</td><td>50</td><td>65.8</td><td>11.6</td><td>g</td><td>0.38</td><td>0.05</td><td>0.71</td></tr>
                     <tr><td class="rowh">Duarte 2020</td><td>45</td><td>49.2</td><td>10.4</td><td>44</td><td>44.1</td><td>10.7</td><td>g</td><td>0.49</td><td>0.16</td><td>0.82</td></tr>
-                    <tr><td class="rowh">Faulkner 2021</td><td>33</td><td>&mdash;</td><td>&mdash;</td><td>31</td><td>&mdash;</td><td>&mdash;</td><td>g</td><td>0.61</td><td>0.20</td><td>1.02</td></tr>
+                    <tr><td class="rowh">Faulkner 2021</td><td>33</td><td>-</td><td>-</td><td>31</td><td>-</td><td>-</td><td>g</td><td>0.61</td><td>0.20</td><td>1.02</td></tr>
                     <tr><td class="rowh">Nakamura 2021</td><td>30</td><td>24.5</td><td>2.0</td><td>30</td><td>18.2</td><td>2.1</td><td>g</td><td class="warn">3.04</td><td>2.62</td><td>3.46</td></tr>
                   </table>
                 </div>
@@ -2869,7 +2876,7 @@ res &lt;- <span class="fn">convert_df</span>(data, measure = <span class="str">"
             <li>Is any effect larger than the intervention could plausibly produce?</li>
             <li>Does any study sit far from the others?</li>
             <li>Is any interval so narrow that one study holds most of the weight?</li>
-            <li>Does any study point the opposite way, with an interval excluding the null?</li>
+            <li>Do the studies split into opposed directions, some intervals excluding the null above it and others below?</li>
             <li>Does any interval sit unevenly around its estimate?</li>
             <li>Do two studies report identical numbers?</li>
             <li>Does the same trial appear more than once?</li>
@@ -3197,15 +3204,20 @@ res &lt;- <span class="fn">convert_df</span>(data, measure = <span class="str">"
         },
         direction: {
           nullAt: 0,
-          aria: "Forest plot with one study pointing the opposite direction",
+          flagColor: "#6a4a86",
+          aria:
+            "Forest plot split into two opposed clusters: three studies significant above the null and three significant below it, with two studies crossing it",
           studies: [
-            { label: "Ivanov 2019", est: 0.4, lo: 0.18, hi: 0.62, w: 0.5 },
-            { label: "Jansen 2020", est: 0.33, lo: 0.1, hi: 0.56, w: 0.45 },
-            { label: "Kim 2021", est: -0.55, lo: -0.8, hi: -0.3, w: 0.5, flag: true },
-            { label: "Lopez 2021", est: 0.37, lo: 0.14, hi: 0.6, w: 0.45 },
-            { label: "Mehta 2022", est: 0.29, lo: 0.05, hi: 0.53, w: 0.45 },
+            { label: "Pereira 2018", est: 0.62, lo: 0.34, hi: 0.9, w: 0.5, flag: true },
+            { label: "Rossi 2019", est: 0.55, lo: 0.28, hi: 0.82, w: 0.5, flag: true },
+            { label: "Schmidt 2020", est: 0.47, lo: 0.2, hi: 0.74, w: 0.45, flag: true },
+            { label: "Takahashi 2020", est: 0.12, lo: -0.16, hi: 0.4, w: 0.45 },
+            { label: "Ueda 2021", est: -0.07, lo: -0.33, hi: 0.19, w: 0.45 },
+            { label: "Volkov 2021", est: -0.49, lo: -0.77, hi: -0.21, w: 0.45, flag: true },
+            { label: "Nilsson 2022", est: -0.56, lo: -0.81, hi: -0.31, w: 0.5, flag: true },
+            { label: "Okonkwo 2022", est: -0.64, lo: -0.92, hi: -0.36, w: 0.45, flag: true },
           ],
-          pooled: { est: 0.18, lo: -0.05, hi: 0.41 },
+          pooled: { est: -0.02, lo: -0.33, hi: 0.29 },
         },
         duplicate: {
           nullAt: 0,
@@ -3264,7 +3276,7 @@ res &lt;- <span class="fn">convert_df</span>(data, measure = <span class="str">"
             '" text-anchor="end" class="rm-num" fill="' +
             (col || INK) +
             '">' +
-            (v == null ? "—" : v) +
+            (v == null ? "-" : v) +
             "</text>"
           );
         }

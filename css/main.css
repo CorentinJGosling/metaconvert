@@ -242,7 +242,7 @@ nav {
 }
 
 /* Cap and center the hero so that on large screens it doesn't spread
-   edge-to-edge (which reads as "zoomed in") — keeps it in line with the
+   edge-to-edge (which reads as "zoomed in") - keeps it in line with the
    1180px-capped sections below. The cap only binds above 1600px, so the
    1440px and smaller layouts are unaffected. */
 .contain_pres {
@@ -757,7 +757,36 @@ tr:hover .table-pkg-col {
 }
 
 #sec_team h3 {
-  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #d66268;
+  line-height: 1.4;
+  border-bottom: none;
+  margin-top: 3.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.team_group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem 2.5rem;
+  color: #000;
+  margin: 1rem 3rem 3rem;
+}
+.team_group .memb {
+  flex: 0 1 300px;
+  margin-left: 0;
+  margin-right: 0;
+}
+@media screen and (max-width: 1200px) {
+  .team_group {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    gap: 2rem;
+  }
 }
 
 .about_leaders,
@@ -882,18 +911,13 @@ tr:hover .table-pkg-col {
   border-right: none;
   cursor: pointer;
   padding: 0.5rem 1rem;
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 .readmore_button:hover {
   color: #7a7a7a;
-}
-@media screen and (max-width: 1024px) {
-  .readmore_button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-  }
 }
 
 @keyframes rotate-45 {
@@ -934,38 +958,17 @@ tr:hover .table-pkg-col {
 #read_more_textJF,
 #read_more_textRD,
 #read_more_textEV,
-#read_more_textPFP {
+#read_more_textPFP,
+#read_more_textRR,
+#read_more_textBH {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-  border-top: 1px solid #000;
-  border-bottom: 1px solid #000;
   font-size: 0.9rem;
   font-style: italic;
-}
-@media screen and (min-width: 1024px) {
-  #read_more_textMS,
-  #read_more_textCG,
-  #read_more_textSC,
-  #read_more_textJF,
-  #read_more_textRD,
-  #read_more_textEV,
-  #read_more_textPFP {
-    padding: 0.5rem 0;
-  }
-}
-@media screen and (max-width: 1024px) {
-  #read_more_textMS,
-  #read_more_textCG,
-  #read_more_textSC,
-  #read_more_textJF,
-  #read_more_textRD,
-  #read_more_textEV,
-  #read_more_textPFP {
-    max-height: 0;
-    overflow: hidden;
-    border: none;
-  }
+  max-height: 0;
+  overflow: hidden;
+  border: none;
 }
 
 .show-read-more {
@@ -986,7 +989,7 @@ tr:hover .table-pkg-col {
     padding-bottom: 0.5rem;
   }
   100% {
-    max-height: 350px;
+    max-height: 500px;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
   }
@@ -1081,7 +1084,7 @@ h3 {
 }
 
 /* =====================================================================
-   Publications strip — signals the peer-reviewed backing near the top.
+   Publications strip - signals the peer-reviewed backing near the top.
    ===================================================================== */
 .pubs {
   max-width: 1100px;
@@ -1167,7 +1170,7 @@ h3 {
 }
 
 /* =====================================================================
-   metaDETECT banner — a compact, clickable entry point to the framework
+   metaDETECT banner - a compact, clickable entry point to the framework
    page. Indigo ties back to the footer; the dot-grid echoes the network
    nodes in the logo; the brand glow bleeds in from the right.
    ===================================================================== */

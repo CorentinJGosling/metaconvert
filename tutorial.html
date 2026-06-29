@@ -2,305 +2,716 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How it works | metaConvert</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="css/tutorial.css" />
-    <!-- scroll appear -->
+    <link rel="stylesheet" href="css/main.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="icon" href="logo/logo.svg" type="image/svg+xml" />
 
-    <title>Tutorial | metaConvert</title>
-    <link rel="icon" href="logo/logo.svg" type="image/x-icon" />
+    <style>
+      /* =====================================================================
+         metaConvert · How it works
+         A light, homepage-family explainer (the dark indigo editorial look is
+         metaDETECT's own signature). White surfaces, warm neutrals, the rose
+         brand accent used the way the home page uses it, and the indigo
+         "deep" colour from the logo/footer reserved for data tokens and the
+         computed result — a disciplined two-tone, no foreign green.
+         Signature: a convergence figure that echoes the logo's network with
+         one highlighted node — many reported forms resolving to one measure.
+         ===================================================================== */
+      .tutp {
+        --ink: #22262c;          /* headings */
+        --ink-strong: #14171b;
+        --body: #3b414a;         /* paragraph text */
+        --soft: #586069;
+        --faint: #6c727b;
+        --rule: #e6e6e0;
+        --rule-soft: #efeee9;
+
+        --accent: #d66268;       /* rose — the home-page brand accent */
+        --accent-deep: #ba474d;
+        --accent-press: #a23c42;
+        --accent-soft: #fdf3f3;
+        --accent-line: #f0cdd0;
+
+        --deep: #211f38;         /* indigo — logo/footer "deep" colour */
+        --deep-2: #2c2a47;
+        --deep-soft: #f1f0f6;    /* faint indigo tint for data surfaces */
+        --deep-line: #d9d8e6;
+        --deep-ink: #3a3963;
+
+        --unusual: #8a6712;      /* metaDETECT severities — kept site-wide */
+        --unusual-soft: #fbecc7;
+        --unusual-line: #ecdcae;
+        --invalid: #9c2b2b;
+        --invalid-soft: #f7d9d9;
+        --invalid-line: #e9c2c2;
+
+        --paper: #f7f7f3;        /* faint section tint */
+        --mono: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+        color: var(--body);
+        background: #fff;
+      }
+      html { overflow-x: hidden; }
+
+      /* neutralise the global element rules in main.css within this page */
+      .tutp, .tutp * { font-family: "Work Sans", "Avenir Next LT Pro", sans-serif; box-sizing: border-box; }
+      /* the shared <nav> and <footer> are global chrome: keep them on the site-wide
+         font (as on every other page), not this page's Work Sans scope */
+      .tutp nav, .tutp nav *, .tutp footer, .tutp footer * { font-family: "Avenir Next LT Pro", sans-serif; }
+      .tutp h1, .tutp h2, .tutp h3, .tutp h4 { border: 0; text-align: left; margin: 0; line-height: 1.2; color: var(--ink); font-weight: 600; }
+      .tutp p { margin: 0; }
+      .tutp a { color: inherit; }
+      .tutp table { border-collapse: collapse; }
+      .tutp th, .tutp td { border: 0; width: auto; height: auto !important; font-size: inherit; font-weight: inherit; text-align: left; padding: 0; }
+      .tutp code, .tutp .mono { font-family: var(--mono); }
+      .tutp :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+      .tut-wrap { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
+
+      /* ============================ HERO ============================ */
+      .tut-hero { padding: 3rem 0 3.6rem; }
+      .tut-hero-grid { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr); gap: 3.6rem; align-items: center; }
+      .tut-hero h1 {
+        font-size: clamp(2.2rem, 4vw, 3.25rem); font-weight: 700; letter-spacing: -0.02em;
+        line-height: 1.08; color: var(--ink-strong); margin-top: 1.1rem;
+      }
+      .tut-lead { font-size: 1.13rem; font-weight: 400; line-height: 1.72; color: var(--body); margin-top: 1.7rem; max-width: 60ch; }
+      .tut-lead b { font-weight: 600; color: var(--ink); }
+      .tut-hero-meta { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: center; margin-top: 2rem; }
+      .tut-pill {
+        display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none;
+        background: var(--accent-deep); color: #fff; font-weight: 600; font-size: 0.97rem;
+        padding: 0.8rem 1.55rem; border-radius: 7px;
+        box-shadow: 0 12px 24px -14px rgba(186, 71, 77, 0.85);
+        transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .tut-pill .ar { transition: transform 0.2s ease; }
+      .tut-pill:hover { background: var(--accent-press); transform: translateY(-2px); box-shadow: 0 16px 30px -14px rgba(186, 71, 77, 0.9); }
+      .tut-pill:hover .ar { transform: translateY(2px); }
+      .tut-text-link { font-size: 0.97rem; font-weight: 600; color: var(--accent-deep); text-decoration: none; display: inline-flex; align-items: center; gap: 0.45rem; }
+      .tut-text-link .ar { transition: transform 0.2s ease; }
+      .tut-text-link:hover { color: var(--accent-press); }
+      .tut-text-link:hover .ar { transform: translateX(3px); }
+
+      /* ---- hero signature: the convergence figure ----
+         Heterogeneous reported forms route into one target measure — the page
+         thesis ("the columns drive the estimate"), drawn as a small network so
+         it rhymes with the metaConvert logo. */
+      .tut-sig {
+        position: relative; background: #fff; border: 1px solid var(--rule); border-radius: 16px;
+        padding: 1.1rem 1.15rem 1.2rem;
+        background-image: radial-gradient(circle at 1px 1px, rgba(33, 31, 56, 0.05) 1px, transparent 0);
+        background-size: 19px 19px;
+        box-shadow: 0 30px 60px -38px rgba(33, 31, 56, 0.5);
+      }
+      .tut-sig-h { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; margin-bottom: 0.35rem; padding: 0 0.25rem; }
+      .tut-sig-h .lab { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--soft); }
+      .tut-sig-h .n { font-family: var(--mono); font-size: 0.72rem; color: var(--faint); }
+      .tut-sig-svg { width: 100%; max-width: 100%; height: auto; display: block; }
+      .tut-sig-cap { margin-top: 0.55rem; padding: 0.7rem 0.5rem 0.15rem; border-top: 1px solid var(--rule-soft); font-size: 0.86rem; line-height: 1.5; color: var(--soft); }
+      .tut-sig-cap b { color: var(--ink); font-weight: 600; }
+
+      /* svg type + shapes */
+      .tut-sig-svg .tok { fill: #fff; stroke: var(--rule); stroke-width: 1.2; }
+      .tut-sig-svg .tok-lab { font: 600 14px "Work Sans", sans-serif; fill: var(--ink-strong); }
+      .tut-sig-svg .tok-mono { font: 11px "Cascadia Code", Consolas, monospace; fill: var(--deep-ink); }
+      .tut-sig-svg .tok-dot { fill: var(--deep-2); }
+      .tut-sig-svg .lnk { fill: none; stroke: #c4c4d4; stroke-width: 1.7; }
+      .tut-sig-svg .hub { fill: var(--accent); }
+      .tut-sig-svg .hub-ring { fill: none; stroke: var(--accent); stroke-width: 1.4; opacity: 0.4; }
+      .tut-sig-svg .res { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.6; }
+      .tut-sig-svg .res-lab { font: 700 20px "Work Sans", sans-serif; fill: var(--ink-strong); }
+      .tut-sig-svg .res-tag { font: 700 9.5px "Work Sans", sans-serif; letter-spacing: 0.07em; fill: var(--accent-press); }
+
+      /* load sequence: links draw, tokens settle, result resolves */
+      .tut-sig-svg .lnk { stroke-dasharray: 320; stroke-dashoffset: 320; animation: sig-draw 0.9s ease forwards; }
+      .tut-sig-svg .lnk.l1 { animation-delay: 0.35s; }
+      .tut-sig-svg .lnk.l2 { animation-delay: 0.5s; }
+      .tut-sig-svg .lnk.l3 { animation-delay: 0.65s; }
+      @keyframes sig-draw { to { stroke-dashoffset: 0; } }
+      .tut-sig-svg .g-tok { opacity: 0; animation: sig-fade 0.5s ease forwards; }
+      .tut-sig-svg .g-tok.t1 { animation-delay: 0.1s; }
+      .tut-sig-svg .g-tok.t2 { animation-delay: 0.22s; }
+      .tut-sig-svg .g-tok.t3 { animation-delay: 0.34s; }
+      .tut-sig-svg .g-hub { opacity: 0; animation: sig-fade 0.45s ease 1.2s forwards; }
+      .tut-sig-svg .g-res { opacity: 0; animation: sig-pop 0.55s cubic-bezier(0.34, 1.4, 0.5, 1) 1.35s forwards; transform-box: fill-box; transform-origin: center; }
+      @keyframes sig-fade { to { opacity: 1; } }
+      @keyframes sig-pop { 0% { opacity: 0; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }
+
+      /* ============================ SECTION SHELL ============================ */
+      .tut-sec { padding: 4.4rem 0; }
+      .tut-sec.tint { background: var(--paper); border-top: 1px solid var(--rule-soft); border-bottom: 1px solid var(--rule-soft); }
+      .tut-h2 { font-size: clamp(1.65rem, 2.7vw, 2.25rem); font-weight: 700; letter-spacing: -0.015em; line-height: 1.18; margin-top: 0.7rem; color: var(--ink-strong); }
+      .tut-sec-lead { font-size: 1.08rem; font-weight: 400; line-height: 1.72; color: var(--body); max-width: 70ch; margin-top: 1.1rem; }
+      .tut-sec-lead b { font-weight: 600; color: var(--ink); }
+      .tut-sec code, .tut-step code, .tut-card code {
+        font-family: var(--mono); font-size: 0.84em; background: var(--paper); border: 1px solid var(--rule);
+        border-radius: 4px; padding: 0.05em 5px; color: #555a61;
+      }
+
+      /* ---- the inversion: a two-lane contrast (method-first vs data-first) ----
+         The conventional lane is muted (the old way); the metaConvert lane
+         carries the accents and ends in the computed result. */
+      .tut-flow { margin-top: 2.6rem; border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 24px 50px -40px rgba(33, 31, 56, 0.45); }
+      .tut-flow .lane { display: grid; grid-template-columns: 190px 1fr; gap: 1.8rem; align-items: center; padding: 1.9rem 2rem; }
+      .tut-flow .lane.mc { background: #fdf6f6; border-top: 1px solid var(--rule); }
+      .tut-flow .lab .tg { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.11em; text-transform: uppercase; color: var(--soft); }
+      .tut-flow .lane.mc .lab .tg { color: var(--accent-deep); }
+      .tut-flow .lab .tg .d { width: 8px; height: 8px; border-radius: 50%; background: var(--faint); }
+      .tut-flow .lane.mc .lab .tg .d { background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+      .tut-flow .lab .mode { font-size: 1.28rem; font-weight: 700; letter-spacing: -0.01em; color: var(--ink-strong); margin-top: 0.45rem; }
+      .tut-flow .lane.mc .lab .mode { color: var(--accent-press); }
+      .tut-flow .lab .cap { font-size: 0.85rem; line-height: 1.5; color: var(--soft); margin-top: 0.35rem; }
+      .tut-flow .track { display: grid; grid-template-columns: minmax(0, 1fr) 32px minmax(0, 1fr) 32px minmax(0, 1fr); align-items: stretch; }
+      .tut-flow .node { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 0.25rem; background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: 0.85rem 0.95rem; min-width: 0; }
+      .tut-flow .lane.mc .node { border-color: var(--deep-line); }
+      .tut-flow .node .t { font-size: 0.92rem; font-weight: 600; color: var(--ink); line-height: 1.25; }
+      .tut-flow .node .s { font-size: 0.74rem; color: var(--soft); line-height: 1.3; }
+      .tut-flow .node.end { background: #f3f2ee; border-color: var(--rule); }
+      .tut-flow .lane.mc .node.end { background: var(--accent-deep); border-color: var(--accent-deep); box-shadow: 0 12px 26px -16px rgba(186, 71, 77, 0.9); }
+      .tut-flow .lane.mc .node.end .t { color: #fff; }
+      .tut-flow .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.3rem; margin-top: 0.2rem; }
+      .tut-flow .chips .c { font-family: var(--mono); font-size: 0.66rem; color: var(--deep-ink); background: var(--deep-soft); border: 1px solid var(--deep-line); border-radius: 5px; padding: 0.1rem 0.36rem; white-space: nowrap; }
+      .tut-flow .arrow { justify-self: center; align-self: center; width: 24px; height: 12px; position: relative; color: var(--faint); }
+      .tut-flow .lane.mc .arrow { color: var(--accent); }
+      .tut-flow .arrow::before { content: ""; position: absolute; left: 0; top: 50%; width: 100%; height: 1.8px; background: currentColor; transform: translateY(-50%); }
+      .tut-flow .arrow::after { content: ""; position: absolute; right: 0; top: 50%; width: 7px; height: 7px; border-top: 1.8px solid currentColor; border-right: 1.8px solid currentColor; transform: translate(1px, -50%) rotate(45deg); }
+      @media (max-width: 760px) {
+        .tut-flow .lane { grid-template-columns: 1fr; gap: 1.1rem; padding: 1.5rem 1.4rem; }
+        .tut-flow .track { display: flex; flex-direction: column; align-items: stretch; gap: 0.5rem; }
+        .tut-flow .node { width: 100%; }
+        .tut-flow .arrow { transform: rotate(90deg); margin: 0.25rem 0; }
+      }
+
+      /* ============================ PROCEDURE (numbered spine) ============================ */
+      .tut-steps { position: relative; margin-top: 2.6rem; }
+      .tut-steps::before { content: ""; position: absolute; left: 21px; top: 10px; bottom: 10px; width: 2px; background: linear-gradient(var(--accent-line), var(--rule) 60%); }
+      .tut-step { position: relative; padding-left: 70px; }
+      .tut-step + .tut-step { margin-top: 3rem; }
+      .tut-step-num {
+        position: absolute; left: 0; top: -2px; width: 44px; height: 44px; border-radius: 50%;
+        background: #fff; border: 2px solid var(--accent); color: var(--accent-press);
+        font-weight: 700; font-size: 1.08rem; display: grid; place-items: center; z-index: 1;
+        box-shadow: 0 8px 18px -10px rgba(186, 71, 77, 0.7);
+      }
+      .tut-step-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.94fr); gap: 2.4rem; align-items: center; }
+      .tut-step h3 { font-size: 1.28rem; font-weight: 700; color: var(--ink-strong); letter-spacing: -0.01em; }
+      .tut-step p { font-size: 1rem; line-height: 1.7; color: var(--body); margin-top: 0.6rem; }
+      .tut-step p b { font-weight: 600; color: var(--ink); }
+      .tut-step-link { display: inline-flex; align-items: center; gap: 0.45rem; margin-top: 0.95rem; font-size: 0.93rem; font-weight: 600; color: var(--accent-deep); text-decoration: none; }
+      .tut-step-link .ar { transition: transform 0.2s ease; }
+      .tut-step-link:hover { color: var(--accent-press); }
+      .tut-step-link:hover .ar { transform: translateX(3px); }
+
+      /* ---- step figure shell ---- */
+      .tut-figcard { background: #fff; border: 1px solid var(--rule); border-radius: 12px; padding: 1.2rem 1.3rem; overflow-x: auto; box-shadow: 0 20px 44px -38px rgba(33, 31, 56, 0.5); }
+      .tut-figcard::-webkit-scrollbar { height: 6px; }
+      .tut-figcard::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 6px; }
+      .tut-figcap { font-family: var(--mono); font-size: 0.73rem; color: var(--faint); margin-top: 0.85rem; }
+
+      /* fig 1: column dictionary */
+      .tut-cols { display: flex; flex-direction: column; gap: 0.5rem; }
+      .tut-colrow { display: grid; grid-template-columns: 132px 1fr; align-items: baseline; gap: 0.85rem; }
+      .tut-colrow .nm { font-family: var(--mono); font-size: 0.82rem; font-weight: 600; color: var(--deep-ink); background: var(--deep-soft); border: 1px solid var(--deep-line); border-radius: 5px; padding: 0.22rem 0.5rem; white-space: nowrap; }
+      .tut-colrow .ds { font-size: 0.85rem; color: var(--soft); line-height: 1.45; }
+
+      /* fig 2: required / alternative / empty */
+      .tut-rowfig { font-family: var(--mono); font-size: 0.8rem; }
+      .tut-rowfig table { width: 100%; }
+      .tut-rowfig th { color: var(--soft); font-weight: 600; white-space: nowrap; padding: 0.3rem 0.5rem !important; border-bottom: 1px solid var(--rule); }
+      .tut-rowfig td { color: var(--ink); white-space: nowrap; padding: 0.5rem 0.5rem !important; }
+      .tut-req::before { content: "✓ "; color: var(--deep-2); font-weight: 700; }
+      .tut-alt::before { content: "○ "; color: var(--accent-deep); font-weight: 700; }
+      .tut-empty { color: #6f757c; }
+      .tut-legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin-top: 1rem; font-size: 0.82rem; color: var(--soft); }
+      .tut-legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+      .tut-legend .chk { color: var(--deep-2); font-weight: 700; }
+      .tut-legend .alt { color: var(--accent-deep); font-weight: 700; }
+
+      /* fig 3: hierarchy of reliability */
+      .tut-rank { display: flex; flex-direction: column; gap: 0.55rem; }
+      .tut-rankrow { display: flex; align-items: center; gap: 0.8rem; font-family: var(--mono); font-size: 0.8rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 0.6rem 0.85rem; color: var(--soft); }
+      .tut-rankrow .src { flex: 1; min-width: 0; }
+      .tut-rankrow .tier { font-size: 0.68rem; color: var(--faint); }
+      .tut-rankrow.sel { background: var(--accent-soft); border-color: var(--accent-line); color: var(--ink); box-shadow: inset 3px 0 0 var(--accent); }
+      .tut-rankrow.sel .tier { color: var(--accent-deep); font-weight: 700; }
+      .tut-rankrow.sel .mk { margin-left: auto; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; background: var(--accent-deep); border-radius: 4px; padding: 0.12rem 0.45rem; }
+      .tut-rankrow .dim { color: #6a7079; }
+
+      /* fig 4: flagged values — severity-aware, tied to metaDETECT */
+      .tut-flag { display: flex; gap: 0.65rem; align-items: flex-start; font-family: var(--mono); font-size: 0.79rem; line-height: 1.5; color: var(--ink); background: #fff; border: 1px solid var(--rule); border-left: 3px solid var(--accent); border-radius: 7px; padding: 0.7rem 0.85rem; }
+      .tut-flag + .tut-flag { margin-top: 0.6rem; }
+      .tut-flag .tg { flex: 0 0 auto; font-size: 0.63rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; border-radius: 4px; padding: 2px 7px; }
+      .tut-flag b { font-weight: 600; color: var(--ink-strong); }
+      .tut-flag.unusual { border-left-color: var(--unusual); }
+      .tut-flag.unusual .tg { color: var(--unusual); background: var(--unusual-soft); border: 1px solid var(--unusual-line); }
+      .tut-flag.invalid { border-left-color: var(--invalid); }
+      .tut-flag.invalid .tg { color: var(--invalid); background: var(--invalid-soft); border: 1px solid var(--invalid-line); }
+
+      /* ============================ WORKED EXAMPLE ============================ */
+      .tut-sheetwrap { overflow-x: auto; margin-top: 2rem; border: 1px solid var(--rule); border-radius: 12px; background: #fff; box-shadow: 0 24px 50px -40px rgba(33, 31, 56, 0.45); }
+      .tut-sheet { width: 100%; font-family: var(--mono); font-size: 0.82rem; }
+      .tut-sheet th { background: var(--paper); color: var(--soft); font-weight: 600; font-size: 0.74rem; padding: 0.6rem 0.85rem !important; border-bottom: 1px solid var(--rule); border-right: 1px solid var(--rule-soft); white-space: nowrap; }
+      .tut-sheet td { color: var(--ink); padding: 0.6rem 0.85rem !important; border-bottom: 1px solid var(--rule-soft); border-right: 1px solid var(--rule-soft); white-space: nowrap; }
+      .tut-sheet tr:last-child td { border-bottom: 0; }
+      .tut-sheet .rh { background: #fbfaf8; color: var(--ink); font-weight: 600; }
+      .tut-sheet .em { color: #6f757c; }
+      .tut-sheet .es { background: var(--accent-soft); color: var(--accent-press); font-weight: 700; }
+      .tut-sheet thead .es { background: #fbe9ea; color: var(--accent-press); }
+      .tut-sheet-note { margin-top: 1.1rem; font-size: 0.98rem; font-weight: 400; line-height: 1.68; color: var(--body); max-width: 72ch; }
+      .tut-sheet-note b { font-weight: 600; color: var(--ink); }
+      .tut-badge { display: inline-block; margin-left: 0.45rem; font-family: "Work Sans", "Avenir Next LT Pro", sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent-press); background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: 5px; padding: 0.08rem 0.4rem; vertical-align: 1.5px; }
+      .tut-sheet tr.multi td { background: #fdf6f1; }
+      .tut-sheet tr.multi .rh { box-shadow: inset 3px 0 0 var(--accent); }
+      .tut-multi { margin-top: 1.7rem; border: 1px solid var(--rule); border-radius: 12px; background: #fff; padding: 1.5rem 1.6rem; box-shadow: 0 20px 44px -38px rgba(33, 31, 56, 0.5); }
+      .tut-multi-h { font-size: 1.02rem; font-weight: 600; color: var(--ink-strong); }
+      .tut-multi-h code { font-family: var(--mono); font-size: 0.85em; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 0.05em 5px; color: #555a61; }
+      .tut-multi .tut-rank { max-width: 580px; margin: 1.05rem 0 0; }
+      .tut-multi .tut-rankrow .src b { color: var(--ink); }
+      .tut-multi-note { margin-top: 1.05rem; font-size: 0.95rem; font-weight: 400; line-height: 1.68; color: var(--body); max-width: 72ch; }
+      .tut-multi-note b { font-weight: 600; color: var(--ink); }
+      .tut-multi-note a { color: var(--accent-deep); font-weight: 600; text-decoration: none; }
+      .tut-multi-note a:hover { text-decoration: underline; }
+
+      /* ============================ RELATED ============================ */
+      .tut-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 2.2rem; }
+      .tut-card {
+        display: flex; flex-direction: column; text-decoration: none; color: inherit;
+        background: #fff; border: 1px solid var(--rule); border-radius: 12px; padding: 1.6rem 1.7rem;
+        transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+      }
+      .tut-card:hover { transform: translateY(-4px); border-color: var(--accent-line); box-shadow: 0 24px 48px -28px rgba(33, 31, 56, 0.55); }
+      .tut-card .ic { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-soft); margin-bottom: 1rem; }
+      .tut-card .ic svg { width: 20px; height: 20px; stroke: var(--accent-deep); }
+      .tut-card h3 { font-size: 1.12rem; font-weight: 700; color: var(--ink-strong); }
+      .tut-card p { font-size: 0.92rem; font-weight: 400; line-height: 1.58; color: var(--soft); margin-top: 0.45rem; flex: 1; }
+      .tut-card .go { margin-top: 1.1rem; font-size: 0.86rem; font-weight: 600; color: var(--accent-deep); display: inline-flex; align-items: center; gap: 0.45rem; }
+      .tut-card:hover .go .ar { transform: translateX(4px); }
+      .tut-card .go .ar { transition: transform 0.2s ease; }
+
+      /* ============================ RESPONSIVE ============================ */
+      @media (max-width: 920px) {
+        .tut-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 2.6rem; }
+        .tut-step-grid { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; }
+        .tut-cards { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 600px) {
+        .tut-wrap { padding: 0 1.25rem; }
+        .tut-step { padding-left: 56px; }
+        .tut-steps::before { left: 16px; }
+        .tut-step-num { width: 34px; height: 34px; font-size: 0.95rem; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        [data-aos] { opacity: 1 !important; transform: none !important; transition: none !important; }
+        .tut-sig-svg .lnk { stroke-dashoffset: 0; animation: none; }
+        .tut-sig-svg .g-tok, .tut-sig-svg .g-hub, .tut-sig-svg .g-res { opacity: 1; transform: none; animation: none; }
+        .tut-pill, .tut-card, .tut-card .go .ar, .tut-step-link, .tut-text-link, .tut-pill .ar { transition: none; }
+      }
+    </style>
+    <noscript>
+      <style>[data-aos] { opacity: 1 !important; transform: none !important; }</style>
+    </noscript>
   </head>
 
   <nav>
-    <div class="logo"><img src="logo/logo.svg" /></div>
-
-    <!-- <div class="badges">
-      <img src="https://img.shields.io/badge/license-GPL-red" class="img1" />
-      <img src="https://www.r-pkg.org/badges/version/metaConvert" class="img2" />
-      <img
-        src="https://cranlogs.r-pkg.org/badges/grand-total/metaConvert"
-        class="img3"
-      />
-    </div> -->
-
+    <div class="logo"><a href="index.html"><img src="logo/logo.svg" /></a></div>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html" class="homepage">Home</a></li>
       <li><a href="metadetect.html">metaDETECT</a></li>
-      <li><a href="#" class="homepage currentpage">Tutorial</a></li>
+      <li><a href="tutorial.html" class="currentpage">Tutorial</a></li>
       <li><a href="input.html">Input data</a></li>
       <li><a href="app.html">App</a></li>
     </ul>
     <div id="hamburger-menu">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
     </div>
   </nav>
-  <body>
-    <section class="section_timeline">
-      <div class="section_title"><span>Tuto</span>rial</div>
-      <p>
-        The images of this tutorial are currently appraised as supplementary
-        materials of a paper describing the metaConvert tools. They will be
-        available as soon as a (positive) decision on this paper is reached.
-      </p>
-      <div class="timelinehead"></div>
-      <div class="timeline">
-        <div class="box">
-          <a href="#tutorial_1" data-aos="fade-left">
-            <div class="boxTXT">
-              <b><u>Format your dataset.</u></b> To enable the automated
-              calculation of effect sizes, you must pass to the metaConvert
-              tools a well formatted-dataset.
+
+  <body class="tutp">
+    <!-- ===================== HERO ===================== -->
+    <header class="tut-hero">
+      <div class="tut-wrap">
+        <div class="tut-hero-grid">
+          <div class="tut-hero-copy">
+            <h1>Tutorial</h1>
+            <p class="tut-lead">
+              metaConvert reads a wide-format dataset in which each statistic sits under a
+              <b>predefined column name</b>. The estimate follows from the columns you fill in,
+              <b>not from a formula you pick</b>: enter whatever a study reports, and the package
+              runs every formula those columns support, then retains the most reliable estimate.
+            </p>
+            <div class="tut-hero-meta">
+              <a class="tut-pill" href="#procedure">Read the procedure <span class="ar" aria-hidden="true">↓</span></a>
+              <a class="tut-text-link" href="input.html">See the recognized columns <span class="ar" aria-hidden="true">→</span></a>
             </div>
-            <div class="boxIMG" data-aos="fade-left">
-              <img src="background/step1.svg" />
-            </div>
-          </a>
-          <div class="arrow_left" data-aos="zoom-in" data-aos-delay="700">
-            <img src="background/left_arrow.svg" />
-          </div>
-        </div>
-        <div class="box">
-          <div class="arrow_right" data-aos="zoom-in" data-aos-delay="700">
-            <img src="background/right_arrow.svg" />
           </div>
 
-          <a href="#tutorial_2" data-aos="fade-right">
-            <div class="boxIMG">
-              <img src="background/step2.svg" data-aos="fade-right" />
+          <figure class="tut-sig" data-aos="fade-up" data-aos-delay="100">
+            <div class="tut-sig-h">
+              <span class="lab">One target measure</span>
+              <span class="n">measure = "g"</span>
             </div>
-            <div class="boxTXT" data-aos="fade-right">
-              <b><u>Load your dataset.</u></b> Once you have formatted your
-              dataset, load it in one of the metaConvert tools. If you are
-              conducting a systematic review, you can benefit from a feature
-              flagging differences between two datasets (e.g., yours and the one
-              of a second data extractor).
-            </div>
-          </a>
-        </div>
-        <div class="box">
-          <a href="#tutorial_2" data-aos="fade-left">
-            <div class="boxTXT" data-aos="fade-left">
-              <b><u>Choose appropriate options.</u></b> Once you have loaded
-              your dataset, choose the different options proposed by
-              metaConvert. Note that the default options are generally those
-              recommended to be used.
-            </div>
-            <div class="boxIMG" data-aos="fade-left">
-              <img src="background/step3.svg" />
-            </div>
-          </a>
-          <div class="arrow_left" data-aos="zoom-in" data-aos-delay="700">
-            <img src="background/left_arrow.svg" />
-          </div>
-        </div>
-        <div class="box">
-          <div class="arrow_right" data-aos="zoom-in" data-aos-delay="700">
-            <img src="background/right_arrow.svg" />
-          </div>
+            <svg class="tut-sig-svg" viewBox="0 0 470 320" role="img"
+                 aria-label="Convergence diagram: three reported forms — means with SDs, a t statistic, and an odds ratio — each resolve to one shared target measure, Hedges' g. Each study keeps its own value.">
+              <!-- connectors (drawn first, behind tokens) -->
+              <path class="lnk l1" d="M196 58 C 262 58, 250 160, 300 160" />
+              <path class="lnk l2" d="M196 160 H 300" />
+              <path class="lnk l3" d="M196 262 C 262 262, 250 160, 300 160" />
 
-          <a href="#tutorial_2" data-aos="fade-right">
-            <div class="boxIMG" data-aos="fade-right">
-              <img src="background/step4.svg" />
-            </div>
-            <div class="boxTXT" data-aos="fade-right">
-              <b><u>Run calculations.</u></b> No worries, everything is
-              automatic, our functions are working for you!
-            </div>
-          </a>
+              <!-- input tokens -->
+              <g class="g-tok t1">
+                <rect class="tok" x="14" y="28" width="182" height="60" rx="13" />
+                <circle class="tok-dot" cx="34" cy="58" r="3.5" />
+                <text class="tok-lab" x="48" y="53">means + SD</text>
+                <text class="tok-mono" x="48" y="72">mean · sd · n</text>
+              </g>
+              <g class="g-tok t2">
+                <rect class="tok" x="14" y="130" width="182" height="60" rx="13" />
+                <circle class="tok-dot" cx="34" cy="160" r="3.5" />
+                <text class="tok-lab" x="48" y="155">t statistic</text>
+                <text class="tok-mono" x="48" y="174">student_t · n</text>
+              </g>
+              <g class="g-tok t3">
+                <rect class="tok" x="14" y="232" width="182" height="60" rx="13" />
+                <circle class="tok-dot" cx="34" cy="262" r="3.5" />
+                <text class="tok-lab" x="48" y="257">odds ratio</text>
+                <text class="tok-mono" x="48" y="276">or</text>
+              </g>
+
+              <!-- convergence hub -->
+              <g class="g-hub">
+                <circle class="hub-ring" cx="300" cy="160" r="12" />
+                <circle class="hub" cx="300" cy="160" r="6" />
+              </g>
+
+              <!-- result node: the common target measure (each study keeps its own value) -->
+              <g class="g-res">
+                <rect class="res" x="318" y="116" width="138" height="88" rx="16" />
+                <text class="res-tag" x="387" y="150" text-anchor="middle">TARGET MEASURE</text>
+                <text class="res-lab" x="387" y="181" text-anchor="middle">Hedges&#8217; g</text>
+              </g>
+            </svg>
+            <figcaption class="tut-sig-cap">
+              Three studies, three reported forms — <b>one target measure</b>. The formula
+              follows from each study's columns; the values differ — see the worked example.
+            </figcaption>
+          </figure>
         </div>
-        <div class="box">
-          <a href="#tutorial_2" data-aos="fade-left">
-            <div class="boxTXT" data-aos="fade-left">
-              <b><u>Interpret the results.</u></b> In the output, your effect
-              sizes (along with other information) will be displayed. You can
-              retrieve guidance in the output here.
-            </div>
-            <div class="boxIMG" data-aos="fade-left">
-              <img src="background/step5.svg" />
-            </div>
-          </a>
-          <div class="arrow_left" data-aos="zoom-in" data-aos-delay="700">
-            <img src="background/left_arrow.svg" />
-          </div>
-        </div>
-        <div class="circle"></div>
       </div>
-      <div class="timelinebot"></div>
+    </header>
+
+    <!-- ===================== THE IDEA (inversion) ===================== -->
+    <section class="tut-sec tint">
+      <div class="tut-wrap">
+        <div data-aos="fade-up">
+          <h2 class="tut-h2">The metaConvert approach</h2>
+          <p class="tut-sec-lead">
+            Most effect-size calculators are formula-first: you pick a formula, then supply the
+            inputs it needs. metaConvert is data-first — you record what each study reports, and
+            the applicable formulas <b>follow from the columns you filled in</b>. Nothing to choose
+            per study, and no manual conversion.
+          </p>
+        </div>
+
+        <figure class="tut-flow" data-aos="fade-up"
+                aria-label="Two pipelines contrasted. Other tools, formula first: a formula chosen by hand, then its inputs, producing one effect size. metaConvert, data first: your columns (mean_exp, mean_sd_exp, n_exp), then every applicable formula (means and SD, t, odds ratio), producing Hedges' g = 0.44.">
+          <div class="lane conv">
+            <div class="lab">
+              <span class="tg"><span class="d"></span>Other tools</span>
+              <div class="mode">Formula first</div>
+              <div class="cap">You choose the formula, then fit the data to it.</div>
+            </div>
+            <div class="track">
+              <div class="node"><div class="t">a formula</div><div class="s">chosen by hand</div></div>
+              <span class="arrow" aria-hidden="true"></span>
+              <div class="node"><div class="t">its inputs</div><div class="s">supplied to match</div></div>
+              <span class="arrow" aria-hidden="true"></span>
+              <div class="node end"><div class="t">one effect size</div></div>
+            </div>
+          </div>
+          <div class="lane mc">
+            <div class="lab">
+              <span class="tg"><span class="d"></span>metaConvert</span>
+              <div class="mode">Data first</div>
+              <div class="cap">You enter the data; the formulas follow from it.</div>
+            </div>
+            <div class="track">
+              <div class="node">
+                <div class="t">your columns</div>
+                <div class="chips"><span class="c">mean_exp</span><span class="c">mean_sd_exp</span><span class="c">n_exp</span></div>
+              </div>
+              <span class="arrow" aria-hidden="true"></span>
+              <div class="node">
+                <div class="t">every applicable formula</div>
+                <div class="chips"><span class="c">means+SD</span><span class="c">t</span><span class="c">OR</span></div>
+              </div>
+              <span class="arrow" aria-hidden="true"></span>
+              <div class="node end"><div class="t">Hedges' g = 0.44</div></div>
+            </div>
+          </div>
+        </figure>
+      </div>
     </section>
-    <!-- 
-    <section class="tutorial_1">
-      <div class="example_description">
-        <h1>Tutorial</h1>
-        <p>
-          In metaConvert, each information used to estimate an effect size has to
-          be indicated in a column name that could not be changed. For example,
-          the mean of the experimental group has to be stored in a column named
-          'mean_exp'. The conversion section of this website presents the
-          different combinations of information allowing to estimate an effect
-          size.
-        </p>
 
-        <p>
-          In this tutorial section, we help you understanding how to interpret
-          these tables by providing key information:<br />
-          &nbsp; - The header of these tables corresponds to the column names in
-          which the information should be stored. <br />
-          &nbsp; - The icon
-          <i class="far fa-check-square" style="color: rgb(0, 147, 15)"></i>
-          means that information must be specified in the dataset.<br />
-          &nbsp; - The icon
-          <i class="far fa-question-circle" style="color: rgb(222, 159, 1)"></i>
-          means that information can be missing in the dataset.<br />
-          &nbsp; - The symbol '&' between two column names means that the icons
-          apply to both columnns. <br />
-        </p>
-
-        <p>
-          As an example, we present below how a dataset should be formatted to
-          estimate an effect size from the means and dispersion indices of two
-          groups (SD or SE). First, you will find below the table presenting the
-          required information. Second, you will find a concrete example of a
-          dataset respecting the formatting.
-        </p>
-      </div>
-      <div class="table_container">
-        <h2>
-          Table presenting the information required to estimate an effect size
-        </h2>
-
-        <div style="overflow-x: auto">
-          <table class="table-fill">
-            <thead>
-              <tr>
-                <th class="text-left">mean_exp & mean_nexp</th>
-                <th class="text-left">mean_sd_exp & mean_sd_nexp</th>
-                <th class="text-left">mean_se_exp & mean_se_nexp</th>
-                <th class="text-left">n_exp & n_nexp</th>
-              </tr>
-            </thead>
-            <tbody class="table-hover">
-              <tr>
-                <td class="text-left">
-                  <i
-                    class="far fa-check-square fa-2x"
-                    style="color: rgb(0, 147, 15)"
-                  ></i>
-                </td>
-                <td class="text-left">
-                  <i
-                    class="far fa-check-square fa-2x"
-                    style="color: rgb(0, 147, 15)"
-                  ></i>
-                </td>
-                <td class="text-left">
-                  <i
-                    class="far fa-question-circle fa-2x"
-                    style="color: rgb(222, 159, 1)"
-                  ></i>
-                </td>
-                <td class="text-left">
-                  <i
-                    class="far fa-check-square fa-2x"
-                    style="color: rgb(0, 147, 15)"
-                  ></i>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-left">
-                  <i
-                    class="far fa-check-square fa-2x"
-                    style="color: rgb(0, 147, 15)"
-                  ></i>
-                </td>
-                <td class="text-left">
-                  <i
-                    class="far fa-question-circle fa-2x"
-                    style="color: rgb(222, 159, 1)"
-                  ></i>
-                </td>
-                <td class="text-left">
-                  <i
-                    class="far fa-check-square fa-2x"
-                    style="color: rgb(0, 147, 15)"
-                  ></i>
-                </td>
-                <td class="text-left">
-                  <i
-                    class="far fa-check-square fa-2x"
-                    style="color: rgb(0, 147, 15)"
-                  ></i>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+    <!-- ===================== PROCEDURE ===================== -->
+    <section class="tut-sec" id="procedure">
+      <div class="tut-wrap">
+        <div data-aos="fade-up">
+          <h2 class="tut-h2">The procedure</h2>
         </div>
 
-        <h2>Fictitious example of a dataset respecting the formatting</h2>
-        <div style="overflow-x: auto" class="example_table">
-          <table class="table-fill excel">
+        <div class="tut-steps">
+          <!-- 1 -->
+          <article class="tut-step" data-aos="fade-up">
+            <div class="tut-step-num">1</div>
+            <div class="tut-step-grid">
+              <div>
+                <h3>Record each statistic under its predefined column name</h3>
+                <p>
+                  Every quantity has a fixed column name that metaConvert recognizes —
+                  <code>mean_exp</code> for the experimental-group mean, <code>n_exp</code>
+                  for its sample size, <code>student_t</code> for a t value. The column
+                  name identifies the quantity, so <b>no formula selection or manual
+                  mapping is required</b>.
+                </p>
+                <a class="tut-step-link" href="input.html">
+                  The Input data page lists every recognized column
+                  <span class="ar" aria-hidden="true">→</span>
+                </a>
+              </div>
+              <div class="tut-figcard">
+                <div class="tut-cols">
+                  <div class="tut-colrow"><span class="nm">mean_exp</span><span class="ds">mean of the experimental group</span></div>
+                  <div class="tut-colrow"><span class="nm">mean_sd_exp</span><span class="ds">its standard deviation</span></div>
+                  <div class="tut-colrow"><span class="nm">n_exp</span><span class="ds">its sample size</span></div>
+                  <div class="tut-colrow"><span class="nm">student_t</span><span class="ds">a t statistic, where reported</span></div>
+                </div>
+                <div class="tut-figcap"># the name identifies the quantity</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2 -->
+          <article class="tut-step" data-aos="fade-up">
+            <div class="tut-step-num">2</div>
+            <div class="tut-step-grid">
+              <div>
+                <h3>Enter the statistics available; leave the others empty</h3>
+                <p>
+                  Each formula has required inputs and, frequently, interchangeable
+                  alternatives — a standard deviation or a standard error, for instance.
+                  Empty cells are expected: <b>each study is processed independently</b>,
+                  using whichever statistics it provides.
+                </p>
+                <div class="tut-legend">
+                  <span><span class="chk">✓</span> required</span>
+                  <span><span class="alt">○</span> interchangeable alternative</span>
+                  <span><span class="tut-empty">·</span> may be left empty</span>
+                </div>
+              </div>
+              <div class="tut-figcard">
+                <div class="tut-rowfig">
+                  <table>
+                    <thead>
+                      <tr><th>mean_exp</th><th>mean_sd_exp</th><th>mean_se_exp</th><th>n_exp</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><span class="tut-req">201.9</span></td>
+                        <td><span class="tut-req">88.0</span></td>
+                        <td><span class="tut-alt tut-empty">NA</span></td>
+                        <td><span class="tut-req">24</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="tut-figcap"># SD supplied, SE left empty — estimation proceeds</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3 -->
+          <article class="tut-step" data-aos="fade-up">
+            <div class="tut-step-num">3</div>
+            <div class="tut-step-grid">
+              <div>
+                <h3>Applicable formulas are computed; the most reliable is retained</h3>
+                <p>
+                  For each study, metaConvert applies every formula the available
+                  columns support and retains a single estimate following a
+                  <b>predefined hierarchy of reliability</b>. Estimates from means and
+                  standard deviations, for example, take precedence over those recovered
+                  from a p-value alone.
+                </p>
+              </div>
+              <div class="tut-figcard">
+                <div class="tut-rank">
+                  <div class="tut-rankrow sel">
+                    <span class="src">means + standard deviations</span>
+                    <span class="tier">rank 1</span>
+                    <span class="mk">retained</span>
+                  </div>
+                  <div class="tut-rankrow"><span class="src dim">t statistic</span><span class="tier">rank 3</span></div>
+                  <div class="tut-rankrow"><span class="src dim">p-value only</span><span class="tier">rank 6</span></div>
+                </div>
+                <div class="tut-figcap"># a slice of the reliability hierarchy — the highest-ranked applicable route is kept</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4 -->
+          <article class="tut-step" data-aos="fade-up">
+            <div class="tut-step-num">4</div>
+            <div class="tut-step-grid">
+              <div>
+                <h3>Inputs and effect sizes are screened for extraction errors</h3>
+                <p>
+                  The <b>metaDETECT</b> framework screens both the statistics you enter and
+                  the effect sizes they produce, checking each against more than fifty
+                  criteria and flagging implausible results — a confidence interval
+                  inconsistent with its estimate, or a standardized mean difference beyond a
+                  plausible range — before the data are pooled.
+                </p>
+                <a class="tut-step-link" href="metadetect.html">
+                  See the metaDETECT criteria, with worked examples
+                  <span class="ar" aria-hidden="true">→</span>
+                </a>
+              </div>
+              <div class="tut-figcard">
+                <div class="tut-flag unusual">
+                  <span class="tg">Unusual</span>
+                  <span>Large SMD: |g| = <b>3.05</b> (threshold: 3) (from means_sd)</span>
+                </div>
+                <div class="tut-flag invalid">
+                  <span class="tg">Invalid</span>
+                  <span>Estimate lies outside its confidence interval</span>
+                </div>
+                <div class="tut-figcap"># flags attached per study, prior to pooling</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WORKED EXAMPLE ===================== -->
+    <section class="tut-sec tint">
+      <div class="tut-wrap" data-aos="fade-up">
+        <h2 class="tut-h2">Worked example</h2>
+        <p class="tut-sec-lead">
+          These studies report different statistics — group means and SDs, a t statistic,
+          an odds ratio — and one reports <b>more than one usable input</b>. Each is
+          reduced to the same target measure, Hedges' g; where several inputs are
+          available, metaConvert computes the effect size from each and retains the most
+          reliable estimate.
+        </p>
+        <div class="tut-sheetwrap">
+          <table class="tut-sheet">
             <thead>
               <tr>
-                <th class="text-left-excel">mean_exp</th>
-                <th class="text-left-excel">mean_nexp</th>
-                <th class="text-left-excel">mean_sd_exp</th>
-                <th class="text-left-excel">mean_sd_nexp</th>
-                <th class="text-left-excel">mean_se_exp</th>
-                <th class="text-left-excel">mean_se_nexp</th>
-                <th class="text-left-excel">n_exp</th>
-                <th class="text-left-excel">n_nexp</th>
+                <th>study</th>
+                <th>mean_exp</th><th>mean_sd_exp</th><th>n_exp</th>
+                <th>student_t</th><th>or</th>
+                <th class="es">Hedges' g</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class="cell-excel">201.89</td>
-                <td class="cell-excel">224.14</td>
-                <td class="cell-excel">87.98</td>
-                <td class="cell-excel">78.02</td>
-                <td class="cell-excel">
-                  <em>NA</em>
-                </td>
-                <td class="cell-excel">
-                  <em>NA</em>
-                </td>
-                <td class="cell-excel">24</td>
-                <td class="cell-excel">38</td>
+                <td class="rh">Adler 2018</td>
+                <td>24.6</td><td>6.3</td><td>38</td>
+                <td class="em">NA</td><td class="em">NA</td>
+                <td class="es">0.44</td>
               </tr>
-
               <tr>
-                <td class="cell-excel">17.21</td>
-                <td class="cell-excel">16.98</td>
-                <td class="cell-excel">
-                  <em>NA</em>
-                </td>
-                <td class="cell-excel">
-                  <em>NA</em>
-                </td>
-                <td class="cell-excel">1.02</td>
-                <td class="cell-excel">0.97</td>
-                <td class="cell-excel">87</td>
-                <td class="cell-excel">97</td>
+                <td class="rh">Brandt 2019</td>
+                <td class="em">NA</td><td class="em">NA</td><td>41</td>
+                <td>2.31</td><td class="em">NA</td>
+                <td class="es">0.51</td>
+              </tr>
+              <tr>
+                <td class="rh">Okafor 2020</td>
+                <td class="em">NA</td><td class="em">NA</td><td>52</td>
+                <td class="em">NA</td><td>2.18</td>
+                <td class="es">0.43</td>
+              </tr>
+              <tr class="multi">
+                <td class="rh">Petrov 2021 <span class="tut-badge">2 inputs</span></td>
+                <td>27.4</td><td>7.1</td><td>46</td>
+                <td>2.42</td><td class="em">NA</td>
+                <td class="es">0.49</td>
               </tr>
             </tbody>
           </table>
         </div>
+        <p class="tut-sheet-note">
+          A single call to <code>summary()</code> returns the right-most column. The
+          target measure is the same for every study; the formula differs according to
+          the statistics each study provides — no per-study formula choice or manual
+          conversion.
+        </p>
+
+        <div class="tut-multi">
+          <div class="tut-multi-h"><code>Petrov 2021</code> reports two usable inputs — metaConvert uses both</div>
+          <div class="tut-rank">
+            <div class="tut-rankrow sel">
+              <span class="src">means + SD &nbsp;→&nbsp; <b>g = 0.49</b></span>
+              <span class="tier">rank 1</span>
+              <span class="mk">retained</span>
+            </div>
+            <div class="tut-rankrow">
+              <span class="src dim">t statistic &nbsp;→&nbsp; g = 0.48</span>
+              <span class="tier">rank 3</span>
+            </div>
+          </div>
+          <p class="tut-multi-note">
+            metaConvert computes the effect size from <b>every usable input</b>, then
+            retains the most reliable by the hierarchy. Computing both routes is itself a
+            consistency check: here the two estimates agree to within 0.01, and a marked
+            disagreement would be flagged by <a href="metadetect.html">metaDETECT</a>.
+          </p>
+        </div>
       </div>
+    </section>
 
-    </section> -->
+    <!-- ===================== RELATED ===================== -->
+    <section class="tut-sec">
+      <div class="tut-wrap" data-aos="fade-up">
+        <h2 class="tut-h2">Related pages</h2>
+        <div class="tut-cards">
+          <a class="tut-card" href="input.html">
+            <span class="ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </span>
+            <h3>Input data</h3>
+            <p>The recognized columns, and a tool to assemble the extraction sheet for your chosen measures.</p>
+            <span class="go">Open <span class="ar" aria-hidden="true">→</span></span>
+          </a>
+          <a class="tut-card" href="app.html">
+            <span class="ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9z"/></svg>
+            </span>
+            <h3>App</h3>
+            <p>Run the full procedure in the browser: upload a sheet, obtain effect sizes, without code.</p>
+            <span class="go">Open <span class="ar" aria-hidden="true">→</span></span>
+          </a>
+          <a class="tut-card" href="metadetect.html">
+            <span class="ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            </span>
+            <h3>metaDETECT</h3>
+            <p>The error-detection criteria applied to the computed values, with worked examples.</p>
+            <span class="go">Open <span class="ar" aria-hidden="true">→</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
 
+    <!-- shared site footer -->
     <footer class="footer">
       <div class="footer_left">
         <div class="footer_logo">metaConvert</div>
@@ -313,13 +724,6 @@
             target="_blank"
             ><img src="https://www.r-pkg.org/badges/version/metaConvert" /></a
           ><br />
-          <!-- <a href="https://github.com/cran/metaConvert" target="_blank"
-            ><img src="https://cranlogs.r-pkg.org/badges/metaConvert" /></a
-          ><br />
-          <a href="https://github.com/cran/metaConvert" target="_blank"
-            ><img
-              src="https://cranlogs.r-pkg.org/badges/grand-total/metaConvert" /></a
-          ><br /> -->
           <button type="button" style="border: solid 1px #fff">
             <a
               href="mailto: corentin.gosling@parisnanterre.fr"
@@ -336,30 +740,21 @@
         </address>
       </div>
 
-      <!-- <div class = "footer_nav"> -->
       <div class="footer_mid">
         <div class="p10">
-          <a
-            href="https://www.parisnanterre.fr/corentin-gosling"
-            target="_blank"
+          <a href="https://www.parisnanterre.fr/corentin-gosling" target="_blank"
             ><img src="background/p10.svg" class="img_univ"
           /></a>
         </div>
         <div class="kcl">
-          <a
-            href="https://www.kcl.ac.uk/people/paolo-fusar-poli"
-            target="_blank"
+          <a href="https://www.kcl.ac.uk/people/paolo-fusar-poli" target="_blank"
             ><img
               src="https://upload.wikimedia.org/wikipedia/commons/1/18/King%E2%80%99s_College_London_logo.png"
               class="img_univ"
           /></a>
         </div>
-        <!-- </div>
-          <div class = "footer_right"> -->
         <div class="barc">
-          <a
-            href="https://www.clinicbarcelona.org/en/professionals/joaquim-radua"
-            target="_blank"
+          <a href="https://www.clinicbarcelona.org/en/professionals/joaquim-radua" target="_blank"
             ><img src="background/barcelona.jpg" class="img_univ"
           /></a>
         </div>
@@ -368,8 +763,26 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      AOS.init({ duration: 1200, easing: "ease-in-out-back" });
+      // nav: scroll shadow + mobile hamburger (mirrors script/main.js)
+      (function () {
+        var navbar = document.querySelector("nav");
+        window.addEventListener("scroll", function () {
+          navbar.classList.toggle("scrolled", window.scrollY > 0);
+        });
+        var navLinks = document.querySelector(".nav-links");
+        document.querySelectorAll("#hamburger-menu").forEach(function (icon) {
+          icon.addEventListener("click", function () {
+            icon.classList.toggle("open");
+            navLinks.classList.toggle("open");
+          });
+        });
+      })();
+
+      var prefersReduced = window.matchMedia
+        && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (window.AOS && !prefersReduced) {
+        AOS.init({ duration: 650, easing: "ease-out", once: true, offset: 80 });
+      }
     </script>
-    <script src="script/tutorial.js"></script>
   </body>
 </html>

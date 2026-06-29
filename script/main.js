@@ -53,6 +53,12 @@ const plusIconPFP = document.getElementById("plusIconPFP");
 const readMoreButtonEV = document.getElementById("readmore_buttonEV");
 const readMoreContentEV = document.getElementById("read_more_textEV");
 const plusIconEV = document.getElementById("plusIconEV");
+const readMoreButtonRR = document.getElementById("readmore_buttonRR");
+const readMoreContentRR = document.getElementById("read_more_textRR");
+const plusIconRR = document.getElementById("plusIconRR");
+const readMoreButtonBH = document.getElementById("readmore_buttonBH");
+const readMoreContentBH = document.getElementById("read_more_textBH");
+const plusIconBH = document.getElementById("plusIconBH");
 
 readMoreButtonMS.addEventListener("click", function () {
   readMoreButtonMS.classList.toggle("rmv_border");
@@ -98,4 +104,16 @@ readMoreButtonPFP.addEventListener("click", function () {
   readMoreContentPFP.classList.toggle("show-read-more");
   readMoreContentPFP.classList.toggle("add_border");
   plusIconPFP.classList.toggle("rotate-45");
+});
+readMoreButtonRR.addEventListener("click", function () {
+  readMoreButtonRR.classList.toggle("rmv_border");
+  readMoreContentRR.classList.toggle("show-read-more");
+  readMoreContentRR.classList.toggle("add_border");
+  plusIconRR.classList.toggle("rotate-45");
+});
+readMoreButtonBH.addEventListener("click", function () {
+  readMoreButtonBH.classList.toggle("rmv_border");
+  readMoreContentBH.classList.toggle("show-read-more");
+  readMoreContentBH.classList.toggle("add_border");
+  plusIconBH.classList.toggle("rotate-45");
 });

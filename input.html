@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Build your extraction sheet | metaConvert</title>
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <link rel="stylesheet" href="css/main.css" />
@@ -33,10 +33,10 @@
             --text: #272430;
             --muted: #756f7d;
             --faint: #a8a2b0;
-            --nat: #3f6f64;          /* natural effect size (computed directly) */
-            --nat-bg: #eef5f2;
-            --nat-line: #bcd6cd;
-            --conv: #9a6b12;         /* converted effect size (derived) */
+            --nat: #2c2a47;          /* natural effect size (computed directly) — brand indigo */
+            --nat-bg: #f1f0f6;
+            --nat-line: #d9d8e6;
+            --conv: #8a6712;         /* converted effect size (derived) — site amber */
             --conv-bg: #faf3e2;
             --conv-line: #e7d2a4;
             --r-sm: 8px;
@@ -59,10 +59,12 @@
         .mc-wrap th, .mc-wrap td { border: 0; width: auto; height: auto !important; font-size: inherit; font-weight: inherit; text-align: left; padding: 0; }
         .mc-wrap input, .mc-wrap button { font: inherit; }
         .mc-wrap button { cursor: pointer; }
-        /* display face — placed after the scope rule so it wins on source order */
+        /* display face - Work Sans bold, the same editorial voice as the
+           index / metaDETECT headings (placed after the scope rule so it wins
+           on source order) */
         .mc-eyebrow, .mc-h1, .mc-step-num, .mc-tally-n, .mc-summary-n,
-        .mc-group-kicker { font-family: "Space Grotesk", "Work Sans", sans-serif; }
-        /* keep Font Awesome glyphs — the broad ".mc-wrap *" rule above otherwise
+        .mc-group-kicker { font-family: "Work Sans", "Avenir Next LT Pro", sans-serif; }
+        /* keep Font Awesome glyphs - the broad ".mc-wrap *" rule above otherwise
            ties FA's .fas selector on specificity and wins on source order,
            clobbering the icon font and rendering tofu boxes */
         .mc-wrap i.fas, .mc-wrap i.fa-solid { font-family: "Font Awesome 6 Free" !important; font-weight: 900 !important; }
@@ -137,7 +139,7 @@
         .mc-panel-head { margin-bottom: 1.6rem; }
         .mc-panel-title { font-size: 1.7rem; font-weight: 700; letter-spacing: -.01em; }
         .mc-panel-help { margin-top: .5rem; font-size: 1rem; color: var(--muted); max-width: 70ch; line-height: 1.5; }
-        .mc-panel-help code { font-family: ui-monospace, Menlo, Consolas, monospace; background: var(--rose-50); color: var(--rose-deep); padding: .05rem .35rem; border-radius: 5px; font-size: .9em; }
+        .mc-panel-help code { font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace; background: var(--rose-50); color: var(--rose-deep); padding: .05rem .35rem; border-radius: 5px; font-size: .9em; }
         .mc-panel-help b { color: var(--rose-deep); font-weight: 600; }
         .mc-cards-lead { display: flex; align-items: center; gap: .6rem; font-weight: 600; color: var(--ink); font-size: 1.05rem; margin: 1.6rem 0 1rem; }
         .mc-cards-lead i { color: var(--rose); }
@@ -168,10 +170,10 @@
         .mc-es-row:hover { background: var(--rose-50); }
         .mc-es-row.is-on { background: var(--rose); box-shadow: inset 3px 0 0 var(--rose-700); }
         .mc-es-row.is-on td { color: #fff; }
-        /* selected rows get their OWN hover — darken rather than lighten, so the
+        /* selected rows get their OWN hover - darken rather than lighten, so the
            active measure stays unmistakably "on" while showing it is interactive */
         .mc-es-row.is-on:hover { background: var(--rose-deep); }
-        .mc-es-row .mc-es-ac { font-weight: 700; color: var(--rose-deep); font-family: ui-monospace, monospace; }
+        .mc-es-row .mc-es-ac { font-weight: 700; color: var(--rose-deep); font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace; }
         .mc-es-row.is-on .mc-es-ac { color: #fff; }
         .mc-vico { width: 22px; display: inline-block; text-align: center; margin-right: .35rem; }
         .mc-vico.pred { color: var(--conv); }
@@ -179,7 +181,7 @@
         .mc-vico.time { color: var(--rose); }
         .mc-es-row.is-on .mc-vico { color: rgba(255,255,255,.85); }
         .mc-reverse-active { margin-top: .8rem; font-size: .9rem; color: var(--ink-soft); }
-        .mc-reverse-active strong { font-family: ui-monospace, monospace; background: var(--rose); color: #fff; padding: .1rem .5rem; border-radius: 5px; }
+        .mc-reverse-active strong { font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace; background: var(--rose); color: #fff; padding: .1rem .5rem; border-radius: 5px; }
         .mc-reverse-active button { margin-left: .5rem; border: 0; background: none; color: var(--rose-deep); text-decoration: underline; font-weight: 600; }
 
         /* ---- groups + cards ---- */
@@ -198,7 +200,7 @@
             display: flex; flex-direction: column;
         }
         .mc-card.is-hidden { display: none; }
-        /* no lift on hover — a clear rose border + pointer signals it is clickable */
+        /* no lift on hover - a clear rose border + pointer signals it is clickable */
         .mc-card:hover { border-color: var(--rose); box-shadow: var(--sh-sm); }
         .mc-card:hover.is-sel { border-color: var(--rose-deep); }
         .mc-card.is-sel { border-color: var(--rose); background: var(--rose-50); }
@@ -215,7 +217,7 @@
         .mc-card-es { display: flex; align-items: center; flex-wrap: wrap; gap: .35rem; margin-top: .9rem; }
         .mc-arrow { color: var(--faint); font-weight: 700; margin-right: .1rem; }
 
-        .mc-badge { font-size: .72rem; font-weight: 700; letter-spacing: .02em; padding: .2rem .5rem; border-radius: 6px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+        .mc-badge { font-size: .72rem; font-weight: 700; letter-spacing: .02em; padding: .2rem .5rem; border-radius: 6px; font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace; }
         .mc-badge-nat { color: var(--nat); background: var(--nat-bg); border: 1px solid var(--nat-line); }
         .mc-badge-conv { color: var(--conv); background: var(--conv-bg); border: 1px dashed var(--conv-line); }
 
@@ -225,7 +227,7 @@
         .mc-card-cols-btn.is-open .mc-chev { transform: rotate(180deg); }
         .mc-card-cols { display: none; flex-wrap: wrap; gap: .35rem; margin-top: .8rem; padding-top: .8rem; border-top: 1px solid var(--line); }
         .mc-card-cols.is-open { display: flex; }
-        .mc-coltag { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .72rem; color: var(--ink-soft); background: #f4eff0; border: 1px solid var(--line); padding: .15rem .45rem; border-radius: 5px; cursor: help; }
+        .mc-coltag { font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace; font-size: .72rem; color: var(--ink-soft); background: #f4eff0; border: 1px solid var(--line); padding: .15rem .45rem; border-radius: 5px; cursor: help; }
 
         /* ---- empty ---- */
         .mc-empty { text-align: center; padding: 3rem 1rem; color: var(--muted); }
@@ -235,7 +237,7 @@
         /* ---- action bar ---- */
         .mc-actionbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 2rem; padding-top: 1.4rem; border-top: 1px solid var(--line); flex-wrap: wrap; }
         .mc-selcount { font-size: 1rem; color: var(--ink-soft); }
-        .mc-selcount #mcSelN { font-weight: 700; color: var(--ink); font-family: "Space Grotesk", sans-serif; }
+        .mc-selcount #mcSelN { font-weight: 700; color: var(--ink); font-family: "Work Sans", "Avenir Next LT Pro", sans-serif; }
         .mc-unlocked { display: inline-flex; align-items: center; flex-wrap: wrap; gap: .3rem; margin-left: .4rem; }
         .mc-muted { color: var(--faint); font-size: .9rem; }
 
@@ -262,7 +264,7 @@
         .mc-colrow.is-off { opacity: .5; }
         .mc-colrow.is-locked { background: var(--rose-50); border-color: var(--rose-100); }
         .mc-colrow input { width: 18px; height: 18px; accent-color: var(--rose); }
-        .mc-col-name { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85rem; font-weight: 600; color: var(--ink); word-break: break-all; }
+        .mc-col-name { font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace; font-size: .85rem; font-weight: 600; color: var(--ink); word-break: break-all; }
         .mc-col-desc { font-size: .85rem; color: var(--muted); line-height: 1.4; }
 
         .mc-side { position: sticky; top: 130px; display: flex; flex-direction: column; gap: 1rem; }
@@ -279,7 +281,7 @@
         .mc-ledger-hint { display: block; font-size: .73rem; color: #8f8ba6; font-weight: 400; margin-top: .12rem; }
         .mc-ledger-v { display: flex; flex-wrap: wrap; gap: .35rem; }
         .mc-dot { width: 9px; height: 9px; border-radius: 50%; flex: 0 0 auto; }
-        .mc-dot-nat { background: #79c2ad; }
+        .mc-dot-nat { background: #a6a2e6; }
         .mc-dot-conv { background: #e6c06a; }
         .mc-ledger .mc-muted { color: #8a86a0; }
         .mc-tally { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 1.25rem; text-align: center; }
@@ -297,14 +299,14 @@
 
         .mc-preview-wrap { overflow-x: auto; border: 1px solid var(--line-2); border-radius: var(--r-md); background: var(--card); box-shadow: var(--sh-sm); }
         .mc-preview-table { width: 100%; font-size: .82rem; }
-        .mc-preview-table th { position: sticky; top: 0; z-index: 2; background: var(--rose-50); color: var(--ink); font-weight: 600; padding: .7rem .8rem !important; border-bottom: 2px solid var(--rose-100); border-right: 1px solid var(--line); white-space: nowrap; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .76rem; }
-        .mc-preview-table td { padding: .6rem .8rem !important; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); white-space: nowrap; font-family: ui-monospace, Menlo, Consolas, monospace; color: var(--ink-soft); }
+        .mc-preview-table th { position: sticky; top: 0; z-index: 2; background: var(--rose-50); color: var(--ink); font-weight: 600; padding: .7rem .8rem !important; border-bottom: 2px solid var(--rose-100); border-right: 1px solid var(--line); white-space: nowrap; font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace; font-size: .76rem; }
+        .mc-preview-table td { padding: .6rem .8rem !important; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); white-space: nowrap; font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace; color: var(--ink-soft); }
         .mc-preview-table tbody tr:nth-child(even) { background: #fbf8f8; }
         .mc-preview-table tbody tr:hover { background: var(--rose-50); }
         .mc-preview-table .mc-sticky { position: sticky; left: 0; z-index: 1; background: #f6f1f1; font-weight: 600; color: var(--ink); border-right: 2px solid var(--line-2); }
         .mc-preview-table thead .mc-sticky { z-index: 3; background: #f3e7e8; }
         .mc-preview-table .empty-cell { color: #d9d2d3; }
-        .mc-preview-table .empty-cell::after { content: "\2014"; }
+        .mc-preview-table .empty-cell::after { content: "-"; }
 
         .mc-downloads { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem; margin-top: 1.5rem; padding: 1.5rem 1.6rem; background: linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 100%); border-radius: var(--r-md); box-shadow: var(--sh-md); }
         .mc-dl-text { color: #fff; display: flex; flex-direction: column; gap: .2rem; }
@@ -321,13 +323,13 @@
         .mc-build-cta { justify-content: center; }
         .mc-livesheet-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 1.1rem 1.15rem; }
         .mc-livesheet-head { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; font-weight: 600; color: var(--ink); }
-        .mc-livesheet-head span { font-family: "Space Grotesk", sans-serif; font-size: .82rem; font-weight: 600; color: var(--rose-deep); white-space: nowrap; }
+        .mc-livesheet-head span { font-family: "Work Sans", "Avenir Next LT Pro", sans-serif; font-size: .82rem; font-weight: 600; color: var(--rose-deep); white-space: nowrap; }
         .mc-livesheet-empty { font-size: .88rem; color: var(--muted); margin-top: .55rem; line-height: 1.45; }
         .mc-livesheet-cap { font-size: .78rem; color: var(--muted); margin-top: .5rem; }
         .mc-livesheet-wrap { margin-top: .7rem; max-height: 420px; overflow: auto; border: 1px solid var(--line); border-radius: var(--r-sm); }
         .mc-livesheet-table { width: 100%; font-size: .78rem; }
-        .mc-livesheet-table th { position: sticky; top: 0; z-index: 1; background: var(--rose-50); color: var(--ink); font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .72rem; font-weight: 600; padding: .5rem .6rem !important; border-bottom: 1px solid var(--rose-100); border-right: 1px solid var(--line); white-space: nowrap; }
-        .mc-livesheet-table td { padding: .45rem .6rem !important; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); color: var(--ink-soft); font-family: ui-monospace, Menlo, Consolas, monospace; white-space: nowrap; }
+        .mc-livesheet-table th { position: sticky; top: 0; z-index: 1; background: var(--rose-50); color: var(--ink); font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace; font-size: .72rem; font-weight: 600; padding: .5rem .6rem !important; border-bottom: 1px solid var(--rose-100); border-right: 1px solid var(--line); white-space: nowrap; }
+        .mc-livesheet-table td { padding: .45rem .6rem !important; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); color: var(--ink-soft); font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace; white-space: nowrap; }
         .mc-livesheet-table .mc-sticky { position: sticky; left: 0; background: #f6f1f1; }
         .mc-livesheet-table thead .mc-sticky { z-index: 2; background: #f3e7e8; }
         .mc-livesheet-table th.is-new { animation: mcFlash .7s var(--ease); }
@@ -342,14 +344,14 @@
         .mc-customize[open] > summary::after { transform: rotate(180deg); }
         .mc-customize-body { padding: 0 1.15rem 1.15rem; }
         .mc-customize-help { font-size: .9rem; color: var(--muted); margin-bottom: 1rem; }
-        .mc-customize-help code { font-family: ui-monospace, Menlo, Consolas, monospace; background: var(--rose-50); color: var(--rose-deep); padding: .05rem .35rem; border-radius: 5px; font-size: .9em; }
+        .mc-customize-help code { font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace; background: var(--rose-50); color: var(--rose-deep); padding: .05rem .35rem; border-radius: 5px; font-size: .9em; }
 
         /* ---------------- Direction controls (reverse_*) ---------------- */
         .mc-direction { display: flex; align-items: flex-start; gap: .9rem; margin: 0 0 1rem; padding: .9rem 1.1rem; background: var(--rose-50); border: 1px solid var(--rose-100); border-radius: var(--r-md); }
         .mc-direction-text { display: flex; flex-direction: column; gap: .2rem; }
         .mc-direction-title { font-weight: 600; color: var(--ink); display: inline-flex; align-items: center; gap: .45rem; }
         .mc-direction-title i { color: var(--rose-deep); }
-        .mc-direction-title code, .mc-direction-sub code, .mc-direction-eg code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85em; background: #fff; color: var(--rose-deep); padding: .03rem .32rem; border-radius: 4px; border: 1px solid var(--rose-100); }
+        .mc-direction-title code, .mc-direction-sub code, .mc-direction-eg code { font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace; font-size: .85em; background: #fff; color: var(--rose-deep); padding: .03rem .32rem; border-radius: 4px; border: 1px solid var(--rose-100); }
         .mc-direction-sub { font-size: .9rem; color: var(--ink-soft); line-height: 1.5; }
         .mc-direction-link { background: none; border: 0; color: var(--rose-deep); font-weight: 600; text-decoration: underline; padding: 0; font-size: inherit; }
         .mc-direction-eg { margin: -.4rem 0 1.4rem; padding: 1rem 1.1rem; background: #fff; border: 1px solid var(--line); border-left: 3px solid var(--rose); border-radius: var(--r-sm); font-size: .9rem; color: var(--ink-soft); line-height: 1.6; }
@@ -361,7 +363,7 @@
         .mc-switch input:checked + .mc-switch-slider { background: var(--rose); }
         .mc-switch input:checked + .mc-switch-slider::before { transform: translateX(19px); }
         .mc-switch input:focus-visible + .mc-switch-slider { outline: 3px solid var(--rose); outline-offset: 2px; }
-        /* reverse columns shown dimmed in both sheets — they are controls, not data */
+        /* reverse columns shown dimmed in both sheets - they are controls, not data */
         .mc-livesheet-table th.mc-rev, .mc-preview-table th.mc-rev { color: var(--muted); font-style: italic; background: #f7f2f2; }
         .mc-livesheet-table td.mc-rev, .mc-preview-table td.mc-rev { color: var(--faint); background: #fcfafa; }
         .mc-livesheet-table td.mc-rev.is-true, .mc-preview-table td.mc-rev.is-true { color: var(--rose-deep); font-weight: 700; }
@@ -401,6 +403,7 @@
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="metadetect.html">metaDETECT</a></li>
+          <li><a href="tutorial.html">Tutorial</a></li>
           <li><a href="input.html" class="homepage currentpage">Input data</a></li>
           <li><a href="app.html">App</a></li>
         </ul>
@@ -412,7 +415,7 @@
         <header class="mc-hero">
             <span class="mc-eyebrow">metaConvert &middot; extraction sheet</span>
             <h1 class="mc-h1">Build your data extraction sheet</h1>
-            <p class="mc-sub">Choose the <b>effect sizes you plan to compute</b> and the statistics you expect to extract. metaConvert assembles the exact spreadsheet columns you'll need &mdash; watch the sheet build itself as you go, so it's ready before you open the first study.</p>
+            <p class="mc-sub">Choose the <b>effect sizes you plan to compute</b> and the statistics you expect to extract. metaConvert assembles the exact spreadsheet columns you'll need - watch the sheet build itself as you go, so it's ready before you open the first study.</p>
         </header>
 
         <!-- STEPPER -->
@@ -428,18 +431,18 @@
             </button>
         </nav>
 
-        <!-- ===================== STEP 1 — BUILD ===================== -->
+        <!-- ===================== STEP 1 - BUILD ===================== -->
         <section class="mc-panel is-active" id="panel-1">
             <div class="mc-panel-head">
                 <h2 class="mc-panel-title">What will you extract?</h2>
-                <p class="mc-panel-help">Plan this at the protocol stage &mdash; you don't need the studies in hand yet. Choose the <b>effect sizes you'll compute</b> and the statistics you expect to collect; your sheet builds itself on the right as you go.</p>
+                <p class="mc-panel-help">Plan this at the protocol stage - you don't need the studies in hand yet. Choose the <b>effect sizes you'll compute</b> and the statistics you expect to collect; your sheet builds itself on the right as you go.</p>
             </div>
 
             <div class="mc-build">
             <div class="mc-build-main">
             <section class="mc-reverse" id="mcReverse">
                 <div class="mc-reverse-head"><i class="fas fa-bullseye"></i> Effect sizes you want to compute</div>
-                <p class="mc-reverse-help">Pick a measure to show only the data sources that can produce it. Optional &mdash; you can also just browse every source below.</p>
+                <p class="mc-reverse-help">Pick a measure to show only the data sources that can produce it. Optional - you can also just browse every source below.</p>
                 <table class="mc-es-table">
                     <thead><tr><th>Predictor</th><th>Outcome</th><th>Effect size measure</th><th>Acronym</th></tr></thead>
                     <tbody>
@@ -481,7 +484,7 @@
                 <div class="mc-livesheet-card">
                     <div class="mc-livesheet-head">Your sheet <span id="mcLiveCount">0 columns</span></div>
                     <p class="mc-livesheet-empty" id="mcLiveEmpty">Pick a statistic below (or an effect size above) and the columns appear here instantly.</p>
-                    <p class="mc-livesheet-cap" id="mcLiveCap" style="display:none;">Example values shown &mdash; your data replaces them.</p>
+                    <p class="mc-livesheet-cap" id="mcLiveCap" style="display:none;">Example values shown - your data replaces them.</p>
                     <div class="mc-livesheet-wrap" id="mcLiveWrap" style="display:none;"><table class="mc-livesheet-table" id="mcLiveSheet"></table></div>
                 </div>
                 <button class="mc-btn mc-btn-primary mc-build-cta" id="mcToReview" onclick="goStep(2)" disabled>Review &amp; download <i class="fas fa-arrow-right"></i></button>
@@ -489,11 +492,11 @@
             </div><!-- /.mc-build -->
         </section>
 
-        <!-- ===================== STEP 2 — REVIEW ===================== -->
+        <!-- ===================== STEP 2 - REVIEW ===================== -->
         <section class="mc-panel" id="panel-2">
             <div class="mc-panel-head">
                 <h2 class="mc-panel-title">Review &amp; download</h2>
-                <p class="mc-panel-help">A preview of your sheet with realistic sample values. Each row is one study &mdash; replace the samples with your data.</p>
+                <p class="mc-panel-help">A preview of your sheet with realistic sample values. Each row is one study - replace the samples with your data.</p>
             </div>
             <div class="mc-summary" id="mcSummary"></div>
 
@@ -504,17 +507,17 @@
                 </label>
                 <div class="mc-direction-text">
                     <span class="mc-direction-title"><i class="fas fa-arrow-right-arrow-left"></i> Direction controls <code>reverse_*</code></span>
-                    <span class="mc-direction-sub">Adds a TRUE/FALSE column per statistic so you can flip a study whose outcome runs the opposite way &mdash; keeping every effect size pointing the same direction. <button type="button" class="mc-direction-link" id="mcDirWhy">Show example</button></span>
+                    <span class="mc-direction-sub">Adds a TRUE/FALSE column per statistic so you can flip a study whose outcome runs the opposite way - keeping every effect size pointing the same direction. <button type="button" class="mc-direction-link" id="mcDirWhy">Show example</button></span>
                 </div>
             </div>
             <div class="mc-direction-eg" id="mcDirEg" hidden>
-                <strong>Example.</strong> Say you define your effect so <em>higher = improvement</em>. Most studies report it that way &mdash; leave their <code>reverse_*</code> blank. But one trial scored the scale so <em>higher = worse</em>: put <code>TRUE</code> in that row's <code>reverse_md</code> (or whichever statistic you entered) and metaConvert flips its sign, so it pools in the same direction as the rest.
+                <strong>Example.</strong> Say you define your effect so <em>higher = improvement</em>. Most studies report it that way - leave their <code>reverse_*</code> blank. But one trial scored the scale so <em>higher = worse</em>: put <code>TRUE</code> in that row's <code>reverse_md</code> (or whichever statistic you entered) and metaConvert flips its sign, so it pools in the same direction as the rest.
             </div>
 
             <details class="mc-customize">
                 <summary><i class="fas fa-sliders"></i> Adjust which columns to include</summary>
                 <div class="mc-customize-body">
-                    <p class="mc-customize-help">Untick any column you won't fill &mdash; <code>study_id</code> stays, it links your rows. The preview updates as you change them.</p>
+                    <p class="mc-customize-help">Untick any column you won't fill - <code>study_id</code> stays, it links your rows. The preview updates as you change them.</p>
                     <div id="mcCols"></div>
                 </div>
             </details>
@@ -523,7 +526,7 @@
             <div class="mc-downloads">
                 <div class="mc-dl-text">
                     <strong>Download your sheet</strong>
-                    <span>The empty template has headers only &mdash; ready for your data.</span>
+                    <span>The empty template has headers only - ready for your data.</span>
                 </div>
                 <div class="mc-dl-btns">
                     <button class="mc-btn mc-btn-primary" onclick="generateXLSX()"><i class="fas fa-file-excel"></i> Excel (.xlsx)</button>
@@ -537,12 +540,80 @@
         </section>
     </div>
 
+    <!-- shared site footer - same markup & main.css styles as index / metaDETECT,
+         so the page is bookended like the rest of the site -->
+    <footer class="footer">
+      <div class="footer_left">
+        <div class="footer_logo">metaConvert</div>
+        <address>
+          <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank"
+            ><img src="https://img.shields.io/badge/license-GPL-red" /></a
+          ><br />
+          <a
+            href="https://cran.r-project.org/web/packages/metaConvert/index.html"
+            target="_blank"
+            ><img src="https://www.r-pkg.org/badges/version/metaConvert" /></a
+          ><br />
+          <button type="button" style="border: solid 1px #fff">
+            <a
+              href="mailto: corentin.gosling@parisnanterre.fr"
+              style="
+                text-decoration: none;
+                color: #000;
+                width: 100%;
+                height: 100%;
+                display: block;
+              "
+              >Contact us</a
+            >
+          </button>
+        </address>
+      </div>
+
+      <div class="footer_mid">
+        <div class="p10">
+          <a
+            href="https://www.parisnanterre.fr/corentin-gosling"
+            target="_blank"
+            ><img src="background/p10.svg" class="img_univ"
+          /></a>
+        </div>
+        <div class="kcl">
+          <a
+            href="https://www.kcl.ac.uk/people/paolo-fusar-poli"
+            target="_blank"
+            ><img
+              src="https://upload.wikimedia.org/wikipedia/commons/1/18/King%E2%80%99s_College_London_logo.png"
+              class="img_univ"
+          /></a>
+        </div>
+        <div class="barc">
+          <a
+            href="https://www.clinicbarcelona.org/en/professionals/joaquim-radua"
+            target="_blank"
+            ><img src="background/barcelona.jpg" class="img_univ"
+          /></a>
+        </div>
+      </div>
+    </footer>
+
     <script>
         const navbar = document.querySelector("nav");
         window.addEventListener("scroll", () => {
             if (window.scrollY > 0) { navbar.classList.add("scrolled"); }
             else { navbar.classList.remove("scrolled"); }
         });
+        // mobile nav toggle - mirrors script/main.js so the hamburger works
+        // here exactly as it does on index / metaDETECT
+        (function () {
+            const navLinks = document.querySelector(".nav-links");
+            document.querySelectorAll("#hamburger-menu").forEach((icon) => {
+                icon.addEventListener("click", () => {
+                    icon.classList.toggle("open");
+                    navLinks.classList.toggle("open");
+                });
+            });
+        })();
 
         const fieldDefinitions = { 'cohen_d': 'Cohen\'s d value', 'hedges_g': 'Hedges\' g value', 'n_exp': 'Number of participants in the exposed group', 'n_nexp': 'Number of participants in the non-exposed group', 'n_sample': 'Total number of participants', 'n_cases': 'Number of cases/events across exposed/non-exposed groups', 'n_controls': 'Number of controls/no-event across exposed/non-exposed groups', 'or': 'Odds Ratio value', 'logor': 'Log Odds Ratio value', 'logor_se': 'Standard error of the log odds ratio', 'logor_pval': 'P-value of the (log) odds ratio', 'or_ci_lo': 'Lower bound of the 95% CI around the odds ratio value', 'or_ci_up': 'Upper bound of the 95% CI around the odds ratio value', 'logor_ci_lo': 'Lower bound of the 95% CI around the log odds ratio value', 'logor_ci_up': 'Upper bound of the 95% CI around the log odds ratio value', 'baseline_risk': 'Proportion of cases/events in the non-exposed group', 'small_margin_prop': 'Smallest margin proportion of cases/events in the underlying 2x2 table', 'rr': 'Risk ratio value', 'logrr': 'Log risk ratio value', 'logrr_se': 'Standard error of the log risk ratio', 'logrr_pval': 'P-value of the (log) risk ratio', 'rr_ci_lo': 'Lower bound of the 95% CI around the risk ratio value', 'rr_ci_up': 'Upper bound of the 95% CI around the risk ratio value', 'logrr_ci_lo': 'Lower bound of the 95% CI around the log risk ratio value', 'logrr_ci_up': 'Upper bound of the 95% CI around the log risk ratio value', 'pearson_r': 'Pearson\'s correlation coefficient value', 'fisher_z': 'Fisher\'s r-to-z transformed correlation coefficient', 'sd_iv': 'Standard deviation of the independent variable', 'unit_increase_iv': 'Value of the independent variable that will be used to estimate the Cohen\'s d', 'unit_type': 'The type of unit for the unit_increase_iv column. Must be either "sd" or "value"', 'n_cases_exp': 'Number of cases in the exposed group', 'n_cases_nexp': 'Number of cases in the non-exposed group', 'time_exp': 'Person-time of disease-free observation in the exposed group', 'time_nexp': 'Person-time of disease-free observation in the non-exposed group', 'mean_exp': 'Mean of participants in the experimental/exposed group', 'mean_nexp': 'Mean of participants in the non-experimental/non-exposed group', 'mean_sd_exp': 'Standard deviation of participants in the experimental/exposed group', 'mean_sd_nexp': 'Standard deviation of participants in the non-experimental/non-exposed group', 'mean_se_exp': 'Standard error of participants in the experimental/exposed group', 'mean_se_nexp': 'Standard error of participants in the non-experimental/non-exposed group', 'mean_ci_lo_exp': 'Lower bound of the 95% CI of the mean of the experimental/exposed group', 'mean_ci_up_exp': 'Upper bound of the 95% CI of the mean of the experimental/exposed group', 'mean_ci_lo_nexp': 'Lower bound of the 95% CI of the mean of the non-experimental/non-exposed group', 'mean_ci_up_nexp': 'Upper bound of the 95% CI of the mean of the non-experimental/non-exposed group', 'n_controls_exp': 'Number of controls/no-event in the exposed group', 'n_controls_nexp': 'Number of controls/no-event in the non exposed group', 'prop_cases_exp': 'Proportion of cases/events in the exposed group (ranging from 0 to 1)', 'prop_cases_nexp': 'Proportion of cases/events in the non-exposed group (ranging from 0 to 1)', 'phi': 'Phi coefficient value', 'chisq': 'Chi-square value', 'chisq_pval': 'Chi-square p-value', 'md': 'Mean difference between two independent groups', 'md_sd': 'Standard deviation of the mean difference', 'md_se': 'Standard error of the mean difference', 'md_pval': 'P-value of the mean difference', 'md_ci_lo': 'Lower bound of the 95% CI of the mean difference', 'md_ci_up': 'Upper bound of the 95% CI of the mean difference', 'anova_f': 'F-test value from an ANOVA with a binary independent variable', 'anova_f_pval': 'P-value from an ANOVA with a binary independent variable', 'student_t': 'Student\'s t-test value', 'student_t_pval': 'P-value from value from a Student\'s t-test value', 'pt_bis_r': 'Correlation coefficient value from a point-biserial correlation', 'pt_bis_r_pval': 'P-value of a point-biserial correlation', 'etasq': 'Eta-squared value from an ANOVA with a binary independent variable', 'min_exp': 'Minimum value of the experimental/exposed group', 'q1_exp': 'First quartile of the experimental/exposed group', 'med_exp': 'Median value of the experimental/exposed group', 'q3_exp': 'Third quartile of the experimental/exposed group', 'max_exp': 'Maximum value of the experimental/exposed group', 'min_nexp': 'Minimum value of the non-experimental/non-exposed group', 'q1_nexp': 'First quartile of the non-experimental/non-exposed group', 'med_nexp': 'Median value of the non-experimental/non-exposed group', 'q3_nexp': 'Third quartile of the non-experimental/non-exposed group', 'max_nexp': 'Maximum value of the non-experimental/non-exposed group', 'beta_std': 'Standardized regression coefficient value (the predictor of interest must be binary)', 'beta_unstd': 'Unstandardized regression coefficient value (the predictor of interest must be binary)', 'dv_sd': 'Standard deviation of the dependent variable', 'mean_change_exp': 'Mean change of participants in the exposed group', 'mean_change_nexp': 'Mean change of participants in the non-exposed group', 'mean_change_sd_exp': 'Standard deviation of the mean change for participants in the exposed group', 'mean_change_sd_nexp': 'Standard deviation of the mean change for participants in the non-exposed group', 'mean_change_se_exp': 'Standard error of the mean change for participants in the exposed group', 'mean_change_se_nexp': 'Standard error of the mean change for participants in the non-exposed group', 'mean_change_ci_lo_exp': 'Lower bound of the 95% CI around the mean change for participants in the exposed group', 'mean_change_ci_up_exp': 'Upper bound of the 95% CI around the mean change for participants in the exposed group', 'mean_change_ci_lo_nexp': 'Lower bound of the 95% CI around the mean change for participants in the non-exposed group', 'mean_change_ci_up_nexp': 'Upper bound of the 95% CI around the mean change for participants in the non-exposed group', 'r_pre_post_exp': 'Correlation between pre-post scores in the exposed group', 'r_pre_post_nexp': 'Correlation between pre-post scores in the non-exposed group', 'mean_pre_exp': 'Mean at baseline in the exposed group', 'mean_pre_nexp': 'Mean at baseline in the non-exposed group', 'mean_pre_sd_exp': 'Standard deviation of the mean at baseline in the exposed group', 'mean_pre_sd_nexp': 'Standard deviation of the mean at baseline in the non-exposed group', 'mean_pre_se_exp': 'Standard error of the mean at baseline in the exposed group', 'mean_pre_se_nexp': 'Standard error of the mean at baseline in the non-exposed group', 'mean_pre_ci_lo_exp': 'Lower bound of the 95% CI of the mean at baseline in the exposed group', 'mean_pre_ci_up_exp': 'Upper bound of the 95% CI of the mean at baseline in the exposed group', 'mean_pre_ci_lo_nexp': 'Lower bound of the 95% CI of the mean at baseline in the non-exposed group', 'mean_pre_ci_up_nexp': 'Upper bound of the 95% CI of the mean at baseline in the non-exposed group', 'paired_f_exp': 'Paired ANOVA F value in the exposed group', 'paired_f_nexp': 'Paired ANOVA F value in the non-exposed group', 'paired_f_pval_exp': 'P-value of the paired ANOVA F in the exposed group', 'paired_f_pval_nexp': 'P-value of the paired ANOVA F in the non-exposed group', 'paired_t_exp': 'Paired t-test value in the exposed group', 'paired_t_nexp': 'Paired t-test value in the non-exposed group', 'paired_t_pval_exp': 'P-value of the paired t-test in the exposed group', 'paired_t_pval_nexp': 'P-value of the paired t-test in the non-exposed group', 'cohen_d_adj': 'Adjusted Cohen\'s d value', 'n_cov_ancova': 'Number of covariates in the ANCOVA model', 'cov_outcome_r': 'Correlation between the outcome and covariate (multiple correlation when multiple covariates are included in the ANCOVA model)', 'ancova_f': 'F-test value from an ANCOVA with a binary independent variable', 'ancova_f_pval': 'P-value from an ANCOVA with a binary independent variable', 'ancova_t': 'T-test value from an ANCOVA with a binary independent variable', 'ancova_t_pval': 'P-value from an ANCOVA with a binary independent variable', 'etasq_adj': 'Adjusted eta-squared value', 'ancova_mean_exp': 'Adjusted mean of participants in the experimental/exposed group', 'ancova_mean_nexp': 'Adjusted mean of participants in the non-experimental/non-exposed group', 'ancova_mean_sd_exp': 'Adjusted standard deviation of participants in the experimental/exposed group', 'ancova_mean_sd_nexp': 'Adjusted standard deviation of participants in the non-experimental/non-exposed group', 'ancova_mean_se_exp': 'Adjusted standard error of participants in the experimental/exposed group', 'ancova_mean_se_nexp': 'Adjusted standard error of participants in the non-experimental/non-exposed group', 'ancova_mean_ci_lo_exp': 'Lower bound of the 95% CI of the adjusted mean of the experimental/exposed group', 'ancova_mean_ci_up_exp': 'Upper bound of the 95% CI of the adjusted mean of the experimental/exposed group', 'ancova_mean_ci_lo_nexp': 'Lower bound of the 95% CI of the adjusted mean of the non-experimental/non-exposed group', 'ancova_mean_ci_up_nexp': 'Upper bound of the 95% CI of the adjusted mean of the non-experimental/non-exposed group', 'ancova_mean_sd_pooled': 'Adjusted pooled standard deviation', 'mean_sd_pooled_crude': 'Crude pooled standard deviation', 'ancova_md': 'Adjusted mean difference between two independent groups', 'ancova_md_sd': 'Standard deviation of the adjusted mean difference', 'ancova_md_pval': 'P-value of the adjusted mean difference', 'ancova_md_ci_lo': 'Lower bound of the 95% CI of the adjusted mean difference', 'ancova_md_ci_up': 'Upper bound of the 95% CI of the adjusted mean difference', 'plot_mean_exp': 'Mean of participants in the experimental/exposed group (extracted from a plot)', 'plot_mean_nexp': 'Mean of participants in the non-experimental/non-exposed group (extracted from a plot)', 'plot_mean_sd_lo_exp': 'Lower bound of an error bar depicting -1 SD from the mean of the experimental/exposed group (extracted from a plot)', 'plot_mean_sd_lo_nexp': 'Lower bound of an error bar depicting -1 SD from the mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_mean_sd_up_exp': 'Upper bound of an error bar depicting +1 SD from the mean of the experimental/exposed group (extracted from a plot)', 'plot_mean_sd_up_nexp': 'Upper bound of an error bar depicting +1 SD from the mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_mean_se_lo_exp': 'Lower bound of an error bar depicting -1 SE from the mean of the experimental/exposed group (extracted from a plot)', 'plot_mean_se_lo_nexp': 'Lower bound of an error bar depicting -1 SE from the mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_mean_se_up_exp': 'Upper bound of an error bar depicting +1 SE from the mean of the experimental/exposed group (extracted from a plot)', 'plot_mean_se_up_nexp': 'Upper bound of an error bar depicting +1 SE from the non-experimental/non-exposed group (extracted from a plot)', 'plot_mean_ci_lo_exp': 'Lower bound of an error bar depicting the 95% CI of the mean of the experimental/exposed group (extracted from a plot)', 'plot_mean_ci_lo_nexp': 'Lower bound of an error bar depicting the 95% CI of the mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_mean_ci_up_exp': 'Upper bound of an error bar depicting the 95% CI of the mean of the experimental/exposed group (extracted from a plot)', 'plot_mean_ci_up_nexp': 'Upper bound of an error bar depicting the 95% CI of the mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_exp': 'Adjusted mean of participants in the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_nexp': 'Adjusted mean of participants in the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_sd_lo_exp': 'Lower bound of an error bar depicting -1 SD from the adjusted mean of the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_sd_lo_nexp': 'Lower bound of an error bar depicting -1 SD from the adjusted mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_sd_up_exp': 'Upper bound of an error bar depicting +1 SD from the adjusted mean of the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_sd_up_nexp': 'Upper bound of an error bar depicting +1 SD from the adjusted mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_se_lo_exp': 'Lower bound of an error bar depicting -1 SE from the adjusted mean of the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_se_lo_nexp': 'Lower bound of an error bar depicting -1 SE from the adjusted mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_se_up_exp': 'Upper bound of an error bar depicting +1 SE from the adjusted mean of the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_se_up_nexp': 'Upper bound of an error bar depicting +1 SE from the adjusted mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_ci_lo_exp': 'Lower bound of an error bar depicting the 95% CI of the adjusted mean of the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_ci_lo_nexp': 'Lower bound of an error bar depicting the 95% CI of the adjusted mean of the non-experimental/non-exposed group (extracted from a plot)', 'plot_ancova_mean_ci_up_exp': 'Upper bound of an error bar depicting the 95% CI of the adjusted mean of the experimental/exposed group (extracted from a plot)', 'plot_ancova_mean_ci_up_nexp': 'Upper bound of an error bar depicting the 95% CI of the adjusted mean of the non-experimental/non-exposed group (extracted from a plot)', 'measure': 'The target effect size measure (should be one of the 11 effect size measures available in metaConvert)', 'user_es_measure_crude': 'Name of the original effect size measure', 'user_es_crude': 'Effect size value', 'user_se_crude': 'Effect size standard error', 'user_ci_lo_crude': 'Lower bound of the 95% CI around the effect size value', 'user_ci_up_crude': 'Upper bound of the 95% CI around the effect size value', 'user_es_measure_adjusted': 'Name of the original effect size measure', 'user_es_adjusted': 'Effect size value (should be adjusted)', 'user_se_adjusted': 'Effect size standard error', 'user_ci_lo_adjusted': 'Lower bound of the 95% CI around the adjusted effect size value', 'user_ci_up_adjusted': 'Upper bound of the 95% CI around the adjusted effect size value', 'study_id': 'Unique identifier for each study', 'author': 'First author of the study', 'year': 'Publication year', 'predictor': 'Description of the predictor/exposure variable', 'outcome': 'Description of the outcome variable', 'info_expected': 'Additional information or notes about the study' };
         const templates = [
@@ -655,7 +726,7 @@
         }
         function colDesc(col) {
             if (col.indexOf('reverse_') === 0) {
-                return 'Direction control — set TRUE to flip the sign of this study’s effect so every study points the same way (leave blank for no change).';
+                return 'Direction control - set TRUE to flip the sign of this study’s effect so every study points the same way (leave blank for no change).';
             }
             return fieldDefinitions[col] || 'No description available.';
         }
@@ -703,7 +774,7 @@
             card.setAttribute('role', 'button');
             card.tabIndex = 0;
             card.setAttribute('aria-pressed', 'false');
-            card.setAttribute('aria-label', t.name + ' — select as a data source');
+            card.setAttribute('aria-label', t.name + ' - select as a data source');
             card.addEventListener('click', e => {
                 const colsBtn = e.target.closest('.mc-card-cols-btn');
                 if (colsBtn) {
@@ -745,7 +816,7 @@
             });
             document.getElementById('mcEmpty').hidden = visible !== 0;
         }
-        // simplest single source to extract for each measure — clicking a measure
+        // simplest single source to extract for each measure - clicking a measure
         // preselects it so the sheet starts building immediately
         const ES_STARTERS = {
             SMD: ['means_dispersion'],
@@ -797,8 +868,8 @@
             return { nat: [...nat], conv: [...conv] };
         }
         const ES_FULL = { SMD: 'Standardized mean difference', MD: 'Mean difference', OR: 'Odds ratio', RR: 'Risk ratio', NNT: 'Number needed to treat', COR: "Correlation (r / Fisher's z)", IRR: 'Incidence rate ratio', VAR: 'Variability ratio / CoV', Any: 'Your effect-size measure' };
-        function natChip(x) { return `<span class="mc-badge mc-badge-nat" title="${ES_FULL[x] || x} — computed directly">${x === 'Any' ? 'Any' : x}</span>`; }
-        function convChip(x) { return `<span class="mc-badge mc-badge-conv" title="${ES_FULL[x] || x} — derived by conversion">${x}</span>`; }
+        function natChip(x) { return `<span class="mc-badge mc-badge-nat" title="${ES_FULL[x] || x} - computed directly">${x === 'Any' ? 'Any' : x}</span>`; }
+        function convChip(x) { return `<span class="mc-badge mc-badge-conv" title="${ES_FULL[x] || x} - derived by conversion">${x}</span>`; }
 
         function syncSelectionUI() {
             const n = selectedSources.size;
@@ -816,7 +887,7 @@
         function liveVal(header, row) {
             if (!liveValCache[header]) liveValCache[header] = [];
             if (liveValCache[header][row] === undefined) {
-                liveValCache[header][row] = header === 'info_expected' ? '—' : generateSampleValue(header, row);
+                liveValCache[header][row] = header === 'info_expected' ? '-' : generateSampleValue(header, row);
             }
             return liveValCache[header][row];
         }
@@ -860,12 +931,12 @@
             const host = document.getElementById('mcLedger');
             const head = `<div class="mc-ledger-head"><h4 class="mc-ledger-title">Effect sizes you can compute</h4><p class="mc-ledger-note">Updates as you pick sources below.</p></div>`;
             if (!u.nat.length && !u.conv.length) {
-                host.innerHTML = head + `<p class="mc-ledger-empty">Nothing picked yet — choose a source and the measures you'll be able to compute appear here.</p>`;
+                host.innerHTML = head + `<p class="mc-ledger-empty">Nothing picked yet - choose a source and the measures you'll be able to compute appear here.</p>`;
                 return;
             }
             host.innerHTML = head + `
                 <div class="mc-ledger-row"><div class="mc-ledger-k"><span class="mc-dot mc-dot-nat"></span><span>Computed directly<span class="mc-ledger-hint">exact, straight from your data</span></span></div><div class="mc-ledger-v">${u.nat.length ? u.nat.map(natChip).join('') : '<span class="mc-muted">none yet</span>'}</div></div>
-                <div class="mc-ledger-row"><div class="mc-ledger-k"><span class="mc-dot mc-dot-conv"></span><span>By conversion<span class="mc-ledger-hint">via a formula — slight approximation</span></span></div><div class="mc-ledger-v">${u.conv.length ? u.conv.map(convChip).join('') : '<span class="mc-muted">none yet</span>'}</div></div>`;
+                <div class="mc-ledger-row"><div class="mc-ledger-k"><span class="mc-dot mc-dot-conv"></span><span>By conversion<span class="mc-ledger-hint">via a formula - slight approximation</span></span></div><div class="mc-ledger-v">${u.conv.length ? u.conv.map(convChip).join('') : '<span class="mc-muted">none yet</span>'}</div></div>`;
         }
 
         // ---------- navigation (2 steps) ----------
@@ -944,7 +1015,7 @@
         }
 
         function generateSampleValue(fieldName, index = 0) {
-    // direction-control columns are boolean flags — show one flipped study as an example
+    // direction-control columns are boolean flags - show one flipped study as an example
     if (fieldName.indexOf('reverse_') === 0) return index === 1 ? 'TRUE' : 'FALSE';
     // Define coordinated sets for OR values (log-scale symmetric)
     const orSets = [
